@@ -11,26 +11,58 @@
 % REAL (from Notion): "Magic" is whatever makes a setting feel fantastic.
 \lettrine{M}{agic} is whatever makes a setting feel fantastic. It is
 literal magic in a high-fantasy setting, hacking in a cyberpunk world,
-science and engineering in Star Trek, the Force in Star Wars. When you
-enter a realm, decide together what Magic \emph{looks like} there.
+science and engineering in Star Trek, the Force in Star Wars. Magic lets
+you do the impossible, the improbable, and the fantastic. When you enter
+a realm, decide together what Magic \emph{looks like} there.
 
-% TODO: expand on the reskin-per-realm philosophy.
-\lipsum[24]
-
-% REAL RULE: Magic ranks from the Notion source. Keep verbatim.
+% REAL RULE: Magic ranks + tag counts (from Notion). Keep verbatim.
 \begin{statblock}[Magic Ranks]
 \begin{tabularx}{\linewidth}{@{}p{0.16\linewidth} Y@{}}
 \rating{1} & You do not know magic.\\[3pt]
-\rating{2} & You can cast a few spells.\\[3pt]
-\rating{3} & You know magic.\\[3pt]
-\rating{4} & You are a \emph{fucking wizard}.\\
+\rating{2} & You can cast a few spells. \emph{Choose 3 tags.}\\[3pt]
+\rating{3} & You know magic. \emph{Choose 7 tags.}\\[3pt]
+\rating{4} & You are a \emph{fucking wizard}. \emph{Choose 12 tags.}\\
 \end{tabularx}
 \end{statblock}
 
-\section{Magic in Play}
-% TODO: mechanics/guidance for using Magic.
-\lipsum[25][1-5]
+\section{What Magic Covers}
+Magic wears a different face in every realm. Depending on the setting, it
+might include:
+\begin{itemize}
+  \item Spell casting
+  \item True-name magic
+  \item Computer hacking
+  \item Demon summoning
+  \item Astral projection
+  \item Using the Force
+  \item Tinkering
+  \item Engineering, in a high-science setting
+\end{itemize}
 
-\section{Reskinning Magic per Realm}
-% Concept is real: same rank, different fantastic element per genre.
-\lipsum[26][1-4]
+\section{Magic Tags}
+When you create your character, choose \keyword{magic tags} from the lists
+below --- as many as your Magic rank allows (\dice{3} at rank~2, \dice{7}
+at rank~3, \dice{12} at rank~4). This tag system is inspired by John
+Harper's \emph{Lady Blackbird}.
+
+\begin{description}[leftmargin=6.5em, style=nextline, font=\normalfont\itshape]
+  \item[Techniques] Create, perceive, transform, destroy, control.
+  \item[Forms] Animal, water, air, body, plant, fire, image, mind, earth, magic.
+\end{description}
+
+\noindent In addition, you may choose \emph{any} tag you like, as long as
+it is more specific in application than the tags above. For example:
+\begin{quote}\itshape
+Gems, smoke, thorns, hearing, reading, protection, throwing, flying.
+\end{quote}
+
+\section{How Magic Works}
+Whenever you do magic, you may add \keyword{one unit to your roll for each
+applicable tag you have}, up to your Magic level (\dice{1}--\dice{4}). The
+GM sets the difficulty.
+
+\begin{example}
+Rooster is a level~3 magic user with the tags \emph{create, destroy, fire,
+water, food, flying}. They want to conjure a can of soda. They may apply
+\emph{create}, \emph{food}, and \emph{water} --- getting \dice{+3}.
+\end{example}
