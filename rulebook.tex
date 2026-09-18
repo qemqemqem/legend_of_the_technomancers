@@ -1,0 +1,52 @@
+% =====================================================================
+%  Across the Realms — RPG Rulebook
+%  Build:  ./build.sh        (or: tectonic -X compile rulebook.tex)
+% =====================================================================
+\documentclass[11pt,oneside]{memoir}
+\usepackage{atrpg}
+
+\title{Across the Realms}
+\author{Andrew Richardson}
+
+\begin{document}
+\color{atrInk}
+
+% ---------------------------------------------------------------- Title
+\begin{titlingpage}
+\centering
+\vspace*{\stretch{1}}
+{\hdfont\bfseries\color{atrAccent}\fontsize{54}{58}\selectfont ACROSS\\[2pt] THE REALMS\par}
+\vspace{6mm}
+{\color{atrRule}\rule{0.5\textwidth}{1pt}\par}
+\vspace{6mm}
+{\hdfont\Large A Rules-Light Roleplaying Game of Worlds Without End\par}
+\vspace{\stretch{1}}
+\includegraphics[height=0.5\textheight,keepaspectratio]{art/cover.png}\par
+\vspace{\stretch{1}}
+{\hdfont\large by Andrew Richardson\par}
+\vspace*{\stretch{1}}
+\end{titlingpage}
+
+\frontmatter
+\tableofcontents
+
+\mainmatter
+\twocolumn   % everything after the ToC runs in two columns
+
+\include{chapters/00-intro}
+
+% ---- Part I: Building a Traveller ----
+\part{Building a Traveller}
+\include{chapters/01-character-creation}
+\include{chapters/02-body}
+\include{chapters/03-stuff}
+\include{chapters/04-skills}
+\include{chapters/05-magic}
+
+% ---- Part II: The Realms ----
+\part{The Realms}
+\include{chapters/06-high-fantasy}
+\include{chapters/07-cyberpunk}
+\include{chapters/08-space-adventure}
+
+\end{document}

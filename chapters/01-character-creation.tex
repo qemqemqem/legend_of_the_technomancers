@@ -1,0 +1,98 @@
+% ================================================================
+\chapter{Character Creation}
+% ================================================================
+% REAL RULE: four columns, rated 1–4. Keep this.
+\lettrine{E}{very character} is described by four columns, each rated on
+a scale of \keyword{1 to 4} --- from ordinary to extraordinary: they are
+\keyword{Body}, \keyword{Stuff}, \keyword{Skills}, and \keyword{Magic}.
+Their meaning bends to fit each realm, but the rank you assign travels
+with you from world to world.
+
+\begin{statblock}[The Four Columns at a Glance]
+\begin{tabularx}{\linewidth}{@{}p{0.18\linewidth} Y@{}}
+\keyword{Body}   & Your physical form --- from ordinary person to dragon.\\[3pt]
+\keyword{Stuff}  & What you carry --- from the shirt on your back to a ship.\\[3pt]
+\keyword{Skills} & Everything mundane and learned, including combat.\\[3pt]
+\keyword{Magic}  & Whatever makes the setting feel fantastic.\\
+\end{tabularx}
+\end{statblock}
+
+\section{Spending Your Ranks}
+% REAL RULE: Shadowrun-style priority. Assign one of A/B/C/D per column.
+Character creation borrows the priority method from \emph{Shadowrun}.
+You have four priorities --- \keyword{A}, \keyword{B}, \keyword{C}, and
+\keyword{D} --- and you assign \emph{one letter to each column}, with no
+repeats. \keyword{A} is where you shine; \keyword{D} is where you
+struggle. No one is exceptional at everything.
+
+The \keyword{Priority Matrix} on the following page lays out what each
+letter means for each column. A priority of \keyword{A} grants the top
+rank (\rating{4}) in that column, down to \keyword{D} for the lowest
+(\rating{1}).
+
+% ---- Full-width priority matrix: leads a fresh page, then columns resume.
+% \twocolumn[<top material>] guarantees flush-top, full-width placement
+% (a table* float would centre on a float-only page under memoir).
+% NB: no bracketed \\[..] anywhere in this optional arg — a literal ]
+% would terminate \twocolumn's [...] early. Use \par + \vspace instead.
+\twocolumn[%
+  \begingroup\centering
+  {\hdfont\Large\bfseries\color{\realmaccent} The Priority Matrix\par}
+  \vspace{2pt}
+  {\itshape Assign one of A, B, C, D to each column --- one letter each, no repeats.\par}
+  \vspace{10pt}
+  \endgroup
+  \begingroup
+  \setlength{\tabcolsep}{7pt}\renewcommand{\arraystretch}{1.35}
+  \noindent\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{2.3cm} *{4}{Y}@{}}
+  \rowcolor{\realmaccent}
+  {\hdfont\bfseries\color{white}Priority} &
+  {\hdfont\bfseries\color{white}Body}   &
+  {\hdfont\bfseries\color{white}Stuff}  &
+  {\hdfont\bfseries\color{white}Skills} &
+  {\hdfont\bfseries\color{white}Magic}  \\
+  \rowcolor{atrBoxbg}
+  {\hdfont\LARGE\bfseries\color{\realmaccent}A}\newline\rating{4}
+    & Truly strange or monstrous --- a dragon, an angel.
+    & A ship, a keep, incredible gear. Rich.
+    & A master of many things.
+    & You are a \emph{fucking wizard}. \\
+  \rowcolor{white}
+  {\hdfont\LARGE\bfseries\color{\realmaccent}B}\newline\rating{3}
+    & Exceptional --- elven grace, ogrish might, uncanny beauty.
+    & A legendary weapon or a vehicle; generally well off.
+    & A master of your craft, or a jack of all trades.
+    & You know magic. \\
+  \rowcolor{atrBoxbg}
+  {\hdfont\LARGE\bfseries\color{\realmaccent}C}\newline\rating{2}
+    & You stand out --- strong, quick, or striking.
+    & Ordinary things and some money in your pocket.
+    & You know a lot.
+    & You can cast a few spells. \\
+  \rowcolor{white}
+  {\hdfont\LARGE\bfseries\color{\realmaccent}D}\newline\rating{1}
+    & An ordinary person; base stats across the board.
+    & Nothing but the shirt on your back.
+    & You know a few things.
+    & You do not know magic. \\
+  \end{tabularx}
+  \par\bigskip
+  \endgroup
+]
+
+\begin{example}
+% REAL worked example of the ABCD method.
+Mara is a wandering swordmaster who has never touched real magic. She
+assigns \keyword{A} to Skills, \keyword{B} to Body, \keyword{C} to Stuff,
+and \keyword{D} to Magic.
+\end{example}
+
+\section{Stepping Through the Door}
+% TODO: how play begins; hand-off to the column chapters.
+\lipsum[9]
+
+\begin{notebox}[Design Note: One Sheet, Many Worlds]
+% Concept is real (rank travels, meaning is local); prose to be written.
+Rank travels but meaning is local, so a single character sheet carries
+you across every genre. \lipsum[10][1-3]
+\end{notebox}

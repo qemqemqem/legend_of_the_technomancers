@@ -1,0 +1,15 @@
+# Build artifacts
+*.pdf
+*.aux
+*.log
+*.toc
+*.out
+*.synctex.gz
+
+# Secrets
+art/.env
+.env
+
+# Python
+__pycache__/
+*.pyc
