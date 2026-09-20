@@ -13,3 +13,6 @@ art/.env
 # Python
 __pycache__/
 *.pyc
+
+# Copyrighted reference material (local only)
+references/
