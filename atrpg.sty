@@ -6,23 +6,52 @@
 \ProvidesPackage{atrpg}[2026/09/18 Across the Realms rulebook style]
 
 % ---- Fonts ----------------------------------------------------------
-\RequirePackage{libertinus}        % serif + sans + math (body text)
 \RequirePackage{fontspec}
-% Display/heading face: geometric, reads equally well as sci-fi or fantasy.
-\newfontfamily\hdfont{texgyreadventor}[
-  Extension = .otf,
-  UprightFont = *-regular, BoldFont = *-bold,
-  ItalicFont = *-italic,  BoldItalicFont = *-bolditalic]
+% Body: MPlantin — Plantin-based oldstyle serif; warm, humanist, indie-RPG feel.
+\setmainfont{MPlantin}[
+  Path        = /home/keenan/.fonts/,
+  Extension   = .ttf,
+  UprightFont = mplantin,
+  BoldFont    = mplanti1,
+  ItalicFont  = mplantinit,
+  BoldItalicFont = mplantinit]
+% Display/heading face: Beleren Bold — the game fantasy/sci-fi display face.
+% Caps-only; every weight renders as bold, so \bfseries is a no-op here.
+\newfontfamily\hdfont{beleren-bold_P1.01}[
+  Path        = /home/keenan/.fonts/,
+  Extension   = .ttf,
+  UprightFont = *,
+  BoldFont    = *,
+  ItalicFont  = *,
+  BoldItalicFont = *]
 
-% ---- Colour palette (override \realmaccent per realm) ---------------
+% ---- Colour palette -------------------------------------------------
+% To change any colour: edit the hex value here. Every chapter that uses
+% that colour automatically picks up the change.
 \RequirePackage{xcolor}
-\definecolor{atrInk}{HTML}{1C1B22}      % near-black body ink
-\definecolor{atrPaper}{HTML}{FBF8F1}    % warm off-white
-\definecolor{atrAccent}{HTML}{7A2E2E}   % default deep accent (fantasy-neutral)
-\definecolor{atrAccent2}{HTML}{2E4A7A}  % secondary accent
-\definecolor{atrRule}{HTML}{C9BFA8}     % hairline / box borders
-\definecolor{atrBoxbg}{HTML}{F1ECDF}    % sidebar / box fill
-% Per-realm override hook: \renewcommand\realmaccent{...} in a chapter.
+
+% Global chrome
+\definecolor{atrInk}{HTML}{1A1A2E}      % deep navy-black
+\definecolor{atrPaper}{HTML}{EFECE5}    % neutral off-white (page background)
+\definecolor{atrAccent}{HTML}{2B5F75}   % default teal (non-column chapters)
+\definecolor{atrAccent2}{HTML}{B56A2E}  % warm copper/amber — secondary
+\definecolor{atrRule}{HTML}{A8A49C}     % cool neutral grey for rules/borders
+\definecolor{atrBoxbg}{HTML}{E3DFD7}    % neutral parchment for box fills
+
+% Four-column chapter accents — one per Building-a-Traveller chapter.
+% Change the hex here to re-theme that chapter throughout.
+\definecolor{columnBody}{HTML}{8B2831}  % ruby red   — physical form
+\definecolor{columnStuff}{HTML}{5E2A84} % deep violet — possessions
+\definecolor{columnSkills}{HTML}{2A6438}% forest green — learned craft
+\definecolor{columnMagic}{HTML}{1A4E8C} % royal blue  — arcane
+
+% Genre realm accents — one per The-Realms chapter.
+\definecolor{realmFantasy}{HTML}{245C3B}% deep emerald
+\definecolor{realmCyber}{HTML}{C81D77}  % hot magenta
+\definecolor{realmSpace}{HTML}{1E5A7A}  % steel blue
+
+% Per-chapter override hook: add \renewcommand{\realmaccent}{colorName}
+% at the top of any chapter file to theme that chapter.
 \newcommand{\realmaccent}{atrAccent}
 
 % ---- Page geometry --------------------------------------------------
@@ -88,16 +117,20 @@
 
 % ---- Rating pips (the 1–4 scale) -----------------------------------
 % \rating{n}  → four pips, first n filled with the current realm accent.
+% $\vcenter{\hbox{...}}$ centres the pip row on the math axis (≈ mid-cap-height),
+% keeping dots visually inline regardless of body font metrics.
 \newcommand{\rating}[1]{%
-  \begingroup\raisebox{-0.15ex}{%
-  \begin{tikzpicture}[baseline]
-    \foreach \i in {1,...,4}{%
-      \ifnum\i>#1
-        \node[circle,draw=atrRule,line width=0.4pt,minimum size=6pt,inner sep=0] at (\i*8pt,0){};
-      \else
-        \node[circle,fill=\realmaccent,minimum size=6pt,inner sep=0] at (\i*8pt,0){};
-      \fi}
-  \end{tikzpicture}}\endgroup}
+  \begingroup
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}
+      \foreach \i in {1,...,4}{%
+        \ifnum\i>#1
+          \node[circle,draw=atrRule,line width=0.4pt,minimum size=6pt,inner sep=0] at (\i*8pt,0){};
+        \else
+          \node[circle,fill=\realmaccent,minimum size=6pt,inner sep=0] at (\i*8pt,0){};
+        \fi}
+    \end{tikzpicture}}}$%
+  \endgroup}
 
 % ---- Boxes ----------------------------------------------------------
 % Sidebar / designer's note.  (named notebox: \sidebar is taken by memoir)
@@ -109,9 +142,10 @@
   coltitle=\realmaccent, title={#1}}
 
 % Read-aloud / in-fiction flavour text.
+% colback=atrBoxbg (not atrPaper) so it's visible against the off-white page.
 \newtcolorbox{readaloud}{%
   enhanced, breakable,
-  colback=atrPaper, colframe=\realmaccent, boxrule=0pt,
+  colback=atrBoxbg, colframe=\realmaccent, boxrule=0pt,
   borderline west={2.2pt}{0pt}{\realmaccent},
   left=12pt, right=10pt, top=6pt, bottom=6pt,
   fontupper=\itshape}
@@ -119,7 +153,7 @@
 % Rules example.
 \newtcolorbox{example}{%
   enhanced, breakable,
-  colback=white, colframe=atrRule, boxrule=0.6pt, arc=1pt,
+  colback=atrPaper, colframe=atrRule, boxrule=0.6pt, arc=1pt,
   left=8pt, right=8pt, top=5pt, bottom=5pt,
   overlay unbroken and first={%
     \node[anchor=north east,font=\hdfont\bfseries\scriptsize\color{atrRule}]
@@ -169,6 +203,20 @@
 % Kept as its own macro so translations can be restyled or indexed later.
 \newcommand{\genretrans}[1]{\par\smallskip{\small\itshape\color{atrAccent2}Across the realms: #1}\par}
 
+% Skill entry — name, primary stat, description. No box; flows inline.
+%   \skill{Blades}{Agility}{Swords, knives, and any weapon that cuts.}
+\newcommand{\skill}[3]{%
+  \par\smallskip\noindent\hangindent=1em
+  {\bfseries\color{\realmaccent}#1}%
+  ~{\small\itshape(#2)} --- #3\par}
+
+% Skill category label — Beleren at text size, accent colour, no box.
+%   \skillcat{Conflict}
+\newcommand{\skillcat}[1]{%
+  \par\medskip\noindent
+  {\hdfont\normalsize\bfseries\color{\realmaccent}#1}%
+  \par\smallskip\nobreak}
+
 % Reskin table — maps a generic catalogue line to this realm's version.
 % Used in the genre chapters to translate Stuff/Body/etc. into local form.
 %   \begin{reskin}{Stuff: Vehicles}
@@ -186,5 +234,10 @@
 \newcommand{\keyword}[1]{\textbf{\color{\realmaccent}#1}}
 \newcommand{\dice}[1]{\textsf{#1}}
 \setlist{leftmargin=1.4em, itemsep=2pt, topsep=3pt}
+
+% ---- Page background -----------------------------------------------
+% Applied at document start so it takes effect on all pages (the cover
+% page art covers this completely; interior pages show the off-white).
+\AtBeginDocument{\pagecolor{atrPaper}}
 
 \endinput

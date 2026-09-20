@@ -1,4 +1,5 @@
 % ================================================================
+\renewcommand{\realmaccent}{columnStuff}  % deep violet
 \chapter{Stuff}
 % ================================================================
 % TODO: opening fiction for Stuff.
@@ -8,8 +9,13 @@
 
 \chapterart{col-stuff.png}
 
-% TODO: what Stuff means, tone, when it matters.
-\lettrine{L}{orem ipsum} \lipsum[16]
+\lettrine{S}{tuff} is what you carry from world to world. It covers your
+equipment, your wealth, and the larger things you stake out and call your
+own --- bases, ships, fortresses. Rank determines not just what you have,
+but how much of the world bends to you.
+
+% ---- Section 1: Character Creation ---------------------------------
+\section{At Character Creation}
 
 % REAL RULE: Stuff ranks from the Notion source. Keep verbatim.
 \begin{statblock}[Stuff Ranks]
@@ -21,20 +27,8 @@
 \end{tabularx}
 \end{statblock}
 
-\section{What You Can Buy}
-% REAL (from Notion): items are deliberately generic; you re-skin them
-% for each realm, and the genre chapters supply the local translations.
-The catalogue that follows is deliberately \keyword{generic}. What you own
-is a \emph{kind} of thing --- a mount, a special weapon, a base --- and you
-decide what that thing actually \emph{is} each time you enter a new realm.
-A \emph{special weapon} might be a flaming sword under a fantasy sun and a
-plasma rifle in the sprawl; it is the same line on your sheet either way.
-Each genre chapter in \emph{The Realms} lists suggested translations, so you
-always have a world-appropriate version ready to hand.
-
-Every entry is tagged with the \keyword{Stuff rank} needed to own it,
-shown as pips (\rating{2}--\rating{4}). Higher ranks let you hold more, and
-finer, gear.
+Assign one of the four priorities (A through D) to Stuff. Your rank
+sets the ceiling on what you can own and how fine that gear is.
 
 \begin{notebox}[Design Note: Purchasing]
 % REAL open question from Notion.
@@ -43,8 +37,29 @@ point buys at each rank, and the upper limits. For now, treat the ranks
 below as a guide to what a given Stuff column can plausibly hold.
 \end{notebox}
 
+% ---- Section 2: Rules -----------------------------------------------
+\section{Stuff in Play}
+
+% TODO: mechanics/guidance for using Stuff.
+\lipsum[17][1-5]
+
+\subsection*{Re-Kitting on Arrival}
+
+The catalogue is deliberately \keyword{generic}. What you own is a
+\emph{kind} of thing --- a mount, a special weapon, a base --- and you
+decide what that thing actually \emph{is} each time you enter a new realm.
+A \emph{special weapon} might be a flaming sword under a fantasy sun and a
+plasma rifle in the sprawl; it is the same line on your sheet either way.
+Each genre chapter lists suggested translations, so you always have a
+world-appropriate version ready to hand.
+
+% ---- Section 3: Options ---------------------------------------------
+\section{What You Can Buy}
+
+Every entry is tagged with the \keyword{Stuff rank} needed to own it,
+shown as pips (\rating{2}--\rating{4}).
+
 \section{Vehicles}
-% REAL (from Notion): three tiers of vehicle. Prose per the user's request.
 \artbanner{vehicle-steed.png}
 A vehicle carries you, your party, and your gear across the realm --- and,
 with a \keyword{Persistence Point}, from one realm into the next without
@@ -70,7 +85,6 @@ armour, and it changes what encounters are even possible.}
 \genretrans{a racing chariot or war-wagon, a race car or armoured van, a gunship or a battle tank.}
 
 \begin{notebox}[Design Note: Vehicles in Play]
-% User: mechanics not yet decided.
 \textbf{To do:} decide what a vehicle does mechanically --- chase rules,
 how it soaks damage, how many it carries, and whether higher tiers grant
 dice on the relevant rolls.
@@ -99,7 +113,6 @@ and decide what it looks like in the realm you are standing in.
 \end{gearlist}
 
 \begin{notebox}[Design Note: Damage \& Armour]
-% REAL open question from Notion.
 \textbf{To do:} settle how damage works. Working idea: each rank of armour
 reduces incoming damage by one point.
 \end{notebox}
@@ -108,11 +121,3 @@ reduces incoming damage by one point.
 \gear{Base}{3}{A safe house, a wizard's tower, a hideout you can return to.}
 \gear{Fortress}{4}{A stronghold --- walls, staff, and standing over the land around it.}
 \end{gearlist}
-
-\section{Stuff in Play}
-% TODO: mechanics/guidance for using Stuff.
-\lipsum[17][1-5]
-
-\section{Re-Kitting on Arrival}
-% Concept is real: translate Stuff into world-appropriate items of same rank.
-\lipsum[18][1-4]

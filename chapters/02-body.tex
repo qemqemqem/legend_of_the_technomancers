@@ -1,4 +1,5 @@
 % ================================================================
+\renewcommand{\realmaccent}{columnBody}  % ruby red
 \chapter{Body}
 % ================================================================
 % TODO: opening fiction for Body.
@@ -8,10 +9,14 @@
 
 \chapterart{col-body.png}
 
-% TODO: what Body means, tone, when it matters.
-\lettrine{L}{orem ipsum} \lipsum[12]
+\lettrine{B}{ody} is your physical self --- the shape and substance you
+carry from world to world. It sets your four core \keyword{Stats} and
+determines what enhancements you can take during character creation.
 
-% REAL RULE: Body ranks from the Notion source. Keep verbatim.
+% ---- Section 1: Character Creation ---------------------------------
+\section{At Character Creation}
+
+% REAL RULE: Body rank maps directly to starting Stat allocation.
 \begin{statblock}[Body Ranks]
 \begin{tabularx}{\linewidth}{@{}p{0.16\linewidth} Y@{}}
 \rating{1} & Ordinary person; base stats across the board.\\[3pt]
@@ -21,10 +26,56 @@
 \end{tabularx}
 \end{statblock}
 
-\section{Body in Play}
-% TODO: mechanics/guidance for using Body.
-\lipsum[13][1-5]
+Assign one of the four priorities (A through D) to Body. Your rank
+tells you how to set your core Stats and which \keyword{Modifications}
+you may take.
 
-\section{Changing Shape Across Realms}
-% Concept is real: Body keeps its rank but adopts a local form.
-\lipsum[14][1-4]
+\textbf{Body \rating{1} --- Ordinary Person.}
+Each of your four Stats begins at \dice{1}. Choose two Stats and add
+\dice{+1} to each.
+
+\begin{example}
+Mara is an athletic but unremarkable wanderer. Body \rating{1}. All four
+Stats start at 1. She boosts Agility and Intellect: \textbf{Str~1,
+Agi~2, Cha~1, Int~2}.
+\end{example}
+
+\textbf{Body \rating{2} --- Someone Who Stands Out.}
+Each of your four Stats begins at \dice{1}. You may then take up to two
+\keyword{Modifications} from the list in Your Modifications below.
+
+\begin{example}
+Kira is a charming fixer. Body \rating{2}. Stats start at 1. She takes
+\emph{Striking} and \emph{Sharp-Minded}: \textbf{Str~1, Agi~1, Cha~3,
+Int~3}.
+\end{example}
+
+\begin{notebox}[Design Note: Body \rating{3} and \rating{4}]
+\textbf{To do:} determine full modification lists and stat caps for
+exceptional (\rating{3}) and monstrous (\rating{4}) bodies. Working
+idea: higher ranks allow Stats beyond 3 and grant qualitatively different
+traits --- size, a natural weapon, supernatural resilience.
+\end{notebox}
+
+% ---- Section 2: Rules -----------------------------------------------
+\section{Body in Play}
+
+Your Stats pair with Skills on every roll. Add the relevant Stat to the
+relevant Skill and roll that many \dice{d6}s; each die showing \dice{4},
+\dice{5}, or \dice{6} is a success.
+
+\keyword{Strength} serves double duty: it measures raw physical power
+\emph{and} how much harm you can shrug off before you go down.
+Body rank also determines what physical form you take when you cross
+into a new realm --- an exceptional body stays exceptional, but it wears
+a different shape. See each genre chapter for local translations.
+
+% ---- Section 3: Options ---------------------------------------------
+\section{Your Modifications}
+
+\begin{gearlist}{Body Modifications}
+\gear{Extra Strong}{2}{+2 Strength. You lift, break, and endure what ordinary people cannot.}
+\gear{Fleet of Foot}{2}{+2 Agility. You are fast, nimble, and perfectly precise.}
+\gear{Striking}{2}{+2 Charisma. You are beautiful, magnetic, or impossible to ignore.}
+\gear{Sharp-Minded}{2}{+2 Intellect. You think fast, perceive deeply, and are hard to deceive.}
+\end{gearlist}

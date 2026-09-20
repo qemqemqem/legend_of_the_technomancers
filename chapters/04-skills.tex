@@ -1,4 +1,5 @@
 % ================================================================
+\renewcommand{\realmaccent}{columnSkills}  % forest green
 \chapter{Skills}
 % ================================================================
 % TODO: opening fiction for Skills.
@@ -8,23 +9,87 @@
 
 \chapterart{col-skills.png}
 
-% TODO: what Skills mean, tone, when they matter.
-\lettrine{L}{orem ipsum} \lipsum[20]
+\lettrine{S}{kills} cover everything mundane and learned --- combat
+technique, social grace, technical knowledge, and physical discipline.
+Where your Stats describe raw potential, Skills describe what you have
+actually practised. A high Agility means you move well; the
+\keyword{Blades} skill means you know how to use a sword.
+
+% ---- Section 1: Character Creation ---------------------------------
+\section{At Character Creation}
 
 % REAL RULE: Skill ranks from the Notion source. Keep verbatim.
 \begin{statblock}[Skill Ranks]
 \begin{tabularx}{\linewidth}{@{}p{0.16\linewidth} Y@{}}
-\rating{1} & Not very skillful, but you know a few things.\\[3pt]
+\rating{1} & Not very skilful, but you know a few things.\\[3pt]
 \rating{2} & You know a lot.\\[3pt]
 \rating{3} & A master of your craft, or a jack of all trades.\\[3pt]
 \rating{4} & A master of many things.\\
 \end{tabularx}
 \end{statblock}
 
-\section{Skills in Play}
-% TODO: mechanics/guidance for using Skills.
-\lipsum[21][1-5]
+Assign one of the four priorities (A through D) to Skills. Your rank
+determines the depth and breadth of your training --- how many skills
+you know and how good at them you are.
 
-\section{Breadth Versus Depth}
-% Concept is real: specialist vs generalist at rank 3.
-\lipsum[22][1-4]
+\begin{notebox}[Design Note: Skill Points]
+\textbf{To do:} pin down how many skill points each priority grants and
+whether any single skill is capped. Working idea: \rating{1} = 4 points,
+\rating{2} = 8, \rating{3} = 14, \rating{4} = 20.
+\end{notebox}
+
+% ---- Section 2: Rules -----------------------------------------------
+\section{Skills in Play}
+
+When you act, choose the skill that covers what you are doing, then pair
+it with whichever \keyword{Stat} best fits how you are doing it. The skill
+sets the domain; the Stat sets the approach. Roll Stat + Skill dice and
+count successes.
+
+\begin{example}
+Mara vaults a canyon gap using \keyword{Athletics} + \keyword{Agility}.
+She could also talk her way past a guard using \keyword{Persuasion} +
+\keyword{Charisma}, or intimidate them with \keyword{Intimidation} +
+\keyword{Strength}.
+\end{example}
+
+\subsection*{Breadth Versus Depth}
+At rank \rating{3} you face a choice: become the undisputed master of one
+narrow discipline, or spread your points across a wide range of skills and
+know a little about almost everything. Both are valid --- a specialist
+punches harder in their lane; a generalist is never completely helpless.
+
+% ---- Section 3: Options ---------------------------------------------
+\section{Your Skills}
+
+Each skill entry shows its name, its primary \keyword{Stat}, and a brief
+description. The listed Stat is the default pairing; other Stats may apply
+if the fiction supports it.
+
+\skillcat{Conflict}
+\skill{Blades}{Agility}{Swords, knives, and any weapon that cuts.}
+\skill{Brawling}{Strength}{Unarmed combat, holds, and throws.}
+\skill{Firearms}{Agility}{Pistols, rifles, and ranged weapons.}
+\skill{Archery}{Agility}{Bows, crossbows, and thrown weapons.}
+
+\skillcat{Movement}
+\skill{Athletics}{Strength}{Running, climbing, jumping, and swimming.}
+\skill{Stealth}{Agility}{Sneaking, hiding, and moving unseen.}
+\skill{Piloting}{Agility}{Riding mounts, driving vehicles, and flying craft.}
+
+\skillcat{Social}
+\skill{Persuasion}{Charisma}{Convincing others through reason, charm, or appeal.}
+\skill{Deception}{Charisma}{Lying, disguise, and misdirection.}
+\skill{Intimidation}{Charisma}{Threatening, commanding, and projecting menace.}
+\skill{Performance}{Charisma}{Acting, music, and public showmanship.}
+
+\skillcat{Knowledge}
+\skill{Lore}{Intellect}{History, legend, culture, and myth.}
+\skill{Medicine}{Intellect}{Healing, anatomy, and treating disease.}
+\skill{Perception}{Intellect}{Noticing detail, tracking, and reading a scene.}
+\skill{Languages}{Intellect}{Speaking, reading, and writing unfamiliar tongues.}
+
+\skillcat{Technical}
+\skill{Craft}{Intellect}{Making, repairing, and modifying physical objects.}
+\skill{Survival}{Intellect}{Navigation, foraging, shelter, and wilderness living.}
+\skill{Hacking}{Intellect}{Electronics, security systems, and information networks.}

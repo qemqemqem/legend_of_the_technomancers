@@ -1,4 +1,5 @@
 % ================================================================
+\renewcommand{\realmaccent}{columnMagic}  % royal blue
 \chapter{Magic}
 % ================================================================
 % TODO: opening fiction for Magic.
@@ -9,11 +10,13 @@
 \chapterart{col-magic.png}
 
 % REAL (from Notion): "Magic" is whatever makes a setting feel fantastic.
-\lettrine{M}{agic} is whatever makes a setting feel fantastic. It is
-literal magic in a high-fantasy setting, hacking in a cyberpunk world,
-science and engineering in Star Trek, the Force in Star Wars. Magic lets
-you do the impossible, the improbable, and the fantastic. When you enter
-a realm, decide together what Magic \emph{looks like} there.
+\lettrine{M}{agic} is whatever makes a setting feel fantastic --- literal
+spellcasting in high fantasy, hacking in a cyberpunk sprawl, the Force
+in a space opera, or tinkering and engineering in a world of hard science.
+When you enter a realm, decide together what Magic \emph{looks like} there.
+
+% ---- Section 1: Character Creation ---------------------------------
+\section{At Character Creation}
 
 % REAL RULE: Magic ranks + tag counts (from Notion). Keep verbatim.
 \begin{statblock}[Magic Ranks]
@@ -25,32 +28,44 @@ a realm, decide together what Magic \emph{looks like} there.
 \end{tabularx}
 \end{statblock}
 
-\section{What Magic Covers}
-Magic wears a different face in every realm. Depending on the setting, it
-might include:
-\begin{itemize}
-  \item Spell casting
-  \item True-name magic
-  \item Computer hacking
-  \item Demon summoning
-  \item Astral projection
-  \item Using the Force
-  \item Tinkering
-  \item Engineering, in a high-science setting
-\end{itemize}
+Assign one of the four priorities (A through D) to Magic. Your rank
+determines how many \keyword{tags} you know and how many you may apply
+to a single spell. At rank \rating{1} you know no magic at all.
 
-\section{Magic Tags}
-When you create your character, choose \keyword{magic tags} --- as many as
-your Magic rank allows (\dice{3} at rank~2, \dice{7} at rank~3, \dice{12}
-at rank~4). Every act of magic pairs what you \emph{do} (a Technique) with
-what you \emph{affect} (a Form): \emph{create}~+~\emph{fire} to kindle a
-flame, \emph{perceive}~+~\emph{mind} to read a thought. The Techniques and
-Forms are drawn from \emph{Ars Magica}; the tag-selection system is
-inspired by John Harper's \emph{Lady Blackbird}. A tag's meaning bends to
-fit the realm --- \emph{control} compels a beast in a fantasy world and a
-security system in the sprawl.
+Choose your tags from Your Tags below before play begins. A tag's meaning
+bends to fit the realm --- \emph{control} compels a beast in a fantasy
+world and overrides a security system in the sprawl.
 
-\subsection{Techniques --- what you do}
+% ---- Section 2: Rules -----------------------------------------------
+\section{How Magic Works}
+
+When you work magic, count the tags that apply to what you are attempting
+--- up to the limit set by your Magic rank (\dice{2} at rank~2, \dice{3}
+at rank~3, \dice{5} at rank~4). You roll \keyword{two dice for every
+applicable tag}, then count successes (\dice{4}, \dice{5}, or \dice{6})
+against the difficulty the GM sets, exactly as for any other roll (see
+\emph{How to Play}). Because the tag limit tops out at five, a spell always
+throws between \dice{0} and \dice{10} dice.
+
+Every act of magic pairs what you \emph{do} (a Technique) with what you
+\emph{affect} (a Form): \emph{create}~+~\emph{fire} to kindle a flame,
+\emph{perceive}~+~\emph{mind} to read a thought.
+
+\begin{example}
+Rooster is a rank~3 magic user with the tags \emph{create, destroy, fire,
+water, food, flying}. They want to conjure a can of soda. Three tags apply
+--- \emph{create}, \emph{food}, and \emph{water} --- and rank~3 lets them
+use up to three. That is \dice{6} dice (two per tag).
+\end{example}
+
+% ---- Section 3: Options ---------------------------------------------
+\section{Your Tags}
+
+Choose your tags from the Techniques and Forms below, plus any Specific
+tags you invent. The Techniques and Forms are drawn from \emph{Ars Magica};
+the tag-selection system is inspired by John Harper's \emph{Lady Blackbird}.
+
+\subsection*{Techniques --- what you do}
 \begin{itemize}
   \item \keyword{Create} --- Produce something from nothing, or restore a thing to its whole, ideal state.
   \item \keyword{Perceive} --- Sense, read, and learn; uncover the hidden connections between things.
@@ -59,7 +74,7 @@ security system in the sprawl.
   \item \keyword{Control} --- Move and command matter, or compel the actions of living things.
 \end{itemize}
 
-\subsection{Forms --- what you affect}
+\subsection*{Forms --- what you affect}
 \begin{itemize}
   \item \keyword{Animal} --- Beasts of every kind, from the fish of the sea to the birds of the air.
   \item \keyword{Water} --- Liquids of all kinds, from a roaring flood to a still, clear pool.
@@ -73,7 +88,7 @@ security system in the sprawl.
   \item \keyword{Magic} --- Raw magical power itself; the stuff of spells and the beings made from it.
 \end{itemize}
 
-\subsection{Specific Tags --- your own}
+\subsection*{Specific Tags --- your own}
 You may also choose \emph{any} tag you like, so long as it is more specific
 in application than the Techniques and Forms above. A specific tag is
 narrower, but it stacks with them for a bigger bonus. A few examples:
@@ -87,19 +102,3 @@ narrower, but it stacks with them for a bigger bonus. A few examples:
   \item \keyword{Throwing} --- Hurling and propelling objects.
   \item \keyword{Flying} --- Flight and being borne aloft.
 \end{itemize}
-
-\section{How Magic Works}
-When you work magic, count the tags that apply to what you are attempting
---- up to the limit set by your Magic rank (\dice{2} at rank~2, \dice{3} at
-rank~3, \dice{5} at rank~4). You roll \keyword{two dice for every
-applicable tag}, then count successes (\dice{4}, \dice{5}, or \dice{6})
-against the difficulty the GM sets, exactly as for any other roll (see
-\emph{How to Play}). Because the tag limit tops out at five, a spell always
-throws between \dice{0} and \dice{10} dice.
-
-\begin{example}
-Rooster is a rank~3 magic user with the tags \emph{create, destroy, fire,
-water, food, flying}. They want to conjure a can of soda. Three tags apply
---- \emph{create}, \emph{food}, and \emph{water} --- and rank~3 lets them
-use up to three. That is \dice{6} dice (two per tag).
-\end{example}
