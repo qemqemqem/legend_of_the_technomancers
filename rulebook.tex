@@ -6,25 +6,39 @@
 \usepackage{atrpg}
 
 \title{Across the Realms}
-\author{Andrew Richardson}
+\author{Andrew Keenan Richardson and Christopher Sheldon-Dante}
 
 \begin{document}
 \color{atrInk}
 
-% ---------------------------------------------------------------- Title
+% ------------------------------------------------- Full-bleed cover page
+% The art fills the entire page; title and authors are overlaid on scrims
+% (tikz overlay on current page = ignores margins, bleeds to the edges).
 \begin{titlingpage}
-\centering
-\vspace*{\stretch{1}}
-{\hdfont\bfseries\color{atrAccent}\fontsize{54}{58}\selectfont ACROSS\\[2pt] THE REALMS\par}
-\vspace{6mm}
-{\color{atrRule}\rule{0.5\textwidth}{1pt}\par}
-\vspace{6mm}
-{\hdfont\Large A Rules-Light Roleplaying Game of Worlds Without End\par}
-\vspace{\stretch{1}}
-\includegraphics[height=0.5\textheight,keepaspectratio]{art/cover.png}\par
-\vspace{\stretch{1}}
-{\hdfont\large by Andrew Richardson\par}
-\vspace*{\stretch{1}}
+\begin{tikzpicture}[remember picture, overlay]
+  % Cover art scaled to cover the whole page (width-fit overflows top/bottom).
+  \node[anchor=center, inner sep=0] at (current page.center)
+    {\includegraphics[width=\paperwidth]{art/cover-full.png}};
+
+  % ---- Title band (top) ----
+  \fill[black, opacity=0.42]
+    (current page.north west) rectangle ([yshift=-94mm]current page.north east);
+  \node[anchor=north, align=center, inner sep=0] at ([yshift=-26mm]current page.north){%
+    {\hdfont\bfseries\color{white}\fontsize{50}{52}\selectfont ACROSS}\\[3pt]
+    {\hdfont\bfseries\color{white}\fontsize{50}{52}\selectfont THE REALMS}\\[7mm]
+    {\color{white}\rule{0.44\paperwidth}{0.8pt}}\\[6mm]
+    {\hdfont\large\itshape\color{white}A Rules-Light Roleplaying Game of Worlds Without End}%
+  };
+
+  % ---- Author band (bottom) ----
+  \fill[black, opacity=0.42]
+    ([yshift=36mm]current page.south west) rectangle (current page.south east);
+  \node[anchor=south, align=center, inner sep=0] at ([yshift=11mm]current page.south){%
+    {\hdfont\large\color{white}Andrew Keenan Richardson}\\[3pt]
+    {\hdfont\normalsize\color{white}\&}\\[3pt]
+    {\hdfont\large\color{white}Christopher Sheldon-Dante}%
+  };
+\end{tikzpicture}
 \end{titlingpage}
 
 \frontmatter
@@ -34,18 +48,24 @@
 \twocolumn   % everything after the ToC runs in two columns
 
 \include{chapters/00-intro}
+\include{chapters/00b-how-to-play}
 
 % ---- Part I: Building a Traveller ----
 \part{Building a Traveller}
 \include{chapters/01-character-creation}
 \include{chapters/02-body}
-\include{chapters/03-stuff}
 \include{chapters/04-skills}
 \include{chapters/05-magic}
 \include{chapters/06-advancement}
 \include{chapters/07-character-sheet}
 
-% ---- Part II: The Realms ----
+% ---- Part II: Gear ----
+% Stuff lives on its own: it is a shared equipment reference used across
+% every realm, not a step in building one character.
+\part{Gear}
+\include{chapters/03-stuff}
+
+% ---- Part III: The Realms ----
 \part{The Realms}
 \include{chapters/08-high-fantasy}
 \include{chapters/09-cyberpunk}

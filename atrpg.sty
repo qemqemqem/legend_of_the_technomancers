@@ -41,6 +41,13 @@
 % \chapterart[width]{file}
 \newcommand{\chapterart}[2][0.68\linewidth]{%
   \par\smallskip\begin{center}\includegraphics[width=#1]{#2}\end{center}\par\smallskip}
+% Bold full-width (both columns) banner — floats to a page top/bottom.
+% Height-capped so a landscape cut-out reads as a ~half-page statement.
+% \artbanner[placement]{file}
+\newcommand{\artbanner}[2][tb]{%
+  \begin{figure*}[#1]\centering
+  \includegraphics[width=\textwidth,height=0.42\textheight,keepaspectratio]{#2}
+  \end{figure*}}
 \RequirePackage{booktabs}
 \RequirePackage{array}
 \RequirePackage{tabularx}
@@ -126,6 +133,54 @@
   fonttitle=\hdfont\bfseries\large\color{white},
   coltitle=white, colbacktitle=\realmaccent,
   title={#1}}
+
+% ---- Item catalogue -------------------------------------------------
+% Batch-restylable equipment entries.  Every purchasable thing in the
+% book flows through these macros, so the whole catalogue re-themes from
+% one place: change the definitions here and every list follows.
+%
+% Compact reference table:
+%   \begin{gearlist}{Weapons}
+%     \gear{Basic Weapon}{2}{A sword, a pistol --- a reliable killer.}
+%     \gear{Special Weapon}{3}{...}
+%   \end{gearlist}
+%
+% Rating in these macros is the Stuff rank required to own the item
+% (2--4), shown as filled pips.
+% NB: plain tabular (not tabularx) — a tabularx cannot be split across an
+% environment's begin/end code (its body scanner never sees \end{tabularx}).
+% Fixed p-column widths keep the whole thing inside a single column.
+\newenvironment{gearlist}[1]{%
+  \begin{statblock}[#1]%
+  \begin{tabular}{@{}>{\bfseries\color{\realmaccent}\RaggedRight}p{0.26\linewidth} l >{\RaggedRight\arraybackslash}p{0.44\linewidth}@{}}}
+{%
+  \end{tabular}\end{statblock}}
+\newcommand{\gear}[3]{#1 & \rating{#2} & #3\\[3pt]}
+
+% Fuller, prose-length entry (name + required rank + a paragraph).
+% Use for gear that deserves its own write-up.
+%   \gearentry{Mount}{2}{A horse in one realm, a motorbike in the next...}
+\newcommand{\gearentry}[3]{%
+  \par\smallskip\noindent
+  {\hdfont\bfseries\color{\realmaccent}#1}\hspace{1em}\rating{#2}%
+  \par\nobreak\smallskip#3\par\smallskip}
+
+% Genre translation hint — "in the sprawl, this is a hovercar."
+% Kept as its own macro so translations can be restyled or indexed later.
+\newcommand{\genretrans}[1]{\par\smallskip{\small\itshape\color{atrAccent2}Across the realms: #1}\par}
+
+% Reskin table — maps a generic catalogue line to this realm's version.
+% Used in the genre chapters to translate Stuff/Body/etc. into local form.
+%   \begin{reskin}{Stuff: Vehicles}
+%     \reskinrow{Mount}{A warhorse, or a griffon for the bold.}
+%   \end{reskin}
+% Plain tabular (see gearlist note): a tabularx can't span begin/end.
+\newenvironment{reskin}[1]{%
+  \begin{statblock}[#1]%
+  \begin{tabular}{@{}>{\bfseries\color{\realmaccent}\RaggedRight}p{0.30\linewidth} >{\RaggedRight\arraybackslash}p{0.54\linewidth}@{}}}
+{%
+  \end{tabular}\end{statblock}}
+\newcommand{\reskinrow}[2]{#1 & #2\\[4pt]}
 
 % ---- Small helpers --------------------------------------------------
 \newcommand{\keyword}[1]{\textbf{\color{\realmaccent}#1}}

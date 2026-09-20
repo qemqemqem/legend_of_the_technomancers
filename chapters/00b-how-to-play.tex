@@ -1,0 +1,86 @@
+% ================================================================
+\chapter{How to Play}
+% ================================================================
+% REAL RULES (from Notion + author): the core dice engine. Keep the
+% mechanics verbatim; surrounding prose is open to editing.
+\begin{readaloud}
+\lipsum[5][1-3]
+\end{readaloud}
+
+\lettrine{A}{cross the Realms} runs on one simple roll. Whenever the
+outcome of an action is in doubt --- and only then --- you gather a handful
+of six-sided dice, roll them all at once, and count your \keyword{successes}.
+Everything else in this book is just a way of deciding how many dice you
+get to throw.
+
+\artbanner{play-dice.png}
+
+\section{The Core Roll}
+% REAL RULE: d6 dice pool, success on 4/5/6, beat GM target.
+Build a pool of \dice{d6} dice, roll them, and count every die that comes
+up \keyword{4, 5, or 6} --- each of those is one success. The GM sets a
+target number; meet or beat it and you succeed. The more successes you
+roll, the better it goes.
+
+\begin{statblock}[The Core Roll]
+\begin{tabularx}{\linewidth}{@{}p{0.30\linewidth} Y@{}}
+\keyword{Dice} & Roll one \dice{d6} for each die in your pool.\\[3pt]
+\keyword{Success} & Each die showing \keyword{4, 5, or 6} counts as one success.\\[3pt]
+\keyword{Target} & The GM sets how many successes the task needs.\\[3pt]
+\keyword{Result} & Meet or beat the target and you succeed.\\
+\end{tabularx}
+\end{statblock}
+
+For an ordinary action, your pool is a \keyword{Stat} plus a \keyword{Skill}.
+Each runs from \dice{0} to \dice{5}, so a pool is always somewhere between
+\dice{0} and \dice{10} dice.
+\[
+\text{\keyword{Stat} (0--5)} \;+\; \text{\keyword{Skill} (0--5)} \;=\; \text{pool (0--10 dice)}
+\]
+
+\section{Stats}
+% REAL RULE: four Vampire-style stats, 0-5. Strength doubles as Durability.
+Every character has four basic \keyword{Stats}, each rated from \dice{0} to
+\dice{5}, in the manner of \emph{Vampire: the Masquerade}.
+
+\begin{statblock}[The Four Stats]
+\begin{tabularx}{\linewidth}{@{}p{0.28\linewidth} Y@{}}
+\keyword{Strength} & Physical power. It also serves as your \emph{durability} --- how much harm you can shrug off.\\[3pt]
+\keyword{Agility} & Speed, reflexes, and precision.\\[3pt]
+\keyword{Charisma} & Presence, persuasion, and force of personality.\\[3pt]
+\keyword{Intellect} & Reason, knowledge, and quickness of mind.\\
+\end{tabularx}
+\end{statblock}
+
+\section{Skills}
+% REAL RULE: skills 0-5, pair with a stat.
+\keyword{Skills} also run from \dice{0} to \dice{5} and cover everything
+mundane and learned --- driving, acrobatics, lore, stealth, and combat
+skills such as blades or martial arts. When you act, pair the relevant
+skill with whichever Stat best fits what you are attempting, then roll the
+combined pool.
+
+\begin{example}
+Mara vaults a canyon gap. She has \keyword{Agility} \dice{3} and the
+\keyword{Athletics} skill \dice{2}, so she rolls \dice{5} dice. Three come
+up 4 or higher --- three successes. The GM had called for two. She lands
+clean, with one success to spare.
+\end{example}
+
+\section{Magic Rolls}
+% REAL RULE: magic pool = 2 dice per applicable tag, up to the tag limit,
+% so it also lands in the 0-10 range.
+Magic works the same way, but its pool comes from your \keyword{tags}
+rather than a Stat and a Skill: you roll \keyword{two dice for every
+applicable tag}, up to the tag limit set by your Magic rank. Because that
+limit tops out at five tags, a magical action --- like a mundane one ---
+always uses somewhere between \dice{0} and \dice{10} dice. See
+\emph{Magic} for the full system.
+
+\begin{notebox}[Design Note: Stats and the Four Columns]
+% Genuine open question: two rating systems coexist in the source.
+\textbf{To do:} nail down how the four creation \emph{columns} (Body,
+Stuff, Skills, Magic, rated 1--4) relate to the four \emph{Stats} above
+(rated 0--5). They describe a character at two different scales, and the
+conversion between them still needs to be pinned down.
+\end{notebox}

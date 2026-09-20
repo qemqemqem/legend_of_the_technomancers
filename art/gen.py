@@ -36,16 +36,28 @@ STYLE = (
     "figure, isolated with a transparent background, no scenery, no ground shadow, "
     "no text, no border."
 )
+# Full-bleed cover style: an opaque, edge-to-edge scene (classic RPG sourcebook /
+# old-school fantasy paperback), NOT a cut-out. Set per item with "full": true.
+COVER_STYLE = (
+    "Full-bleed cover illustration in the style of a classic Dungeons & Dragons "
+    "sourcebook and a vintage 1980s fantasy novel paperback. Richly colored "
+    "painterly matte painting, epic sweeping scene, bold visible brushstrokes, "
+    "saturated luminous colors, strong blue and orange palette, dramatic "
+    "cinematic lighting, deep atmospheric perspective, high detail. The scene "
+    "fills the entire frame edge to edge with landscape, sky and background; no "
+    "text, no title, no lettering, no border, no frame, no margins."
+)
 API_URL = "https://api.openai.com/v1/images/generations"
 
-def generate(subject: str, quality: str, size: str) -> bytes:
+def generate(subject: str, quality: str, size: str, full: bool = False) -> bytes:
     key = os.environ["OPENAI_API_KEY"]
+    style = COVER_STYLE if full else STYLE
     body = json.dumps({
         "model": "gpt-image-1",
-        "prompt": f"{subject}. {STYLE}",
+        "prompt": f"{subject}. {style}",
         "size": size,
         "quality": quality,
-        "background": "transparent",
+        "background": "opaque" if full else "transparent",
         "n": 1,
     }).encode()
     req = urllib.request.Request(
@@ -71,8 +83,10 @@ def main():
         items = [json.loads(l) for l in f if l.strip()]
 
     for it in items:
-        print(f"[gen] {it['id']}: {it['subject'][:55]}...", flush=True)
-        png = generate(it["subject"], args.quality, args.size)
+        size = it.get("size", args.size)   # per-item size wins (vertical/horizontal)
+        full = it.get("full", False)       # opaque full-bleed cover scene
+        print(f"[gen] {it['id']} ({size}{', full' if full else ''}): {it['subject'][:45]}...", flush=True)
+        png = generate(it["subject"], args.quality, size, full)
         out = os.path.join(args.outdir, f"{it['id']}.png")
         with open(out, "wb") as fh:
             fh.write(png)
