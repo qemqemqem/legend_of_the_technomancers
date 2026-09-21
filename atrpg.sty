@@ -184,9 +184,14 @@
 % NB: plain tabular (not tabularx) — a tabularx cannot be split across an
 % environment's begin/end code (its body scanner never sees \end{tabularx}).
 % Fixed p-column widths keep the whole thing inside a single column.
+% NB 2: \leavevmode must lead every >{...} prefix. ragged2e is loaded with
+% [document], which hooks \everyselectfont; a raw font switch such as
+% \bfseries as the first thing in a p-cell fires that hook in vertical mode
+% and drops the whole cell one line below its neighbours. (\textbf is safe
+% — it supplies \leavevmode itself — but a bare \bfseries group is not.)
 \newenvironment{gearlist}[1]{%
   \begin{statblock}[#1]%
-  \begin{tabular}{@{}>{\bfseries\color{\realmaccent}\RaggedRight}p{0.26\linewidth} l >{\RaggedRight\arraybackslash}p{0.44\linewidth}@{}}}
+  \begin{tabular}{@{}>{\leavevmode\bfseries\color{\realmaccent}\RaggedRight}p{0.26\linewidth} l >{\leavevmode\RaggedRight\arraybackslash}p{0.44\linewidth}@{}}}
 {%
   \end{tabular}\end{statblock}}
 \newcommand{\gear}[3]{#1 & \rating{#2} & #3\\[3pt]}
@@ -222,10 +227,10 @@
 %   \begin{reskin}{Stuff: Vehicles}
 %     \reskinrow{Mount}{A warhorse, or a griffon for the bold.}
 %   \end{reskin}
-% Plain tabular (see gearlist note): a tabularx can't span begin/end.
+% Plain tabular, and \leavevmode-led prefixes (see both gearlist notes).
 \newenvironment{reskin}[1]{%
   \begin{statblock}[#1]%
-  \begin{tabular}{@{}>{\bfseries\color{\realmaccent}\RaggedRight}p{0.30\linewidth} >{\RaggedRight\arraybackslash}p{0.54\linewidth}@{}}}
+  \begin{tabular}{@{}>{\leavevmode\bfseries\color{\realmaccent}\RaggedRight}p{0.30\linewidth} >{\leavevmode\RaggedRight\arraybackslash}p{0.54\linewidth}@{}}}
 {%
   \end{tabular}\end{statblock}}
 \newcommand{\reskinrow}[2]{#1 & #2\\[4pt]}

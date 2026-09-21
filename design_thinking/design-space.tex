@@ -1,0 +1,845 @@
+% =====================================================================
+%  Across the Realms — MECHANICS DESIGN SPACE
+%  A brainstorm document. Not rules. Not decisions.
+%  Build:  tectonic -X compile design-space.tex
+% =====================================================================
+\documentclass[11pt,oneside]{memoir}
+\usepackage{atrpg}
+
+% Wider single-column measure than the rulebook — this document is all
+% comparison tables, and they need the room.
+\geometry{a4paper, inner=18mm, outer=18mm, top=20mm, bottom=22mm}
+
+% atrpg.sty loads tikz but not this library; the dependency diagram in the
+% final chapter uses relative "below=of" placement.
+\usetikzlibrary{positioning}
+
+% Option tables must break across pages — see the opttable environment.
+\usepackage{longtable}
+
+% ---- Local macros, this document only -------------------------------
+
+% Crunch meter, 1–5 filled blocks. "How much rules weight does this add?"
+\newcommand{\crunch}[1]{%
+  $\vcenter{\hbox{\begin{tikzpicture}
+    \foreach \i in {1,...,5}{%
+      \ifnum\i>#1
+        \draw[draw=atrRule,line width=0.4pt] (\i*5pt,0) rectangle ++(3.2pt,7pt);
+      \else
+        \fill[\realmaccent] (\i*5pt,0) rectangle ++(3.2pt,7pt);
+      \fi}
+  \end{tikzpicture}}}$}
+
+% Inline source citation for an inspiring game.
+\newcommand{\src}[1]{{\small\itshape\color{atrAccent2}#1}}
+
+% Option label — the bold short name in the first column of every table.
+% \textbf (not a bare \bfseries group) because \textbf supplies \leavevmode.
+% A font switch in vertical mode at the head of a p-cell pushes the cell a
+% whole line below its neighbours — see \thc below for the same problem.
+\newcommand{\optname}[1]{\textbf{\color{\realmaccent}#1}}
+
+% Table header cell. \hdfont is a raw font switch, so it needs \leavevmode
+% explicitly or the header row sits a line low.
+\newcommand{\thc}[1]{\leavevmode{\hdfont\bfseries\color{white}#1}}
+
+% Standard four-column option table.
+%
+% longtable, for two reasons:
+%  1. These tables run 6–9 rows and must be able to break across a page;
+%     a plain tabular is unbreakable and orphans its own title.
+%  2. tabularx is unusable here regardless — its body scanner looks for a
+%     literal \end{tabularx} and never finds one hidden inside
+%     \end{opttable}. (Same constraint as gearlist in atrpg.sty.)
+% Hence fixed p-widths, which must sum to this document's \textwidth.
+% The title is a table row, not a paragraph above the table, so it can
+% never be separated from the header.
+\newenvironment{opttable}[1]{%
+  \par\smallskip
+  \setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.28}
+  \setlength{\LTleft}{0pt}\setlength{\LTright}{\fill}
+  \begin{longtable}{@{}>{\leavevmode\RaggedRight}p{3.2cm} >{\leavevmode\RaggedRight}p{8.8cm} >{\leavevmode\RaggedRight}p{2.9cm} >{\leavevmode\centering\arraybackslash}p{1.4cm}@{}}
+  \multicolumn{4}{@{}l@{}}{\leavevmode{\hdfont\normalsize\bfseries\color{\realmaccent}#1}}\\[2pt]
+  \rowcolor{\realmaccent}
+  \thc{Option} & \thc{How it works} & \thc{Inspired by} & \thc{Weight}\\
+  \endfirsthead
+  \multicolumn{4}{@{}l@{}}{\leavevmode{\hdfont\normalsize\bfseries\color{\realmaccent}#1 \textnormal{\itshape(continued)}}}\\[2pt]
+  \rowcolor{\realmaccent}
+  \thc{Option} & \thc{How it works} & \thc{Inspired by} & \thc{Weight}\\
+  \endhead}
+{\end{longtable}\par\medskip}
+
+% A row of the option table.
+\newcommand{\opt}[4]{\optname{#1} & #2 & \src{#3} & \crunch{#4}\\}
+
+% Alternating row tint for readability in long tables.
+\newcommand{\tintrow}{\rowcolor{atrBoxbg}}
+
+% Verdict-free observation box — points out interactions, doesn't pick winners.
+\newtcolorbox{dread}[1][Designer's read]{%
+  enhanced, breakable,
+  colback=atrPaper, colframe=\realmaccent, boxrule=0pt,
+  borderline west={2.2pt}{0pt}{\realmaccent},
+  left=10pt, right=10pt, top=6pt, bottom=6pt,
+  fonttitle=\hdfont\bfseries,
+  coltitle=\realmaccent, colbacktitle=atrPaper, title={#1}}
+
+\begin{document}
+\color{atrInk}
+
+% ------------------------------------------------------------ Title page
+\begin{titlingpage}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[atrInk] (current page.north west) rectangle ([yshift=-118mm]current page.north east);
+  \node[anchor=north, align=center, inner sep=0] at ([yshift=-30mm]current page.north){%
+    \thc{\fontsize{40}{44}\selectfont ACROSS THE REALMS}\\[8mm]
+    {\color{atrAccent2}\rule{0.50\paperwidth}{1.2pt}}\\[8mm]
+    {\hdfont\bfseries\color{atrAccent2}\fontsize{30}{34}\selectfont THE DESIGN SPACE}\\[7mm]
+    {\hdfont\large\itshape\color{white}Options for the Engine --- A Brainstorm, Not a Decision}%
+  };
+  \node[anchor=south, align=center, inner sep=0] at ([yshift=26mm]current page.south){%
+    {\itshape\color{atrInk}Every system in this document is a live candidate.}\\[2pt]
+    {\itshape\color{atrInk}Nothing here is a rule yet.}\\[10mm]
+    {\hdfont\color{atrRule}INTERNAL DESIGN DOCUMENT}%
+  };
+\end{tikzpicture}
+\end{titlingpage}
+
+\frontmatter
+\tableofcontents
+
+\mainmatter
+
+% =====================================================================
+\chapter{Reading This Document}
+% =====================================================================
+
+\lettrine{T}{his is a menu}, not a proposal. Each chapter takes one
+question the game has not yet answered, lays out every serious way to
+answer it, and shows what each answer costs. Options are not ranked.
+Where an option interacts badly --- or unexpectedly well --- with another
+part of the game, that is flagged in a \emph{Designer's read}.
+
+\section{What Is Already Locked}
+
+These are settled and every option in this document must live with them.
+
+\begin{statblock}[Fixed Constraints]
+\begin{tabularx}{\linewidth}{@{}p{4.4cm} Y@{}}
+\keyword{Four Columns} & Body, Stuff, Skills, Magic.\\[3pt]
+\keyword{Ranks 1--4} & Each column is rated \rating{1} to \rating{4}.\\[3pt]
+\keyword{Priority Assignment} & One of A/B/C/D to each column, no repeats. You cannot be good at everything.\\[3pt]
+\keyword{Multi-Genre} & The same sheet must work in high fantasy, cyberpunk, and space opera without rewriting.\\[3pt]
+\keyword{Rank Travels} & The number stays; the fiction it describes is local to the realm.\\[3pt]
+\keyword{Characters Differ} & The reason Body and Stuff are pillars is that they are \emph{cool} --- they capture the ways characters can be interestingly unlike one another. Any candidate that flattens that has failed, whatever its other virtues.\\
+\end{tabularx}
+\end{statblock}
+
+\section{What Is \emph{Not} Locked, Despite Appearances}
+
+Two things the current draft does are easy to mistake for constraints.
+Both are merely consequences of one early decision, and both are open.
+
+\begin{statblock}[Open, Not Settled]
+\begin{tabularx}{\linewidth}{@{}p{4.4cm} Y@{}}
+\keyword{The 0--10 Pool} & Not a cap and not a target --- just what falls out of ``two traits, each 0--5.'' Change the traits and the range changes. Where this document quotes a ceiling of \dice{10}, read it as a description of the current draft, never as a requirement.\\[3pt]
+\keyword{Rules-Light} & Also unsettled. A heavier game with several genuinely distinct subsystems is on the table, and may well be \emph{better} at making characters differ. Treat the weight meters below as a price tag, not a disqualification.\\
+\end{tabularx}
+\end{statblock}
+
+\section{What Is Still Open}
+
+Everything about how those numbers become dice. Specifically:
+
+\begin{enumerate}
+  \item What the \textbf{core roll} is, and whether it needs a GM-set target.
+  \item How \textbf{gear} enters a roll --- the question that started this document.
+  \item What each of the \textbf{four columns} actually hands you at creation.
+  \item How \textbf{harm} works, and what armour does about it.
+\end{enumerate}
+
+\section{The Weight Dial}
+
+Every option is tagged with a weight rating. This is not quality --- it is
+how much rules-mass the option adds, measured roughly as ``how much must a
+player or GM hold in their head to use this correctly.''
+
+\begin{center}
+\begin{tikzpicture}
+  \shade[left color=columnSkills, right color=columnBody]
+    (0,0) rectangle (14,0.55);
+  \foreach \x/\l in {1.4/1, 4.2/2, 7/3, 9.8/4, 12.6/5}{
+    \draw[white, line width=1pt] (\x,0) -- (\x,0.55);
+    \node[below=2pt, font=\hdfont\small] at (\x,0) {\l};}
+  \node[above=3pt, font=\hdfont\small\color{columnSkills}, anchor=west] at (0,0.55)
+    {FEATHERWEIGHT};
+  \node[above=3pt, font=\hdfont\small\color{columnBody}, anchor=east] at (14,0.55)
+    {FULL SIMULATION};
+  \node[below=22pt, font=\footnotesize\itshape, anchor=west] at (0,0)
+    {A rule you never look up};
+  \node[below=22pt, font=\footnotesize\itshape, anchor=east] at (14,0)
+    {A rule with its own chapter};
+\end{tikzpicture}
+\end{center}
+
+\begin{dread}[How to use this]
+Read Chapters 2 and 3 first --- the core roll and the gear question
+constrain everything downstream. Chapters 4 through 7 are largely
+independent of each other and can be mixed freely. Chapter 9 assembles
+six coherent whole-game packages from these parts, if picking
+\'a~la~carte is not appealing.
+\end{dread}
+
+% =====================================================================
+\renewcommand{\realmaccent}{atrAccent}
+\chapter{The Core Roll}
+% =====================================================================
+
+\lettrine{E}{verything} downstream depends on this. The current draft
+uses a d6 dice pool counting 4--6 as successes against a GM-set target.
+That is one of at least eight viable engines.
+
+\begin{opttable}{Eight Core Engines}
+\tintrow\opt{Count Successes}{Pool of d6. Each 4, 5, or 6 is a success. GM names how many successes the task needs. \emph{This is the current draft.}}{Vampire: the Masquerade, Shadowrun, Exalted}{3}
+\opt{Highest Die}{Roll the pool, read only the single highest die. 6 = full success, 4--5 = success with a cost, 1--3 = failure. Two or more 6s = critical.}{Blades in the Dark, Forged in the Dark}{2}
+\tintrow\opt{Roll \& Keep}{Roll a number of dice equal to one trait, keep the best N equal to the other trait, sum them.}{Legend of the Five Rings, 7th Sea}{4}
+\opt{Step Dice}{Every trait is a \emph{die size}, not a count: d4 through d12. Roll two traits, sum, compare to a difficulty.}{Cortex Prime, Savage Worlds}{3}
+\tintrow\opt{2d6 + Modifier}{Always roll exactly 2d6 and add a small modifier. 6 or less = miss, 7--9 = partial, 10+ = full.}{Apocalypse World, Traveller}{1}
+\opt{Opposed Pools}{Both sides build a pool and roll; compare success counts. No GM-set difficulty --- the world rolls back.}{Burning Wheel, Legend of the Five Rings}{4}
+\tintrow\opt{Variable Target}{Pool is fixed by traits; \emph{difficulty changes the number each die must beat} (3+ easy, 5+ hard) rather than how many successes you need.}{Shadowrun 3e, original Storyteller}{3}
+\opt{Roll Under}{Roll one die under Stat + Skill on a fixed scale. Simple, but no degrees of success without extra rules.}{Call of Cthulhu, Cyberpunk}{2}
+\end{opttable}
+
+\section{The Numbers Behind Option 1}
+
+If the pool stays at \dice{0}--\dice{10} and 4--6 succeeds, each die is a
+coin flip. Expected successes are exactly half the pool. Here is the
+actual chance of hitting a given target:
+
+\begin{center}
+\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}c|cccccc@{}}
+\rowcolor{\realmaccent}
+\thc{Pool} &
+\thc{1+} & \thc{2+} &
+\thc{3+} & \thc{4+} &
+\thc{5+} & \thc{6+}\\
+\dice{2}  & 75\% & 25\% & --- & --- & --- & ---\\
+\rowcolor{atrBoxbg}
+\dice{3}  & 88\% & 50\% & 13\% & --- & --- & ---\\
+\dice{4}  & 94\% & 69\% & 31\% & 6\% & --- & ---\\
+\rowcolor{atrBoxbg}
+\dice{5}  & 97\% & 81\% & 50\% & 19\% & 3\% & ---\\
+\dice{6}  & 98\% & 89\% & 66\% & 34\% & 11\% & 2\%\\
+\rowcolor{atrBoxbg}
+\dice{7}  & 99\% & 94\% & 77\% & 50\% & 23\% & 6\%\\
+\dice{8}  & 99\% & 97\% & 86\% & 64\% & 36\% & 15\%\\
+\rowcolor{atrBoxbg}
+\dice{9}  & 99\% & 98\% & 91\% & 75\% & 50\% & 25\%\\
+\dice{10} & 99\% & 99\% & 95\% & 83\% & 62\% & 38\%\\
+\end{tabular}
+\end{center}
+
+Read the diagonal: a target of \emph{half your pool} is always a coin
+flip. That is a genuinely elegant property --- the GM can set difficulty
+by eye. Targets of 1 and 2 are nearly free above \dice{5} dice, which
+means the useful difficulty band is narrow: roughly 3 to 5 successes.
+
+\section{The Numbers Behind Option 2}
+
+Highest-die reading needs \emph{small} pools, because a large pool almost
+always contains a 6:
+
+\begin{center}
+\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}c|ccc@{}}
+\rowcolor{\realmaccent}
+\thc{Pool} &
+\thc{Full (a 6)} &
+\thc{Partial (4--5)} &
+\thc{Miss}\\
+\dice{1} & 17\% & 33\% & 50\%\\
+\rowcolor{atrBoxbg}
+\dice{2} & 31\% & 44\% & 25\%\\
+\dice{3} & 42\% & 45\% & 13\%\\
+\rowcolor{atrBoxbg}
+\dice{4} & 52\% & 42\% & 6\%\\
+\dice{6} & 67\% & 32\% & 2\%\\
+\rowcolor{atrBoxbg}
+\dice{10} & 84\% & 16\% & 1\%\\
+\end{tabular}
+\end{center}
+
+\begin{dread}
+This is the central tension of the whole document. \textbf{Counting
+successes scales beautifully to ten dice but requires the GM to invent a
+number on every single roll.} \textbf{Highest-die never requires a
+number and gives graded outcomes for free, but saturates above about
+four dice.}
+
+Adopting highest-die therefore means abandoning the \dice{0}--\dice{10}
+range and rescaling the whole game to roughly \dice{0}--\dice{4}. That is
+not a small change --- but it would make the four columns much easier to
+balance, because there is far less room for them to drift apart.
+\end{dread}
+
+\section{Partial Success}
+
+Worth separating out, because it is orthogonal to the engine. The current
+draft has only pass/fail. Three ways to add gradation:
+
+\begin{opttable}{Adding Degrees of Outcome}
+\tintrow\opt{Margin}{Successes above the target are ``extra effect'' --- more damage, faster, quieter.}{Shadowrun, Exalted}{1}
+\opt{Miss by One}{Falling exactly one success short succeeds anyway, at a cost the GM names.}{Genesys, many house rules}{1}
+\tintrow\opt{Position \& Effect}{Before rolling, the GM names how dangerous the attempt is and how much it accomplishes. The roll resolves both.}{Blades in the Dark}{3}
+\end{opttable}
+
+% =====================================================================
+\renewcommand{\realmaccent}{columnStuff}
+\chapter{Where Gear Enters the Roll}
+% =====================================================================
+
+\lettrine{T}{his is the question} that prompted the document. The
+instinct was: \emph{a driving roll could be a number for the car plus a
+number for your skill.} That is one of nine answers, and the choice here
+decides what the entire Stuff column is for.
+
+To make them comparable, every option below is applied to the same
+fiction: \textbf{Kira, Agility \dice{3}, Piloting \dice{2}, driving a
+rank-\dice{4} vehicle through a chase.}
+
+\begin{opttable}{Nine Ways Gear Can Matter}
+\tintrow\opt{Substitution}{The gear's rating \emph{replaces} the Stat. Pool = Gear + Skill. Bad gear actively limits a good driver. \newline \textbf{Kira rolls 4 + 2 = \dice{6}.}}{Ars Magica tools, many hacks}{2}
+\opt{Best-Of}{Pool = higher of (Stat, Gear) + Skill. Gear is pure upside; gear below your Stat is invisible. \newline \textbf{Kira rolls 4 + 2 = \dice{6}.}}{Numenera assets}{2}
+\tintrow\opt{Additive, Capped}{Pool = Stat + Skill + Gear, total capped at \dice{10}. Simple, but pushes almost everyone to the cap. \newline \textbf{Kira rolls 3 + 2 + 4 = \dice{9}.}}{Shadowrun}{2}
+\opt{Quality, Not Quantity}{Gear lowers the \emph{success threshold} instead of adding dice. Rank 3+ gear: 3--6 succeed, not 4--6. Pool size never changes. \newline \textbf{Kira rolls \dice{5}, succeeding on 3+.}}{Shadowrun 3e, Storyteller difficulty}{3}
+\tintrow\opt{Automatic Successes}{Gear rank adds free successes \emph{after} the roll. Raises the floor, not the ceiling --- good gear means never fumbling. \newline \textbf{Kira rolls \dice{5}, then adds 2.}}{Exalted, Mutants \& Masterminds}{2}
+\opt{Re-Rolls}{Gear rank = how many failed dice you may re-roll. Same average as adding dice, much lower variance. \newline \textbf{Kira rolls \dice{5}, re-rolls up to 4 misses.}}{Genesys, 2d20 momentum}{3}
+\tintrow\opt{Gear as Tags}{Items carry descriptive tags. Applicable tags add dice, exactly as Magic already does. \emph{Unifies Stuff and Magic into one subsystem.} \newline \textbf{\emph{fast}, \emph{armoured}, \emph{familiar} apply: \dice{6}.}}{Lady Blackbird, City of Mist}{2}
+\opt{Permission Only}{Gear grants no dice at all. It decides \emph{what you may attempt} and how big the effect is. No car, no car chase. \newline \textbf{Kira rolls 3 + 2 = \dice{5}, but can attempt things a pedestrian cannot.}}{Blades in the Dark, Apocalypse World}{1}
+\tintrow\opt{Separate Asset Die}{Gear is its own die rolled alongside the others and added to the pool as a distinct object that can be damaged or lost. \newline \textbf{Kira rolls Agi + Piloting + a vehicle die.}}{Cortex Prime}{4}
+\end{opttable}
+
+\section{What Each Does to the Maths}
+
+All applied to a baseline \dice{6}-dice pool, so the shapes are
+comparable. Note that three different options land on the same average
+and behave completely differently:
+
+\begin{center}
+\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.28}
+\begin{tabularx}{\textwidth}{@{}p{4.4cm}ccc Y@{}}
+\rowcolor{\realmaccent}
+\thc{Gear effect} &
+\thc{Avg} &
+\thc{Spread} &
+\thc{Floor} &
+\thc{Character of the change}\\
+Baseline: \dice{6} dice & 3.0 & 1.22 & 0 & ---\\
+\rowcolor{atrBoxbg}
++2 dice (additive) & 4.0 & 1.41 & 0 & \textbf{Raises the ceiling.} Swingier; big wins become possible.\\
+Threshold to 3+ & 4.0 & 1.15 & 0 & \textbf{Tightens the spread.} Reliable, not spectacular.\\
+\rowcolor{atrBoxbg}
++2 auto successes & 5.0 & 1.22 & 2 & \textbf{Raises the floor.} You can no longer fail badly.\\
+Re-roll 2 misses & 4.0 & 1.17 & 0 & \textbf{Kills the bad tail.} Feels like quality without inflation.\\
+\end{tabularx}
+\end{center}
+
+\begin{dread}
+``Better gear'' is not one idea --- it is at least three. A legendary
+sword that \emph{raises your ceiling} plays completely differently from
+one that \emph{raises your floor}, even at identical average output. It
+is worth deciding what owning excellent equipment is supposed to
+\emph{feel} like before picking a mechanism.
+
+Separately: the \textbf{Gear as Tags} option is the only one that collapses
+two of the four columns into a single engine. If Stuff and Magic both run
+on ``two dice per applicable tag,'' the game has one rule instead of two,
+and the Stuff chapter stops needing a price list at all.
+\end{dread}
+
+\section{The Substitution Family in Detail}
+
+If substitution wins, a follow-up question appears: gear can stand in for
+\emph{either} side of the roll, and which side it replaces says something
+about the item.
+
+\begin{center}
+\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{}p{3.0cm} p{4.0cm} Y@{}}
+\rowcolor{\realmaccent}
+\thc{Kind of thing} &
+\thc{What it replaces} &
+\thc{Examples}\\
+\optname{Instrument} & The \textbf{Stat}. The tool has the power; you supply the craft. & Sword, rifle, car, lockpicks, a good telescope.\\
+\rowcolor{atrBoxbg}
+\optname{Automaton} & The \textbf{Skill}. The tool has the craft; you supply the will. & Smart-targeting gun, autopilot, familiar, hireling, an enchanted map.\\
+\optname{Protection} & Nothing --- static effect. & Armour, wards, a shield generator.\\
+\rowcolor{atrBoxbg}
+\optname{Holding} & Nothing --- changes what is possible. & Base, ship, fortress, wealth, a standing army.\\
+\end{tabularx}
+\end{center}
+
+This taxonomy is independent of which substitution rule is chosen, and it
+gives the Stuff catalogue a spine: every item is exactly one of these four.
+
+% =====================================================================
+\renewcommand{\realmaccent}{columnBody}
+\chapter{Body}
+% =====================================================================
+
+\lettrine{B}{ody} currently sets four Stats (Strength, Agility, Charisma,
+Intellect) rated \dice{0}--\dice{5}, with Strength doubling as durability.
+Ranks \rating{3} and \rating{4} are undesigned.
+
+\begin{opttable}{Eight Ways to Build a Body}
+\tintrow\opt{Dots + Cap}{A budget of dots to spread across four Stats, plus a cap on any one. \emph{Cap = rank + 1} makes it one rule.}{Vampire: the Masquerade}{3}
+\opt{Modification Packages}{No free-form points. Pick N traits from a list; each is a bundle. The current rank-\rating{2} rule, extended to all ranks.}{PbtA playbooks, Lancer}{2}
+\tintrow\opt{Fixed Arrays}{Each rank hands you a fixed set of numbers to arrange as you like --- rank \rating{4} = [5,4,2,1]. Zero arithmetic.}{D\&D standard array, Fate pyramid}{1}
+\opt{Forms}{Pick a \emph{Form} --- Human, Ogre, Sylph, Dragon --- that bundles stats and traits together, and re-skins per realm.}{Savage Worlds races, M\&M archetypes}{2}
+\tintrow\opt{Collapse to One}{Drop the four Stats entirely. Body \emph{is} your physical number. Pairs with a skill-heavy or approach-based design.}{Risus, Lasers \& Feelings}{1}
+\opt{Two or Three Stats}{Physical / Social / Mental instead of four. Fewer dump stats, faster sheets, less character texture.}{Cypher System, many indies}{2}
+\tintrow\opt{Body as Die Size}{Each Stat is a die size set by Body rank: rank \rating{2} gives you a d8 and three d6s.}{Cortex Prime}{3}
+\opt{Body Caps Only}{Everyone gets the same dot budget; Body rank sets only the \emph{ceiling}. High Body = specialisation, not more total power.}{Original idea}{2}
+\end{opttable}
+
+\section{The Durability Question}
+
+Separate and easy to overlook: \textbf{Strength currently does two jobs.}
+That coupling forces every character who wants to survive a fight to buy
+Strength, which quietly punishes the clever and the charming.
+
+\begin{opttable}{What Measures How Much Harm You Take}
+\tintrow\opt{Strength}{The current draft. Strong characters are tough. Simple, but couples offence and survival.}{Vampire (Stamina), many}{1}
+\opt{Body Rank Itself}{Body \rating{3} = three boxes of harm, whatever your Stats are. Cleanly splits the column's two jobs: \emph{rank is survival, dots are dice}.}{Original idea}{1}
+\tintrow\opt{Flat + Rank}{Everyone has a base track; Body rank extends it. Keeps low-Body characters playable.}{PbtA, Fate}{1}
+\opt{No Track At All}{Harm is fictional conditions, not a number. Body rank determines how many you can carry.}{Apocalypse World}{2}
+\end{opttable}
+
+\begin{dread}
+\textbf{Body rank as the harm track} is the cheapest good idea in this
+chapter. It costs one sentence, it uncouples toughness from Strength, and
+it gives the Body column a second distinct function that no other column
+can provide --- which is exactly what a four-column game needs in order to
+keep all four columns worth buying.
+\end{dread}
+
+\section{Sketching Ranks 3 and 4}
+
+Whatever mechanism is chosen, ranks \rating{3} and \rating{4} need to be
+\emph{qualitatively} different, not just larger. Three directions:
+
+\begin{opttable}{Making High Body Strange}
+\tintrow\opt{More of the Same}{Higher caps and more dots. Rank \rating{4} simply means bigger numbers.}{Most point-buy games}{1}
+\opt{Unlocked Traits}{Rank \rating{3} unlocks \emph{Exceptional} traits (uncanny senses, inhuman reflexes); rank \rating{4} unlocks \emph{Monstrous} ones (wings, natural weapons, size, armoured hide, not needing to breathe).}{Exalted, Monster of the Week}{2}
+\tintrow\opt{Change the Rules}{High Body breaks a rule rather than raising a number --- you ignore falling damage, you do not need to eat, mundane weapons cannot hurt you.}{Nobilis, Exalted Charms}{3}
+\end{opttable}
+
+% =====================================================================
+\renewcommand{\realmaccent}{columnStuff}
+\chapter{Stuff}
+% =====================================================================
+
+\lettrine{S}{tuff} is the least-designed column and the one most exposed
+to the multi-genre problem. Whatever system is chosen must survive a
+character walking out of a dungeon and into a space station.
+
+\begin{opttable}{Eight Ways to Own Things}
+\tintrow\opt{Dots = Cost = Rating}{Rank gives a dot budget; an item's rating \emph{is} its price. A rank-3 weapon costs 3 dots and rates 3. One number per item instead of two.}{Vampire backgrounds}{3}
+\opt{N Picks}{Rank \emph{N} lets you choose \emph{N} items of rating \emph{N} or lower from a catalogue. No arithmetic whatsoever.}{Lancer licences, PbtA gear lists}{1}
+\tintrow\opt{Money}{Each rank grants a cash sum; items have prices. Maximum granularity, maximum bookkeeping, and cash does not travel between realms.}{Shadowrun, Traveller}{4}
+\opt{Load}{You never declare gear in advance. You carry a Load rating; mid-scene you say ``of course I brought rope'' and mark it off. \emph{Gear re-skins itself automatically because it is not named until used.}}{Blades in the Dark}{2}
+\tintrow\opt{Signature Items}{Name one to three items that are genuinely yours and travel with you, re-skinning per realm. Everything else is assumed.}{Fate stunts, Cortex signature assets}{1}
+\opt{Gear as Tags}{Items are bundles of tags; applicable tags add dice. Identical engine to Magic.}{Lady Blackbird, City of Mist}{2}
+\tintrow\opt{Wealth Rating}{You do not own a list --- you have a Wealth number and roll it to see whether you happen to have or can obtain a thing.}{Cypher System, Fate}{2}
+\opt{World Claims}{Stuff does not buy objects, it buys \emph{facts about the world}: a ship, a safehouse, a contact, turf, a reputation. It changes the campaign rather than the roll.}{Blades crew sheet, Ars Magica covenant}{3}
+\end{opttable}
+
+\section{The Realm-Crossing Filter}
+
+This is the test that matters most for Stuff. A character crosses from
+high fantasy into the sprawl. What happens to their possessions?
+
+\begin{center}
+\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{}p{3.4cm} >{\leavevmode\centering\arraybackslash}p{2.6cm} Y@{}}
+\rowcolor{\realmaccent}
+\thc{System} &
+\thc{Survives crossing?} &
+\thc{What actually happens at the table}\\
+Money & \textcolor{columnBody}{\bfseries Badly} & Gold is worthless; you must re-price everything and re-shop. Kills pace on arrival.\\
+\rowcolor{atrBoxbg}
+Dots = Cost & \textcolor{atrAccent2}{\bfseries Workable} & Lines on the sheet stay; you re-skin each one. Requires a translation table per realm --- which the genre chapters already do.\\
+N Picks & \textcolor{atrAccent2}{\bfseries Workable} & Same as above, with less arithmetic.\\
+\rowcolor{atrBoxbg}
+Load & \textcolor{columnSkills}{\bfseries Cleanly} & Nothing to translate. You never wrote down ``sword'' in the first place.\\
+Signature Items & \textcolor{columnSkills}{\bfseries Cleanly} & Your one named thing becomes its local equivalent. This is arguably the \emph{theme} of the game.\\
+\rowcolor{atrBoxbg}
+Gear as Tags & \textcolor{columnSkills}{\bfseries Cleanly} & \emph{fast} and \emph{deadly} mean the same thing in every genre.\\
+World Claims & \textcolor{atrAccent2}{\bfseries Workable} & A keep becomes an orbital station. Big, memorable, slow to re-establish.\\
+\end{tabularx}
+\end{center}
+
+\begin{dread}
+The book's own premise is doing design work here. ``What you own is a
+\emph{kind} of thing, and you decide what it actually is each time you
+enter a new realm'' is already written into the Stuff chapter --- and the
+systems that lean hardest into it (Load, Signature Items, Tags) are also
+the lightest. The heaviest option, Money, is the one that fights the
+premise.
+\end{dread}
+
+\section{Vehicles, Armour, and Bases}
+
+These three resist a single treatment because they do different jobs.
+Whatever the core Stuff system, each needs an answer:
+
+\begin{opttable}{The Three Awkward Cases}
+\tintrow\opt{Vehicles}{Roll the vehicle's rating in place of a Stat; or treat a chase as a clock filled by Piloting rolls; or give the vehicle its own harm track and let passengers hide behind it.}{Cortex, Blades clocks, Traveller}{3}
+\opt{Armour}{Reduce incoming harm by rating; or negate one hit per scene; or step harm down one level on a ladder; or add dice to a resistance roll.}{Blades harm ladder, Shadowrun soak}{2}
+\tintrow\opt{Bases}{No roll at all. A base grants downtime actions, safety, storage, and a place the story can return to.}{Blades lair, Ars Magica covenant}{2}
+\end{opttable}
+
+% =====================================================================
+\renewcommand{\realmaccent}{columnSkills}
+\chapter{Skills}
+% =====================================================================
+
+\lettrine{T}{he current draft} lists seventeen named skills in five
+categories. It has a problem worth naming plainly: \textbf{a fixed skill
+list carries genre baggage.} \emph{Hacking} is meaningless under a
+fantasy sun; \emph{Archery} is dead weight on a space station. Several
+options below exist specifically to dodge this.
+
+\begin{opttable}{Seven Ways to Be Good at Things}
+\tintrow\opt{Points + Cap}{A budget of points spread over a fixed skill list, capped per skill. \emph{Cap = rank + 1} keeps it to one rule. This is the current direction.}{Vampire: the Masquerade}{3}
+\opt{Fixed Array}{Each rank grants a fixed shape --- rank \rating{3} = one at 4, two at 3, three at 1. Assign names to slots. No arithmetic.}{Fate pyramid}{1}
+\tintrow\opt{Approaches}{Replace skills with six adverbs: \emph{Careful, Clever, Flashy, Forceful, Quick, Sneaky}. You always have all six; the question is \emph{how} you do a thing. \textbf{Completely genre-proof.}}{Fate Accelerated}{1}
+\opt{Freeform Tags}{Invent your own skills in your own words. Rank sets how many and how high. \emph{Same engine the Magic chapter already uses.}}{Lady Blackbird, Risus, Over the Edge}{2}
+\tintrow\opt{Careers}{Rate broad life-paths instead of narrow skills --- \emph{Soldier 3, Smuggler 2, Court Wizard 1}. Genre-flexible; a Soldier is a soldier in every realm.}{Traveller, Barbarians of Lemuria, 13th Age}{2}
+\opt{Broad + Speciality}{A wide skill at one rating with a narrow speciality that adds dice in its slice. Depth without a longer list.}{Vampire specialities, Shadowrun}{3}
+\tintrow\opt{Binary}{You either have a skill or you do not. Having it lets you roll your Stat; lacking it means rolling at a penalty. Stats carry all the maths.}{Into the Odd, Cairn}{1}
+\end{opttable}
+
+\section{Breadth Versus Depth}
+
+The Skills chapter already promises this choice at rank \rating{3}. Only
+some systems can actually deliver it:
+
+\begin{center}
+\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{}p{3.6cm} >{\leavevmode\centering\arraybackslash}p{2.9cm} Y@{}}
+\rowcolor{\realmaccent}
+\thc{System} &
+\thc{Offers the choice?} &
+\thc{Why}\\
+Points + Cap & \textcolor{columnSkills}{\bfseries Yes} & Spend wide or spend deep. This is precisely what a point budget is for.\\
+\rowcolor{atrBoxbg}
+Fixed Array & \textcolor{columnBody}{\bfseries No} & The shape is dictated. Fast, but the promised decision disappears.\\
+Approaches & \textcolor{columnBody}{\bfseries No} & Everyone has all six. There is no breadth to buy.\\
+\rowcolor{atrBoxbg}
+Freeform Tags & \textcolor{columnSkills}{\bfseries Yes} & Choose many narrow tags or few broad ones --- and broad tags apply more often.\\
+Careers & \textcolor{atrAccent2}{\bfseries Partly} & Careers are inherently broad. Depth comes from stacking related ones.\\
+\rowcolor{atrBoxbg}
+Broad + Speciality & \textcolor{columnSkills}{\bfseries Yes} & It is the explicit axis of the system.\\
+\end{tabularx}
+\end{center}
+
+\begin{dread}
+Note the coincidence: the Magic chapter already runs on player-invented
+tags and credits \emph{Lady Blackbird} for it. If Skills ran on tags too,
+the game would have \textbf{one character-building idea applied four
+times} rather than four different ones --- and the seventeen-skill list,
+with all its genre baggage, would simply evaporate.
+
+The counter-argument is real and should not be waved away: \textbf{a
+concrete list is far easier for a new player than a blank line.} Freeform
+systems reward experienced players and stall beginners. A hybrid --- a
+suggested list that players may ignore --- is available and is what
+\emph{Lady Blackbird} itself does.
+\end{dread}
+
+% =====================================================================
+\renewcommand{\realmaccent}{columnMagic}
+\chapter{Magic}
+% =====================================================================
+
+\lettrine{M}{agic} is the most finished column: tags chosen at creation,
+two dice per applicable tag, a cap on tags per spell set by rank. It is
+also the only column that does not use the Stat + Skill frame.
+
+\begin{opttable}{Six Ways to Work Magic}
+\tintrow\opt{Tags $\times$ 2}{The current draft. Two dice per applicable tag, up to a rank-set limit. Self-contained, distinctive, already written.}{Lady Blackbird + Ars Magica}{2}
+\opt{Tags + Stat}{Pool = tags applied + a Stat. Consistent with every other roll in the game; makes Body matter to casters.}{Mage, Cortex}{2}
+\tintrow\opt{Tags as Permission}{Tags do not add dice --- they say what you \emph{can} attempt. Roll Stat + an Arcana skill like anything else. Magic becomes a licence, not an engine.}{Blades, Mage: the Awakening}{1}
+\opt{Technique $\times$ Form Grid}{Rate the five Techniques and ten Forms separately; a spell's pool is the sum of the two used. Enormously expressive, genuinely heavy.}{Ars Magica proper}{5}
+\tintrow\opt{Always Works, Always Costs}{The spell succeeds. The roll determines what it costs you --- fatigue, corruption, attention, backlash.}{Mage paradox, Shadowrun drain, Ars fatigue}{3}
+\opt{Merge with Stuff}{If Stuff also runs on tags, Magic and Stuff become one subsystem wearing two hats: a flaming sword and a fire spell are the same mechanism.}{City of Mist}{2}
+\end{opttable}
+
+\section{The Ceiling Problem}
+
+Worth flagging regardless of which option is chosen. Under the current
+draft, with one A available per character:
+
+\begin{center}
+\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{}p{5.2cm} >{\leavevmode\centering\arraybackslash}p{2.2cm} Y@{}}
+\rowcolor{\realmaccent}
+\thc{Best available build} &
+\thc{Max pool} &
+\thc{Note}\\
+Body B + Skills A & \dice{9} & Stat 4 + Skill 5.\\
+\rowcolor{atrBoxbg}
+Stuff A + Skills B & \dice{9} & Only if gear ratings reach 5.\\
+Magic A & \dice{10} & Five tags $\times$ two dice, on every spell where five tags apply.\\
+\end{tabularx}
+\end{center}
+
+Magic reaches a higher ceiling than any mundane build, is not gated
+behind owning a specific object, and applies to a far wider range of
+problems. Whether that is a bug or the intended meaning of \emph{``you are
+a fucking wizard''} is a design decision, not a maths error --- but it
+should be a decision.
+
+% =====================================================================
+\renewcommand{\realmaccent}{atrAccent}
+\chapter{Harm, Armour, and Dying}
+% =====================================================================
+
+\lettrine{N}{othing} is decided here at all. The working idea in the book
+is ``each rank of armour reduces damage by one,'' with Strength serving as
+durability.
+
+\begin{opttable}{Six Ways to Get Hurt}
+\tintrow\opt{Hit Points}{A numeric track equal to a Stat or rank. Count down, fall over at zero. Familiar, trivially understood, and utterly genre-neutral.}{D\&D and descendants}{1}
+\opt{Harm Ladder}{Four named severities --- Lesser, Moderate, Severe, Fatal. Armour steps a harm down one rung. \textbf{Genre-proof: ``Severe'' is a broken leg in fantasy and a punctured lung in space.}}{Blades in the Dark}{2}
+\tintrow\opt{Conditions}{Harm is a fictional state, not a number: \emph{Shaken}, \emph{Wounded}, \emph{Broken}. Each imposes a specific penalty. No arithmetic.}{Apocalypse World, Monster of the Week}{2}
+\opt{Stress + Consequences}{A small buffer you can spend to shrug off hits, plus lasting consequences when it runs out. Player-facing choice about when to take a real wound.}{Fate}{3}
+\tintrow\opt{Margin as Damage}{Successes above the target \emph{are} the damage. No separate damage roll --- the attack roll does both jobs.}{Shadowrun, Exalted}{2}
+\opt{Clocks}{Serious threats are progress tracks the group fills. Death is not a number going to zero; it is a clock completing.}{Blades in the Dark}{2}
+\end{opttable}
+
+\begin{opttable}{Four Ways Armour Can Work}
+\tintrow\opt{Flat Reduction}{Subtract armour rating from incoming harm. The working idea. Simple, but high armour can trivialise low-harm attacks entirely.}{D\&D damage reduction}{1}
+\opt{Step It Down}{Armour reduces harm one level on the ladder, a limited number of times per scene or session. Creates a real ``my armour is used up'' moment.}{Blades in the Dark}{2}
+\tintrow\opt{Resistance Dice}{Roll armour rating as a pool to soak. Uncertain, dramatic, and one more roll per hit.}{Shadowrun soak, Vampire}{3}
+\opt{Permission}{Armour does not reduce harm; it decides whether a given threat can hurt you at all. Mundane blades simply cannot pierce Master Armour.}{Into the Odd, Nobilis}{2}
+\end{opttable}
+
+\begin{dread}
+Harm is the one subsystem where the multi-genre premise bites hardest.
+A hit-point total implies a consistent scale of injury across realms ---
+but a sword, a shotgun, and a plasma lance are not on the same scale
+unless they are all just ``harm.'' The \textbf{ladder} and
+\textbf{conditions} options sidestep this by never numbering the wound in
+the first place.
+\end{dread}
+
+% =====================================================================
+\renewcommand{\realmaccent}{atrAccent2}
+\chapter{Six Complete Packages}
+% =====================================================================
+
+\lettrine{T}{he options} above can be mixed freely, but some combinations
+are far more coherent than others. Here are six whole games, each
+internally consistent, each with a different centre of gravity.
+
+\begin{center}
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.35}
+\noindent\begin{tabularx}{\textwidth}{@{}p{1.9cm} Y Y Y Y >{\leavevmode\centering\arraybackslash}p{1.3cm}@{}}
+\rowcolor{\realmaccent}
+\thc{Package} &
+\thc{Core roll} &
+\thc{Gear} &
+\thc{Skills} &
+\thc{Harm} &
+\thc{Weight}\\
+\optname{A. The Storyteller} & Count successes, 0--10 dice & Substitution & Points + cap, fixed list & Strength as HP & \crunch{4}\\
+\rowcolor{atrBoxbg}
+\optname{B. The Tag Engine} & Count successes, 2 dice per tag & Tags & Freeform tags & Conditions & \crunch{2}\\
+\optname{C. The Forged Realm} & Highest die, 0--4 dice & Load + permission & Careers or actions & Harm ladder & \crunch{2}\\
+\rowcolor{atrBoxbg}
+\optname{D. The Priority Array} & Count successes, 0--10 dice & N picks & Fixed array & Body rank as HP & \crunch{1}\\
+\optname{E. The Toolbox} & Step dice, sum two & Asset die & Points, die sizes & Stress track & \crunch{3}\\
+\rowcolor{atrBoxbg}
+\optname{F. The Two-Die Realm} & 2d6 + modifier & Modifier & Approaches & Conditions & \crunch{1}\\
+\end{tabularx}
+\end{center}
+
+\section{A. The Storyteller}
+\src{Vampire: the Masquerade, Shadowrun}
+
+The current draft, finished honestly. Four Stats and a skill list, both
+built from dot budgets with caps of rank\,+\,1. Gear ratings substitute
+for Stats. Magic keeps its tags. Pools run \dice{0}--\dice{10} and the GM
+names a target every roll.
+
+\textbf{Best at:} character texture. Two rank-\rating{3} characters can be
+completely different people. Optimisers have something to chew on, and
+advancement is obvious --- buy another dot.
+
+\textbf{Costs you:} it is the heaviest option, the GM invents a number on
+every roll, and the four columns need careful balancing to stay
+comparable. The seventeen-skill list keeps its genre baggage.
+
+\section{B. The Tag Engine}
+\src{Lady Blackbird, City of Mist}
+
+\textbf{Everything is tags.} Body gives you physical tags, Stuff gives you
+possession tags, Skills give you learned tags, Magic gives you arcane
+tags. You roll two dice per applicable tag, capped by the rank of
+whichever column supplied them. Rank sets how many tags you know and how
+many may apply at once.
+
+\textbf{Best at:} radical unification. The whole game is one paragraph.
+Genre baggage disappears entirely because players write their own tags.
+The Magic chapter is already written in this language, so it comes free.
+
+\textbf{Costs you:} enormous GM adjudication load --- every roll becomes a
+negotiation about which tags apply. Blank lines intimidate new players.
+And the four columns stop feeling meaningfully different from one another,
+which undercuts the 4$\times$4 grid the game is built on.
+
+\section{C. The Forged Realm}
+\src{Blades in the Dark}
+
+Rescale everything to \dice{0}--\dice{4}. Read the highest die: 6 is a
+full success, 4--5 succeeds with a complication, 1--3 fails. No target
+numbers, ever. Gear is a Load you spend during play, not a list you write
+beforehand. Harm is a four-rung ladder and armour steps it down.
+
+\textbf{Best at:} speed and the realm-crossing premise. Nothing on the
+sheet needs translating between genres because almost nothing on the sheet
+is a specific object. Partial success on most rolls keeps stories moving.
+
+\textbf{Costs you:} the \dice{0}--\dice{10} range and everything built on
+it, including the current Magic chapter's arithmetic. Rank \rating{1}
+versus rank \rating{4} becomes a much smaller gap, which may make the
+priority grid feel less consequential.
+
+\section{D. The Priority Array}
+\src{D\&D standard array, Fate, Lancer}
+
+Keep the current engine but delete all arithmetic from character creation.
+Each rank in each column hands you a \emph{fixed shape}: Body \rating{3}
+gives you [4,3,2,1] to arrange; Skills \rating{3} gives you one skill at 4,
+two at 3, three at 1; Stuff \rating{3} lets you pick three items rated 3 or
+less. Nothing is added up.
+
+\textbf{Best at:} getting to the table. A character takes ten minutes and
+cannot be built wrong. Balance across the four columns is guaranteed
+rather than hoped for, because you specified the outputs directly.
+
+\textbf{Costs you:} optimisation, and with it some replay depth. Two
+Body-\rating{3} characters have identical numbers in different slots.
+Advancement needs its own separate design, since there are no points to
+spend.
+
+\section{E. The Toolbox}
+\src{Cortex Prime, Savage Worlds}
+
+Every trait is a \emph{die size} rather than a count. Body \rating{3}
+might grant a d10 and three d6s. Roll your Stat die plus your Skill die
+and sum. Gear is simply another die you add or swap in --- which makes the
+original question (``a number for the car plus a number for your skill'')
+trivially natural, because the car is just a d8.
+
+\textbf{Best at:} gear substitution, which is the question that started
+this document. Swapping a d6 for a d10 is intuitive at the table, and
+assets, complications, and conditions all slot into the same frame.
+
+\textbf{Costs you:} a rewrite of everything currently expressed in d6
+pools, and a subtler probability landscape --- players cannot eyeball odds
+the way they can with a coin-flip pool.
+
+\section{F. The Two-Die Realm}
+\src{Apocalypse World, Traveller}
+
+Always roll 2d6 and add one small modifier. 6 or less is a miss, 7--9 is a
+partial success, 10 or more is a full success. Ranks map to modifiers from
+$-1$ to $+3$. Skills become six Approaches; gear adds a modifier or grants
+permission.
+
+\textbf{Best at:} absolute minimum friction. Every roll is identical, the
+odds are memorised after one session, and partial success is built into
+the engine rather than bolted on.
+
+\textbf{Costs you:} the dice pool, which is a real part of the game's
+identity --- gathering a fistful of d6s is a pleasure that $2$d$6$ does not
+provide. The narrow modifier range also compresses the difference between
+rank \rating{1} and rank \rating{4} severely.
+
+% =====================================================================
+\renewcommand{\realmaccent}{atrAccent}
+\chapter{How to Decide}
+% =====================================================================
+
+\section{Dependency Order}
+
+These questions are not independent. Answering them out of order means
+redoing work.
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=6mm,
+  box/.style={draw=atrRule, fill=atrBoxbg, rounded corners=2pt,
+              text width=3.1cm, align=center, minimum height=1.05cm,
+              font=\small},
+  hd/.style={draw=none, fill=atrAccent, text=white, rounded corners=2pt,
+              text width=3.1cm, align=center, minimum height=1.05cm,
+              font=\hdfont\small},
+  arr/.style={-latex, draw=atrRule, line width=0.9pt}]
+
+  \node[hd] (roll) {\textbf{1. Core roll}\\\scriptsize sets the dice range};
+  \node[hd, right=12mm of roll] (gear) {\textbf{2. Gear entry}\\\scriptsize sets what Stuff is for};
+  \node[box, below left=12mm and 6mm of gear] (body) {\textbf{3a. Body}};
+  \node[box, right=4mm of body] (stuff) {\textbf{3b. Stuff}};
+  \node[box, right=4mm of stuff] (skills) {\textbf{3c. Skills}};
+  \node[box, right=4mm of skills] (magic) {\textbf{3d. Magic}};
+  \node[hd, below=12mm of stuff, xshift=14mm] (harm) {\textbf{4. Harm}\\\scriptsize needs 1 and 3a};
+
+  \draw[arr] (roll) -- (gear);
+  \draw[arr] (gear.south) -- ++(0,-4mm) -| (body.north);
+  \draw[arr] (gear.south) -- ++(0,-4mm) -| (stuff.north);
+  \draw[arr] (gear.south) -- ++(0,-4mm) -| (skills.north);
+  \draw[arr] (gear.south) -- ++(0,-4mm) -| (magic.north);
+  \draw[arr] (body.south) |- ([yshift=6mm]harm.north) -- (harm.north);
+  \draw[arr] (stuff.south) |- ([yshift=6mm]harm.north);
+\end{tikzpicture}
+\end{center}
+
+Chapters 4 through 7 --- the four columns --- are genuinely independent of
+one another and can be decided in any order, or by different people.
+
+\section{Five Tests for Any Candidate}
+
+Whatever combination is chosen, run it against these before writing it
+into the book.
+
+\begin{statblock}[The Tests]
+\begin{tabularx}{\linewidth}{@{}p{3.6cm} Y@{}}
+\keyword{The Realm Test} & Take a finished character from high fantasy to the sprawl to a space station. How many lines on the sheet need rewriting? Ideally zero.\\[4pt]
+\keyword{The Table Test} & Can a player who has never seen the game build a character in ten minutes, without the GM's help?\\[4pt]
+\keyword{The GM Test} & How many numbers must the GM invent per roll? Every one of them is friction, and friction is what makes a game stop being rules-light.\\[4pt]
+\keyword{The Column Test} & Play a scene four times, once with each column as the character's A. Does each version feel powerful in a \emph{different} way? If two columns feel the same, one of them is spurious.\\[4pt]
+\keyword{The Ceiling Test} & Compute the best possible pool for each column at priority A. Are the four numbers close? If Magic reaches 10 and Stuff reaches 6, Stuff is a trap option.\\
+\end{tabularx}
+\end{statblock}
+
+\begin{dread}[The one genuinely structural choice]
+Most of this document is interchangeable parts. One decision is not.
+
+\textbf{Either the four columns run on four different mechanisms, or they
+run on one.} The current draft is already halfway to ``one'' --- Magic's
+tag system would work verbatim for Stuff and for Skills. Going all the
+way gives a game that fits on an index card, at the cost of the four
+columns feeling distinct from each other. Staying at four mechanisms gives
+each column its own texture, at the cost of being four times as much game
+to learn.
+
+That choice is upstream of nearly everything else here, and it is a
+question about what the game is \emph{for} rather than about mathematics.
+\end{dread}
+
+\end{document}
