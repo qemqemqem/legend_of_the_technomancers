@@ -1,9 +1,11 @@
 % =====================================================================
-%  atrpg.sty — Across the Realms RPG rulebook style
+%  atrpg.sty — Legend of the Technomancers RPG rulebook style
+%  (The "atr" prefix predates the retitle from "Across the Realms";
+%   it is internal-only and kept to avoid churn across ~83 call sites.)
 %  Genre-neutral, clean design. Engine: XeTeX (tectonic) / LuaLaTeX.
 % =====================================================================
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{atrpg}[2026/09/18 Across the Realms rulebook style]
+\ProvidesPackage{atrpg}[2026/09/18 Legend of the Technomancers rulebook style]
 
 % ---- Fonts ----------------------------------------------------------
 \RequirePackage{fontspec}
@@ -17,9 +19,12 @@
   BoldItalicFont = mplantinit]
 % Display/heading face: Beleren Bold — the game fantasy/sci-fi display face.
 % Caps-only; every weight renders as bold, so \bfseries is a no-op here.
+% Ligatures=TeX so `---' and ``quotes'' in headings render as real em-dashes
+% and curly quotes rather than literal hyphens and backticks.
 \newfontfamily\hdfont{beleren-bold_P1.01}[
   Path        = /home/keenan/.fonts/,
   Extension   = .ttf,
+  Ligatures   = TeX,
   UprightFont = *,
   BoldFont    = *,
   ItalicFont  = *,
@@ -111,7 +116,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
-\fancyhead[LE]{\hdfont\small\color{atrRule}\thepage\quad ACROSS THE REALMS}
+\fancyhead[LE]{\hdfont\small\color{atrRule}\thepage\quad LEGEND OF THE TECHNOMANCERS}
 \fancyhead[RO]{\hdfont\small\color{atrRule}\leftmark\quad\thepage}
 \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}
 
@@ -132,6 +137,94 @@
     \end{tikzpicture}}}$%
   \endgroup}
 
+% ---- Iconography ----------------------------------------------------
+% Small glyphs for the three Stats and for the four places a tag can come
+% from. Each is drawn on a 10x10 canvas scaled to \atrIconH, so it stays in
+% proportion at any size and inherits the surrounding text colour.
+\usetikzlibrary{shapes.misc}
+\newlength{\atrIconH}
+\setlength{\atrIconH}{7.4pt}
+
+\newcommand{\atr@icon@body}{%    barbell — physical power
+  \fill (0.3,2.5) rectangle (2.5,7.5);
+  \fill (7.5,2.5) rectangle (9.7,7.5);
+  \fill (2.5,4.2) rectangle (7.5,5.8);}
+\newcommand{\atr@icon@mind}{%    lightbulb — thought
+  % The screw base is three bars with real gaps rather than grooves knocked
+  % out in a background colour, so the icon works on paper, on the box tint,
+  % and reversed out of a filled tag alike.
+  \fill (5,6.7) circle (2.6);
+  \fill (3.7,3.45) rectangle (6.3,4.35);
+  \fill (3.7,2.15) rectangle (6.3,3.05);
+  \fill (4.2,1.1)  rectangle (5.8,1.75);}
+\newcommand{\atr@icon@face}{%    head and shoulders — dealing with people
+  \fill (5,7.4) circle (2.0);
+  \fill (1.3,0.8) .. controls (1.3,4.1) and (8.7,4.1) .. (8.7,0.8) -- cycle;}
+\newcommand{\atr@icon@magic}{%   four-point sparkle
+  \fill (5,9.7) .. controls (5.5,5.5) and (5.5,5.5) .. (9.7,5)
+        .. controls (5.5,4.5) and (5.5,4.5) .. (5,0.3)
+        .. controls (4.5,4.5) and (4.5,4.5) .. (0.3,5)
+        .. controls (4.5,5.5) and (4.5,5.5) .. cycle;}
+\newcommand{\atr@icon@skill}{%   chevron — training
+  \fill (0.8,2.2) -- (5,6.4) -- (9.2,2.2) -- (9.2,4.6)
+        -- (5,8.8) -- (0.8,4.6) -- cycle;}
+\newcommand{\atr@icon@item}{%    satchel — something you carry
+  \draw[line width=0.9] (3.3,6.3) .. controls (3.3,8.9) and (6.7,8.9) .. (6.7,6.3);
+  \fill (1.0,1.3) rectangle (9.0,6.6);}
+
+% \atricon{body|mind|face|magic|skill|item}
+\newcommand{\atricon}[1]{%
+  \raisebox{-0.08\atrIconH}{%
+    \begin{tikzpicture}[x=0.1\atrIconH, y=0.1\atrIconH, line width=0.09\atrIconH]
+      \csname atr@icon@#1\endcsname
+    \end{tikzpicture}}}
+
+% ---- Stat plates ----------------------------------------------------
+% \statplate{body}{3} → icon + number in a rectangle. The rectangle is the
+% visual signal "this is a rolled Stat", as opposed to an oval tag.
+% Centred with $\vcenter{\hbox{...}}$ rather than TikZ's baseline= option:
+% the icon nests a tikzpicture inside the node text, and baseline=(P.base)
+% then fails with "No shape named P is known".
+\newcommand{\statplate}[2]{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}
+      \node[draw=\realmaccent, line width=0.7pt, fill=atrBoxbg,
+            inner xsep=3.4pt, inner ysep=2.6pt, outer sep=0pt]
+        {\color{\realmaccent}\atricon{#1}\hspace{2.6pt}\textbf{#2}};
+    \end{tikzpicture}}}$}
+
+% \statplatenamed{body}{Body}{3} → same, with the name spelled out.
+\newcommand{\statplatenamed}[3]{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}
+      \node[draw=\realmaccent, line width=0.7pt, fill=atrBoxbg,
+            inner xsep=3.4pt, inner ysep=2.6pt, outer sep=0pt]
+        {\color{\realmaccent}\atricon{#1}\hspace{2.6pt}%
+         \textsc{#2}\hspace{2.6pt}\textbf{#3}};
+    \end{tikzpicture}}}$}
+
+% ---- Tag ovals ------------------------------------------------------
+% \atrtag{magic}{Fire} → the tag word in an oval, with a provenance icon so
+% you can see at a glance whether it came from magic, your body, a skill, or
+% a piece of gear — i.e. whether it can be taken away from you.
+\newcommand{\atrtag}[2]{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}
+      \node[rounded rectangle, draw=atrRule, line width=0.6pt, fill=atrBoxbg,
+            inner xsep=5pt, inner ysep=2.4pt, outer sep=0pt]
+        {{\color{atrAccent2}\atricon{#1}}\hspace{2.8pt}#2};
+    \end{tikzpicture}}}$}
+
+% Filled variant, for a tag that is live on the current roll.
+\newcommand{\atrtagon}[2]{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}
+      \node[rounded rectangle, draw=\realmaccent, line width=0.6pt,
+            fill=\realmaccent, text=white,
+            inner xsep=5pt, inner ysep=2.4pt, outer sep=0pt]
+        {\atricon{#1}\hspace{2.8pt}#2};
+    \end{tikzpicture}}}$}
+
 % ---- Boxes ----------------------------------------------------------
 % Sidebar / designer's note.  (named notebox: \sidebar is taken by memoir)
 \newtcolorbox{notebox}[1][]{%
@@ -151,13 +244,19 @@
   fontupper=\itshape}
 
 % Rules example.
+% The EXAMPLE tag straddles the top rule (anchor=east on frame.north east,
+% with a paper-coloured fill that knocks the rule out behind it) rather than
+% sitting inside the box. Anchored north east it overlapped the first line of
+% body text, which is cripplingly visible in the narrow two-column measure.
 \newtcolorbox{example}{%
   enhanced, breakable,
   colback=atrPaper, colframe=atrRule, boxrule=0.6pt, arc=1pt,
   left=8pt, right=8pt, top=5pt, bottom=5pt,
+  before skip=7pt, after skip=7pt,
   overlay unbroken and first={%
-    \node[anchor=north east,font=\hdfont\bfseries\scriptsize\color{atrRule}]
-      at ([xshift=-6pt,yshift=-3pt]frame.north east){EXAMPLE};}}
+    \node[anchor=east, fill=atrPaper, inner xsep=4pt, inner ysep=0.5pt,
+          font=\hdfont\bfseries\scriptsize\color{atrRule}]
+      at ([xshift=-9pt]frame.north east){EXAMPLE};}}
 
 % Character-attribute stat block (the four columns).
 \newtcolorbox{statblock}[1][Attribute Ranks]{%
@@ -244,5 +343,36 @@
 % Applied at document start so it takes effect on all pages (the cover
 % page art covers this completely; interior pages show the off-white).
 \AtBeginDocument{\pagecolor{atrPaper}}
+
+% ---- KNOWN DEFECT: uneven leading on \textbf lines ------------------
+% Fourteen lines in the book sit ~6.9pt lower than their neighbours (20.45pt
+% pitch against a normal 13.55pt). Every one is a line containing \textbf,
+% which in practice means every line carrying a \keyword.
+%
+% Established so far, by A/B-ing the full book and counting line-pitch
+% anomalies out of `pdftotext -bbox-layout`:
+%   * \textbf is the trigger; the \color in \keyword is innocent (0 anomalies
+%     with colour alone, 14 with bold alone).
+%   * NOT microtype, NOT ragged2e's [document] option, NOT \flushbottom
+%     (\raggedbottom changes nothing).
+%   * NOT the fonts: MPlantin bold's vertical metrics are normal
+%     (asc 761 / desc -238 per 1000 upm) and an isolated \vbox of the exact
+%     offending paragraph is perfectly uniform — TeX's own box dump shows
+%     \glue(\baselineskip) 3.84357 between every line.
+%   So the extra space is introduced when the paragraph is contributed to
+%   the page, not while the paragraph is being broken.
+%
+% \AtBeginDocument{\lineskiplimit=-\maxdimen} suppresses all 14, but it is
+% NOT a usable fix: it also forces \baselineskip between table rows, which
+% collapses every \rating-bearing row in every statblock and gearlist on top
+% of the row above. Scoping it back out with etoolbox's \AtBeginEnvironment
+% on tabular/tabularx/longtable did not restore them.
+%
+% Left unfixed deliberately: a 6.9pt wobble on 14 lines is a far smaller
+% problem than collapsed tables, and the real cause is not yet identified.
+%
+% NB: this file ends with \endinput. Anything appended AFTER it is silently
+% ignored — inject experiments above this line or they will appear to work
+% and actually do nothing.
 
 \endinput
