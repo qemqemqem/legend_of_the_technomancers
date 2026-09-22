@@ -1,0 +1,250 @@
+% =====================================================================
+%  Legend of the Technomancers — CHARACTER SHEET CONCEPT E
+%  "The Traveller's Card"
+%
+%  Design brief:
+%    - Identity fields: Name, Player, Appearance, Vibes
+%    - Big white tattoo drawing box (markers / coloured pencils)
+%    - Skills: 18 common + blank lines for custom
+%    - Magic: rank + blank tag lines
+%
+%  Build:  tectonic -X compile design_thinking/character-sheet-concept-e.tex
+%  (run from the repo root)
+% =====================================================================
+\documentclass[10pt,oneside]{memoir}
+\usepackage{atrpg}
+\special{papersize=210mm,297mm}
+
+\newgeometry{a4paper, inner=11mm, outer=11mm, top=11mm, bottom=11mm,
+             headsep=0mm, footskip=0mm}
+
+% ---- Sheet-local helpers --------------------------------------------
+
+\newcommand{\fivepips}{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}[x=9pt,y=9pt]
+      \foreach \i in {1,...,5}{%
+        \node[circle,draw=atrRule,line width=0.4pt,minimum size=7pt,inner sep=0]
+          at (\i,0){};}
+    \end{tikzpicture}}}$}
+
+\newcommand{\fourpips}{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}[x=9pt,y=9pt]
+      \foreach \i in {1,...,4}{%
+        \node[circle,draw=atrRule,line width=0.4pt,minimum size=7pt,inner sep=0]
+          at (\i,0){};}
+    \end{tikzpicture}}}$}
+
+\newcommand{\hptrack}{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}[x=11pt,y=11pt]
+      \foreach \i in {1,...,10}{%
+        \node[circle,draw=atrRule,line width=0.5pt,minimum size=9pt,inner sep=0]
+          at (\i,0){};}
+    \end{tikzpicture}}}$}
+
+% Tag oval for body tags
+\newcommand{\tagslot}[1][38mm]{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}
+      \node[rounded rectangle, draw=atrRule, line width=0.5pt,
+            minimum width=#1, minimum height=5.5mm, inner sep=3pt]{\phantom{X}};
+    \end{tikzpicture}}}$}
+
+% Pre-printed skill row: name | stat | pips
+\newcommand{\skillrow}[2]{%
+  {\small #1} & {\scriptsize\color{atrAccent}\textbf{#2}} & \fivepips\\[1.5pt]}
+
+% Blank skill row: blank name | blank stat letter | pips
+\newcommand{\skillblank}{%
+  \rule{30mm}{0.3pt} &
+  \raisebox{1pt}{\framebox[5mm]{\phantom{B}}} &
+  \fivepips\\[1.5pt]}
+
+% Item row for stuff
+\newcommand{\itemrow}{\rule{42mm}{0.3pt}\hspace{3pt}\fourpips\par\vspace{4pt}}
+
+% Coloured section heading
+\newcommand{\sechead}[2][atrAccent]{%
+  \par{\color{#1}\rule{\linewidth}{0.7pt}}\par\vspace{1pt}%
+  {\hdfont\bfseries\footnotesize\color{#1}#2}\par\vspace{4pt}}
+
+% ---- The tattoo drawing box -----------------------------------------
+% White interior, double-border frame, invites drawing with markers.
+\newcommand{\tattoobox}[2][55mm]{%
+  % #1 = height, drawn via tikz so it is an exact size
+  \par
+  \begin{tikzpicture}
+    % Outer border
+    \draw[color=atrAccent, line width=0.9pt, rounded corners=2pt]
+      (0,0) rectangle (\linewidth, #1);
+    % Inner decorative border (inset 2mm)
+    \draw[color=atrAccent, line width=0.3pt, opacity=0.5, rounded corners=1pt]
+      (2mm, 2mm) rectangle (\linewidth-2mm, #1-2mm);
+    % Very faint label at the bottom
+    \node[anchor=south, opacity=0.18, font=\hdfont\footnotesize\color{atrAccent}]
+      at (0.5\linewidth, 2.5mm) {TATTOOS};
+  \end{tikzpicture}
+  \par}
+
+% =====================================================================
+\begin{document}
+\color{atrInk}
+\pagestyle{empty}
+
+% ---- Title line ------------------------------------------------------
+\noindent
+{\hdfont\bfseries\normalsize\color{atrAccent}LEGEND OF THE TECHNOMANCERS}
+\hfill
+{\hdfont\small\color{atrRule}Traveller Sheet}
+\par\vspace{2pt}
+{\color{atrAccent}\rule{\linewidth}{1.2pt}}
+\par\vspace{5pt}
+
+% ---- Identity fields -------------------------------------------------
+\begin{tabularx}{\linewidth}{@{}lXp{4mm}lX@{}}
+  {\small\textsc{Name}} &
+  \underline{\hfill} & &
+  {\small\textsc{Player}} &
+  \underline{\hfill} \\[6pt]
+  {\small\textsc{Appearance}} &
+  \underline{\hfill} & &
+  {\small\textsc{Vibes}} &
+  \underline{\hfill} \\
+\end{tabularx}
+
+\par\vspace{6pt}
+
+% ---- Stats + HP row --------------------------------------------------
+\noindent
+\begin{minipage}[c]{0.235\linewidth}
+  \begin{tcolorbox}[enhanced, colback=atrBoxbg, colframe=columnBody,
+    boxrule=0.7pt, arc=2pt, left=3pt, right=3pt, top=3pt, bottom=3pt,
+    halign=center, before skip=0pt, after skip=0pt]
+    {\color{columnBody}\atricon{body}\ \hdfont\small BODY}\\[4pt]
+    \fivepips
+  \end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.235\linewidth}
+  \begin{tcolorbox}[enhanced, colback=atrBoxbg, colframe=columnMagic,
+    boxrule=0.7pt, arc=2pt, left=3pt, right=3pt, top=3pt, bottom=3pt,
+    halign=center, before skip=0pt, after skip=0pt]
+    {\color{columnMagic}\atricon{mind}\ \hdfont\small MIND}\\[4pt]
+    \fivepips
+  \end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.235\linewidth}
+  \begin{tcolorbox}[enhanced, colback=atrBoxbg, colframe=columnStuff,
+    boxrule=0.7pt, arc=2pt, left=3pt, right=3pt, top=3pt, bottom=3pt,
+    halign=center, before skip=0pt, after skip=0pt]
+    {\color{columnStuff}\atricon{face}\ \hdfont\small FACE}\\[4pt]
+    \fivepips
+  \end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.24\linewidth}
+  {\color{atrRule}\rule{\linewidth}{0.5pt}}\par\vspace{1pt}
+  {\hdfont\bfseries\footnotesize\color{atrAccent}HP / DURABILITY}
+  \par\vspace{4pt}
+  \hptrack
+\end{minipage}
+
+\par\vspace{5pt}
+
+% ---- Main three-panel body ------------------------------------------
+\noindent
+% Left panel — Tattoos + Body Tags
+\begin{minipage}[t]{0.27\linewidth}
+
+  \sechead[atrAccent]{TATTOOS}
+  {\scriptsize\itshape\color{atrRule}Draw your tattoos here.
+  They glow when you spend Persistence Points.}
+  \par\vspace{3pt}
+  \tattoobox{56mm}
+  \par\vspace{6pt}
+
+  \sechead[columnBody]{BODY TAGS}
+  {\scriptsize\color{atrRule}Physical traits, mutations, enhancements.}
+  \par\vspace{4pt}
+  \tagslot[35mm]\par\vspace{3pt}
+  \tagslot[35mm]\par\vspace{3pt}
+  \tagslot[35mm]\par\vspace{3pt}
+  \tagslot[35mm]\par\vspace{3pt}
+  \tagslot[35mm]\par\vspace{3pt}
+  \tagslot[35mm]
+
+\end{minipage}\hfill
+% Middle panel — Skills
+\begin{minipage}[t]{0.37\linewidth}
+
+  \sechead[columnSkills]{SKILLS}
+  {\scriptsize\color{atrRule}%
+    \textbf{B}=Body\ \textbf{F}=Face\ \textbf{M}=Mind\quad
+    Pair with the stat that fits the action.}
+  \par\vspace{3pt}
+
+  \begin{tabular}{@{}lll@{}}
+    \skillrow{Blades}{B}
+    \skillrow{Brawling}{B}
+    \skillrow{Firearms}{B}
+    \skillrow{Archery}{B}
+    \skillrow{Athletics}{B}
+    \skillrow{Stealth}{B}
+    \skillrow{Piloting}{B}
+    \skillrow{Persuasion}{F}
+    \skillrow{Deception}{F}
+    \skillrow{Intimidation}{F}
+    \skillrow{Performance}{F}
+    \skillrow{Lore}{M}
+    \skillrow{Medicine}{M}
+    \skillrow{Perception}{M}
+    \skillrow{Languages}{M}
+    \skillrow{Craft}{M}
+    \skillrow{Survival}{M}
+    \skillrow{Hacking}{M}
+    % ---- Custom skills below ----
+    \multicolumn{3}{@{}l}{\color{atrRule}\rule{\linewidth}{0.3pt}}\\[1pt]
+    \skillblank
+    \skillblank
+    \skillblank
+    \skillblank
+  \end{tabular}
+
+\end{minipage}\hfill
+% Right panel — Magic + Stuff
+\begin{minipage}[t]{0.31\linewidth}
+
+  \sechead[columnMagic]{MAGIC}
+  {\scriptsize\color{atrRule}Pool = Stat + one die per applicable tag.}
+  \par\vspace{2pt}
+  {\small\textsc{Rank}}\hspace{3mm}\fourpips
+  \hfill{\small\textsc{Limit per roll}}\ \underline{\hspace{8mm}}
+  \par\vspace{6pt}
+  {\scriptsize\color{atrRule}Magic Tags — write the tags you have purchased:}
+  \par\vspace{4pt}
+  \tagslot[40mm]\par\vspace{3pt}
+  \tagslot[40mm]\par\vspace{3pt}
+  \tagslot[40mm]\par\vspace{3pt}
+  \tagslot[40mm]\par\vspace{3pt}
+  \tagslot[40mm]\par\vspace{3pt}
+  \tagslot[40mm]\par\vspace{3pt}
+  \tagslot[40mm]\par\vspace{3pt}
+  \tagslot[40mm]\par\vspace{3pt}
+  \tagslot[40mm]\par\vspace{3pt}
+  \tagslot[40mm]
+  \par\vspace{6pt}
+
+  \sechead[columnStuff]{STUFF}
+  {\scriptsize Item\hfill Tier}\par\vspace{2pt}
+  \itemrow\itemrow\itemrow\itemrow\itemrow
+  \itemrow\itemrow\itemrow
+
+\end{minipage}
+
+\par\vspace{4pt}
+{\color{atrRule}\rule{\linewidth}{0.5pt}}\par\vspace{1pt}
+{\hdfont\bfseries\footnotesize\color{atrAccent}NOTES}\hspace{4mm}%
+\rule{0.85\linewidth}{0.3pt}\\[6pt]
+\rule{\linewidth}{0.3pt}
+
+\end{document}
