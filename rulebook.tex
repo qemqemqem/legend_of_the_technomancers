@@ -9,19 +9,27 @@
 \author{Andrew Keenan Richardson and Christopher Sheldon-Dante and Anthropic Claude}
 
 \begin{document}
+\special{papersize=210mm,297mm}  % force xdvipdfmx to A4; geometry alone is ignored
 \color{atrInk}
 
 % ------------------------------------------------- Full-bleed cover page
 % The art fills the entire page; title and authors are overlaid on scrims
 % (tikz overlay on current page = ignores margins, bleeds to the edges).
 \begin{titlingpage}
+% Black page background: any gap between image and physical paper edge
+% shows as black rather than white, matching the dark cover art.
+\pagecolor{black}
 % Single value controls author band height; text is automatically centred in it.
 \newlength{\atrAuthBandH}\setlength{\atrAuthBandH}{54mm}
 \begin{tikzpicture}[remember picture, overlay]
-  % Cover art: 1.005× oversize so the image bleeds past every edge —
-  % eliminates the sub-pixel white sliver that appears at exact \paperwidth.
-  \node[anchor=center, inner sep=0] at (current page.center)
-    {\includegraphics[width=1.005\paperwidth]{art/cover-full.png}};
+  % Anchor image to the south-west corner so there is no centering offset
+  % to mis-calculate; scale to exactly \paperheight so it fills top-to-bottom.
+  % The image is portrait 1024x1536 (ratio 0.667) vs A4 0.707, so scaling by
+  % height leaves a 12mm gap on each side — we compensate by using
+  % width=\paperwidth instead, which gives correct horizontal coverage and
+  % overflows top/bottom (hidden). Anchoring south-west eliminates right-edge gap.
+  \node[anchor=south west, inner sep=0] at (current page.south west)
+    {\includegraphics[width=\paperwidth]{art/cover-full.png}};
 
   % ---- Title band (top) ----
   \fill[black, opacity=0.42]
@@ -46,6 +54,7 @@
   };
 \end{tikzpicture}
 \end{titlingpage}
+\pagecolor{white}  % reset after the black cover background
 
 \frontmatter
 \tableofcontents

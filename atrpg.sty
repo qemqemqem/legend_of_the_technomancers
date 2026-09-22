@@ -60,7 +60,9 @@
 \newcommand{\realmaccent}{atrAccent}
 
 % ---- Page geometry --------------------------------------------------
-\RequirePackage[a4paper,
+% driver=xetex is required so geometry emits \special{papersize=…} and
+% xdvipdfmx uses A4 rather than its US-Letter default.
+\RequirePackage[driver=xetex, a4paper,
   inner=18mm, outer=14mm, top=24mm, bottom=26mm,
   headsep=8mm, footskip=12mm]{geometry}
 \RequirePackage[document]{ragged2e}  % gentle justification helper
