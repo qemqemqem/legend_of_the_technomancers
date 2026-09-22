@@ -45,10 +45,13 @@
 \tableofcontents
 
 \mainmatter
-\twocolumn   % everything after the ToC runs in two columns
+% Opening fiction — single-column, unnumbered, before the two-column switch.
+\include{chapters/00a-story}
 
+\twocolumn   % everything from Chapter 1 onwards runs in two columns
+
+% ---- Chapter 1: Introduction ----
 \include{chapters/00-intro}
-\include{chapters/00b-how-to-play}
 
 % ---- Part I: Building a Traveller ----
 \part{Building a Traveller}
@@ -62,7 +65,8 @@
 
 % ---- Part II: Playing the Game ----
 \part{Playing the Game}
-\include{chapters/11-playing}
+\include{chapters/11-how-to-play}
+\include{chapters/12-playing}
 
 % ---- Part III: The Realms ----
 \part{The Realms}
