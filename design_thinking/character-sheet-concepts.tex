@@ -1,0 +1,537 @@
+% =====================================================================
+%  Legend of the Technomancers — CHARACTER SHEET CONCEPT SKETCHES
+%  Four distinct layout philosophies. Build with:
+%      tectonic -X compile design_thinking/character-sheet-concepts.tex
+%  (run from the repo root so that atrpg.sty and art/ are on the path)
+% =====================================================================
+\documentclass[10pt,oneside]{memoir}
+\usepackage{atrpg}
+\special{papersize=210mm,297mm}
+
+% Tighter geometry for character sheets — minimal bleed margins
+\newgeometry{a4paper, inner=11mm, outer=11mm, top=11mm, bottom=11mm,
+             headsep=0mm, footskip=0mm}
+
+% ---- Helper commands ------------------------------------------------
+
+% Underline fill of given width
+\newcommand{\fillline}[1]{\hspace{2pt}\underline{\hspace{#1}}}
+
+% Five pip row for stats (1-5 scale) — $\vcenter$ keeps it on the text baseline
+\newcommand{\fivepips}{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}[x=9pt,y=9pt]
+      \foreach \i in {1,...,5}{%
+        \node[circle,draw=atrRule,line width=0.4pt,minimum size=7pt,inner sep=0]
+          at (\i,0){};}
+    \end{tikzpicture}}}$}
+
+% Four pip row for magic rank (1-4 scale)
+\newcommand{\fourpips}{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}[x=9pt,y=9pt]
+      \foreach \i in {1,...,4}{%
+        \node[circle,draw=atrRule,line width=0.4pt,minimum size=7pt,inner sep=0]
+          at (\i,0){};}
+    \end{tikzpicture}}}$}
+
+% HP circles — 10 circles, larger
+\newcommand{\hptrack}{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}[x=11pt,y=11pt]
+      \foreach \i in {1,...,10}{%
+        \node[circle,draw=atrRule,line width=0.5pt,minimum size=9pt,inner sep=0]
+          at (\i,0){};}
+    \end{tikzpicture}}}$}
+
+% A blank tag oval drawn with TikZ rounded-rectangle
+\newcommand{\tagslot}[1][36mm]{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}
+      \node[rounded rectangle, draw=atrRule, line width=0.5pt,
+            minimum width=#1, minimum height=5.5mm, inner sep=3pt]{\phantom{X}};
+    \end{tikzpicture}}}$}
+
+% One item row: name line + tier pips on one line
+\newcommand{\itemrow}{\rule{44mm}{0.3pt}\hspace{3pt}\fourpips\par\vspace{4pt}}
+
+% One skill row in a tabular: name | stat letter | pips
+\newcommand{\skillrow}[2]{%
+  {\small #1} & {\small\color{atrAccent}#2} & \fivepips\\[2pt]}
+
+% Coloured section header with rule
+\newcommand{\sechead}[2][atrAccent]{%
+  \par{\color{#1}\rule{\linewidth}{0.7pt}}\par\vspace{1pt}%
+  {\hdfont\bfseries\footnotesize\color{#1}#2}\par\vspace{3pt}}
+
+% Framed stat block (for use inside minipages, not tabular cells)
+% #1 = frame colour, #2 = icon/stat name (body, mind, face)
+\newcommand{\statbox}[2]{%
+  \begin{tcolorbox}[enhanced, colback=atrBoxbg, colframe=#1,
+    boxrule=0.8pt, arc=2pt, left=4pt, right=4pt, top=4pt, bottom=4pt,
+    halign=center]
+    {\color{#1}\atricon{#2}\ \hdfont\small\MakeUppercase{#2}}\\[5pt]
+    \fivepips
+  \end{tcolorbox}}
+
+% Big stat block with larger icon (for Concept B)
+\newcommand{\bigstatbox}[2]{%
+  \par\smallskip
+  \begin{center}
+  \begin{tcolorbox}[enhanced, colback=atrBoxbg, colframe=#1,
+    boxrule=1pt, arc=3pt, left=6pt, right=6pt, top=6pt, bottom=6pt,
+    halign=center, width=0.9\linewidth]
+    {\color{#1}{\setlength{\atrIconH}{20pt}\atricon{#2}}}\\[4pt]
+    {\hdfont\normalsize\color{#1}\MakeUppercase{#2}}\\[6pt]
+    \fivepips
+  \end{tcolorbox}
+  \end{center}}
+
+% =====================================================================
+\begin{document}
+\color{atrInk}
+\pagestyle{empty}
+
+% =====================================================================
+%  CONCEPT A — THE FOUR-COLUMN SHEET
+%  Game structure maps to sheet structure. Four equal panels below stats.
+%  Skill list fully pre-printed for fast reference during play.
+% =====================================================================
+
+{\hdfont\large\color{atrAccent}CONCEPT A\quad}%
+{\itshape\small The Four-Column Sheet — game columns = sheet columns, skills pre-printed}
+\vspace{3pt}
+
+% Identity bar
+\begin{tcolorbox}[enhanced, colback=atrBoxbg, colframe=atrRule, boxrule=0.5pt,
+  arc=1pt, left=5pt, right=5pt, top=3pt, bottom=3pt, before skip=0pt, after skip=4pt]
+  \begin{tabularx}{\linewidth}{@{}lXlX@{}}
+    \small\textsc{Name} & \fillline{4cm} &
+    \small\textsc{Realm} & \fillline{2.5cm}\\[3pt]
+    \small\textsc{Concept} & \fillline{4cm} &
+    \small\textsc{Player} & \fillline{2.5cm}\\
+  \end{tabularx}
+\end{tcolorbox}
+
+% Three stats in a row — each in its own minipage so tcolorbox is safe
+\noindent
+\begin{minipage}[t]{0.315\linewidth}
+  \statbox{columnBody}{body}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.315\linewidth}
+  \statbox{columnMagic}{mind}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.315\linewidth}
+  \statbox{columnStuff}{face}
+\end{minipage}
+
+\vspace{4pt}
+
+% Four-column body
+\noindent
+\begin{minipage}[t]{0.22\linewidth}
+  \sechead[columnBody]{BODY}
+  {\tiny\textsc{Tags}}\\[3pt]
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{6pt}
+  {\tiny\textsc{HP / Durability}}\\[4pt]
+  \hptrack
+\end{minipage}\hfill
+\begin{minipage}[t]{0.31\linewidth}
+  \sechead[columnSkills]{SKILLS}
+  \begin{tabular}{@{}lll@{}}
+    \skillrow{Blades}{B}
+    \skillrow{Brawling}{B}
+    \skillrow{Firearms}{B}
+    \skillrow{Archery}{B}
+    \skillrow{Athletics}{B}
+    \skillrow{Stealth}{B}
+    \skillrow{Piloting}{B}
+    \skillrow{Persuasion}{F}
+    \skillrow{Deception}{F}
+    \skillrow{Intimidation}{F}
+    \skillrow{Performance}{F}
+    \skillrow{Lore}{M}
+    \skillrow{Medicine}{M}
+    \skillrow{Perception}{M}
+    \skillrow{Languages}{M}
+    \skillrow{Craft}{M}
+    \skillrow{Survival}{M}
+    \skillrow{Hacking}{M}
+  \end{tabular}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.22\linewidth}
+  \sechead[columnMagic]{MAGIC}
+  {\tiny\textsc{Magic Rank}}\\[3pt]
+  \fourpips\par\vspace{2pt}
+  {\tiny\textsc{Tag limit}}\quad\underline{\hspace{8mm}}\par\vspace{6pt}
+  {\tiny\textsc{Magic Tags}}\\[3pt]
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]\par\vspace{2pt}
+  \tagslot[29mm]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+  \sechead[columnStuff]{STUFF}
+  {\tiny\textsc{Item\hfill Tier}}\\[3pt]
+  \itemrow\itemrow\itemrow\itemrow\itemrow
+  \itemrow\itemrow\itemrow\itemrow\itemrow
+\end{minipage}
+
+\vspace{4pt}
+{\color{atrRule}\rule{\linewidth}{0.6pt}}
+{\hdfont\bfseries\footnotesize\color{atrAccent}TATTOOS}\hspace{3mm}%
+\tagslot[28mm]\hspace{2mm}%
+\tagslot[28mm]\hspace{2mm}%
+\tagslot[28mm]\hspace{2mm}%
+\tagslot[28mm]\hspace{2mm}%
+\tagslot[28mm]
+\par\vspace{3pt}
+{\color{atrRule}\rule{\linewidth}{0.5pt}}
+{\hdfont\bfseries\footnotesize\color{atrAccent}NOTES}\par\vspace{2pt}
+\rule{\linewidth}{0.3pt}\par\vspace{6pt}
+\rule{\linewidth}{0.3pt}\par\vspace{6pt}
+\rule{\linewidth}{0.3pt}
+
+% =====================================================================
+%  CONCEPT B — STATS AS HERO
+%  The three Stats dominate. Identity sidebar left, skills centre,
+%  tags + stuff right. Feels like a stats-system-first game sheet.
+% =====================================================================
+\newpage
+
+{\hdfont\large\color{atrAccent}CONCEPT B\quad}%
+{\itshape\small Stats as Hero — the three numbers dominate the page}
+\vspace{4pt}
+
+\noindent
+% Left identity column
+\begin{minipage}[t]{0.21\linewidth}
+  \sechead{IDENTITY}
+  {\tiny\textsc{Name}}\\
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  {\tiny\textsc{Concept}}\\
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  {\tiny\textsc{Realm}}\\
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  {\tiny\textsc{Player}}\\
+  \rule{\linewidth}{0.3pt}\par\vspace{8pt}
+  \sechead{HP}
+  \hptrack\par\vspace{8pt}
+  \sechead{TATTOOS}
+  \tagslot[26mm]\par\vspace{3pt}
+  \tagslot[26mm]\par\vspace{3pt}
+  \tagslot[26mm]\par\vspace{3pt}
+  \tagslot[26mm]\par\vspace{3pt}
+  \tagslot[26mm]\par\vspace{8pt}
+  \sechead{NOTES}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}
+\end{minipage}\hfill
+% Centre: big stats then skills
+\begin{minipage}[t]{0.39\linewidth}
+  \bigstatbox{columnBody}{body}
+  \bigstatbox{columnMagic}{mind}
+  \bigstatbox{columnStuff}{face}
+  \vspace{4pt}
+  \sechead[columnSkills]{SKILLS}
+  \begin{tabular}{@{}lll@{}}
+    \skillrow{Blades}{B}
+    \skillrow{Brawling}{B}
+    \skillrow{Firearms}{B}
+    \skillrow{Archery}{B}
+    \skillrow{Athletics}{B}
+    \skillrow{Stealth}{B}
+    \skillrow{Piloting}{B}
+    \skillrow{Persuasion}{F}
+    \skillrow{Deception}{F}
+    \skillrow{Intimidation}{F}
+    \skillrow{Performance}{F}
+    \skillrow{Lore}{M}
+    \skillrow{Medicine}{M}
+    \skillrow{Perception}{M}
+    \skillrow{Languages}{M}
+    \skillrow{Craft}{M}
+    \skillrow{Survival}{M}
+    \skillrow{Hacking}{M}
+  \end{tabular}
+\end{minipage}\hfill
+% Right: tags and stuff
+\begin{minipage}[t]{0.34\linewidth}
+  \sechead[columnBody]{BODY TAGS}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{8pt}
+  \sechead[columnMagic]{MAGIC}
+  {\tiny\textsc{Rank}}\ \fourpips\hfill
+  {\tiny\textsc{Limit}}\ \underline{\hspace{7mm}}\par\vspace{5pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{8pt}
+  \sechead[columnStuff]{STUFF}
+  {\tiny\textsc{Item\hfill Tier}}\par\vspace{2pt}
+  \itemrow\itemrow\itemrow\itemrow\itemrow
+  \itemrow\itemrow\itemrow
+\end{minipage}
+
+% =====================================================================
+%  CONCEPT C — THE DOSSIER
+%  Leads with who the person IS before what they can do. The "what you
+%  know / what you have forgotten" fields are first-class. Mechanics
+%  flow in a compact two-panel grid below.
+% =====================================================================
+\newpage
+
+{\hdfont\large\color{atrAccent}CONCEPT C\quad}%
+{\itshape\small The Dossier — identity first, mechanics second}
+\vspace{4pt}
+
+% Identity + lore block at top
+\begin{tcolorbox}[enhanced, colback=atrBoxbg, colframe=atrAccent,
+  boxrule=0.8pt, arc=2pt, left=6pt, right=6pt, top=5pt, bottom=5pt,
+  before skip=0pt, after skip=5pt]
+  \begin{tabularx}{\linewidth}{@{}XXXX@{}}
+    {\tiny\textsc{Name}}\ \rule{22mm}{0.3pt} &
+    {\tiny\textsc{Concept}}\ \rule{22mm}{0.3pt} &
+    {\tiny\textsc{Realm}}\ \rule{22mm}{0.3pt} &
+    {\tiny\textsc{Player}}\ \rule{20mm}{0.3pt}\\[5pt]
+  \end{tabularx}
+  {\tiny\textsc{What You Know About Yourself}}\hspace{3mm}\rule{0.55\linewidth}{0.3pt}
+  \hfill{\tiny\textsc{What You Have Forgotten}}\hspace{3mm}\rule{0.2\linewidth}{0.3pt}
+\end{tcolorbox}
+
+% Stats + HP row
+\noindent
+\begin{minipage}[t]{0.26\linewidth}
+  \statbox{columnBody}{body}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.26\linewidth}
+  \statbox{columnMagic}{mind}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.26\linewidth}
+  \statbox{columnStuff}{face}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.16\linewidth}
+  {\color{atrRule}\rule{\linewidth}{0.5pt}}
+  {\hdfont\bfseries\tiny HP}\\[3pt]
+  \hptrack\par\vspace{4pt}
+  {\color{atrRule}\rule{\linewidth}{0.5pt}}
+  {\hdfont\bfseries\tiny TATTOOS}\\[3pt]
+  \tagslot[20mm]\par\vspace{2pt}
+  \tagslot[20mm]\par\vspace{2pt}
+  \tagslot[20mm]
+\end{minipage}
+
+\vspace{4pt}
+
+% Main three-panel body
+\noindent
+\begin{minipage}[t]{0.28\linewidth}
+  \sechead[columnBody]{BODY TAGS}
+  \tagslot[34mm]\par\vspace{3pt}
+  \tagslot[34mm]\par\vspace{3pt}
+  \tagslot[34mm]\par\vspace{3pt}
+  \tagslot[34mm]\par\vspace{3pt}
+  \tagslot[34mm]\par\vspace{3pt}
+  \tagslot[34mm]\par\vspace{3pt}
+  \tagslot[34mm]\par\vspace{8pt}
+  \sechead[columnStuff]{STUFF}
+  {\tiny Item\hfill Tier}\par\vspace{2pt}
+  \itemrow\itemrow\itemrow\itemrow\itemrow\itemrow\itemrow
+\end{minipage}\hfill
+\begin{minipage}[t]{0.34\linewidth}
+  \sechead[columnSkills]{SKILLS}
+  \begin{tabular}{@{}lll@{}}
+    \skillrow{Blades}{B}
+    \skillrow{Brawling}{B}
+    \skillrow{Firearms}{B}
+    \skillrow{Archery}{B}
+    \skillrow{Athletics}{B}
+    \skillrow{Stealth}{B}
+    \skillrow{Piloting}{B}
+    \skillrow{Persuasion}{F}
+    \skillrow{Deception}{F}
+    \skillrow{Intimidation}{F}
+    \skillrow{Performance}{F}
+    \skillrow{Lore}{M}
+    \skillrow{Medicine}{M}
+    \skillrow{Perception}{M}
+    \skillrow{Languages}{M}
+    \skillrow{Craft}{M}
+    \skillrow{Survival}{M}
+    \skillrow{Hacking}{M}
+  \end{tabular}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}
+  \sechead[columnMagic]{MAGIC}
+  {\tiny\textsc{Rank}}\hspace{3mm}\fourpips\par\vspace{3pt}
+  {\tiny\textsc{Tag limit per roll}}\hspace{3mm}\underline{\hspace{8mm}}\par\vspace{6pt}
+  {\tiny\textsc{Magic Tags}}\\[3pt]
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]\par\vspace{3pt}
+  \tagslot[38mm]
+\end{minipage}
+
+\vspace{3pt}
+{\color{atrRule}\rule{\linewidth}{0.4pt}}
+{\tiny\textsc{Notes}}\quad\rule{0.88\linewidth}{0.3pt}\\[6pt]
+\rule{\linewidth}{0.3pt}
+
+% =====================================================================
+%  CONCEPT D — MINIMAL / PRINTER-FRIENDLY
+%  No boxes, no colour dependencies. Works on any printer at any quality.
+%  Skills are blank lines (players write only what they actually have).
+%  Tag areas are just ruled lines.
+% =====================================================================
+\newpage
+
+{\hdfont\large\color{atrAccent}CONCEPT D\quad}%
+{\itshape\small Minimal — no colour, no boxes; blank skill lines; prints on anything}
+\vspace{5pt}
+
+{\hdfont\bfseries\Large LEGEND OF THE TECHNOMANCERS}
+\hfill{\small Traveller Sheet}
+\par{\rule{\linewidth}{1pt}}\par\vspace{4pt}
+
+\begin{tabularx}{\linewidth}{@{}lXlX@{}}
+  \small Name & \fillline{4.5cm} &
+  \small Realm & \fillline{2.5cm}\\[4pt]
+  \small Concept & \fillline{4.5cm} &
+  \small Player & \fillline{2.5cm}\\
+\end{tabularx}
+\par\vspace{5pt}
+
+% Stats inline
+\noindent
+\begin{minipage}[t]{0.3\linewidth}
+  \small{\atricon{body}\ \textsc{Body}}\\[4pt]
+  \fivepips
+\end{minipage}
+\begin{minipage}[t]{0.3\linewidth}
+  \small{\atricon{mind}\ \textsc{Mind}}\\[4pt]
+  \fivepips
+\end{minipage}
+\begin{minipage}[t]{0.3\linewidth}
+  \small{\atricon{face}\ \textsc{Face}}\\[4pt]
+  \fivepips
+\end{minipage}
+
+\par\vspace{3pt}
+\noindent{\small HP}\quad\hptrack
+\par\vspace{3pt}
+\rule{\linewidth}{0.5pt}
+\par\vspace{3pt}
+
+% Two columns
+\noindent
+\begin{minipage}[t]{0.47\linewidth}
+
+  \small\textbf{Skills}\hfill{\footnotesize B = Body\quad F = Face\quad M = Mind}
+  \par\vspace{3pt}
+
+  \begin{tabular}{@{}lll@{}}
+    {\footnotesize\itshape Skill} & \footnotesize\itshape St & \footnotesize\itshape Rating\\[2pt]
+    \rule{32mm}{0.3pt} & \rule{5mm}{0.3pt} & \fivepips\\[4pt]
+    \rule{32mm}{0.3pt} & \rule{5mm}{0.3pt} & \fivepips\\[4pt]
+    \rule{32mm}{0.3pt} & \rule{5mm}{0.3pt} & \fivepips\\[4pt]
+    \rule{32mm}{0.3pt} & \rule{5mm}{0.3pt} & \fivepips\\[4pt]
+    \rule{32mm}{0.3pt} & \rule{5mm}{0.3pt} & \fivepips\\[4pt]
+    \rule{32mm}{0.3pt} & \rule{5mm}{0.3pt} & \fivepips\\[4pt]
+    \rule{32mm}{0.3pt} & \rule{5mm}{0.3pt} & \fivepips\\[4pt]
+    \rule{32mm}{0.3pt} & \rule{5mm}{0.3pt} & \fivepips\\[4pt]
+    \rule{32mm}{0.3pt} & \rule{5mm}{0.3pt} & \fivepips\\[4pt]
+    \rule{32mm}{0.3pt} & \rule{5mm}{0.3pt} & \fivepips\\[4pt]
+    \rule{32mm}{0.3pt} & \rule{5mm}{0.3pt} & \fivepips\\[4pt]
+    \rule{32mm}{0.3pt} & \rule{5mm}{0.3pt} & \fivepips\\[4pt]
+  \end{tabular}
+
+  \par\vspace{6pt}
+  \small\textbf{Notes}
+  \par\vspace{3pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{6pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{6pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{6pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{6pt}
+  \rule{\linewidth}{0.3pt}
+
+\end{minipage}\hfill
+\begin{minipage}[t]{0.47\linewidth}
+
+  \small\textbf{Body Tags}
+  \par\vspace{3pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}
+  \par\vspace{6pt}
+
+  \small\textbf{Magic}\hfill
+  {\footnotesize Rank\ \fourpips}
+  \par\vspace{2pt}
+  {\footnotesize Tag limit per roll\quad\underline{\hspace{8mm}}}
+  \par\vspace{4pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}
+  \par\vspace{6pt}
+
+  \small\textbf{Stuff}
+  \hfill{\footnotesize Item\hspace{24mm}Tier}
+  \par\vspace{3pt}
+  \rule{46mm}{0.3pt}\hfill\fourpips\par\vspace{4pt}
+  \rule{46mm}{0.3pt}\hfill\fourpips\par\vspace{4pt}
+  \rule{46mm}{0.3pt}\hfill\fourpips\par\vspace{4pt}
+  \rule{46mm}{0.3pt}\hfill\fourpips\par\vspace{4pt}
+  \rule{46mm}{0.3pt}\hfill\fourpips\par\vspace{4pt}
+  \rule{46mm}{0.3pt}\hfill\fourpips\par\vspace{4pt}
+  \rule{46mm}{0.3pt}\hfill\fourpips
+  \par\vspace{6pt}
+
+  \small\textbf{Tattoos}
+  \par\vspace{3pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}\par\vspace{5pt}
+  \rule{\linewidth}{0.3pt}
+
+\end{minipage}
+
+\end{document}
