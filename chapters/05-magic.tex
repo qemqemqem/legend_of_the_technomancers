@@ -6,6 +6,10 @@
 % Full-width summary table, placed immediately after the chapter title
 % so it shares the chapter's opening page (see 02-body.tex for the float
 % placement notes; a \begin{table*}[t] float, not \twocolumn[...]).
+% REAL RULE, 2026-09-22: "Tags per Spell" removed. Casting is capped by
+% the same system-wide five-tags-per-roll rule as everything else (see
+% "Five Tags, Maximum" in How to Play) instead of a separate per-rank
+% number to look up here.
 \begin{strip}
   \begingroup\centering
   {\hdfont\Large\bfseries\color{\realmaccent} Creating Magic\par}
@@ -13,25 +17,24 @@
   \endgroup
   \begingroup
   \setlength{\tabcolsep}{7pt}\renewcommand{\arraystretch}{1.35}
-  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.6cm} Y >{\centering\arraybackslash}p{2.1cm} >{\centering\arraybackslash}p{2.3cm} >{\centering\arraybackslash}p{1.6cm}@{}}
+  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.6cm} Y >{\centering\arraybackslash}p{2.3cm} >{\centering\arraybackslash}p{1.6cm}@{}}
   \rowcolor{\realmaccent}
   {\leavevmode\hdfont\bfseries\color{white}Rank} &
   {\leavevmode\hdfont\bfseries\color{white}You are\ldots} &
   {\leavevmode\hdfont\bfseries\color{white}Tags Known} &
-  {\leavevmode\hdfont\bfseries\color{white}Tags per Spell} &
   {\leavevmode\hdfont\bfseries\color{white}Weird} \\
   \rowcolor{atrBoxbg}
   \rating{1} & You do not know magic.
-    & \dice{0} & \dice{0} & \dice{0} \\
+    & \dice{0} & \dice{0} \\
   \rowcolor{white}
   \rating{2} & You can cast a few spells.
-    & \dice{3} & \dice{2} & \dice{1} \\
+    & \dice{3} & \dice{1} \\
   \rowcolor{atrBoxbg}
   \rating{3} & You know magic.
-    & \dice{7} & \dice{3} & \dice{2} \\
+    & \dice{7} & \dice{2} \\
   \rowcolor{white}
   \rating{4} & You are a \emph{fucking wizard}.
-    & \dice{12} & \dice{5} & \dice{3} \\
+    & \dice{12} & \dice{3} \\
   \end{tabularx}
   \endgroup
 \end{strip}
@@ -54,9 +57,11 @@ When you enter a realm, decide together what Magic \emph{looks like} there.
 
 Your Magic rank --- set when you assigned priorities at character
 creation, see the table above --- determines how many \keyword{tags} you
-know and how many you may apply to a single spell. It also sets your
-\keyword{Weird} Stat; see \emph{The Weird Stat} below. At rank
-\rating{1} you know no magic at all.
+know. It also sets your \keyword{Weird} Stat; see \emph{The Weird Stat}
+below. At rank \rating{1} you know no magic at all. However many tags
+you know, no single roll ever applies more than \dice{5} of them --- the
+same system-wide cap that applies to every other kind of tag; see
+\emph{Five Tags, Maximum} in \emph{How to Play}.
 
 Choose your tags from Your Tags below before play begins. A tag's meaning
 bends to fit the realm --- \emph{control} compels a beast in a fantasy
@@ -70,9 +75,9 @@ world and overrides a security system in the sprawl.
 A spell is rolled exactly like anything else: a \keyword{base Stat} plus
 your expertise. For magic, that expertise is your tags. Take the Stat that
 fits what the spell \emph{accomplishes}, then add \keyword{one die for each
-applicable tag} --- up to the limit set by your Magic rank (\dice{2} at
-rank~2, \dice{3} at rank~3, \dice{5} at rank~4). Count successes
-(\dice{4}, \dice{5}, or \dice{6}) against the difficulty the GM sets.
+applicable tag} --- up to the system-wide limit of \dice{5} tags on any
+roll. Count successes (\dice{4}, \dice{5}, or \dice{6}) against the
+difficulty the GM sets.
 \[
 \text{\keyword{Stat} (1--5)} \;+\; \text{\keyword{applicable Tags}} \;=\; \text{pool}
 \]
@@ -135,7 +140,7 @@ Rooster is a rank~\rating{3} magic user with \keyword{Body} \dice{2} and the
 tags \emph{create, destroy, fire, water, food, flying}. They want to conjure
 a can of soda. That is a physical object appearing, so the base is
 \keyword{Body}. Three tags apply --- \emph{create}, \emph{food}, and
-\emph{water} --- and rank~3 permits three. Rooster rolls
+\emph{water} --- comfortably under the five-tag cap. Rooster rolls
 \dice{2}~+~\dice{3}~=~\dice{5} dice.
 \end{example}
 

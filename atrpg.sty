@@ -65,6 +65,48 @@
 \RequirePackage[driver=xetex, a4paper,
   inner=18mm, outer=14mm, top=24mm, bottom=26mm,
   headsep=8mm, footskip=12mm]{geometry}
+% BUG FOUND 2026-09-22: xdvipdfmx's papersize special is a per-page DVI
+% special, not a persistent setting — geometry (and the old manual
+% \special in rulebook.tex) only ever inserted it into page 1's content,
+% so every OTHER page in the book was silently shipping out at
+% US-Letter (612x792pt) instead of A4 (595.28x841.89pt). Confirmed via a
+% pikepdf MediaBox dump across all 34 pages: page 1 was correct, 2-34
+% were all Letter. \pdfpagewidth/\pdfpageheight (the pdfTeX-style
+% persistent registers) are no-ops on this xetex/xdvipdfmx pipeline —
+% tested and confirmed to change nothing. The real fix is to repeat the
+% special on literally every page via atbegshi's shipout hook.
+\RequirePackage{atbegshi}
+\AtBeginShipout{\special{papersize=210mm,297mm}}
+% BUG FOUND 2026-09-22: tikz's "current page" node (used for every
+% full-bleed art overlay) has its SOUTH edge vertically misplaced by a
+% constant ~50bp under this xetex+tectonic+xdvipdfmx toolchain — even
+% though the special above makes the real output MediaBox correctly A4
+% on every page. Isolated via pikepdf content-stream inspection: an
+% image anchored at "current page.south west" actually lands at true
+% y=50.08bp, not 0, on every page including the cover; but an image
+% anchored at "current page.north west" lands exactly where expected.
+% So pgf's NORTH edge is correctly calibrated to the true page, and only
+% the SOUTH edge is wrong. Deriving south as north-minus-\paperheight
+% (the obvious "principled" fix) turned out to be a no-op — pgf already
+% computes south that way internally, just using a too-short assumed
+% height, so re-deriving it the same way reproduces the identical bug.
+% \pdfpagewidth/\pdfpageheight tried too, confirmed zero effect. In the
+% end just measured the true residual directly off rendered pixels
+% (~50.1bp/17.7mm short, on BOTH the cover and Part pages — a first
+% pass that checked the cover via a "does white show through" test
+% wrongly called it fixed, because the cover's page background is
+% black, and a black gap against \pagecolor{black} doesn't trip a
+% white-pixel check) and compensate by that fixed, empirical amount.
+% Call \atrpagecorners once inside a tikzpicture (needs the calc
+% library) to define named coordinates atrpagesw/atrpagese/atrpages —
+% plain coordinates, so they drop in wherever "current page.south *"
+% would have gone, including the "([yshift=...]point)" bracket-shift
+% syntax.
+\newcommand{\atrpagecorners}{%
+  \coordinate (atrpagesw) at ([yshift=-50.1bp]current page.south west);
+  \coordinate (atrpagese) at ([yshift=-50.1bp]current page.south east);
+  \coordinate (atrpages)  at ([yshift=-50.1bp]current page.south);
+}
 \RequirePackage[document]{ragged2e}  % gentle justification helper
 \setlength{\columnsep}{7mm}          % gutter between the two columns
 \setlength{\columnseprule}{0pt}      % set >0pt for a visible column rule
@@ -100,6 +142,37 @@
   \par\medskip\noindent
   \includegraphics[width=\columnwidth,keepaspectratio]{#1}%
   \par\medskip}
+% Full-bleed art behind a Part-divider page, with the part number and
+% title overlaid on a darkened band near the bottom. "Cover" fit, not
+% "contain": the image is deliberately oversized (1.08x paperwidth) and
+% hard-clipped to the page box, so it always fills every edge with no
+% gap, regardless of the exact source aspect ratio — width=\paperwidth
+% alone measured ~5.7mm short of the right edge in practice (source PNG
+% has no such gap; some slack between \paperwidth and the true mediabox).
+% Bypasses \part's own default page entirely so the art isn't squeezed
+% inside memoir's ordinary part-page furniture; \addcontentsline
+% reproduces the TOC entry \part would otherwise add automatically.
+% \atrpartpage{Title}{file.png}
+\newcommand{\atrpartpage}[2]{%
+  \cleardoublepage
+  \stepcounter{part}
+  \phantomsection
+  \addcontentsline{toc}{part}{#1}
+  \thispagestyle{empty}
+  \begin{tikzpicture}[remember picture, overlay]
+    \atrpagecorners
+    \clip (atrpagesw) rectangle (current page.north east);
+    \node[anchor=south west, inner sep=0] at (atrpagesw)
+      {\includegraphics[width=1.08\paperwidth]{#2}};
+    \fill[black, opacity=0.45]
+      ([yshift=100mm]atrpagesw) rectangle ([yshift=44mm]atrpagese);
+    \node[anchor=center, align=center, inner sep=0]
+      at ([yshift=72mm]atrpages){%
+        {\hdfont\color{white}\fontsize{18}{20}\selectfont PART \Roman{part}}\\[5mm]
+        {\hdfont\bfseries\color{white}\fontsize{36}{38}\selectfont #1}%
+      };
+  \end{tikzpicture}
+  \clearpage}
 \RequirePackage{booktabs}
 \RequirePackage{array}
 \RequirePackage{tabularx}
@@ -114,6 +187,7 @@
 \RequirePackage{colortbl}
 \RequirePackage{lettrine}
 \RequirePackage{tikz}
+\usetikzlibrary{calc}
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{enumitem}
 \RequirePackage{lipsum}   % placeholder prose — replace as chapters are written
@@ -396,6 +470,22 @@
 \newcommand{\keyword}[1]{\textbf{\color{\realmaccent}#1}}
 \newcommand{\dice}[1]{\textsf{#1}}
 \setlist{leftmargin=1.4em, itemsep=2pt, topsep=3pt}
+
+% ---- Table of Contents styling ---------------------------------------
+% One column (see rulebook.tex), Parts + Chapters only (tocdepth is
+% capped at chapter level there, so section-level clutter never reaches
+% this file). Two deliberately different treatments: Parts are rare,
+% so they get the book's big display face and real air around them, like
+% a divider; Chapters get classic dot-leaders in the body serif, the
+% fast-scanning "sourcebook" look these entries actually need.
+\renewcommand{\cftpartfont}{\hdfont\Large\color{atrAccent}}
+\renewcommand{\cftpartpagefont}{\hdfont\Large\color{atrAccent}}
+\renewcommand{\cftpartpresnum}{}
+\renewcommand{\cftbeforepartskip}{22pt plus 4pt minus 2pt}
+\renewcommand{\cftchapterfont}{\bfseries\color{atrInk}}
+\renewcommand{\cftchapterpagefont}{\bfseries\color{atrAccent}}
+\renewcommand{\cftchapterdotsep}{\cftdotsep}
+\renewcommand{\cftbeforechapterskip}{7pt plus 2pt minus 1pt}
 
 % ---- Page background -----------------------------------------------
 % Applied at document start so it takes effect on all pages (the cover

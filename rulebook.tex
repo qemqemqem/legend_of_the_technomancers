@@ -9,7 +9,17 @@
 \author{Andrew Keenan Richardson and Christopher Sheldon-Dante and Anthropic Claude}
 
 \begin{document}
-\special{papersize=210mm,297mm}  % force xdvipdfmx to A4; geometry alone is ignored
+% A4 page size for pages 2+ is forced via atbegshi in atrpg.sty (see the
+% comment there). That hook alone left page 1 on US-Letter — empirically,
+% whatever xcolor's \pagecolor does at shipout for the very first page
+% wins the race against atbegshi's hook — so page 1 additionally gets
+% its own explicit special, belt-and-suspenders.
+\special{papersize=210mm,297mm}
+% Contents lists Parts and Chapters only, not individual sections — set
+% once, early, since \section's decision to write itself into the .toc
+% file happens at the point each \section executes throughout the book,
+% not when the TOC is later printed.
+\setcounter{tocdepth}{0}
 \color{atrInk}
 
 % ------------------------------------------------- Full-bleed cover page
@@ -22,14 +32,21 @@
 % Single value controls author band height; text is automatically centred in it.
 \newlength{\atrAuthBandH}\setlength{\atrAuthBandH}{54mm}
 \begin{tikzpicture}[remember picture, overlay]
-  % Anchor image to the south-west corner so there is no centering offset
-  % to mis-calculate; scale to exactly \paperheight so it fills top-to-bottom.
-  % The image is portrait 1024x1536 (ratio 0.667) vs A4 0.707, so scaling by
-  % height leaves a 12mm gap on each side — we compensate by using
-  % width=\paperwidth instead, which gives correct horizontal coverage and
-  % overflows top/bottom (hidden). Anchoring south-west eliminates right-edge gap.
-  \node[anchor=south west, inner sep=0] at (current page.south west)
-    {\includegraphics[width=\paperwidth]{art/cover-full.png}};
+  % "Cover" fit, not "contain": the image is deliberately oversized
+  % (1.08x paperwidth) and hard-clipped to the page box, so it always
+  % fills every edge regardless of the source aspect ratio. Anchoring
+  % south-west keeps the crop attached to the bottom-left corner, so
+  % overflow is trimmed from the top and right only. Plain
+  % width=\paperwidth measured ~5.7mm short of the right edge in
+  % practice (the source PNG itself has no such gap) — the clip plus
+  % overscan makes the fit robust to that slack instead of exact-fitting
+  % against it. \atrpagecorners (atrpg.sty) works around a separate bug
+  % where "current page.south *" itself is ~50bp off the true page edge
+  % under this toolchain — see the comment there.
+  \atrpagecorners
+  \clip (atrpagesw) rectangle (current page.north east);
+  \node[anchor=south west, inner sep=0] at (atrpagesw)
+    {\includegraphics[width=1.08\paperwidth]{art/cover-full.png}};
 
   % ---- Title band (top) ----
   \fill[black, opacity=0.42]
@@ -43,9 +60,9 @@
 
   % ---- Author band (bottom) — change \atrAuthBandH above to resize. ----
   \fill[black, opacity=0.42]
-    ([yshift=\atrAuthBandH]current page.south west) rectangle (current page.south east);
+    ([yshift=\atrAuthBandH]atrpagesw) rectangle (atrpagese);
   \node[anchor=center, align=center, inner sep=0]
-    at ([yshift=\dimexpr\atrAuthBandH/2\relax]current page.south){%
+    at ([yshift=\dimexpr\atrAuthBandH/2\relax]atrpages){%
     {\hdfont\large\color{white}Andrew Keenan Richardson}\\[3pt]
     {\hdfont\normalsize\color{white}\&}\\[3pt]
     {\hdfont\large\color{white}Christopher Sheldon-Dante}\\[3pt]
@@ -57,7 +74,19 @@
 \pagecolor{white}  % reset after the black cover background
 
 \frontmatter
-\tableofcontents
+% One column, Parts + Chapters only (tocdepth set above): a short list
+% like this reads better as a single deliberate page than split across
+% two half-empty columns. Styling lives in atrpg.sty ("Table of Contents
+% styling"). Bypassing \tableofcontents itself (calling \chapter* and
+% \@starttoc directly, the same machinery it uses internally) rather
+% than calling it plainly: hyperref patches \tableofcontents to add a
+% self-referential "Contents" entry (for its own PDF bookmark) that then
+% shows up as the first line of the printed list — \chapter* alone
+% doesn't do that.
+\makeatletter
+\chapter*{\contentsname}
+\@starttoc{toc}
+\makeatother
 
 \mainmatter
 \twocolumn   % everything from the opening fiction onwards runs in two columns
@@ -69,7 +98,7 @@
 \include{chapters/00-intro}
 
 % ---- Part I: Building a Traveller ----
-\part{Building a Traveller}
+\atrpartpage{Building a Traveller}{part-traveller.png}
 \include{chapters/01-character-creation}
 \include{chapters/02-body}
 \include{chapters/03-stuff}
@@ -80,24 +109,24 @@
 % Character Advancement lives here, not Part I: Change Points and
 % Persistence Points are spent during play (as you move between realms),
 % not decided once at character creation. Moved 2026-09-22.
-\part{Playing the Game}
+\atrpartpage{Playing the Game}{part-playing.png}
 \include{chapters/11-how-to-play}
 \include{chapters/06-advancement}
 \include{chapters/12-playing}
 \include{chapters/13-gming}
 
 % ---- Part III: The Realms ----
-\part{The Realms}
+\atrpartpage{The Realms}{part-realms.png}
 \include{chapters/08-high-fantasy}
 \include{chapters/09-cyberpunk}
 \include{chapters/10-space-adventure}
 
-% ---- Traveller Sheet — full-page, one-column, tight margins ----
+% ---- Character Sheet — full-page, one-column, tight margins ----
 \clearpage
 \onecolumn
 \newgeometry{inner=11mm, outer=11mm, top=11mm, bottom=11mm,
              headsep=0mm, footskip=0mm}
 \pagestyle{empty}
-\include{chapters/traveller-sheet}
+\include{chapters/character-sheet}
 
 \end{document}

@@ -69,6 +69,17 @@ already self-limit in practice, too paranoid a guardrail. Validate
 whether allowing tags from multiple columns on one roll is actually
 "busted" before locking this in.}
 
+\subsection*{Five Tags, Maximum}
+% REAL RULE, 2026-09-22: one flat cap for the whole system, replacing
+% Magic's old per-rank "Tags per Spell" column. Simpler to remember, and
+% a Magic-rank-scaled limit was redundant with Tags Known anyway (a
+% low-rank caster doesn't know enough tags to hit five in the first
+% place).
+No matter the source, a single roll never adds more than \dice{5} tags
+to its pool. This is the one limit that applies everywhere --- Body,
+Stuff, Skills, and Magic alike --- so you never need to look up a
+different cap depending on what column you're rolling from.
+
 \section{Consequences and Your Pools}
 % REAL RULE, 2026-09-22: each Stat has a companion pool (size = Stat
 % rating) that pays the price when a roll built on that Stat fails. A
@@ -173,12 +184,14 @@ with one success to spare.
 
 \section{Magic Rolls}
 % REAL RULE (Notion, 2026-09-21, decided): magic pool = base stat + one
-% point per applicable tag, capped by the tag limit for your Magic rank.
-% This SUPERSEDES the older "two dice per tag" rule.
+% point per applicable tag. This SUPERSEDES the older "two dice per tag"
+% rule. The old per-rank "Tags per Spell" limit was removed 2026-09-22
+% in favour of the system-wide five-tag cap (see "Five Tags, Maximum"
+% above) --- one rule to remember instead of a rank lookup.
 Magic uses the same roll. Take the base Stat that fits what you are
-accomplishing, then add \keyword{one die for each applicable tag} you have
---- up to the tag limit set by your Magic rank. See \emph{Magic} for the
-tag lists and limits.
+accomplishing, then add \keyword{one die for each applicable tag} you
+have --- up to the system-wide limit of \dice{5} tags on any roll. See
+\emph{Magic} for the tag lists.
 
 \begin{example}
 Rooster has \keyword{Body} \dice{2} and Magic \rating{3}, with the tags
@@ -186,8 +199,8 @@ Rooster has \keyword{Body} \dice{2} and Magic \rating{3}, with the tags
 \atrtag{magic}{Water}, \atrtag{magic}{Food}, \atrtag{magic}{Flying}.
 Conjuring a can of soda is a physical result, so the base is
 \keyword{Body}. Three tags apply --- \atrtag{magic}{Create},
-\atrtag{magic}{Food}, \atrtag{magic}{Water} --- and rank~3 permits three.
-That is \dice{2}~+~\dice{3}~=~\dice{5} dice.
+\atrtag{magic}{Food}, \atrtag{magic}{Water} --- comfortably under the
+five-tag cap. That is \dice{2}~+~\dice{3}~=~\dice{5} dice.
 \end{example}
 
 \begin{notebox}[Stats and the Four Columns]

@@ -9,8 +9,11 @@
 % REAL RULE, 2026-09-22: Skills are a pure tag system, like Magic --- you
 % know a skill or you don't, full stop. No individual skill ranks, no
 % point-buy per skill. "Skills Known" is a plain count, exactly like
-% Magic's "Tags Known". Stat Points still mirrors Body's table (the two
-% share one pool). DRAFT NUMBERS --- see the \todo below.
+% Magic's "Tags Known". Stat Points feeds the same shared pool Body
+% feeds, but at a lower rate and starting from 0 at rank 1 (kept simple:
+% Skills at its lowest rank grants no Stat Points at all) --- Body is the
+% column built around your physical Stats, Skills only touches them
+% secondhand. DRAFT NUMBERS --- see the \todo below.
 \begin{strip}
   \begingroup\centering
   {\hdfont\Large\bfseries\color{\realmaccent} Creating Skills\par}
@@ -26,23 +29,25 @@
   {\leavevmode\hdfont\bfseries\color{white}Skills Known} \\
   \rowcolor{atrBoxbg}
   \rating{1} & Not very skilful, but you know a few things.
-    & \dice{2} & \dice{3} \\
+    & \dice{0} & \dice{3} \\
   \rowcolor{white}
   \rating{2} & You know a lot.
-    & \dice{4} & \dice{6} \\
+    & \dice{2} & \dice{6} \\
   \rowcolor{atrBoxbg}
   \rating{3} & A master of your craft, or a jack of all trades.
-    & \dice{6} & \dice{10} \\
+    & \dice{4} & \dice{10} \\
   \rowcolor{white}
   \rating{4} & A master of many things.
-    & \dice{9} & \dice{15} \\
+    & \dice{6} & \dice{15} \\
   \end{tabularx}
   \endgroup
 \end{strip}
 \todo{Numbers on this table are a first proposal (2026-09-22), not
-confirmed. Stat Points mirror Body's table exactly since the two share
-one pool; Skills Known reuses the same curve as the earlier (now
-abandoned) Skill Points proposal. Needs a decision, then playtesting.}
+confirmed. Stat Points start at 0 at rank 1 and rise 2 per rank after,
+since the two feed one shared pool but Body is the column built around
+the Stats directly; Skills Known reuses the same curve as the earlier
+(now abandoned) Skill Points proposal. Needs a decision, then
+playtesting.}
 
 % TODO: opening fiction for Skills.
 \begin{readaloud}
@@ -71,8 +76,11 @@ actually practised. A high \keyword{Body} means you move well; the
 \end{statblock}
 
 Your Skills rank --- set when you assigned priorities at character
-creation, see the table above --- grants two things: Stat Points (the
-same shared pool Body feeds) and a number of Skills Known.
+creation, see the table above --- grants two things: Stat Points and a
+number of Skills Known. Stat Points feed the very same pool Body feeds
+(see \emph{Spending Your Stat Points} in \emph{Body}), just at a lower
+rate --- Skills sharpens what you can do, but Body is what actually
+shapes your Stats.
 
 \subsection*{Choosing Your Skills}
 % REAL RULE, 2026-09-22: Skills are boolean, exactly like Magic and Body
