@@ -7,11 +7,11 @@
 \lipsum[5][1-3]
 \end{readaloud}
 
-\lettrine{A}{cross the Realms} runs on one simple roll. Whenever the
-outcome of an action is in doubt --- and only then --- you gather a handful
-of six-sided dice, roll them all at once, and count your \keyword{successes}.
-Everything else in this book is just a way of deciding how many dice you
-get to throw.
+\lettrine{L}{egend of the Technomancers} runs on one simple roll. Whenever
+the outcome of an action is in doubt --- and only then --- you gather a
+handful of six-sided dice, roll them all at once, and count your
+\keyword{successes}. Everything else in this book is just a way of deciding
+how many dice you get to throw.
 
 \artbanner{play-dice.png}
 
@@ -31,26 +31,62 @@ roll, the better it goes.
 \end{tabularx}
 \end{statblock}
 
-For an ordinary action, your pool is a \keyword{Stat} plus a \keyword{Skill}.
-Each runs from \dice{0} to \dice{5}, so a pool is always somewhere between
-\dice{0} and \dice{10} dice.
+Every pool is built the same way: a \keyword{base Stat}, plus \emph{one}
+source of expertise. That source is either a \keyword{Skill} --- if you are
+doing something mundane --- or the \keyword{Magic tags} that apply, if you
+are doing something fantastic.
 \[
-\text{\keyword{Stat} (0--5)} \;+\; \text{\keyword{Skill} (0--5)} \;=\; \text{pool (0--10 dice)}
+\text{\keyword{Stat} (1--5)} \;+\; \text{\keyword{Skill} (0--5)} \;=\; \text{pool}
+\]
+\[
+\text{\keyword{Stat} (1--5)} \;+\; \text{\keyword{applicable Tags}} \;=\; \text{pool}
 \]
 
-\section{Stats}
-% REAL RULE: four Vampire-style stats, 0-5. Strength doubles as Durability.
-Every character has four basic \keyword{Stats}, each rated from \dice{0} to
-\dice{5}, in the manner of \emph{Vampire: the Masquerade}.
+That is the whole engine. Magic is not a separate subsystem with its own
+maths --- it is the same roll, reached by a different route.
 
-\begin{statblock}[The Four Stats]
-\begin{tabularx}{\linewidth}{@{}p{0.28\linewidth} Y@{}}
-\keyword{Strength} & Physical power. It also serves as your \emph{durability} --- how much harm you can shrug off.\\[3pt]
-\keyword{Agility} & Speed, reflexes, and precision.\\[3pt]
-\keyword{Charisma} & Presence, persuasion, and force of personality.\\[3pt]
-\keyword{Intellect} & Reason, knowledge, and quickness of mind.\\
+\section{Stats}
+% REAL RULE (Notion, 2026-09-21, decided with Chris): THREE broad base
+% stats — Mind, Body, Face. No separate Magic/Arcane stat: magic hangs off
+% these same three, which stops one versatile stat from dominating play.
+Every character has three broad base \keyword{Stats}. Everyone begins with
+\dice{1} in each; character creation can raise them as high as \dice{5}.
+
+\begin{statblock}[The Three Stats]
+\begin{tabularx}{\linewidth}{@{}p{0.30\linewidth} Y@{}}
+\leavevmode{\color{\realmaccent}\atricon{body}}\ \keyword{Body} & Physical action and the handling of objects --- striking, lifting, running, throwing. It also serves as your \emph{durability}.\\[3pt]
+\leavevmode{\color{\realmaccent}\atricon{mind}}\ \keyword{Mind} & Puzzles, analysis, knowledge, and perception.\\[3pt]
+\leavevmode{\color{\realmaccent}\atricon{face}}\ \keyword{Face} & Dealing with people --- persuasion, deception, presence, command.\\
 \end{tabularx}
 \end{statblock}
+
+On the page and on your sheet, a Stat is written as its icon and its number
+in a rectangle --- \statplate{body}{3}, \statplate{mind}{2},
+\statplate{face}{4} --- while a tag is a word in an oval carrying a small
+mark for where it came from: \atrtag{magic}{Fire} from magic,
+\atrtag{body}{Winged} from your body, \atrtag{skill}{Piloting} from
+training, \atrtag{item}{Grapnel} from something you carry. Rectangles are
+numbers you roll with; ovals are the permissions that let you act at all.
+
+These three cover the action whether it is mundane or magical. Shapeshifting
+is \keyword{Body}; scrying is \keyword{Mind}; a charm laid on a guard is
+\keyword{Face}. Classify by \emph{what the action accomplishes}, not by how
+it is achieved --- so moving an object with your thoughts is still
+\keyword{Body}.
+
+\section{Stats from Objects}
+% REAL RULE (Notion, 2026-09-21): an item can supply the base stat, using
+% its tier. "Higher of the two" is the working idea, flagged for testing.
+A base Stat does not have to come from your body. When you act
+\emph{through} a thing --- a car, a rifle, a warhorse, a cutting deck ---
+that object can supply the base Stat itself, using its \keyword{tier} in
+place of your own number. Take the higher of the two.
+
+\begin{example}
+Kira drives a rank-\rating{3} car through a chase. Her own \keyword{Body} is
+\dice{2}, but the car's tier is \dice{3}, so the car supplies the base. With
+\keyword{Driving} \dice{2} she rolls \dice{5} dice.
+\end{example}
 
 \section{Skills}
 % REAL RULE: skills 0-5, pair with a stat.
@@ -61,25 +97,33 @@ skill with whichever Stat best fits what you are attempting, then roll the
 combined pool.
 
 \begin{example}
-Mara vaults a canyon gap. She has \keyword{Agility} \dice{3} and the
+Mara vaults a canyon gap. She has \keyword{Body} \dice{3} and the
 \keyword{Athletics} skill \dice{2}, so she rolls \dice{5} dice. Three come
 up 4 or higher --- three successes. The GM had called for two. She lands
 clean, with one success to spare.
 \end{example}
 
 \section{Magic Rolls}
-% REAL RULE: magic pool = 2 dice per applicable tag, up to the tag limit,
-% so it also lands in the 0-10 range.
-Magic works the same way, but its pool comes from your \keyword{tags}
-rather than a Stat and a Skill: you roll \keyword{two dice for every
-applicable tag}, up to the tag limit set by your Magic rank. Because that
-limit tops out at five tags, a magical action --- like a mundane one ---
-always uses somewhere between \dice{0} and \dice{10} dice. See
-\emph{Magic} for the full system.
+% REAL RULE (Notion, 2026-09-21, decided): magic pool = base stat + one
+% point per applicable tag, capped by the tag limit for your Magic rank.
+% This SUPERSEDES the older "two dice per tag" rule.
+Magic uses the same roll. Take the base Stat that fits what you are
+accomplishing, then add \keyword{one die for each applicable tag} you have
+--- up to the tag limit set by your Magic rank. See \emph{Magic} for the
+tag lists and limits.
+
+\begin{example}
+Rooster has \keyword{Body} \dice{2} and Magic \rating{3}, with the tags
+\emph{create, destroy, fire, water, food, flying}. Conjuring a can of soda
+is a physical result, so the base is \keyword{Body}. Three tags apply ---
+\emph{create}, \emph{food}, \emph{water} --- and rank~3 permits three. That
+is \dice{2}~+~\dice{3}~=~\dice{5} dice.
+\end{example}
 
 \begin{notebox}[Stats and the Four Columns]
-Your \keyword{Body} rank determines your starting Stats --- see \emph{Body}
-for the full breakdown. The same pattern will apply to Skills and Magic: the
-column rank sets your starting pool. Stuff is the exception: it governs what
-gear you can carry, not a rolled stat.
+The four columns of character creation are not the same thing as the three
+Stats. \keyword{Body}, \keyword{Skills}, and \keyword{Magic} ranks tell you
+how much you may buy in each area; \keyword{Stuff} governs the gear you
+carry. The Stats --- Body, Mind, Face --- are what you actually roll.
 \end{notebox}
+

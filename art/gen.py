@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Across the Realms — book art generator (OpenAI gpt-image-1, native transparency).
+"""Legend of the Technomancers — book art generator (OpenAI gpt-image-1, native transparency).
 
 Usage:
   OPENAI_API_KEY=... python gen.py <prompts.jsonl> [--quality high|medium|low]

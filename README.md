@@ -1,9 +1,14 @@
-# Across the Realms — RPG Rulebook
+# Legend of the Technomancers — RPG Rulebook
 
-A rules-light tabletop RPG about travellers who move between worlds.
+A tabletop RPG about travellers who move between worlds.
 Characters are described by four columns rated **1–4**: **Body**, **Stuff**,
 **Skills**, and **Magic**. Rank travels with you between realms; meaning is
 local to each setting.
+
+> Formerly titled *Across the Realms*. The style package is still named
+> `atrpg.sty` and its colour macros still use the `atr` prefix — internal
+> names only, kept to avoid churn across ~83 call sites. The git repo and
+> working directory likewise still carry the old slug.
 
 ## Building
 
@@ -72,12 +77,38 @@ Notes: iterate at `--quality low` (cheap), render finals at `high`. Prompt
 figures as "fully armored/clothed" — suggestive phrasing trips moderation.
 To restyle the whole book, edit `STYLE` in `gen.py` and regenerate.
 
+## Design notes go in `design_thinking/`, never in the book
+
+**The rulebook is a finished product.** A reader wants the rules, not a tour
+of how we got to them. So no design notes, no "to do", no rationale for a
+choice, and no apologies for incomplete sections belong in `rulebook.pdf`.
+All of that lives in `design_thinking/`:
+
+```
+design_thinking/
+  design-space.tex      The full mechanics option space — a brainstorm.
+  open-questions.tex    Every unresolved question, and where in the book it belongs.
+  atrpg.sty             Symlink to ../atrpg.sty (tectonic has no --search-path).
+```
+
+Each `open-questions` entry records the chapter it came from, so when a
+question is settled you write the answer into the book **in the book's own
+voice** and delete the entry.
+
+Reader-facing guidance is fine and stays — the `Running This Realm` GM boxes,
+for instance. The test is whether it helps someone *play*, not whether it
+explains a decision.
+
+Build either with `cd design_thinking && tectonic -X compile <file>.tex`.
+
 ## Editing
 
 - **Real rules content** (the 1–4 rating tables, the Shadowrun-style priority
   method, "Magic is whatever makes a setting feel fantastic") is written out.
 - **Everything else is `\lipsum` placeholder** prose. Search for `\lipsum`
   and `% TODO` to find what still needs writing.
+- Source comments (`% TODO`, `% REAL RULE`) are invisible in the PDF and are
+  fine to keep — they are how the source records provenance.
 
 ### Design elements (from `atrpg.sty`)
 

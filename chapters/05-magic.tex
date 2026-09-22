@@ -39,23 +39,34 @@ world and overrides a security system in the sprawl.
 % ---- Section 2: Rules -----------------------------------------------
 \section{How Magic Works}
 
-When you work magic, count the tags that apply to what you are attempting
---- up to the limit set by your Magic rank (\dice{2} at rank~2, \dice{3}
-at rank~3, \dice{5} at rank~4). You roll \keyword{two dice for every
-applicable tag}, then count successes (\dice{4}, \dice{5}, or \dice{6})
-against the difficulty the GM sets, exactly as for any other roll (see
-\emph{How to Play}). Because the tag limit tops out at five, a spell always
-throws between \dice{0} and \dice{10} dice.
+% REAL RULE (Notion, 2026-09-21, decided with Chris): pool = base stat +
+% one die per applicable tag. SUPERSEDES the earlier "two dice per tag".
+A spell is rolled exactly like anything else: a \keyword{base Stat} plus
+your expertise. For magic, that expertise is your tags. Take the Stat that
+fits what the spell \emph{accomplishes}, then add \keyword{one die for each
+applicable tag} --- up to the limit set by your Magic rank (\dice{2} at
+rank~2, \dice{3} at rank~3, \dice{5} at rank~4). Count successes
+(\dice{4}, \dice{5}, or \dice{6}) against the difficulty the GM sets.
+\[
+\text{\keyword{Stat} (1--5)} \;+\; \text{\keyword{applicable Tags}} \;=\; \text{pool}
+\]
+
+Because magic runs off the same three Stats as everything else, there is no
+such thing as a character who is good at ``magic'' in general. Shapeshifting
+leans on \keyword{Body}, divination on \keyword{Mind}, a glamour on
+\keyword{Face} --- so the way you work magic expresses who you are.
 
 Every act of magic pairs what you \emph{do} (a Technique) with what you
 \emph{affect} (a Form): \emph{create}~+~\emph{fire} to kindle a flame,
 \emph{perceive}~+~\emph{mind} to read a thought.
 
 \begin{example}
-Rooster is a rank~3 magic user with the tags \emph{create, destroy, fire,
-water, food, flying}. They want to conjure a can of soda. Three tags apply
---- \emph{create}, \emph{food}, and \emph{water} --- and rank~3 lets them
-use up to three. That is \dice{6} dice (two per tag).
+Rooster is a rank~\rating{3} magic user with \keyword{Body} \dice{2} and the
+tags \emph{create, destroy, fire, water, food, flying}. They want to conjure
+a can of soda. That is a physical object appearing, so the base is
+\keyword{Body}. Three tags apply --- \emph{create}, \emph{food}, and
+\emph{water} --- and rank~3 permits three. Rooster rolls
+\dice{2}~+~\dice{3}~=~\dice{5} dice.
 \end{example}
 
 % ---- Section 3: Options ---------------------------------------------
