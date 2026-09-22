@@ -69,6 +69,16 @@
 \setlength{\columnsep}{7mm}          % gutter between the two columns
 \setlength{\columnseprule}{0pt}      % set >0pt for a visible column rule
 
+% ---- Paragraph spacing ------------------------------------------------
+% Visible gap between paragraphs instead of a first-line indent, for
+% readability in a narrow two-column reference layout. Fixed length (no
+% plus/minus stretch) deliberately: \flushbottom's page-filling stretch
+% comes from \baselineskip already, and adding elastic \parskip glue on
+% top risks compounding the documented \textbf leading defect near the
+% end of this file. Keep it inert.
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+
 % ---- Core structural packages --------------------------------------
 \RequirePackage{microtype}
 \RequirePackage{graphicx}
@@ -95,6 +105,12 @@
 \RequirePackage{tabularx}
 % Left-aligned auto-width column that wraps to fill the measure.
 \newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+% Full-width-in-twocolumn insert that renders exactly where it appears in
+% the source (unlike table*/figure*, which are floats and get deferred to
+% the NEXT page when placed right after \chapter --- LaTeX will not let a
+% [t] float claim the top of a page that a sectioning command already
+% opened, no matter how little content is on that page otherwise).
+\RequirePackage{cuted}
 \RequirePackage{colortbl}
 \RequirePackage{lettrine}
 \RequirePackage{tikz}
@@ -104,6 +120,8 @@
 \RequirePackage{titlesec}
 \RequirePackage{fancyhdr}
 \RequirePackage[hidelinks]{hyperref}
+% pdfcomment must come after hyperref; dvipdfmx is the correct driver for XeLaTeX/tectonic.
+\RequirePackage[dvipdfmx]{pdfcomment}
 
 % ---- Headings -------------------------------------------------------
 \titleformat{\chapter}[display]
@@ -266,6 +284,22 @@
           font=\hdfont\bfseries\scriptsize\color{atrRule}]
       at ([xshift=-9pt]frame.north east){EXAMPLE};}}
 
+% Reader FAQ box --- a rules question phrased in the player's own voice,
+% then answered straight. Same corner-tag technique as \example, distinct
+% accent (atrAccent2, warm copper) so it reads as a different register:
+% not a worked example, a straight-up "yeah, that's really how it works."
+% Usage: \begin{question}{Question text?} Answer text. \end{question}
+\newtcolorbox{question}[1]{%
+  enhanced, breakable,
+  colback=atrPaper, colframe=atrAccent2, boxrule=0.6pt, arc=1pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt,
+  before skip=7pt, after skip=7pt,
+  overlay unbroken and first={%
+    \node[anchor=east, fill=atrPaper, inner xsep=4pt, inner ysep=0.5pt,
+          font=\hdfont\bfseries\scriptsize\color{atrAccent2}]
+      at ([xshift=-9pt]frame.north east){Q\&A};},
+  before upper={\bfseries\itshape\color{atrAccent2}``#1''\par\smallskip\normalfont\upshape}}
+
 % Character-attribute stat block (the four columns).
 \newtcolorbox{statblock}[1][Attribute Ranks]{%
   enhanced, breakable,
@@ -315,11 +349,12 @@
 % Kept as its own macro so translations can be restyled or indexed later.
 \newcommand{\genretrans}[1]{\par\smallskip{\small\itshape\color{atrAccent2}Across the realms: #1}\par}
 
-% Skill entry — name, primary stat, description. No box; flows inline.
+% Skill entry — name (as a skill-provenance tag), primary stat, description.
+% A Skill is a boolean tag like any other: you know it or you don't.
 %   \skill{Blades}{Agility}{Swords, knives, and any weapon that cuts.}
 \newcommand{\skill}[3]{%
   \par\smallskip\noindent\hangindent=1em
-  {\bfseries\color{\realmaccent}#1}%
+  \atrtag{skill}{#1}%
   ~{\small\itshape(#2)} --- #3\par}
 
 % Skill category label — Beleren at text size, accent colour, no box.
@@ -341,6 +376,21 @@
 {%
   \end{tabular}\end{statblock}}
 \newcommand{\reskinrow}[2]{#1 & #2\\[4pt]}
+
+% ---- Editorial TODO annotations ------------------------------------
+% \todo{What needs doing} — inline checklist icon visible in PDF;
+% hover or click the icon in Okular to see the note text.
+\newcommand{\todo}[1]{%
+  \raisebox{-2pt}{%
+    $\vcenter{\hbox{%
+      \begin{tikzpicture}[x=1pt, y=1pt, line width=0.4pt]
+        \fill[yellow!70!orange!90] (0,0) rectangle (10,10);
+        \draw[yellow!30!black, line width=0.35pt] (0,0) rectangle (10,10);
+        \draw[white, line width=0.6pt] (2,7.5) -- (8,7.5);
+        \draw[white, line width=0.6pt] (2,5.0) -- (8,5.0);
+        \draw[white, line width=0.6pt] (2,2.5) -- (6,2.5);
+      \end{tikzpicture}}}$}%
+  \pdfcomment[color={1 0.85 0.1}, icon=Note, open=false, subject={TODO}]{#1}}
 
 % ---- Small helpers --------------------------------------------------
 \newcommand{\keyword}[1]{\textbf{\color{\realmaccent}#1}}

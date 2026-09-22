@@ -2,6 +2,34 @@
 \renewcommand{\realmaccent}{columnStuff}  % deep violet
 \chapter{Stuff}
 % ================================================================
+
+% Full-width summary table, placed immediately after the chapter title
+% so it shares the chapter's opening page (see 02-body.tex for the float
+% placement notes; a \begin{table*}[t] float, not \twocolumn[...]).
+\begin{strip}
+  \begingroup\centering
+  {\hdfont\Large\bfseries\color{\realmaccent} Creating Stuff\par}
+  \vspace{10pt}
+  \endgroup
+  \begingroup
+  \setlength{\tabcolsep}{7pt}\renewcommand{\arraystretch}{1.35}
+  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.6cm} Y >{\centering\arraybackslash}p{2.4cm}@{}}
+  \rowcolor{\realmaccent}
+  {\leavevmode\hdfont\bfseries\color{white}Rank} &
+  {\leavevmode\hdfont\bfseries\color{white}You Have\ldots} &
+  {\leavevmode\hdfont\bfseries\color{white}Stuff Points} \\
+  \rowcolor{atrBoxbg}
+  \rating{1} & Nothing but the shirt on your back. & \dice{0} \\
+  \rowcolor{white}
+  \rating{2} & Basic Stuff --- armour, a weapon, a skateboard.  & \dice{4} \\
+  \rowcolor{atrBoxbg}
+  \rating{3} & Nice Stuff --- a legendary weapon, a vehicle. & \dice{7} \\
+  \rowcolor{white}
+  \rating{4} & Fancy Stuff --- a ship, a keep, incredible gear. & \dice{12} \\
+  \end{tabularx}
+  \endgroup
+\end{strip}
+
 % TODO: opening fiction for Stuff.
 \begin{readaloud}
 \lipsum[15][1-3]
@@ -17,18 +45,42 @@ but how much of the world bends to you.
 % ---- Section 1: Character Creation ---------------------------------
 \section{At Character Creation}
 
-% REAL RULE: Stuff ranks from the Notion source. Keep verbatim.
+% REAL RULE: Stuff ranks from the Notion source. Keep verbatim, minus the
+% dollar figures --- those read as precise but weren't meaningful, so the
+% rank now maps to a plain quality tier instead (2026-09-22).
 \begin{statblock}[Stuff Ranks]
 \begin{tabularx}{\linewidth}{@{}p{0.16\linewidth} Y@{}}
 \rating{1} & Nothing but the shirt on your back.\\[3pt]
-\rating{2} & Ordinary things --- armour, a weapon, a skateboard; some money in your pocket (\$4{,}000).\\[3pt]
-\rating{3} & Nice things --- a legendary weapon or a vehicle; generally well off (\$20{,}000).\\[3pt]
-\rating{4} & Amazing things --- a ship, a keep, incredible gear. Rich (\$100{,}000).\\
+\rating{2} & Basic Stuff --- armour, a weapon, a skateboard.\\[3pt]
+\rating{3} & Nice Stuff --- a legendary weapon, a vehicle.\\[3pt]
+\rating{4} & Fancy Stuff --- a ship, a keep, incredible gear.\\
 \end{tabularx}
 \end{statblock}
 
-Assign one of the four priorities (A through D) to Stuff. Your rank
-sets the ceiling on what you can own and how fine that gear is.
+Your Stuff rank --- set when you assigned priorities at character
+creation, see the table above --- grants a pool of \keyword{Stuff
+Points}. Spend them on the catalogue below.
+
+\subsection*{Spending Your Stuff Points}
+% REAL RULE, 2026-09-22: rank is not a ceiling you fill in every
+% category --- it's a point budget spent across the catalogue as you
+% like. A Rank 4 character doesn't automatically own a rank-4 weapon AND
+% vehicle AND armour AND fortress; they own whatever combination their
+% points cover.
+Every catalogue entry lists a rank from \rating{2} to \rating{4} ---
+that number is also its \keyword{point cost}. Spend your Stuff Points
+across any combination of entries, from any category, in any
+combination. You do not automatically own the best thing in every
+category at your rank; you own whatever your points actually buy.
+
+\begin{example}
+Kira is Stuff \rating{3}: \dice{7} points. She could buy one
+\emph{Special Weapon} (\dice{3}) and one \emph{Basic Vehicle} (\dice{3}),
+with \dice{1} point left for a minor extra --- or she could skip the
+vehicle entirely and buy a single \emph{Legendary Weapon} (\dice{4}) plus
+\emph{Light Armour} (\dice{2}), with \dice{1} to spare. Same rank, very
+different loadout.
+\end{example}
 
 % ---- Section 2: Rules -----------------------------------------------
 \section{Stuff in Play}
@@ -49,8 +101,9 @@ world-appropriate version ready to hand.
 % ---- Section 3: Options ---------------------------------------------
 \section{What You Can Buy}
 
-Every entry is tagged with the \keyword{Stuff rank} needed to own it,
-shown as pips (\rating{2}--\rating{4}).
+Every entry is tagged with its point cost, shown as pips
+(\rating{2}--\rating{4}). Spend your Stuff Points from the table at the
+start of this chapter here, in whatever combination you like.
 
 \section{Vehicles}
 \artbanner{vehicle-steed.png}

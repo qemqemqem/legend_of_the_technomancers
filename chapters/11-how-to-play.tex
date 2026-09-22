@@ -31,19 +31,82 @@ roll, the better it goes.
 \end{tabularx}
 \end{statblock}
 
-Every pool is built the same way: a \keyword{base Stat}, plus \emph{one}
-source of expertise. That source is either a \keyword{Skill} --- if you are
-doing something mundane --- or the \keyword{Magic tags} that apply, if you
-are doing something fantastic.
+Every pool is built the same way: a \keyword{base Stat}, plus whatever
+\keyword{tags} apply. A tag is a word in an oval that says you have some
+edge on this roll --- and it makes no difference which of the four
+columns it came from.
 \[
-\text{\keyword{Stat} (1--5)} \;+\; \text{\keyword{Skill} (0--5)} \;=\; \text{pool}
+\text{\keyword{Stat} (1--5)} \;+\; \text{\keyword{applicable tags}} \;=\; \text{pool}
 \]
-\[
-\text{\keyword{Stat} (1--5)} \;+\; \text{\keyword{applicable Tags}} \;=\; \text{pool}
-\]
+\atrtag{skill}{Blades} from training, \atrtag{body}{Strong} from your
+body, \atrtag{magic}{Fire} from magic, \atrtag{item}{Grapnel} from
+something you carry --- all four look the same on the page, and all four
+add to the same pool the same way. \keyword{Magic} is not a separate
+subsystem with its own maths; it is the same roll, reached by a different
+route.
 
-That is the whole engine. Magic is not a separate subsystem with its own
-maths --- it is the same roll, reached by a different route.
+\subsection*{One Source Per Roll}
+% REAL RULE, 2026-09-22: tags on a single roll must all come from the
+% same column. Andrew flagged this needs playtesting before it's final.
+Every tag you add to a pool must come from the \emph{same} column ---
+\keyword{Body}, \keyword{Stuff}, \keyword{Skills}, or \keyword{Magic}.
+You cannot reach into two columns on one roll: a \atrtag{body}{Strong}
+tag and a \atrtag{skill}{Blades} tag never stack together, even if both
+would plausibly apply. Pick the single source that best fits the action
+before you count your tags.
+
+\begin{example}
+Mara swings a sword she can barely lift. She has \atrtag{body}{Strong}
+and \atrtag{skill}{Blades}, and both would help --- but she must choose
+one column, not both. She picks \keyword{Skills}: \keyword{Body}
+\dice{3} plus \atrtag{skill}{Blades} is \dice{4} dice. Her raw strength
+does not also pile on.
+\end{example}
+
+\todo{Playtest this. A hard one-source-per-roll rule is simple and easy
+to remember, but may be too restrictive --- or, if it turns out tags
+already self-limit in practice, too paranoid a guardrail. Validate
+whether allowing tags from multiple columns on one roll is actually
+"busted" before locking this in.}
+
+\section{Consequences and Your Pools}
+% REAL RULE, 2026-09-22: each Stat has a companion pool (size = Stat
+% rating) that pays the price when a roll built on that Stat fails. A
+% shared party Coherence pool (starts at 5) absorbs the overflow once a
+% Stat's own pool runs dry. Full adjudication advice lives in The GM's
+% Role, in The Shape of a Session.
+Failure is not just a missed roll --- it costs something. Each of your
+three Stats has a companion pool the same size as its rating: a
+\keyword{Body} pool, a \keyword{Mind} pool, and a \keyword{Face} pool.
+When you fail a roll, the GM may take a point from whichever pool
+matches the Stat you rolled --- a Body roll costs Body, a Face roll
+costs Face, and so on.
+
+\begin{statblock}[Your Three Pools]
+\begin{tabularx}{\linewidth}{@{}p{0.22\linewidth} Y@{}}
+\keyword{Body Pool} & Physical harm --- wounds, exhaustion, injury.\\[3pt]
+\keyword{Mind Pool} & Mental strain --- fear, confusion, a different kind of exhaustion.\\[3pt]
+\keyword{Face Pool} & Social standing --- humiliation, broken trust, burned bridges.\\
+\end{tabularx}
+\end{statblock}
+
+\subsection*{Coherence: The Party's Last Line}
+When a pool would lose a point and it is already empty, the loss comes
+out of \keyword{Coherence} instead --- one shared pool for the whole
+party, starting at \dice{5}. Coherence isn't tied to any one character;
+it is the party's grip on the world they are currently standing in, and
+everyone draws from the same reserve.
+
+\todo{When does Coherence refill --- every session, on arrival in a new
+realm, never without a specific in-fiction event? Not yet specified;
+needs a decision.}
+
+If Coherence ever reaches \dice{0}, something catastrophic happens, at
+the GM's discretion --- the world itself has stopped holding together
+around the party. One reliable option: they are torn loose from the
+realm entirely and pulled into the next one, a clean and dramatic way to
+close out a session. See \emph{For the Game Master} for more on running
+this.
 
 \section{Stats}
 % REAL RULE (Notion, 2026-09-21, decided with Chris): THREE broad base
@@ -54,7 +117,7 @@ Every character has three broad base \keyword{Stats}. Everyone begins with
 
 \begin{statblock}[The Three Stats]
 \begin{tabularx}{\linewidth}{@{}p{0.30\linewidth} Y@{}}
-\leavevmode{\color{\realmaccent}\atricon{body}}\ \keyword{Body} & Physical action and the handling of objects --- striking, lifting, running, throwing. It also serves as your \emph{durability}.\\[3pt]
+\leavevmode{\color{\realmaccent}\atricon{body}}\ \keyword{Body} & Physical action and the handling of objects --- striking, lifting, running, throwing.\\[3pt]
 \leavevmode{\color{\realmaccent}\atricon{mind}}\ \keyword{Mind} & Puzzles, analysis, knowledge, and perception.\\[3pt]
 \leavevmode{\color{\realmaccent}\atricon{face}}\ \keyword{Face} & Dealing with people --- persuasion, deception, presence, command.\\
 \end{tabularx}
@@ -85,22 +148,27 @@ place of your own number. Take the higher of the two.
 \begin{example}
 Kira drives a rank-\rating{3} car through a chase. Her own \keyword{Body} is
 \dice{2}, but the car's tier is \dice{3}, so the car supplies the base. With
-\keyword{Driving} \dice{2} she rolls \dice{5} dice.
+\atrtag{skill}{Driving}, she rolls \dice{4} dice.
 \end{example}
 
 \section{Skills}
-% REAL RULE: skills 0-5, pair with a stat.
-\keyword{Skills} also run from \dice{0} to \dice{5} and cover everything
-mundane and learned --- driving, acrobatics, lore, stealth, and combat
-skills such as blades or martial arts. When you act, pair the relevant
-skill with whichever Stat best fits what you are attempting, then roll the
-combined pool.
+% REAL RULE, 2026-09-22: a Skill IS a tag --- not a separate resolution
+% path, and not a ranked one either. You know it or you don't; a known
+% skill adds exactly one die, same as any other tag.
+A \keyword{Skill} is a tag like any other on your sheet --- the trained
+kind. You either know it or you don't; there is no individual rank to
+raise. \atrtag{skill}{Athletics} and \atrtag{skill}{Blades} each add
+exactly one die when they apply, same as a Body, Magic, or Stuff tag.
+Skills cover everything mundane and learned --- driving, acrobatics,
+lore, stealth, and combat skills such as blades or martial arts. When
+you act, pair the relevant skill with whichever Stat best fits what you
+are attempting, then roll the combined pool.
 
 \begin{example}
-Mara vaults a canyon gap. She has \keyword{Body} \dice{3} and the
-\keyword{Athletics} skill \dice{2}, so she rolls \dice{5} dice. Three come
-up 4 or higher --- three successes. The GM had called for two. She lands
-clean, with one success to spare.
+Mara vaults a canyon gap. She has \keyword{Body} \dice{3} and knows
+\atrtag{skill}{Athletics}, so she rolls \dice{4} dice. Three come up 4 or
+higher --- three successes. The GM had called for two. She lands clean,
+with one success to spare.
 \end{example}
 
 \section{Magic Rolls}
@@ -114,10 +182,12 @@ tag lists and limits.
 
 \begin{example}
 Rooster has \keyword{Body} \dice{2} and Magic \rating{3}, with the tags
-\emph{create, destroy, fire, water, food, flying}. Conjuring a can of soda
-is a physical result, so the base is \keyword{Body}. Three tags apply ---
-\emph{create}, \emph{food}, \emph{water} --- and rank~3 permits three. That
-is \dice{2}~+~\dice{3}~=~\dice{5} dice.
+\atrtag{magic}{Create}, \atrtag{magic}{Destroy}, \atrtag{magic}{Fire},
+\atrtag{magic}{Water}, \atrtag{magic}{Food}, \atrtag{magic}{Flying}.
+Conjuring a can of soda is a physical result, so the base is
+\keyword{Body}. Three tags apply --- \atrtag{magic}{Create},
+\atrtag{magic}{Food}, \atrtag{magic}{Water} --- and rank~3 permits three.
+That is \dice{2}~+~\dice{3}~=~\dice{5} dice.
 \end{example}
 
 \begin{notebox}[Stats and the Four Columns]

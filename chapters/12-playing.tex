@@ -12,6 +12,38 @@ act. This part of the book covers what happens \emph{during} play ---
 how conflicts resolve, how the world responds, and how a party travels
 from one realm to the next.
 
+\section{Degrees of Success}
+% REAL RULE, 2026-09-22 design notes: tie = partial, beat = success,
+% more 6s than the target = critical (overrides the tiers below it).
+Once you have rolled your pool and counted successes --- each die showing
+\dice{4}, \dice{5}, or \dice{6} --- compare the total to the target number
+the GM set before you rolled.
+
+\begin{statblock}[Reading the Result]
+\begin{tabularx}{\linewidth}{@{}p{0.36\linewidth} Y@{}}
+Fewer successes than the target & \keyword{Failure} --- it does not go your way.\\[3pt]
+Successes equal to the target & \keyword{Partial Success} --- you get what you wanted, but at a cost or complication.\\[3pt]
+More successes than the target & \keyword{Success} --- it goes exactly as you hoped.\\[3pt]
+\dice{6}s rolled outnumber the target & \keyword{Critical Success} --- overrides every tier above.\\
+\end{tabularx}
+\end{statblock}
+
+Check for a critical first: if the number of dice showing \dice{6} is
+\emph{greater than} the target, that critical result stands no matter
+what your total success count was. Otherwise, read the result off your
+total successes as above.
+
+\begin{example}
+Rooster forces a jammed blast door with \keyword{Body} \dice{2} and
+\atrtag{skill}{Athletics} --- \dice{3} dice against a target of \dice{1}.
+He rolls \dice{6}, \dice{6}, \dice{3}. Two dice came up \dice{4} or
+better --- two successes, more than the target, an ordinary
+\keyword{Success}. But two of those dice show a \dice{6}, and two is also
+more than the target of \dice{1}. The critical check wins: Rooster gets a
+\keyword{Critical Success} instead --- the door doesn't just open, it
+comes off its hinges.
+\end{example}
+
 \section{Conflicts}
 % TODO
 \lipsum[26][1-5]
@@ -20,6 +52,6 @@ from one realm to the next.
 % TODO
 \lipsum[27][1-4]
 
-\section{The GM's Role}
-% TODO
-\lipsum[28][1-4]
+% NB: GM-facing material (target numbers, adjudicating consequences,
+% Coherence) moved to its own chapter, "For the Game Master", 2026-09-22
+% --- it had outgrown a single section here.

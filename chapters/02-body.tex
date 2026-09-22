@@ -2,6 +2,44 @@
 \renewcommand{\realmaccent}{columnBody}  % ruby red
 \chapter{Body}
 % ================================================================
+
+% Full-width summary table, placed immediately after the chapter title so
+% it shares the chapter's own opening page. Uses cuted's \strip
+% environment, NOT table*/\twocolumn[...] --- both of those are floats
+% (or trigger the float queue) and LaTeX will not let a floated top-block
+% claim the top of a page that a sectioning command already opened, no
+% matter how little else is on that page. \strip renders inline, exactly
+% where it appears in the source, with no deferral.
+\begin{strip}
+  \begingroup\centering
+  {\hdfont\Large\bfseries\color{\realmaccent} Creating a Body\par}
+  \vspace{10pt}
+  \endgroup
+  \begingroup
+  \setlength{\tabcolsep}{7pt}\renewcommand{\arraystretch}{1.35}
+  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.6cm} Y >{\centering\arraybackslash}p{2.1cm} >{\centering\arraybackslash}p{1.6cm} >{\centering\arraybackslash}p{1.6cm}@{}}
+  \rowcolor{\realmaccent}
+  {\leavevmode\hdfont\bfseries\color{white}Rank} &
+  {\leavevmode\hdfont\bfseries\color{white}You are\ldots} &
+  {\leavevmode\hdfont\bfseries\color{white}Stat Points} &
+  {\leavevmode\hdfont\bfseries\color{white}Body Tags} &
+  {\leavevmode\hdfont\bfseries\color{white}Special Feats} \\
+  \rowcolor{atrBoxbg}
+  \rating{1} & An ordinary person; base stats across the board.
+    & \dice{2} & \dice{1} & --- \\
+  \rowcolor{white}
+  \rating{2} & You stand out --- strong, quick, or striking.
+    & \dice{4} & \dice{2} & --- \\
+  \rowcolor{atrBoxbg}
+  \rating{3} & Exceptional --- elven grace, ogrish might, uncanny beauty.
+    & \dice{6} & \dice{3} & \dice{1} \\
+  \rowcolor{white}
+  \rating{4} & Truly strange or monstrous --- a dragon, an angel.
+    & \dice{9} & \dice{5} & \dice{3} \\
+  \end{tabularx}
+  \endgroup
+\end{strip}
+
 % TODO: opening fiction for Body.
 \begin{readaloud}
 \lipsum[11][1-3]
@@ -10,65 +48,161 @@
 \chapterart{col-body.png}
 
 \lettrine{B}{ody} is your physical self --- the shape and substance you
-carry from world to world. It sets your three core \keyword{Stats} and
-determines what enhancements you can take during character creation.
+carry from world to world. Your Body rank sets three things at once: how
+many points you have to raise your base \keyword{Stats}, how many
+\keyword{Body Tags} describe your physical form, and --- if you rank high
+enough --- which \keyword{Special Feats} let you do things no ordinary
+roll of the dice can.
 
 % ---- Section 1: Character Creation ---------------------------------
 \section{At Character Creation}
 
-% REAL RULE: Body rank maps directly to starting Stat allocation.
-\begin{statblock}[Body Ranks]
-\begin{tabularx}{\linewidth}{@{}p{0.16\linewidth} Y@{}}
-\rating{1} & Ordinary person; base stats across the board.\\[3pt]
-\rating{2} & Stand out in some way --- strong, quick, or striking.\\[3pt]
-\rating{3} & Exceptional --- elven grace, ogrish might, uncanny beauty.\\[3pt]
-\rating{4} & Truly strange or monstrous --- a dragon, an angel.\\
+Your Body rank --- set when you assigned priorities at character
+creation, see the table above --- grants three things: Stat Points, Body
+Tags, and, at rank \rating{3} and \rating{4}, Special Feats. The next
+three subsections cover each in turn.
+
+\subsection*{Spending Your Stat Points}
+All three Stats --- \keyword{Body}, \keyword{Mind}, and \keyword{Face} ---
+start at \dice{1}. Spend your Stat Points to raise them, following one
+rule: \emph{the fifth pip costs double}.
+
+\begin{statblock}[Cost to Raise a Stat]
+\begin{tabularx}{\linewidth}{@{}p{0.42\linewidth} Y@{}}
+\dice{1}~$\to$~\dice{2} & \dice{1} point\\[2pt]
+\dice{2}~$\to$~\dice{3} & \dice{1} point\\[2pt]
+\dice{3}~$\to$~\dice{4} & \dice{1} point\\[2pt]
+\dice{4}~$\to$~\dice{5} & \dice{2} points (double)\\
 \end{tabularx}
 \end{statblock}
 
-Assign one of the four priorities (A through D) to Body. Your rank
-tells you how to set your core Stats and which \keyword{Modifications}
-you may take.
-
-\textbf{Body \rating{1} --- Ordinary Person.}
-Each of your three Stats begins at \dice{1}. Choose two Stats and add
-\dice{+1} to each.
+Maxing a single Stat all the way to \dice{5} costs \dice{5} points total
+--- so a Body-\rating{4} character can max one Stat and still have real
+points left over, but cannot max two.
 
 \begin{example}
-Mara is an athletic but unremarkable wanderer. Body \rating{1}. All three
-Stats start at 1. She boosts Body and Mind: \textbf{Body~2, Mind~2,
-Face~1}.
+Kira is Body \rating{2}: \dice{4} points. She raises Face from \dice{1} to
+\dice{3} (\dice{2} points) and Mind from \dice{1} to \dice{3}
+(\dice{2} points): \textbf{Body~1, Mind~3, Face~3}.
 \end{example}
 
-\textbf{Body \rating{2} --- Someone Who Stands Out.}
-Each of your three Stats begins at \dice{1}. You may then take up to two
-\keyword{Modifications} from the list in Your Modifications below.
+\subsection*{Choosing Your Body Tags}
+A \keyword{Body Tag} is a word in an oval that describes something your
+body can simply \emph{do} --- \emph{Strong}, \emph{Fast}, \emph{Keen
+Senses}. Whenever a tag clearly applies to what you're doing, add one die
+for it to your pool, exactly like a Magic tag. Pick your tags from the
+Common Body Tags list at the end of this chapter, or invent your own with
+your GM's approval.
 
-\begin{example}
-Kira is a charming fixer. Body \rating{2}. Stats start at 1. She takes
-\emph{Striking} and \emph{Sharp-Minded}: \textbf{Body~1, Mind~3, Face~3}.
-\end{example}
+Body Tags are unlike every other resource on your sheet: they are
+\emph{inherent}. No one can steal them, break them, or take them away --
+they travel with you always. When you cross into a new realm, your tags
+stay exactly as powerful, even as they take on a new shape: \emph{Strong}
+might describe an ogre's muscle in one world and a mech suit's hydraulics
+in the next. See each genre chapter for local translations.
+
+\subsection*{Special Feats}
+Some things are not a bigger pool --- they are a door that dice alone
+cannot open. \keyword{Special Feats} are exceptional, often impossible
+capabilities: flight, reading minds, becoming shadow. At Body \rating{3}
+you choose \dice{1} Special Feat; at Body \rating{4} you choose \dice{3}
+in total. Draw from the Special Feats catalogue at the end of this
+chapter, or work with your GM to build one suited to your realm.
+
+Like Body Tags, a personal Special Feat re-skins rather than disappears
+when you change worlds: a dragon's wings become a jetpack, a psychic's
+mind-reading becomes a neural hack. It belongs to \emph{you}, not the
+setting, so it always travels.
+
+\begin{notebox}[World-Granted Feats]
+Not every Special Feat is personal. Some are a property of a
+\emph{realm} rather than a character --- an ambient rule the GM sets up
+that lets \emph{every} traveller in that world do one impossible thing,
+whether or not they spent a single point on Body. In High Fantasy,
+anyone present may \keyword{Appeal to the Gods}; no one bought it, and no
+one carries it home. If you want to keep a world-granted Feat after you
+leave its realm, spend a \keyword{Persistence Point} to make it
+permanently yours, exactly as you would fix any other feature in place.
+Each genre chapter offers its own example.
+\end{notebox}
 
 % ---- Section 2: Rules -----------------------------------------------
 \section{Body in Play}
 
-Your Stats are the base of every roll. Add the relevant Stat to the relevant
-Skill --- or to the Magic tags that apply --- and roll that many \dice{d6}s;
-each die showing \dice{4}, \dice{5}, or \dice{6} is a success.
+The \keyword{Body} Stat serves double duty: it measures raw physical
+power \emph{and} the size of your Body pool --- how much physical harm
+you can shrug off before you go down. Mind and Face work the same way
+for mental strain and social standing; see \emph{Consequences and Your
+Pools} in \emph{How to Play}.
 
-The \keyword{Body} stat serves double duty: it measures raw physical power
-\emph{and} how much harm you can shrug off before you go down.
 Body rank also determines what physical form you take when you cross
 into a new realm --- an exceptional body stays exceptional, but it wears
-a different shape. See each genre chapter for local translations.
+a different shape. Your Stats, Tags, and Feats all travel with you; only
+their fictional dressing changes.
 
 % ---- Section 3: Options ---------------------------------------------
-\section{Your Modifications}
+\section{Your Body}
 
-\begin{gearlist}{Body Modifications}
-\gear{Extra Strong}{2}{+2 Body. You lift, break, and endure what ordinary people cannot.}
-\gear{Fleet of Foot}{2}{+2 Body. You are fast, nimble, and perfectly precise.}
-\gear{Striking}{2}{+2 Face. You are beautiful, magnetic, or impossible to ignore.}
-\gear{Sharp-Minded}{2}{+2 Mind. You think fast, perceive deeply, and are hard to deceive.}
-\end{gearlist}
+\subsection*{Common Body Tags}
+Ten tags, paired into five weight classes so no single pick outshines the
+rest --- each pair covers the same kind of ground at roughly the same
+strength.
 
+\skillcat{Power}
+\begin{itemize}
+  \item \atrtag{body}{Strong} --- Lift, break, and carry what ordinary people cannot.
+  \item \atrtag{body}{Natural Weapon} --- Claws, fangs, horns, or spines that need no forging.
+\end{itemize}
+
+\skillcat{Speed \& Grace}
+\begin{itemize}
+  \item \atrtag{body}{Fast} --- Outrun, outreact, and strike before others can respond.
+  \item \atrtag{body}{Graceful} --- Move with unnatural balance and precision, even where others would stumble.
+\end{itemize}
+
+\skillcat{Resilience}
+\begin{itemize}
+  \item \atrtag{body}{Tough} --- Shrug off wounds, poison, and exhaustion that would fell anyone else.
+  \item \atrtag{body}{Regenerating} --- Recover from injury and hardship faster than anyone has a right to.
+\end{itemize}
+
+\skillcat{Senses \& Stealth}
+\begin{itemize}
+  \item \atrtag{body}{Keen Senses} --- See, hear, or smell far beyond human limits, day or night.
+  \item \atrtag{body}{Camouflage} --- Your form blends into your surroundings at will.
+\end{itemize}
+
+\skillcat{Presence}
+\begin{itemize}
+  \item \atrtag{body}{Striking} --- Beautiful, magnetic, or impossible to ignore.
+  \item \atrtag{body}{Intimidating} --- Your presence alone puts people on edge.
+\end{itemize}
+
+\subsection*{Special Feats}
+Eight feats to start from, all common --- available in any realm and
+reflavoured to fit. Each one bypasses exactly one hard constraint (gravity,
+privacy of thought, the need to breathe, and so on), which keeps them
+roughly matched in power even though their flavour differs wildly.
+World-granted Feats, like High Fantasy's \emph{Appeal to the Gods}, are
+not drawn from this list --- see the notebox above, and each genre
+chapter for its realm's example.
+
+\begin{itemize}
+  \item \keyword{Fly} --- Take to the air under your own power.
+  \item \keyword{Read Minds} --- Perceive surface thoughts and feelings directly.
+  \item \keyword{Form Shadow} --- Become or merge with shadow, briefly incorporeal.
+  \item \keyword{Needs No Air} --- Water, smoke, poison gas, even the vacuum of space; none of it can suffocate you.
+  \item \keyword{Never Sleep} --- You do not need rest the way others do, and are never caught unaware by the night.
+  \item \keyword{Speak with Animals} --- Every beast understands you, and you it.
+  \item \keyword{Walk Through Walls} --- Solid matter is a suggestion, not a barrier.
+  \item \keyword{Turn Invisible} --- Vanish from sight at will, for as long as you hold still enough to matter.
+\end{itemize}
+
+\begin{notebox}[Designer's Note]
+Open question carried forward from this pass: whether a Body Tag has any
+cap on how many can apply to a single roll. Magic tags cap by rank; Body
+Tags currently do not, since the total is already capped at \dice{5}.
+\todo{Revisit once Skills' matching Stat Point section exists, so the two
+read as one shared system rather than two --- per 2026-09-22 design
+notes.}
+\end{notebox}

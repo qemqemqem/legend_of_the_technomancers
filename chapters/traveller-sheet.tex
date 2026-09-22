@@ -1,0 +1,238 @@
+% ================================================================
+%  TRAVELLER SHEET — full-page character sheet at end of book
+%  Inserted one-column with tight margins; see rulebook.tex for
+%  the \onecolumn / \newgeometry wrapper around this \include.
+% ================================================================
+
+% ---- Sheet-local helper commands ------------------------------------
+
+\newcommand{\sheetfivepips}{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}[x=9pt,y=9pt]
+      \foreach \i in {1,...,5}{%
+        \node[circle,draw=atrRule,line width=0.4pt,minimum size=7pt,inner sep=0]
+          at (\i,0){};}
+    \end{tikzpicture}}}$}
+
+\newcommand{\sheetfourpips}{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}[x=9pt,y=9pt]
+      \foreach \i in {1,...,4}{%
+        \node[circle,draw=atrRule,line width=0.4pt,minimum size=7pt,inner sep=0]
+          at (\i,0){};}
+    \end{tikzpicture}}}$}
+
+\newcommand{\sheettagslot}[1][38mm]{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}
+      \node[rounded rectangle, draw=atrRule, line width=0.5pt,
+            minimum width=#1, minimum height=5.5mm, inner sep=3pt]{\phantom{X}};
+    \end{tikzpicture}}}$}
+
+% A skill is a boolean tag (known or not) --- one checkbox, not a rating.
+\newcommand{\sheetknownbox}{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}
+      \node[draw=atrRule, line width=0.4pt, minimum size=7pt, inner sep=0]{};
+    \end{tikzpicture}}}$}
+
+% A Stat's pool (Body/Mind/Face) --- five squares, cross one off per
+% point lost. Squares (not circles) so it's never confused with the
+% five-pip Stat rating directly above it on the sheet.
+\newcommand{\sheetpooltrack}{%
+  $\vcenter{\hbox{%
+    \begin{tikzpicture}[x=9pt,y=9pt]
+      \foreach \i in {1,...,5}{%
+        \node[draw=atrRule,line width=0.4pt,minimum size=7pt,inner sep=0]
+          at (\i,0){};}
+    \end{tikzpicture}}}$}
+
+\newcommand{\sheetskillrow}[2]{%
+  {\small #1} & {\scriptsize\color{atrAccent}\textbf{#2}} & \sheetknownbox\\[1.5pt]}
+
+\newcommand{\sheetskillblank}{%
+  \rule{30mm}{0.3pt} &
+  \raisebox{1pt}{\framebox[5mm]{\phantom{B}}} &
+  \sheetknownbox\\[1.5pt]}
+
+\newcommand{\sheetitemrow}{\rule{42mm}{0.3pt}\hspace{3pt}\sheetfourpips\par\vspace{4pt}}
+
+\newcommand{\sheetsechead}[2][atrAccent]{%
+  \par{\color{#1}\rule{\linewidth}{0.7pt}}\par\vspace{1pt}%
+  {\hdfont\bfseries\footnotesize\color{#1}#2}\par\vspace{4pt}}
+
+\newcommand{\sheettattoobox}[1][55mm]{%
+  \par
+  \begin{tikzpicture}
+    \draw[color=atrAccent, line width=0.9pt, rounded corners=2pt]
+      (0,0) rectangle (\linewidth, #1);
+    \draw[color=atrAccent, line width=0.3pt, opacity=0.5, rounded corners=1pt]
+      (2mm, 2mm) rectangle (\linewidth-2mm, #1-2mm);
+    \node[anchor=south, opacity=0.18, font=\hdfont\footnotesize\color{atrAccent}]
+      at (0.5\linewidth, 2.5mm) {TATTOOS};
+  \end{tikzpicture}
+  \par}
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Traveller Sheet}
+
+% ---- Title line ------------------------------------------------------
+\noindent
+{\hdfont\bfseries\normalsize\color{atrAccent}LEGEND OF THE TECHNOMANCERS}
+\hfill
+{\hdfont\small\color{atrRule}Traveller Sheet}%
+\hspace{4pt}\todo{This character sheet layout needs human approval before the book goes to final layout. Review: field order, tattoo box size, skill list completeness, number of magic tag slots.}
+\par\vspace{2pt}
+{\color{atrAccent}\rule{\linewidth}{1.2pt}}
+\par\vspace{5pt}
+
+% ---- Identity fields -------------------------------------------------
+\begin{tabularx}{\linewidth}{@{}lXp{4mm}lX@{}}
+  {\small\textsc{Name}} &
+  \underline{\hfill} & &
+  {\small\textsc{Player}} &
+  \underline{\hfill} \\[6pt]
+  {\small\textsc{Appearance}} &
+  \underline{\hfill} & &
+  {\small\textsc{Vibes}} &
+  \underline{\hfill} \\
+\end{tabularx}
+
+\par\vspace{6pt}
+
+% ---- Stats + Pools row -------------------------------------------------
+% Each Stat carries its own pool now (2026-09-22 rule): pool size =
+% Stat rating. Coherence is NOT here --- it's a table-wide, party-shared
+% resource, tracked once by the GM, not duplicated on every sheet.
+\noindent
+\begin{minipage}[c]{0.315\linewidth}
+  \begin{tcolorbox}[enhanced, colback=atrBoxbg, colframe=columnBody,
+    boxrule=0.7pt, arc=2pt, left=4pt, right=4pt, top=3pt, bottom=3pt,
+    halign=center, before skip=0pt, after skip=0pt]
+    {\color{columnBody}\atricon{body}\ \hdfont\small BODY}\\[4pt]
+    \sheetfivepips\\[5pt]
+    {\color{atrRule}\rule{0.9\linewidth}{0.4pt}}\\[3pt]
+    {\scriptsize\textsc{Pool}}\ \sheetpooltrack
+  \end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.315\linewidth}
+  \begin{tcolorbox}[enhanced, colback=atrBoxbg, colframe=columnMagic,
+    boxrule=0.7pt, arc=2pt, left=4pt, right=4pt, top=3pt, bottom=3pt,
+    halign=center, before skip=0pt, after skip=0pt]
+    {\color{columnMagic}\atricon{mind}\ \hdfont\small MIND}\\[4pt]
+    \sheetfivepips\\[5pt]
+    {\color{atrRule}\rule{0.9\linewidth}{0.4pt}}\\[3pt]
+    {\scriptsize\textsc{Pool}}\ \sheetpooltrack
+  \end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.315\linewidth}
+  \begin{tcolorbox}[enhanced, colback=atrBoxbg, colframe=columnStuff,
+    boxrule=0.7pt, arc=2pt, left=4pt, right=4pt, top=3pt, bottom=3pt,
+    halign=center, before skip=0pt, after skip=0pt]
+    {\color{columnStuff}\atricon{face}\ \hdfont\small FACE}\\[4pt]
+    \sheetfivepips\\[5pt]
+    {\color{atrRule}\rule{0.9\linewidth}{0.4pt}}\\[3pt]
+    {\scriptsize\textsc{Pool}}\ \sheetpooltrack
+  \end{tcolorbox}
+\end{minipage}
+
+\par\vspace{5pt}
+
+% ---- Main three-panel body ------------------------------------------
+\noindent
+% Left panel — Tattoos + Body Tags
+\begin{minipage}[t]{0.27\linewidth}
+
+  \sheetsechead[atrAccent]{TATTOOS}
+  {\scriptsize\itshape\color{atrRule}Draw your tattoos here.
+  They glow when you spend Persistence Points.}
+  \par\vspace{3pt}
+  \sheettattoobox[56mm]
+  \par\vspace{6pt}
+
+  \sheetsechead[columnBody]{BODY TAGS}
+  {\scriptsize\color{atrRule}Physical traits, mutations, enhancements.}
+  \par\vspace{4pt}
+  \sheettagslot[35mm]\par\vspace{3pt}
+  \sheettagslot[35mm]\par\vspace{3pt}
+  \sheettagslot[35mm]\par\vspace{3pt}
+  \sheettagslot[35mm]\par\vspace{3pt}
+  \sheettagslot[35mm]\par\vspace{3pt}
+  \sheettagslot[35mm]
+
+\end{minipage}\hfill
+% Middle panel — Skills
+\begin{minipage}[t]{0.37\linewidth}
+
+  \sheetsechead[columnSkills]{SKILLS}
+  {\scriptsize\color{atrRule}%
+    \textbf{B}=Body\ \textbf{F}=Face\ \textbf{M}=Mind\quad
+    Check the box for skills you know.}
+  \par\vspace{3pt}
+
+  \begin{tabular}{@{}lll@{}}
+    \sheetskillrow{Blades}{B}
+    \sheetskillrow{Brawling}{B}
+    \sheetskillrow{Firearms}{B}
+    \sheetskillrow{Archery}{B}
+    \sheetskillrow{Athletics}{B}
+    \sheetskillrow{Stealth}{B}
+    \sheetskillrow{Piloting}{B}
+    \sheetskillrow{Persuasion}{F}
+    \sheetskillrow{Deception}{F}
+    \sheetskillrow{Intimidation}{F}
+    \sheetskillrow{Performance}{F}
+    \sheetskillrow{Lore}{M}
+    \sheetskillrow{Medicine}{M}
+    \sheetskillrow{Perception}{M}
+    \sheetskillrow{Languages}{M}
+    \sheetskillrow{Craft}{M}
+    \sheetskillrow{Survival}{M}
+    \sheetskillrow{Hacking}{M}
+    % ---- Custom skills below ----
+    \multicolumn{3}{@{}l}{\color{atrRule}\rule{\linewidth}{0.3pt}}\\[1pt]
+    \sheetskillblank
+    \sheetskillblank
+    \sheetskillblank
+    \sheetskillblank
+  \end{tabular}
+
+\end{minipage}\hfill
+% Right panel — Magic + Stuff
+\begin{minipage}[t]{0.31\linewidth}
+
+  \sheetsechead[columnMagic]{MAGIC}
+  {\scriptsize\color{atrRule}Pool = Stat + one die per applicable tag.}
+  \par\vspace{2pt}
+  {\small\textsc{Rank}}\hspace{3mm}\sheetfourpips
+  \hfill{\small\textsc{Limit per roll}}\ \underline{\hspace{8mm}}
+  \par\vspace{4pt}
+  {\small\textsc{Weird}}\hspace{3mm}\underline{\hspace{8mm}}
+  \hfill{\scriptsize\itshape\color{atrRule}(Magic rank $-$ 1)}
+  \par\vspace{6pt}
+  {\scriptsize\color{atrRule}Magic Tags — write the tags you have purchased:}
+  \par\vspace{4pt}
+  \sheettagslot[40mm]\par\vspace{3pt}
+  \sheettagslot[40mm]\par\vspace{3pt}
+  \sheettagslot[40mm]\par\vspace{3pt}
+  \sheettagslot[40mm]\par\vspace{3pt}
+  \sheettagslot[40mm]\par\vspace{3pt}
+  \sheettagslot[40mm]\par\vspace{3pt}
+  \sheettagslot[40mm]\par\vspace{3pt}
+  \sheettagslot[40mm]\par\vspace{3pt}
+  \sheettagslot[40mm]\par\vspace{3pt}
+  \sheettagslot[40mm]
+  \par\vspace{6pt}
+
+  \sheetsechead[columnStuff]{STUFF}
+  {\scriptsize Item\hfill Tier}\par\vspace{2pt}
+  \sheetitemrow\sheetitemrow\sheetitemrow\sheetitemrow\sheetitemrow
+  \sheetitemrow\sheetitemrow\sheetitemrow
+
+\end{minipage}
+
+\par\vspace{4pt}
+{\color{atrRule}\rule{\linewidth}{0.5pt}}\par\vspace{1pt}
+{\hdfont\bfseries\footnotesize\color{atrAccent}NOTES}\hspace{4mm}%
+\rule{0.85\linewidth}{0.3pt}\\[6pt]
+\rule{\linewidth}{0.3pt}

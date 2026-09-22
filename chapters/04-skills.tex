@@ -2,6 +2,48 @@
 \renewcommand{\realmaccent}{columnSkills}  % forest green
 \chapter{Skills}
 % ================================================================
+
+% Full-width summary table, placed immediately after the chapter title
+% so it shares the chapter's opening page (see 02-body.tex for the float
+% placement notes; a \begin{table*}[t] float, not \twocolumn[...]).
+% REAL RULE, 2026-09-22: Skills are a pure tag system, like Magic --- you
+% know a skill or you don't, full stop. No individual skill ranks, no
+% point-buy per skill. "Skills Known" is a plain count, exactly like
+% Magic's "Tags Known". Stat Points still mirrors Body's table (the two
+% share one pool). DRAFT NUMBERS --- see the \todo below.
+\begin{strip}
+  \begingroup\centering
+  {\hdfont\Large\bfseries\color{\realmaccent} Creating Skills\par}
+  \vspace{10pt}
+  \endgroup
+  \begingroup
+  \setlength{\tabcolsep}{7pt}\renewcommand{\arraystretch}{1.35}
+  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.6cm} Y >{\centering\arraybackslash}p{2.1cm} >{\centering\arraybackslash}p{2.1cm}@{}}
+  \rowcolor{\realmaccent}
+  {\leavevmode\hdfont\bfseries\color{white}Rank} &
+  {\leavevmode\hdfont\bfseries\color{white}You are\ldots} &
+  {\leavevmode\hdfont\bfseries\color{white}Stat Points} &
+  {\leavevmode\hdfont\bfseries\color{white}Skills Known} \\
+  \rowcolor{atrBoxbg}
+  \rating{1} & Not very skilful, but you know a few things.
+    & \dice{2} & \dice{3} \\
+  \rowcolor{white}
+  \rating{2} & You know a lot.
+    & \dice{4} & \dice{6} \\
+  \rowcolor{atrBoxbg}
+  \rating{3} & A master of your craft, or a jack of all trades.
+    & \dice{6} & \dice{10} \\
+  \rowcolor{white}
+  \rating{4} & A master of many things.
+    & \dice{9} & \dice{15} \\
+  \end{tabularx}
+  \endgroup
+\end{strip}
+\todo{Numbers on this table are a first proposal (2026-09-22), not
+confirmed. Stat Points mirror Body's table exactly since the two share
+one pool; Skills Known reuses the same curve as the earlier (now
+abandoned) Skill Points proposal. Needs a decision, then playtesting.}
+
 % TODO: opening fiction for Skills.
 \begin{readaloud}
 \lipsum[19][1-3]
@@ -28,9 +70,21 @@ actually practised. A high \keyword{Body} means you move well; the
 \end{tabularx}
 \end{statblock}
 
-Assign one of the four priorities (A through D) to Skills. Your rank
-determines the depth and breadth of your training --- how many skills
-you know and how good at them you are.
+Your Skills rank --- set when you assigned priorities at character
+creation, see the table above --- grants two things: Stat Points (the
+same shared pool Body feeds) and a number of Skills Known.
+
+\subsection*{Choosing Your Skills}
+% REAL RULE, 2026-09-22: Skills are boolean, exactly like Magic and Body
+% tags --- you know a skill or you don't. There is no individual skill
+% rank and nothing to spend points on beyond simply choosing which
+% skills you know.
+A \keyword{Skill} is a tag like any other --- the trained kind. You
+either know it or you don't; there is no individual rank to raise. Pick
+as many skills as your Skills Known allows from the catalogue below, or
+invent your own with your GM's approval. Like any tag, a known skill
+adds one die whenever it applies --- no more, no less, regardless of
+which column it came from.
 
 % ---- Section 2: Rules -----------------------------------------------
 \section{Skills in Play}
@@ -41,24 +95,27 @@ sets the domain; the Stat sets the approach. Roll Stat + Skill dice and
 count successes.
 
 \begin{example}
-Mara vaults a canyon gap using \keyword{Athletics} + \keyword{Body}. She
-could talk her way past a guard using \keyword{Persuasion} +
-\keyword{Face} --- or, looming over him in the dark, intimidate him with
-\keyword{Intimidation} + \keyword{Body} instead.
+Mara vaults a canyon gap using \keyword{Body} \dice{3} and
+\atrtag{skill}{Athletics}, so she rolls \dice{4} dice. Three come up 4 or
+higher --- three successes. The GM had called for two. She lands clean,
+with one success to spare.
 \end{example}
+\todo{Add the $-1$ penalty for acting without an applicable skill, per
+2026-09-22 design notes.}
 
-\subsection*{Breadth Versus Depth}
-At rank \rating{3} you face a choice: become the undisputed master of one
-narrow discipline, or spread your points across a wide range of skills and
-know a little about almost everything. Both are valid --- a specialist
-punches harder in their lane; a generalist is never completely helpless.
+\subsection*{Choosing What You Know}
+With a fixed number of Skills Known, the real choice is which skills
+make the cut --- a wide net of common skills so little catches you
+flat-footed, or a shorter, stranger list built around what your
+Traveller has actually lived through. An unlisted skill simply isn't
+one you have; the fiction, and the GM, decide what that costs you.
 
 % ---- Section 3: Options ---------------------------------------------
 \section{Your Skills}
 
-Each skill entry shows its name, its primary \keyword{Stat}, and a brief
-description. The listed Stat is the default pairing; other Stats may apply
-if the fiction supports it.
+Each skill entry shows its name (as a tag), its primary \keyword{Stat},
+and a brief description. The listed Stat is the default pairing; other
+Stats may apply if the fiction supports it.
 
 \skillcat{Conflict}
 \skill{Blades}{Body}{Swords, knives, and any weapon that cuts.}

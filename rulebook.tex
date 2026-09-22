@@ -75,18 +75,29 @@
 \include{chapters/03-stuff}
 \include{chapters/04-skills}
 \include{chapters/05-magic}
-\include{chapters/06-advancement}
-\include{chapters/07-character-sheet}
 
 % ---- Part II: Playing the Game ----
+% Character Advancement lives here, not Part I: Change Points and
+% Persistence Points are spent during play (as you move between realms),
+% not decided once at character creation. Moved 2026-09-22.
 \part{Playing the Game}
 \include{chapters/11-how-to-play}
+\include{chapters/06-advancement}
 \include{chapters/12-playing}
+\include{chapters/13-gming}
 
 % ---- Part III: The Realms ----
 \part{The Realms}
 \include{chapters/08-high-fantasy}
 \include{chapters/09-cyberpunk}
 \include{chapters/10-space-adventure}
+
+% ---- Traveller Sheet — full-page, one-column, tight margins ----
+\clearpage
+\onecolumn
+\newgeometry{inner=11mm, outer=11mm, top=11mm, bottom=11mm,
+             headsep=0mm, footskip=0mm}
+\pagestyle{empty}
+\include{chapters/traveller-sheet}
 
 \end{document}

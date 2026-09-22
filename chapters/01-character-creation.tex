@@ -1,6 +1,65 @@
 % ================================================================
 \chapter{Character Creation}
 % ================================================================
+
+% ---- Full-width priority matrix, prose only (no ranks or dollar
+% figures --- those now live in each column's own "Creating X" table).
+% Placed as a [t] spanning float BEFORE any narrow-column text (even the
+% framing sentence below), since a float can only claim the top of a page
+% that no text has touched yet --- once any two-column text is placed
+% first, the float is pushed to the top of the NEXT page instead. See
+% 02-body.tex for why \twocolumn[...] doesn't achieve this either (it
+% always forces a fresh page for its content, even with nothing
+% preceding it).
+\begin{strip}
+  \begingroup\centering
+  {\hdfont\Large\bfseries\color{\realmaccent} The Priority Matrix\par}
+  \vspace{10pt}
+  \endgroup
+  \begingroup
+  \setlength{\tabcolsep}{7pt}\renewcommand{\arraystretch}{1.35}
+  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.6cm} *{4}{Y}@{}}
+  \rowcolor{\realmaccent}
+  {\leavevmode\hdfont\bfseries\color{white}Priority} &
+  {\leavevmode\hdfont\bfseries\color{white}Body}   &
+  {\leavevmode\hdfont\bfseries\color{white}Stuff}  &
+  {\leavevmode\hdfont\bfseries\color{white}Skills} &
+  {\leavevmode\hdfont\bfseries\color{white}Magic}  \\
+  \rowcolor{atrBoxbg}
+  {\leavevmode\hdfont\LARGE\bfseries\color{\realmaccent}A}
+    & Truly strange or monstrous --- a dragon, an angel.
+    & A ship, a keep, incredible gear. Rich.
+    & A master of many things.
+    & A \emph{fucking wizard}, with tags to spare. \\
+  \rowcolor{white}
+  {\leavevmode\hdfont\LARGE\bfseries\color{\realmaccent}B}
+    & Exceptional --- elven grace, ogrish might, uncanny beauty.
+    & A legendary weapon or a vehicle; well off.
+    & A master of your craft, or a jack of all trades.
+    & You know real magic, with tags to work it. \\
+  \rowcolor{atrBoxbg}
+  {\leavevmode\hdfont\LARGE\bfseries\color{\realmaccent}C}
+    & You stand out --- strong, quick, or striking.
+    & Ordinary things, and a little money to spare.
+    & You know a lot.
+    & A few spells, and a few tags to cast them. \\
+  \rowcolor{white}
+  {\leavevmode\hdfont\LARGE\bfseries\color{\realmaccent}D}
+    & An ordinary person; base stats across the board.
+    & Nothing but the shirt on your back.
+    & You know a few things.
+    & You do not know magic. \\
+  \end{tabularx}
+  \endgroup
+\end{strip}
+
+\textbf{To create a character, first assign \keyword{A}, \keyword{B},
+\keyword{C}, and \keyword{D} to each of the four columns} --- one letter
+per column, no repeats. \keyword{A} is where you shine; \keyword{D} is
+where you struggle. No one is exceptional at everything. The table above
+is a feel for what each letter means in each column; the exact numbers
+live in that column's own chapter.
+
 % REAL RULE: four columns, rated 1–4. Keep this.
 \lettrine{E}{very character} is described by four columns, each rated on
 a scale of \keyword{1 to 4} --- from ordinary to extraordinary: they are
@@ -18,69 +77,6 @@ with you from world to world.
 \end{statblock}
 
 \chapterart[\linewidth]{char-traveler.png}
-
-\section{Spending Your Ranks}
-% REAL RULE: Shadowrun-style priority. Assign one of A/B/C/D per column.
-Character creation borrows the priority method from \emph{Shadowrun}.
-You have four priorities --- \keyword{A}, \keyword{B}, \keyword{C}, and
-\keyword{D} --- and you assign \emph{one letter to each column}, with no
-repeats. \keyword{A} is where you shine; \keyword{D} is where you
-struggle. No one is exceptional at everything.
-
-The \keyword{Priority Matrix} on the following page lays out what each
-letter means for each column. A priority of \keyword{A} grants the top
-rank (\rating{4}) in that column, down to \keyword{D} for the lowest
-(\rating{1}).
-
-% ---- Full-width priority matrix: leads a fresh page, then columns resume.
-% \twocolumn[<top material>] guarantees flush-top, full-width placement
-% (a table* float would centre on a float-only page under memoir).
-% NB: no bracketed \\[..] anywhere in this optional arg — a literal ]
-% would terminate \twocolumn's [...] early. Use \par + \vspace instead.
-\twocolumn[%
-  \begingroup\centering
-  {\hdfont\Large\bfseries\color{\realmaccent} The Priority Matrix\par}
-  \vspace{2pt}
-  {\itshape Assign one of A, B, C, D to each column --- one letter each, no repeats.\par}
-  \vspace{10pt}
-  \endgroup
-  \begingroup
-  \setlength{\tabcolsep}{7pt}\renewcommand{\arraystretch}{1.35}
-  \noindent\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{2.3cm} *{4}{Y}@{}}
-  \rowcolor{\realmaccent}
-  {\leavevmode\hdfont\bfseries\color{white}Priority} &
-  {\leavevmode\hdfont\bfseries\color{white}Body}   &
-  {\leavevmode\hdfont\bfseries\color{white}Stuff}  &
-  {\leavevmode\hdfont\bfseries\color{white}Skills} &
-  {\leavevmode\hdfont\bfseries\color{white}Magic}  \\
-  \rowcolor{atrBoxbg}
-  {\leavevmode\hdfont\LARGE\bfseries\color{\realmaccent}A}\newline\rating{4}
-    & Truly strange or monstrous --- a dragon, an angel.
-    & A ship, a keep, incredible gear. Rich.
-    & A master of many things.
-    & A \emph{fucking wizard}; choose 12 tags. \\
-  \rowcolor{white}
-  {\leavevmode\hdfont\LARGE\bfseries\color{\realmaccent}B}\newline\rating{3}
-    & Exceptional --- elven grace, ogrish might, uncanny beauty.
-    & A legendary weapon or a vehicle; well off (\$20{,}000).
-    & A master of your craft, or a jack of all trades.
-    & You know magic; choose 7 tags. \\
-  \rowcolor{atrBoxbg}
-  {\leavevmode\hdfont\LARGE\bfseries\color{\realmaccent}C}\newline\rating{2}
-    & You stand out --- strong, quick, or striking.
-    & Ordinary things and some money (\$4{,}000).
-    & You know a lot.
-    & A few spells; choose 3 tags. \\
-  \rowcolor{white}
-  {\leavevmode\hdfont\LARGE\bfseries\color{\realmaccent}D}\newline\rating{1}
-    & An ordinary person; base stats across the board.
-    & Nothing but the shirt on your back.
-    & You know a few things.
-    & You do not know magic. \\
-  \end{tabularx}
-  \par\bigskip
-  \endgroup
-]
 
 \begin{example}
 % REAL worked example of the ABCD method.

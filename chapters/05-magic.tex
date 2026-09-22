@@ -2,6 +2,40 @@
 \renewcommand{\realmaccent}{columnMagic}  % royal blue
 \chapter{Magic}
 % ================================================================
+
+% Full-width summary table, placed immediately after the chapter title
+% so it shares the chapter's opening page (see 02-body.tex for the float
+% placement notes; a \begin{table*}[t] float, not \twocolumn[...]).
+\begin{strip}
+  \begingroup\centering
+  {\hdfont\Large\bfseries\color{\realmaccent} Creating Magic\par}
+  \vspace{10pt}
+  \endgroup
+  \begingroup
+  \setlength{\tabcolsep}{7pt}\renewcommand{\arraystretch}{1.35}
+  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.6cm} Y >{\centering\arraybackslash}p{2.1cm} >{\centering\arraybackslash}p{2.3cm} >{\centering\arraybackslash}p{1.6cm}@{}}
+  \rowcolor{\realmaccent}
+  {\leavevmode\hdfont\bfseries\color{white}Rank} &
+  {\leavevmode\hdfont\bfseries\color{white}You are\ldots} &
+  {\leavevmode\hdfont\bfseries\color{white}Tags Known} &
+  {\leavevmode\hdfont\bfseries\color{white}Tags per Spell} &
+  {\leavevmode\hdfont\bfseries\color{white}Weird} \\
+  \rowcolor{atrBoxbg}
+  \rating{1} & You do not know magic.
+    & \dice{0} & \dice{0} & \dice{0} \\
+  \rowcolor{white}
+  \rating{2} & You can cast a few spells.
+    & \dice{3} & \dice{2} & \dice{1} \\
+  \rowcolor{atrBoxbg}
+  \rating{3} & You know magic.
+    & \dice{7} & \dice{3} & \dice{2} \\
+  \rowcolor{white}
+  \rating{4} & You are a \emph{fucking wizard}.
+    & \dice{12} & \dice{5} & \dice{3} \\
+  \end{tabularx}
+  \endgroup
+\end{strip}
+
 % TODO: opening fiction for Magic.
 \begin{readaloud}
 \lipsum[23][1-3]
@@ -18,19 +52,11 @@ When you enter a realm, decide together what Magic \emph{looks like} there.
 % ---- Section 1: Character Creation ---------------------------------
 \section{At Character Creation}
 
-% REAL RULE: Magic ranks + tag counts (from Notion). Keep verbatim.
-\begin{statblock}[Magic Ranks]
-\begin{tabularx}{\linewidth}{@{}p{0.16\linewidth} Y@{}}
-\rating{1} & You do not know magic.\\[3pt]
-\rating{2} & You can cast a few spells. \emph{Choose 3 tags; apply up to 2 to a spell.}\\[3pt]
-\rating{3} & You know magic. \emph{Choose 7 tags; apply up to 3 to a spell.}\\[3pt]
-\rating{4} & You are a \emph{fucking wizard}. \emph{Choose 12 tags; apply up to 5 to a spell.}\\
-\end{tabularx}
-\end{statblock}
-
-Assign one of the four priorities (A through D) to Magic. Your rank
-determines how many \keyword{tags} you know and how many you may apply
-to a single spell. At rank \rating{1} you know no magic at all.
+Your Magic rank --- set when you assigned priorities at character
+creation, see the table above --- determines how many \keyword{tags} you
+know and how many you may apply to a single spell. It also sets your
+\keyword{Weird} Stat; see \emph{The Weird Stat} below. At rank
+\rating{1} you know no magic at all.
 
 Choose your tags from Your Tags below before play begins. A tag's meaning
 bends to fit the realm --- \emph{control} compels a beast in a fantasy
@@ -50,11 +76,55 @@ rank~2, \dice{3} at rank~3, \dice{5} at rank~4). Count successes
 \[
 \text{\keyword{Stat} (1--5)} \;+\; \text{\keyword{applicable Tags}} \;=\; \text{pool}
 \]
+\todo{Confirm and state explicitly: casting requires at least one
+applicable tag; with zero applicable tags the action cannot be attempted
+as magic at all. Per 2026-09-22 design notes.}
 
 Because magic runs off the same three Stats as everything else, there is no
 such thing as a character who is good at ``magic'' in general. Shapeshifting
 leans on \keyword{Body}, divination on \keyword{Mind}, a glamour on
 \keyword{Face} --- so the way you work magic expresses who you are.
+
+\subsection*{Which Base Stat?}
+% REAL RULE, 2026-09-22: no new mechanic here --- magic uses the three
+% Stats exactly as anything else does. Stated explicitly because it's the
+% single most common point of confusion for new players.
+Pick the Stat the same way you would for anything else: \keyword{Body}
+for lifting, striking, or moving something physical; \keyword{Mind} for
+puzzling something out, perceiving, or understanding; \keyword{Face} for
+working on another person. A spell is not exempt from this --- it is
+just another action, classified by what it accomplishes.
+
+As with any roll, a base Stat can also come from an item instead of your
+body (see \emph{Stats from Objects} in \emph{How to Play}). Hacking a
+mainframe through a computer terminal uses the terminal's tier as the
+base, in place of your own \keyword{Mind}, if the terminal's tier is
+higher.
+
+\begin{question}{Does that mean my wizard should work out and get buff to move boulders with her mind?}
+Yes. That is exactly how it works. Moving a boulder is a \keyword{Body}
+action no matter how you accomplish it --- telekinesis included. A
+wizard who wants to reliably shift heavy things with her mind should put
+points into \keyword{Body}, same as anyone else who wants to be strong.
+\end{question}
+
+\subsection*{The Weird Stat}
+% REAL RULE, 2026-09-22: a fourth base Stat, derived (not bought), equal
+% to Magic rank minus 1. Only usable when nothing else fits.
+Some magic doesn't lift anything, solve anything, or persuade anyone ---
+it just happens, and reality bends to let it. Casting a fireball from an
+open palm, making butterflies appear from nowhere: these don't accomplish
+a Body, Mind, or Face outcome, so none of those Stats apply.
+
+For exactly these moments, you have a fourth base Stat: \keyword{Weird}.
+It equals your \keyword{Magic} rank minus one (\dice{0} at Magic
+\rating{1}, up to \dice{3} at Magic \rating{4}), and it is the only Stat
+you cannot buy directly --- it rises only when your Magic rank does.
+Use Weird \emph{only} when no other Stat plausibly applies; if the
+fiction supports Body, Mind, or Face, use that instead.
+
+Every genre chapter may set its own tone for what counts as Weird enough
+to need it --- see each realm's Magic section for local guidance.
 
 Every act of magic pairs what you \emph{do} (a Technique) with what you
 \emph{affect} (a Form): \emph{create}~+~\emph{fire} to kindle a flame,
@@ -78,25 +148,25 @@ the tag-selection system is inspired by John Harper's \emph{Lady Blackbird}.
 
 \subsection*{Techniques --- what you do}
 \begin{itemize}
-  \item \keyword{Create} --- Produce something from nothing, or restore a thing to its whole, ideal state.
-  \item \keyword{Perceive} --- Sense, read, and learn; uncover the hidden connections between things.
-  \item \keyword{Transform} --- Change one thing into another, and direct the mechanisms of change itself.
-  \item \keyword{Destroy} --- Break down, wither, and unmake; hasten damage, decay, and dissolution.
-  \item \keyword{Control} --- Move and command matter, or compel the actions of living things.
+  \item \atrtag{magic}{Create} --- Produce something from nothing, or restore a thing to its whole, ideal state.
+  \item \atrtag{magic}{Perceive} --- Sense, read, and learn; uncover the hidden connections between things.
+  \item \atrtag{magic}{Transform} --- Change one thing into another, and direct the mechanisms of change itself.
+  \item \atrtag{magic}{Destroy} --- Break down, wither, and unmake; hasten damage, decay, and dissolution.
+  \item \atrtag{magic}{Control} --- Move and command matter, or compel the actions of living things.
 \end{itemize}
 
 \subsection*{Forms --- what you affect}
 \begin{itemize}
-  \item \keyword{Animal} --- Beasts of every kind, from the fish of the sea to the birds of the air.
-  \item \keyword{Water} --- Liquids of all kinds, from a roaring flood to a still, clear pool.
-  \item \keyword{Air} --- Air, wind, and weather; the medium of true flight.
-  \item \keyword{Body} --- Humans and humanlike bodies, and those that once had souls.
-  \item \keyword{Plant} --- Plants and trees, and all plant matter --- even dead wood and cloth.
-  \item \keyword{Fire} --- Fire, heat, and light in all their restless forms.
-  \item \keyword{Image} --- Illusions and phantasms; the appearance of things, never their substance.
-  \item \keyword{Mind} --- Minds, thoughts, memories, and emotions --- and incorporeal spirits.
-  \item \keyword{Earth} --- Solids, especially earth and stone: the foundation of the world.
-  \item \keyword{Magic} --- Raw magical power itself; the stuff of spells and the beings made from it.
+  \item \atrtag{magic}{Animal} --- Beasts of every kind, from the fish of the sea to the birds of the air.
+  \item \atrtag{magic}{Water} --- Liquids of all kinds, from a roaring flood to a still, clear pool.
+  \item \atrtag{magic}{Air} --- Air, wind, and weather; the medium of true flight.
+  \item \atrtag{magic}{Body} --- Humans and humanlike bodies, and those that once had souls.
+  \item \atrtag{magic}{Plant} --- Plants and trees, and all plant matter --- even dead wood and cloth.
+  \item \atrtag{magic}{Fire} --- Fire, heat, and light in all their restless forms.
+  \item \atrtag{magic}{Image} --- Illusions and phantasms; the appearance of things, never their substance.
+  \item \atrtag{magic}{Mind} --- Minds, thoughts, memories, and emotions --- and incorporeal spirits.
+  \item \atrtag{magic}{Earth} --- Solids, especially earth and stone: the foundation of the world.
+  \item \atrtag{magic}{Magic} --- Raw magical power itself; the stuff of spells and the beings made from it.
 \end{itemize}
 
 \subsection*{Specific Tags --- your own}
@@ -104,12 +174,12 @@ You may also choose \emph{any} tag you like, so long as it is more specific
 in application than the Techniques and Forms above. A specific tag is
 narrower, but it stacks with them for a bigger bonus. A few examples:
 \begin{itemize}
-  \item \keyword{Gems} --- Precious stones and crystals, cut or raw.
-  \item \keyword{Smoke} --- Smoke, mist, and haze.
-  \item \keyword{Thorns} --- Barbs, brambles, and things that wound.
-  \item \keyword{Hearing} --- Sound and the sense of it.
-  \item \keyword{Reading} --- Written words and their meaning.
-  \item \keyword{Protection} --- Wards, shields, and defence.
-  \item \keyword{Throwing} --- Hurling and propelling objects.
-  \item \keyword{Flying} --- Flight and being borne aloft.
+  \item \atrtag{magic}{Gems} --- Precious stones and crystals, cut or raw.
+  \item \atrtag{magic}{Smoke} --- Smoke, mist, and haze.
+  \item \atrtag{magic}{Thorns} --- Barbs, brambles, and things that wound.
+  \item \atrtag{magic}{Hearing} --- Sound and the sense of it.
+  \item \atrtag{magic}{Reading} --- Written words and their meaning.
+  \item \atrtag{magic}{Protection} --- Wards, shields, and defence.
+  \item \atrtag{magic}{Throwing} --- Hurling and propelling objects.
+  \item \atrtag{magic}{Flying} --- Flight and being borne aloft.
 \end{itemize}
