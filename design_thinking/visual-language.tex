@@ -1,0 +1,133 @@
+% =====================================================================
+%  Legend of the Technomancers — VISUAL LANGUAGE SPECIMEN
+%  Proofs the stat plates, tag ovals, and icon set at working sizes.
+%  Build:  tectonic -X compile visual-language.tex
+% =====================================================================
+\documentclass[11pt,oneside]{memoir}
+\usepackage{atrpg}
+\geometry{a4paper, inner=20mm, outer=20mm, top=20mm, bottom=22mm}
+
+\begin{document}
+\color{atrInk}
+
+\begin{center}
+{\hdfont\bfseries\color{atrAccent}\fontsize{26}{30}\selectfont VISUAL LANGUAGE}\\[3mm]
+{\itshape Stat plates, tag ovals, and the provenance icons}
+\end{center}
+\bigskip
+
+% =====================================================================
+\section*{The Icon Set}
+Each icon is drawn on a 10$\times$10 canvas scaled to \verb|\atrIconH|
+(currently \the\atrIconH), so it holds its proportions at any size and takes
+the colour of the text around it.
+
+\bigskip
+\begin{tabular}{@{}llp{7.6cm}@{}}
+\atricon{body}  & \textsc{body}  & Barbell. Physical action, handling objects, durability.\\[5pt]
+\atricon{mind}  & \textsc{mind}  & Lightbulb. Puzzles, analysis, knowledge, perception.\\[5pt]
+\atricon{face}  & \textsc{face}  & Head and shoulders. Dealing with people.\\[5pt]
+\atricon{magic} & \textsc{magic} & Sparkle. Tag provenance: this came from magic.\\[5pt]
+\atricon{skill} & \textsc{skill} & Chevron. Tag provenance: this came from training.\\[5pt]
+\atricon{item}  & \textsc{item}  & Satchel. Tag provenance: this came from a thing you carry.\\
+\end{tabular}
+
+\bigskip
+At display size, for checking the drawing:
+\smallskip
+
+{\setlength{\atrIconH}{34pt}%
+\atricon{body}\quad\atricon{mind}\quad\atricon{face}\quad
+\atricon{magic}\quad\atricon{skill}\quad\atricon{item}}
+
+% =====================================================================
+\section*{Stat Plates --- a Rectangle Means ``Roll This''}
+
+A Stat is an icon and a number in a rectangle. The rectangle is the whole
+signal: rectangle means a number you roll with, oval means a tag.
+
+\bigskip
+\statplate{body}{3}\quad \statplate{mind}{2}\quad \statplate{face}{4}
+
+\bigskip
+With the name spelled out, for the character sheet:
+
+\bigskip
+\statplatenamed{body}{Body}{3}\quad
+\statplatenamed{mind}{Mind}{2}\quad
+\statplatenamed{face}{Face}{4}
+
+\bigskip
+Inline in a sentence: Mara vaults the gap on \statplate{body}{3} plus her
+Athletics \dice{2}, so she throws \dice{5} dice. She would have talked her
+way past instead on \statplate{face}{1}, which is why she jumped.
+
+% =====================================================================
+\section*{Tag Ovals --- and Where the Tag Came From}
+
+A tag is a word in an oval carrying a small provenance icon. Once tags come
+from body, stuff, skills \emph{and} magic, that icon is what keeps a sheet
+legible --- you can see instantly which of your tags can be taken away from
+you.
+
+\bigskip
+\atrtag{magic}{Fire}\quad
+\atrtag{magic}{Create}\quad
+\atrtag{body}{Winged}\quad
+\atrtag{body}{Armoured}\quad
+\atrtag{skill}{Piloting}\quad
+\atrtag{item}{Blessed Blade}\quad
+\atrtag{item}{Grapnel}
+
+\bigskip
+The filled variant marks a tag that is live on the current roll:
+
+\bigskip
+\atrtagon{magic}{Create}\quad
+\atrtagon{magic}{Water}\quad
+\atrtagon{magic}{Food}\quad
+\atrtag{magic}{Destroy}\quad
+\atrtag{magic}{Flying}
+
+\smallskip
+\begin{example}
+Rooster conjures a can of soda. Base \statplate{body}{2}; three tags apply
+and rank~\rating{3} permits three, so that is \dice{5} dice. The greyed
+ovals are tags Rooster has but cannot bring to bear here.
+\end{example}
+
+% =====================================================================
+\section*{A Realm Change, Shown}
+
+The same character in two realms. Body tags are re-described; the Stats and
+the shape of the sheet never move.
+
+\bigskip
+\begin{tabular}{@{}p{2.1cm}p{11.5cm}@{}}
+\textbf{Fantasy} &
+\statplate{body}{4}\ \statplate{mind}{2}\ \statplate{face}{1}\newline
+\smallskip
+\atrtag{body}{Scaled}\ \atrtag{body}{Winged}\ \atrtag{body}{Firebreath}\ \atrtag{item}{Hoard}\\[10pt]
+\textbf{Cyberpunk} &
+\statplate{body}{4}\ \statplate{mind}{2}\ \statplate{face}{1}\newline
+\smallskip
+\atrtag{body}{Plated}\ \atrtag{body}{Thrusters}\ \atrtag{body}{Steam Vent}\ \atrtag{item}{Slush Fund}\\
+\end{tabular}
+
+% =====================================================================
+\section*{Against the Realm Accents}
+
+The plates follow \verb|\realmaccent|, so they re-colour per chapter along
+with everything else.
+
+\bigskip
+% \renewcommand must sit INSIDE the same cell as the plate: & closes the
+% cell group, so setting the accent in the label cell never reaches it.
+\begin{tabular}{@{}ll@{}}
+Body chapter   & {\renewcommand{\realmaccent}{columnBody}\statplate{body}{3}\quad\atrtagon{body}{Scaled}}\\[8pt]
+Stuff chapter  & {\renewcommand{\realmaccent}{columnStuff}\statplate{mind}{3}\quad\atrtagon{item}{Grapnel}}\\[8pt]
+Skills chapter & {\renewcommand{\realmaccent}{columnSkills}\statplate{face}{3}\quad\atrtagon{skill}{Piloting}}\\[8pt]
+Magic chapter  & {\renewcommand{\realmaccent}{columnMagic}\statplate{mind}{3}\quad\atrtagon{magic}{Fire}}\\
+\end{tabular}
+
+\end{document}

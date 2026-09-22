@@ -1,0 +1,297 @@
+% =====================================================================
+%  Legend of the Technomancers — OPEN QUESTIONS
+%  Every design note, TODO, and unresolved fork, pulled OUT of the
+%  rulebook so the book reads as a finished product.
+%  Build:  tectonic -X compile open-questions.tex
+% =====================================================================
+\documentclass[11pt,oneside]{memoir}
+\usepackage{atrpg}
+\geometry{a4paper, inner=20mm, outer=20mm, top=20mm, bottom=22mm}
+
+% \leavevmode first: ragged2e is loaded with [document] and hooks
+% \everyselectfont, so a bare font switch in vertical mode drops a line.
+\newcommand{\thc}[1]{\leavevmode{\hdfont\bfseries\color{white}#1}}
+\newcommand{\where}[1]{\par\smallskip{\small\itshape\color{atrAccent2}Was in: #1}\par}
+
+\begin{document}
+\color{atrInk}
+
+% ------------------------------------------------------------ Title page
+\begin{titlingpage}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[atrInk] (current page.north west) rectangle ([yshift=-104mm]current page.north east);
+  \node[anchor=north, align=center, inner sep=0] at ([yshift=-30mm]current page.north){%
+    \thc{\fontsize{34}{38}\selectfont LEGEND OF THE}\\[2mm]
+    \thc{\fontsize{34}{38}\selectfont TECHNOMANCERS}\\[8mm]
+    {\color{atrAccent2}\rule{0.50\paperwidth}{1.2pt}}\\[8mm]
+    {\hdfont\bfseries\color{atrAccent2}\fontsize{28}{32}\selectfont OPEN QUESTIONS}\\[7mm]
+    {\hdfont\large\itshape\color{white}Everything Still To Decide}%
+  };
+  \node[anchor=south, align=center, inner sep=0] at ([yshift=26mm]current page.south){%
+    {\itshape None of this belongs in the rulebook.}\\
+    {\itshape It lives here until it is decided.}%
+  };
+\end{tikzpicture}
+\end{titlingpage}
+
+\frontmatter
+\tableofcontents
+
+\mainmatter
+
+% =====================================================================
+\chapter{How to Use This File}
+% =====================================================================
+
+\lettrine{T}{his file} is the holding pen. The rulebook is meant to read
+like a finished game --- a reader wants the rules, not a tour of how we got
+to them --- so every design note, open question, and \emph{to do} has been
+pulled out of it and collected here.
+
+\begin{statblock}[The Rule]
+\begin{tabularx}{\linewidth}{@{}p{4.2cm} Y@{}}
+\keyword{In the book} & Rules as they currently stand, stated plainly and without apology. Reader-facing guidance --- including advice to the GM --- is fine.\\[3pt]
+\keyword{In this file} & Anything unresolved, any rationale for a choice, any ``working idea'', and any note that the text is incomplete.\\[3pt]
+\keyword{When decided} & Write the rule into the book in its own voice, and delete the entry here.\\
+\end{tabularx}
+\end{statblock}
+
+Each entry records where it used to sit, so it is easy to put the answer
+back in the right place.
+
+% =====================================================================
+\chapter{Settled, For the Record}
+% =====================================================================
+
+These were decided on 2026-09-21 and are already written into the book.
+They are here only because the \emph{reasoning} is worth keeping, and the
+reasoning is not the reader's business.
+
+\section{Why There Is No Magic Stat}
+There is deliberately no Magic or Arcane stat. If there were, a character
+could pour everything into one hugely versatile number and dominate every
+kind of action at once. Hanging magic off the same three stats keeps tech,
+diplomacy, mundane expertise, and sorcery equally powerful --- and it makes
+\emph{how} you work magic say something about who you are.
+\where{How to Play}
+
+\section{Why Three Stats, Not Four}
+Body, Mind, and Face replaced Strength, Agility, Charisma, and Intellect
+because the same three distinctions apply whether an action is mundane or
+magical, which is what lets one engine cover both.
+
+% =====================================================================
+\chapter{The Core Engine}
+% =====================================================================
+
+\section{``Body'' Means Two Things}
+\keyword{Naming clash to resolve.} \emph{Body} is currently both one of the
+three Stats \emph{and} one of the four creation columns, so ``your Body rank
+sets your Body stat'' reads badly.
+
+\begin{statblock}[Options]
+\begin{tabularx}{\linewidth}{@{}p{4.2cm} Y@{}}
+\keyword{Rename the stat} & \emph{Physique}, \emph{Brawn}, \emph{Form}.\\[3pt]
+\keyword{Rename the column} & \emph{Flesh}, \emph{Self}, \emph{Shape}.\\[3pt]
+\keyword{Accept it} & Lean on context; the two are rarely adjacent.\\
+\end{tabularx}
+\end{statblock}
+\where{How to Play}
+
+\section{Higher of the Two}
+\textbf{To do:} confirm that \emph{take the higher} of character stat and
+item tier is balanced, rather than always using the object's tier, or
+averaging the two. This is the working rule and it wants play-testing.
+\where{How to Play --- Stats from Objects}
+
+\section{Guidelines for Setting Difficulties}
+\textbf{To do:} the GM sets a target number and there is currently no
+guidance on what target to pick. Note that with success on 4--6, a target of
+half your pool is always a coin flip, and the useful band is narrow --- 3 to
+5 successes. Every number the GM has to invent is friction.
+
+\section{Hit Points}
+\textbf{To do:} decide whether durability is the \keyword{Body} stat
+directly, a pool derived from it, or something tied to all three stats.
+\where{Body}
+
+% =====================================================================
+\chapter{Body}
+% =====================================================================
+
+\section{Body Points}
+\textbf{To do:} decide how many buying points a Body rank grants, and the
+stat cap at each rank. Stats run \dice{1}--\dice{5}; ranks \rating{3} and
+\rating{4} should also grant qualitatively different traits --- size, a
+natural weapon, supernatural resilience.
+\where{Body --- At Character Creation}
+
+\section{Body Tags Versus Modifications}
+\keyword{Open direction:} rather than a fixed Modification list, Body could
+grant \keyword{tags} the way Magic does --- a shared set of common tags
+(\emph{Attractive}, \emph{Fast}, \emph{Armoured}) plus world-specific ones,
+so a demon body might carry \emph{Fire}. Tags would then feed rolls from
+four sources alike: body, stuff, skills, and magic.
+
+There is a concrete reason to prefer it: collapsing four stats into three
+left \emph{Extra Strong} and \emph{Fleet of Foot} both granting \dice{+2}
+Body, which are now the same option wearing two names. Tags would carry that
+distinction where a stat bonus no longer can.
+\where{Body --- At Character Creation}
+
+\section{Mobility}
+\textbf{To do:} write up special movement --- flight, shadow-walking,
+web-walking, supernatural speed. These can come from a body, from magic, or
+from an item, and they are a large part of what makes a rank \rating{3} or
+\rating{4} body feel strange.
+\where{Body --- Your Modifications}
+
+% =====================================================================
+\chapter{Stuff}
+% =====================================================================
+
+\section{Purchasing}
+\textbf{To do:} decide how many purchasing points a character gets, what a
+point buys at each rank, and the upper limits. The ambition is a table of
+costs like the one in the \emph{D\&D} Player's Handbook.
+\where{Stuff --- At Character Creation}
+
+\section{Vehicles in Play}
+\textbf{To do:} decide what a vehicle does mechanically --- chase rules,
+how it soaks damage, how many it carries, and whether higher tiers grant
+dice on the relevant rolls.
+\where{Stuff --- Vehicles}
+
+\section{Damage and Armour}
+\textbf{To do:} settle how damage works. Working idea: each rank of armour
+reduces incoming damage by one point.
+\where{Stuff --- Everything Else}
+
+\section{Legendary Weapons}
+\textbf{To do:} a tier-4 weapon is currently described as ``a weapon out of
+story'' because nobody has decided what it actually does. It needs a real
+mechanical hook.
+
+% =====================================================================
+\chapter{Skills}
+% =====================================================================
+
+\section{Skill Points}
+\textbf{To do:} pin down how many skill points each priority grants and
+whether any single skill is capped. Working idea: \rating{1} = 4 points,
+\rating{2} = 8, \rating{3} = 14, \rating{4} = 20.
+\where{Skills --- At Character Creation}
+
+\section{Does the Stat Column Earn Its Keep?}
+With only three Stats, each skill's listed pairing is nearly implied by its
+category: Conflict and Movement are \keyword{Body}, Social is
+\keyword{Face}, Knowledge and Technical are \keyword{Mind}. If the Stat is
+chosen by the fiction anyway, the column may be redundant --- worth cutting,
+or demoting to a parenthetical hint.
+\where{Skills --- Your Skills}
+
+\section{Genre-Specific Skills}
+\textbf{To do:} the list in the book is the \emph{common} set, meant to work
+in any realm. Genre-specific skills (\emph{Cyberdeck Operation},
+\emph{Starship Gunnery}, \emph{Heraldry}) want a separate treatment ---
+working idea: you hold a fixed number of them, and decide what they are as
+they come up in play.
+\where{Skills --- Your Skills}
+
+% =====================================================================
+\chapter{Magic and Tags}
+% =====================================================================
+
+\section{Tag Breadth}
+Broad tags are mechanically stronger, because they apply more often. The
+defences are a curated list, worked examples of acceptable scope, and the GM
+veto: \emph{Control} and \emph{Animals} are fine, \emph{Rats} and
+\emph{Underground} are good specific tags, and \emph{Adventuring} is too
+broad and should be refused.
+
+\textbf{Open:} should a narrow tag grant an explicit bonus, or is the fact
+that it applies more rarely already payment enough?
+
+\begin{notebox}[Worth Promoting]
+The curated-list-plus-GM-veto guidance is real, usable rules text. When the
+narrow-tag question is settled, this should go into the book as guidance ---
+stated as rules, not as a note about rules.
+\end{notebox}
+\where{Magic --- How Magic Works}
+
+\section{How Many Tags May Contribute}
+\textbf{Open:} the Magic rank caps applicable tags at 2/3/5. Once tags also
+come from body, stuff, and skills, is there a single cap across all sources,
+or one per source?
+
+\section{Do Tags Gate, or Gate and Count?}
+\textbf{Open fork.} Andrew wants the columns to work as a permissions system
+--- you can only do a thing if you have the capability for it. If tags both
+\emph{gate} and \emph{add dice}, then a character with zero applicable tags
+cannot act at all. That is a hard wall, and very much a permissions game,
+but it needs a deliberate yes or no.
+
+\section{Genre Swap Semantics}
+\textbf{Open fork.} When a character crosses realms, do their tags
+\emph{persist and get re-described} (a dragon's \emph{fire, flight,
+armoured} become a war-mech's, same tags), or do they get \emph{re-picked}
+(\emph{fire/flight/claws} traded for \emph{steam/servos/plating})?
+
+Re-picking is more evocative --- it is what makes ``a fiery dragon becomes a
+steaming robot'' land --- but it is a character rebuild at every border, and
+it invites optimising for the adventure you can already see. Middle path:
+carry tags over re-skinned by default, and allow swapping up to \emph{rank}
+of them on arrival.
+
+% =====================================================================
+\chapter{Advancement and the Sheet}
+% =====================================================================
+
+\section{Points Conversion}
+\textbf{To do:} figure out the points-conversion rules --- how Change Points
+and Persistence Points are earned, and their relative costs.
+\where{Character Advancement}
+
+\section{Sheet Layout}
+\textbf{To do:} design the character sheet itself --- a one-page, printable
+layout, themed to match the book. It needs \emph{check-off} sections for the
+fixed options (the base Magic tags, the common skills) and \emph{free-entry}
+sections for the world-specific things a traveller picks up in each realm.
+\where{The Character Sheet}
+
+\section{Visual Language}
+\textbf{To do:} two shapes carry the whole sheet.
+\begin{itemize}
+  \item A \keyword{Stat} is an icon plus a number in a \emph{rectangle} --- a muscle for Body, and so on.
+  \item A \keyword{tag} is a word in an \emph{oval}, carrying a small icon for its provenance: magic, body, skill, or item.
+\end{itemize}
+Once tags come from all four sources, that provenance icon is what keeps the
+sheet readable at a glance.
+\where{The Character Sheet}
+
+\section{Example Characters}
+\textbf{To do:} write a set of finished example characters that lean hard
+into recognisable tropes, so a new player can see where the numbers land
+before building their own.
+\where{The Character Sheet}
+
+% =====================================================================
+\chapter{Unwritten Content}
+% =====================================================================
+
+These are not design questions --- the design is known, the prose simply is
+not written. The book currently carries \verb|\lipsum| placeholders in these
+places.
+
+\begin{statblock}[Still To Write]
+\begin{tabularx}{\linewidth}{@{}p{4.6cm} Y@{}}
+\keyword{Part II: Playing} & Running conflicts, session pacing, travel between realms, the GM's role, and mid-campaign rewards. Currently a stub.\\[3pt]
+\keyword{High Fantasy reskins} & The realm's take on Weapons, Armour, Lifestyle, and Locations, then on Body, Skills, and Magic.\\[3pt]
+\keyword{Opening fiction} & Every chapter's read-aloud box is placeholder text.\\[3pt]
+\keyword{The pitch} & The intro never says what the game is or what its tone is.\\[3pt]
+\keyword{Per-realm bestiaries} & Floated as the way to handle Body/Stuff interacting with Magic/Skills, which is genre-specific and hard to spec generically. Also supplies each realm's tag vocabulary.\\[3pt]
+\keyword{World-gen sliders} & Mentioned in the notes, not designed.\\
+\end{tabularx}
+\end{statblock}
+
+\end{document}
