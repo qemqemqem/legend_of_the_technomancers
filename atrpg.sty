@@ -61,7 +61,7 @@
 
 % ---- Page geometry --------------------------------------------------
 \RequirePackage[a4paper,
-  inner=26mm, outer=22mm, top=24mm, bottom=26mm,
+  inner=18mm, outer=14mm, top=24mm, bottom=26mm,
   headsep=8mm, footskip=12mm]{geometry}
 \RequirePackage[document]{ragged2e}  % gentle justification helper
 \setlength{\columnsep}{7mm}          % gutter between the two columns
@@ -82,6 +82,12 @@
   \begin{figure*}[#1]\centering
   \includegraphics[width=\textwidth,height=0.42\textheight,keepaspectratio]{#2}
   \end{figure*}}
+% Inline (non-floating) column-width image — placed exactly where called.
+% \artinline{file}
+\newcommand{\artinline}[1]{%
+  \par\medskip\noindent
+  \includegraphics[width=\columnwidth,keepaspectratio]{#1}%
+  \par\medskip}
 \RequirePackage{booktabs}
 \RequirePackage{array}
 \RequirePackage{tabularx}
