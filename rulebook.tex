@@ -15,10 +15,13 @@
 % The art fills the entire page; title and authors are overlaid on scrims
 % (tikz overlay on current page = ignores margins, bleeds to the edges).
 \begin{titlingpage}
+% Single value controls author band height; text is automatically centred in it.
+\newlength{\atrAuthBandH}\setlength{\atrAuthBandH}{54mm}
 \begin{tikzpicture}[remember picture, overlay]
-  % Cover art scaled to cover the whole page (width-fit overflows top/bottom).
+  % Cover art: 1.005× oversize so the image bleeds past every edge —
+  % eliminates the sub-pixel white sliver that appears at exact \paperwidth.
   \node[anchor=center, inner sep=0] at (current page.center)
-    {\includegraphics[width=\paperwidth]{art/cover-full.png}};
+    {\includegraphics[width=1.005\paperwidth]{art/cover-full.png}};
 
   % ---- Title band (top) ----
   \fill[black, opacity=0.42]
@@ -27,13 +30,14 @@
     {\hdfont\bfseries\color{white}\fontsize{44}{46}\selectfont LEGEND OF THE}\\[3pt]
     {\hdfont\bfseries\color{white}\fontsize{44}{46}\selectfont TECHNOMANCERS}\\[7mm]
     {\color{white}\rule{0.52\paperwidth}{0.8pt}}\\[6mm]
-    {\hdfont\large\itshape\color{white}A Roleplaying Game of Worlds Without End}%
+    {\hdfont\large\itshape\color{white}A Roleplaying Game for Traveling Across Realities}%
   };
 
-  % ---- Author band (bottom) ----
+  % ---- Author band (bottom) — change \atrAuthBandH above to resize. ----
   \fill[black, opacity=0.42]
-    ([yshift=36mm]current page.south west) rectangle (current page.south east);
-  \node[anchor=south, align=center, inner sep=0] at ([yshift=11mm]current page.south){%
+    ([yshift=\atrAuthBandH]current page.south west) rectangle (current page.south east);
+  \node[anchor=center, align=center, inner sep=0]
+    at ([yshift=\dimexpr\atrAuthBandH/2\relax]current page.south){%
     {\hdfont\large\color{white}Andrew Keenan Richardson}\\[3pt]
     {\hdfont\normalsize\color{white}\&}\\[3pt]
     {\hdfont\large\color{white}Christopher Sheldon-Dante}\\[3pt]
