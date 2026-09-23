@@ -303,6 +303,12 @@
          \textsc{#2}\hspace{2.6pt}\textbf{#3}};
     \end{tikzpicture}}}$}
 
+% \statname{body}{Body} → icon + Stat name in the accent colour, for table
+% cells that name a Stat without a value. Weird has no icon of its own and
+% borrows the magic sparkle: \statname{magic}{Weird}.
+\newcommand{\statname}[2]{%
+  {\color{\realmaccent}\atricon{#1}\hspace{2.6pt}\textbf{#2}}}
+
 % ---- Tag ovals ------------------------------------------------------
 % \atrtag{magic}{Fire} → the tag word in an oval, with a provenance icon so
 % you can see at a glance whether it came from magic, your body, a skill, or

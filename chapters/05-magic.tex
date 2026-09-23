@@ -74,7 +74,7 @@ world and overrides a security system in the sprawl.
 % one die per applicable tag. SUPERSEDES the earlier "two dice per tag".
 A spell is rolled exactly like anything else: a \keyword{base Stat} plus
 your expertise. For magic, that expertise is your tags. Take the Stat that
-fits what the spell \emph{accomplishes}, then add \keyword{one die for each
+matches what \emph{resists} the spell, then add \keyword{one die for each
 applicable tag} --- up to the system-wide limit of \dice{5} tags on any
 roll. Count successes (\dice{4}, \dice{5}, or \dice{6}) against the
 difficulty the GM sets.
@@ -86,7 +86,7 @@ applicable tag; with zero applicable tags the action cannot be attempted
 as magic at all. Per 2026-09-22 design notes.}
 
 Because magic runs off the same three Stats as everything else, there is no
-such thing as a character who is good at ``magic'' in general. Shapeshifting
+such thing as a character who is good at ``magic'' in general. Telekinesis
 leans on \keyword{Body}, divination on \keyword{Mind}, a glamour on
 \keyword{Face} --- so the way you work magic expresses who you are.
 
@@ -94,11 +94,96 @@ leans on \keyword{Body}, divination on \keyword{Mind}, a glamour on
 % REAL RULE, 2026-09-22: no new mechanic here --- magic uses the three
 % Stats exactly as anything else does. Stated explicitly because it's the
 % single most common point of confusion for new players.
-Pick the Stat the same way you would for anything else: \keyword{Body}
-for lifting, striking, or moving something physical; \keyword{Mind} for
-puzzling something out, perceiving, or understanding; \keyword{Face} for
-working on another person. A spell is not exempt from this --- it is
-just another action, classified by what it accomplishes.
+% REAL RULE, 2026-09-23: the Stat is chosen by asking "what resists?" ---
+% the spell's appearance doesn't matter, only what pushes back.
+A spell is just another action, so pick its Stat the way you would for
+anything else, by asking one question: \keyword{what is resisting you?}
+\begin{itemize}
+  \item \keyword{Body} --- matter resists: weight, distance, gravity, a
+    wall, a body.
+  \item \keyword{Mind} --- something hidden or complicated resists: a
+    secret, a puzzle, a lock, a system.
+  \item \keyword{Face} --- a person's will resists: their nerve, loyalty,
+    suspicion, or pride.
+  \item \keyword{Weird} --- nothing resists but reality itself; see
+    \emph{The Weird Stat} below.
+\end{itemize}
+Ask what resists, not what the spell looks like. A fireball that blasts a
+door off its hinges is \keyword{Body}. The same fireball sent over the
+guards' heads to make them run is \keyword{Face}: nobody is struck, and
+what resists is their nerve. Cleverness doesn't change the answer either
+--- melting a vault door by commanding its molecules is still
+\keyword{Body}, because the steel is what pushes back. The table
+\emph{Spells and Their Stats} on page~\pageref{tab:spellstats} works
+through many more cases.
+
+Striking a creature is \keyword{Body}: its hide and bulk resist.
+\emph{Changing} a creature against its will --- turning it into a toad,
+teleporting it into a cell, possessing it, banishing it --- is
+\keyword{Face}, because what resists is its will to stay itself. A willing
+creature doesn't resist at all, so healing an ally or reshaping your own
+body is \keyword{Weird}.
+
+% Full-page float ([p]): the table is too tall to share a page with prose,
+% so it gets a float page of its own wherever LaTeX can next place one.
+% \spellrow{spell}{realm}{stat cell}{what resists}
+% \spellhead{title} --- a full-width shaded divider row.
+\begin{table*}[p]
+  % \leavevmode before any \color at the start of a p-cell, or the colour
+  % whatsit opens an empty first line and the cell drops a line.
+  \newcommand{\spellrow}[4]{#1 & \leavevmode{\itshape\color{atrAccent2}#2} & \leavevmode#3 & #4 \\}
+  \newcommand{\spellhead}[1]{%
+    \rowcolor{atrBoxbg}\multicolumn{4}{@{}l@{}}{\rule{0pt}{13pt}%
+      {\hdfont\large\color{\realmaccent}\hspace{4pt}#1}} \\}
+  \begingroup\centering
+  {\hdfont\Large\bfseries\color{\realmaccent} Spells and Their Stats\par}
+  \vspace{4pt}
+  {\small\itshape Ask what resists. The spell's appearance never decides it.\par}
+  \vspace{8pt}
+  \endgroup
+  \label{tab:spellstats}
+  \begingroup
+  \small
+  \setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.2}
+  \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}p{0.38\textwidth} >{\RaggedRight\arraybackslash}p{1.6cm} >{\RaggedRight\arraybackslash}p{1.7cm} Y@{}}
+  \rowcolor{\realmaccent}
+  {\leavevmode\hdfont\bfseries\color{white}Spell} &
+  {\leavevmode\hdfont\bfseries\color{white}Realm} &
+  {\leavevmode\hdfont\bfseries\color{white}Stat} &
+  {\leavevmode\hdfont\bfseries\color{white}What resists} \\
+  \spellhead{Straightforward}
+  \spellrow{Blast a door off its hinges with a fireball}{Fantasy}{\statname{body}{Body}}{The door.}
+  \spellrow{Shove a hover-tank off a bridge with the Force}{Space}{\statname{body}{Body}}{The tank's mass.}
+  \spellrow{Levitate yourself up a sheer cliff}{Any}{\statname{body}{Body}}{Gravity, every metre of the climb.}
+  \spellrow{Knock a brigand flat with a flung ham}{Food}{\statname{body}{Body}}{The brigand.}
+  \spellrow{Crack a corporate mainframe's security}{Cyberpunk}{\statname{mind}{Mind}}{The system. A terminal's tier can stand in for your Mind.}
+  \spellrow{Scry on the queen's throne room}{Fantasy}{\statname{mind}{Mind}}{Distance hides it.}
+  \spellrow{Sequence an alien pathogen by sight}{Science}{\statname{mind}{Mind}}{Its genome is complicated.}
+  \spellrow{Taste which of forty dishes was poisoned}{Food}{\statname{mind}{Mind}}{The poison is hidden.}
+  \spellrow{Bind a summoned demon to your service}{Fantasy}{\statname{face}{Face}}{The demon's will.}
+  \spellrow{Wave a hand and talk your way past a checkpoint trooper}{Space}{\statname{face}{Face}}{The trooper's sense of duty.}
+  \spellrow{Bake a pie that ends a family feud}{Food}{\statname{face}{Face}}{The grudge, not the pastry.}
+  \spellrow{Conjure a can of soda, or a feast from nothing}{Food}{\statname{magic}{Weird}}{Only reality.}
+  \spellrow{Transmute a lead ingot into gold, atom by atom}{Science}{\statname{magic}{Weird}}{The lead doesn't fight back.}
+  \spellrow{Teleport across a chasm}{Any}{\statname{magic}{Weird}}{You never cross it.}
+  \spellhead{Edge Cases}
+  \spellrow{Fireball over the guards' heads to make them run}{Fantasy}{\statname{face}{Face}}{Their nerve. Nobody is struck, so it isn't Body.}
+  \spellrow{Melt a vault door by commanding its molecules}{Science}{\statname{body}{Body}}{The steel. Clever physics doesn't make it Mind.}
+  \spellrow{Fly across the chasm you could have teleported over}{Any}{\statname{body}{Body}}{You cross every metre, and gravity pulls the whole way.}
+  \spellrow{Teleport a boulder instead of lifting it}{Any}{\statname{magic}{Weird}}{Its weight never gets to push back. Weird tops out at \dice{3}, so strength still pays.}
+  \spellrow{Teleport out of a grappler's hold}{Any}{\statname{magic}{Weird}}{You leave the grip rather than break it.}
+  \spellrow{Teleport an unwilling guard into a cell}{Any}{\statname{face}{Face}}{Their will to stay put. Changing a creature is Face; only striking it is Body.}
+  \spellrow{Fold space to jump a starship past a blockade}{Space}{\statname{magic}{Weird}}{The blockade never gets a chance to resist.}
+  \spellrow{Talk a security AI into opening the vault}{Cyberpunk}{\statname{face}{Face}\newline or \statname{mind}{Mind}}{Face if the AI has a will of its own; Mind if it is only rules to outwit.}
+  \spellrow{Upload your mind into an unsecured drone}{Cyberpunk}{\statname{magic}{Weird}}{Nothing guards it. A secured drone needs a Mind roll first.}
+  \spellrow{Read the thoughts of a suspect guarding a secret}{Any}{\statname{face}{Face}}{Their will to keep it. A sleeping mind is unguarded: Mind.}
+  \spellrow{Heal a willing ally's wound}{Any}{\statname{magic}{Weird}}{Flesh doesn't resist being mended.}
+  \spellrow{Turn invisible, then sneak past the guards}{Any}{\statname{magic}{Weird}}{Nothing resists the vanishing. Sneaking past them is a separate roll.}
+  \spellrow{Enchant a souffl\'e to win the royal cook-off}{Food}{\statname{face}{Face}}{The judges' palates. The souffl\'e doesn't fight back.}
+  \spellrow{Counter a rival's spell as they cast it}{Fantasy}{\statname{mind}{Mind}}{The working itself. You unpick it; you don't persuade the caster.}
+  \end{tabularx}
+  \endgroup
+\end{table*}
 
 As with any roll, a base Stat can also come from an item instead of your
 body (see \emph{Stats from Objects} in \emph{How to Play}). Hacking a
@@ -117,16 +202,31 @@ points into \keyword{Body}, same as anyone else who wants to be strong.
 % REAL RULE, 2026-09-22: a fourth base Stat, derived (not bought), equal
 % to Magic rank minus 1. Only usable when nothing else fits.
 Some magic doesn't lift anything, solve anything, or persuade anyone ---
-it just happens, and reality bends to let it. Casting a fireball from an
-open palm, making butterflies appear from nowhere: these don't accomplish
-a Body, Mind, or Face outcome, so none of those Stats apply.
+it just happens, and reality bends to let it. Conjuring a can of soda,
+making butterflies appear from nowhere, turning lead into gold: nothing in
+the scene pushes back, so none of Body, Mind, or Face applies.
 
 For exactly these moments, you have a fourth base Stat: \keyword{Weird}.
 It equals your \keyword{Magic} rank minus one (\dice{0} at Magic
 \rating{1}, up to \dice{3} at Magic \rating{4}), and it is the only Stat
 you cannot buy directly --- it rises only when your Magic rank does.
-Use Weird \emph{only} when no other Stat plausibly applies; if the
-fiction supports Body, Mind, or Face, use that instead.
+Use Weird \emph{only} when nothing but reality resists; if matter, a
+puzzle, or a will pushes back, use that Stat instead.
+
+\keyword{Teleportation} is Weird. You never cross the space in between,
+so the distance, the wall, or the grip you slip out of never gets the
+chance to resist --- only reality does. Flying across the same chasm is
+\keyword{Body}: you cross every metre, and gravity pulls the whole way.
+
+Weird makes an effect happen; \emph{using} the effect is a separate roll.
+Turning invisible is Weird. Sneaking past the guards while invisible is
+whatever sneaking always is.
+
+\begin{question}{So my weak wizard can just teleport the boulder instead of lifting it?}
+Yes. The boulder's weight never gets to push back, so it is Weird. That is
+fine: Weird never rises above \dice{3}, so a wizard who wants to move
+boulders \emph{reliably} still does best to get strong.
+\end{question}
 
 Every genre chapter may set its own tone for what counts as Weird enough
 to need it --- see each realm's Magic section for local guidance.
