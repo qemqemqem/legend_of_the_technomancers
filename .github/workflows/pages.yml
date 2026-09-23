@@ -36,7 +36,16 @@ jobs:
         run: |
           mkdir -p _site
           cp site/index.html _site/
-          gh release download latest-build --pattern rulebook.pdf --dir _site --repo "$GITHUB_REPOSITORY"
+          gh release download latest-build --pattern rulebook.pdf --dir . --repo "$GITHUB_REPOSITORY"
+      # The source PDF embeds full-resolution PNG art (~47 MB). Ghostscript's
+      # /ebook preset (150 dpi images) brings it to ~1.3 MB with no visible
+      # loss on a phone screen; the full-resolution file stays on the release.
+      - name: Compress for mobile
+        run: |
+          sudo apt-get install -y --no-install-recommends ghostscript
+          gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pdfwrite -dCompatibilityLevel=1.7 \
+            -dPDFSETTINGS=/ebook -o _site/rulebook.pdf rulebook.pdf
+          ls -l rulebook.pdf _site/rulebook.pdf
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
