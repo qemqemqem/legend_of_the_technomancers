@@ -16,34 +16,129 @@ how many dice you get to throw.
 \artbanner{play-dice.png}
 
 \section{The Core Roll}
-% REAL RULE: d6 dice pool, success on 4/5/6, beat GM target.
-Build a pool of \dice{d6} dice, roll them, and count every die that comes
-up \keyword{4, 5, or 6} --- each of those is one success. The GM sets a
-target number; meet or beat it and you succeed. The more successes you
-roll, the better it goes.
+When a Traveller acts, say what they want and what they do. If the
+outcome is certain, it happens; if it is impossible, the GM explains
+why. When the outcome is in doubt and something is at stake, the GM sets
+a target number and the player builds a pool of six-sided dice.
 
-\begin{statblock}[The Core Roll]
+\begin{statblock}[Build Your Dice Pool]
+\begin{center}
+{\large\bfseries Base Stat + applicable tags = dice pool}
+\end{center}
+Roll the pool. Each die showing \keyword{4, 5, or 6} is one success.
+Fewer successes than the target is a failure; exactly the target is a
+partial success; more is a full success. If the number of \dice{6}s
+alone exceeds the target, it is a critical success instead. See
+\emph{Degrees of Success} in \emph{The Shape of a Session} for what
+each result means.
+\end{statblock}
+
+\begin{example}
+Mara jumps a gap. Her \keyword{Body} is \dice{3}, and her
+\atrtag{skill}{Athletics} tag adds \dice{1} die: she rolls \dice{4}
+dice. The GM set a target of \dice{2}. Mara gets three successes, so
+she lands cleanly; with exactly two, she would land with a complication.
+\end{example}
+
+\section{Base Stat}
+% REAL RULE (Notion, 2026-09-21, decided with Chris): THREE broad base
+% stats — Mind, Body, Face. No separate Magic/Arcane stat: magic hangs off
+% these same three, which stops one versatile stat from dominating play.
+Every character has three broad base \keyword{Stats}. Everyone begins with
+\dice{1} in each; character creation can raise them as high as \dice{5}.
+Choose the one that fits what pushes back against the action, not just
+how the action looks. A spell and a mundane action use the same Stats.
+
+\begin{statblock}[The Three Stats]
 \begin{tabularx}{\linewidth}{@{}p{0.30\linewidth} Y@{}}
-\keyword{Dice} & Roll one \dice{d6} for each die in your pool.\\[3pt]
-\keyword{Success} & Each die showing \keyword{4, 5, or 6} counts as one success.\\[3pt]
-\keyword{Target} & The GM sets how many successes the task needs.\\[3pt]
-\keyword{Result} & Meet or beat the target and you succeed.\\
+\leavevmode{\color{\realmaccent}\atricon{body}}\ \keyword{Body} & Physical action and the handling of objects --- striking, lifting, running, throwing.\\[3pt]
+\leavevmode{\color{\realmaccent}\atricon{mind}}\ \keyword{Mind} & Puzzles, analysis, knowledge, and perception.\\[3pt]
+\leavevmode{\color{\realmaccent}\atricon{face}}\ \keyword{Face} & Dealing with people --- persuasion, deception, presence, command.\\
 \end{tabularx}
 \end{statblock}
 
-Every pool is built the same way: a \keyword{base Stat}, plus whatever
-\keyword{tags} apply. A tag is a word in an oval that says you have some
-edge on this roll --- and it makes no difference which of the four
-columns it came from.
-\[
-\text{\keyword{Stat} (1--5)} \;+\; \text{\keyword{applicable tags}} \;=\; \text{pool}
-\]
-\atrtag{skill}{Blades} from training, \atrtag{body}{Strong} from your
-body, \atrtag{magic}{Fire} from magic, \atrtag{item}{Grapnel} from
-something you carry --- all four look the same on the page, and all four
-add to the same pool the same way. \keyword{Magic} is not a separate
-subsystem with its own maths; it is the same roll, reached by a different
-route.
+On the page and on your sheet, a Stat is written as its icon and its
+number in a rectangle --- \statplate{body}{3}, \statplate{mind}{2},
+\statplate{face}{4}. Moving an object with your thoughts is still a
+\keyword{Body} action because the object's weight resists you; scrying
+on a secret is \keyword{Mind}, and swaying a guard's will is
+\keyword{Face}. For more magical examples, see \emph{Which Base Stat?}
+in \emph{Magic}.
+
+\subsection*{Weird: When Reality Resists}
+When nothing resists but reality itself, use \keyword{Weird} instead:
+conjuring something from nothing or teleporting across a gap, rather
+than crossing it. Weird equals your Magic rank minus one, from
+\dice{0} to \dice{3}; you cannot raise it with Stat Points. Use Body,
+Mind, or Face if matter, a puzzle, or a person's will is what pushes
+back. See \emph{The Weird Stat} in \emph{Magic} for examples.
+
+\subsection*{Stats from Objects}
+% REAL RULE (Notion, 2026-09-21): an item can supply the base stat, using
+% its tier. "Higher of the two" is the working idea, flagged for testing.
+A base Stat does not have to come from your body. When you act
+\emph{through} a thing --- a car, a rifle, a warhorse, a cutting deck ---
+that object can supply the base Stat itself, using its \keyword{tier} in
+place of your own number. Take the higher of the two. This changes the
+dice you roll, not the size of your own consequence pools.
+
+\begin{example}
+Kira drives a rank-\rating{3} car through a chase. Her own \keyword{Body} is
+\dice{2}, but the car's tier is \dice{3}, so the car supplies the base. With
+\atrtag{skill}{Driving}, she rolls \dice{4} dice.
+\end{example}
+
+\section{Tags}
+A \keyword{tag} is a word in an oval describing an edge you have on an
+action. Count each tag that clearly applies and add one die for it. A
+tag can come from Body, Stuff, Skills, or Magic. The small mark on its
+oval shows its source; \atrtag{body}{Strong} and \atrtag{magic}{Fire}
+both add one die when they apply.
+
+\subsection*{Skills and Magic Are Tags Too}
+% REAL RULE, 2026-09-22: a Skill IS a tag --- not a separate resolution
+% path, and not a ranked one either. You know it or you don't; a known
+% skill adds exactly one die, same as any other tag.
+A \keyword{Skill} is a tag like any other on your sheet --- the trained
+kind. You either know it or you don't; there is no individual rank to
+raise. \atrtag{skill}{Athletics} and \atrtag{skill}{Blades} each add
+exactly one die when they apply. Skills cover everything mundane and
+learned --- driving, acrobatics, lore, stealth, and combat.
+
+\subsection*{Your First Skill Adds +1}
+% REAL RULE, 2026-09-23 (revised): a Skill still has to clearly apply to
+% the roll, exactly like any other tag --- an earlier draft of this
+% section wrongly dropped that requirement. What's guaranteed is the
+% value once it applies, not the applicability itself: the first Skill
+% that fits always adds \dice{1} die. Supersedes the earlier
+% (never-implemented) idea of a $-1$ penalty for acting without a
+% matching skill.
+A Skill still has to clearly fit the action, exactly like any other tag
+(see \emph{Tags}, above) --- the GM is still the judge of whether it
+applies. What changes is the value once it does: the first Skill that
+applies to a roll always adds \dice{1} die. There is no penalty for
+having no applicable skill at all --- you simply roll with one fewer die
+than someone who does.
+
+\begin{example}
+Mara has no \atrtag{skill}{Larceny}, but her \atrtag{skill}{Craft}
+clearly covers picking a lock. The GM agrees it applies, so it adds its
+die, the same as any tag that clearly applies.
+\end{example}
+
+% REAL RULE (Notion, 2026-09-21, decided): magic pool = base stat + one
+% point per applicable tag. This SUPERSEDES the older "two dice per tag"
+% rule.
+Magic uses the same roll: choose the base Stat by what resists, then
+count each applicable Magic tag. See \emph{Magic} for the tag lists and
+what spells those tags can describe.
+
+\begin{example}
+Rooster has \keyword{Body} \dice{2} and the Magic tags
+\atrtag{magic}{Destroy} and \atrtag{magic}{Water}. Shattering a window
+with a hurled fist of water is a physical blow, so the base is
+\keyword{Body}. Both tags apply: \dice{2}~+~\dice{2}~=~\dice{4} dice.
+\end{example}
 
 \subsection*{One Source Per Roll}
 % REAL RULE, 2026-09-22: tags on a single roll must all come from the
@@ -53,7 +148,8 @@ Every tag you add to a pool must come from the \emph{same} column ---
 You cannot reach into two columns on one roll: a \atrtag{body}{Strong}
 tag and a \atrtag{skill}{Blades} tag never stack together, even if both
 would plausibly apply. Pick the single source that best fits the action
-before you count your tags.
+before you count your tags. An item may still supply the base Stat while
+you use tags from another column.
 
 \begin{example}
 Mara swings a sword she can barely lift. She has \atrtag{body}{Strong}
@@ -71,28 +167,28 @@ whether allowing tags from multiple columns on one roll is actually
 
 \subsection*{Five Tags, Maximum}
 % REAL RULE, 2026-09-22: one flat cap for the whole system, replacing
-% Magic's old per-rank "Tags per Spell" column. Simpler to remember, and
-% a Magic-rank-scaled limit was redundant with Tags Known anyway (a
-% low-rank caster doesn't know enough tags to hit five in the first
-% place).
+% Magic's old per-rank "Tags per Spell" column.
 No matter the source, a single roll never adds more than \dice{5} tags
 to its pool. This is the one limit that applies everywhere --- Body,
-Stuff, Skills, and Magic alike --- so you never need to look up a
-different cap depending on what column you're rolling from.
+Stuff, Skills, and Magic alike.
 
-\section{Consequences and Your Pools}
+\begin{notebox}[Stats and the Four Columns]
+The four columns of character creation are not the same thing as the three
+Stats. \keyword{Body}, \keyword{Skills}, and \keyword{Magic} ranks tell you
+how much you may buy in each area; \keyword{Stuff} governs the gear you
+carry. The Stats --- Body, Mind, Face --- are what you actually roll.
+\end{notebox}
+
+\section{Consequences}
 % REAL RULE, 2026-09-22: each Stat has a companion pool (size = Stat
-% rating) that pays the price when a roll built on that Stat fails. A
-% shared party Coherence pool (starts at 5) absorbs the overflow once a
-% Stat's own pool runs dry. Full adjudication advice lives in The GM's
-% Role, in The Shape of a Session.
+% rating). A shared party Coherence pool (starts at 5) absorbs overflow.
 Failure is not just a missed roll --- it costs something. Each of your
-three Stats has a companion pool the same size as its rating: a
-\keyword{Body} pool, a \keyword{Mind} pool, and a \keyword{Face} pool.
-When you fail a roll, the GM may take a point from the pool that the
-consequence threatens. Usually it matches the Stat you rolled --- a
-failed Body roll costs Body, a failed Face roll costs Face --- but a
-failed attempt to outwit a foe could leave you physically hurt instead.
+three ordinary Stats has a companion pool the same size as its rating:
+a \keyword{Body} pool, a \keyword{Mind} pool, and a \keyword{Face} pool.
+Weird and object tiers do not give you extra pools or increase their
+sizes. When a consequence costs you a point, take it from the pool the
+fiction threatens. Usually it matches the Stat you rolled, but a
+failed Mind roll to outwit an armed foe might cost you Body instead.
 
 \begin{statblock}[Your Three Pools]
 \begin{tabularx}{\linewidth}{@{}p{0.22\linewidth} Y@{}}
@@ -102,6 +198,36 @@ failed attempt to outwit a foe could leave you physically hurt instead.
 \end{tabularx}
 \end{statblock}
 
+In a conflict, a successful action can cost an opponent a point from
+one of these tracks, while a failure can cost you one. A partial success
+can do both. The track affected need not match the Stat used to roll;
+see \emph{Conflicts} in \emph{The Shape of a Session} for the full
+exchange.
+
+\subsection*{When a Pool Is Empty}
+At \dice{0} in a pool, subtract \dice{1} die from every roll using its
+Stat until you recover at least one point in that pool. At \dice{0}
+Mind, for example, you roll one fewer die on Mind actions. This also
+applies when an item's tier supplies the base for that Stat: a better
+tool does not erase your exhaustion or shaken confidence. The penalty
+does not stack if further consequences hit the empty pool; those losses
+go to Coherence instead. Weird has no pool and no such penalty.
+
+\subsection*{Recovering Your Pools}
+When you enter a new world, fully refill your Body, Mind, and Face pools
+to their Stat ratings. Within a world, recovery follows what happens in
+the story. The GM decides whether an event restores part or all of a
+pool, never more than its full size. A long rest might restore some or
+all of Body and Mind, at the GM's discretion. Rest alone does not
+restore Face: repair your standing by changing your social situation,
+making amends, or earning recognition for a completed mission.
+
+\begin{example}
+Mara loses Face when the court laughs at her. After she completes a
+quest, the king recognises her before that same court; the GM restores
+her Face pool in full.
+\end{example}
+
 \subsection*{Coherence: The Party's Last Line}
 When a pool would lose a point and it is already empty, the loss comes
 out of \keyword{Coherence} instead --- one shared pool for the whole
@@ -109,9 +235,8 @@ party, starting at \dice{5}. Coherence isn't tied to any one character;
 it is the party's grip on the world they are currently standing in, and
 everyone draws from the same reserve.
 
-\todo{When does Coherence refill --- every session, on arrival in a new
-realm, never without a specific in-fiction event? Not yet specified;
-needs a decision.}
+\todo{When does the shared Coherence pool refill? Unlike personal
+Body, Mind, and Face pools, its recovery is not yet specified.}
 
 If Coherence ever reaches \dice{0}, something catastrophic happens, at
 the GM's discretion --- the world itself has stopped holding together
@@ -119,94 +244,3 @@ around the party. One reliable option: they are torn loose from the
 realm entirely and pulled into the next one, a clean and dramatic way to
 close out a session. See \emph{For the Game Master} for more on running
 this.
-
-\section{Stats}
-% REAL RULE (Notion, 2026-09-21, decided with Chris): THREE broad base
-% stats — Mind, Body, Face. No separate Magic/Arcane stat: magic hangs off
-% these same three, which stops one versatile stat from dominating play.
-Every character has three broad base \keyword{Stats}. Everyone begins with
-\dice{1} in each; character creation can raise them as high as \dice{5}.
-
-\begin{statblock}[The Three Stats]
-\begin{tabularx}{\linewidth}{@{}p{0.30\linewidth} Y@{}}
-\leavevmode{\color{\realmaccent}\atricon{body}}\ \keyword{Body} & Physical action and the handling of objects --- striking, lifting, running, throwing.\\[3pt]
-\leavevmode{\color{\realmaccent}\atricon{mind}}\ \keyword{Mind} & Puzzles, analysis, knowledge, and perception.\\[3pt]
-\leavevmode{\color{\realmaccent}\atricon{face}}\ \keyword{Face} & Dealing with people --- persuasion, deception, presence, command.\\
-\end{tabularx}
-\end{statblock}
-
-On the page and on your sheet, a Stat is written as its icon and its number
-in a rectangle --- \statplate{body}{3}, \statplate{mind}{2},
-\statplate{face}{4} --- while a tag is a word in an oval carrying a small
-mark for where it came from: \atrtag{magic}{Fire} from magic,
-\atrtag{body}{Winged} from your body, \atrtag{skill}{Piloting} from
-training, \atrtag{item}{Grapnel} from something you carry. Rectangles are
-numbers you roll with; ovals are the permissions that let you act at all.
-
-These three cover the action whether it is mundane or magical. Shapeshifting
-is \keyword{Body}; scrying is \keyword{Mind}; a charm laid on a guard is
-\keyword{Face}. Classify by \emph{what the action accomplishes}, not by how
-it is achieved --- so moving an object with your thoughts is still
-\keyword{Body}.
-
-\section{Stats from Objects}
-% REAL RULE (Notion, 2026-09-21): an item can supply the base stat, using
-% its tier. "Higher of the two" is the working idea, flagged for testing.
-A base Stat does not have to come from your body. When you act
-\emph{through} a thing --- a car, a rifle, a warhorse, a cutting deck ---
-that object can supply the base Stat itself, using its \keyword{tier} in
-place of your own number. Take the higher of the two.
-
-\begin{example}
-Kira drives a rank-\rating{3} car through a chase. Her own \keyword{Body} is
-\dice{2}, but the car's tier is \dice{3}, so the car supplies the base. With
-\atrtag{skill}{Driving}, she rolls \dice{4} dice.
-\end{example}
-
-\section{Skills}
-% REAL RULE, 2026-09-22: a Skill IS a tag --- not a separate resolution
-% path, and not a ranked one either. You know it or you don't; a known
-% skill adds exactly one die, same as any other tag.
-A \keyword{Skill} is a tag like any other on your sheet --- the trained
-kind. You either know it or you don't; there is no individual rank to
-raise. \atrtag{skill}{Athletics} and \atrtag{skill}{Blades} each add
-exactly one die when they apply, same as a Body, Magic, or Stuff tag.
-Skills cover everything mundane and learned --- driving, acrobatics,
-lore, stealth, and combat skills such as blades or martial arts. When
-you act, pair the relevant skill with whichever Stat best fits what you
-are attempting, then roll the combined pool.
-
-\begin{example}
-Mara vaults a canyon gap. She has \keyword{Body} \dice{3} and knows
-\atrtag{skill}{Athletics}, so she rolls \dice{4} dice. Three come up 4 or
-higher --- three successes. The GM had called for two. She lands clean,
-with one success to spare.
-\end{example}
-
-\section{Magic Rolls}
-% REAL RULE (Notion, 2026-09-21, decided): magic pool = base stat + one
-% point per applicable tag. This SUPERSEDES the older "two dice per tag"
-% rule. The old per-rank "Tags per Spell" limit was removed 2026-09-22
-% in favour of the system-wide five-tag cap (see "Five Tags, Maximum"
-% above) --- one rule to remember instead of a rank lookup.
-Magic uses the same roll. Take the base Stat that matches what is
-resisting you, then add \keyword{one die for each applicable tag} you
-have --- up to the system-wide limit of \dice{5} tags on any roll. See
-\emph{Magic} for the tag lists.
-
-\begin{example}
-Rooster has \keyword{Body} \dice{2} and Magic \rating{3}, with the tags
-\atrtag{magic}{Create}, \atrtag{magic}{Destroy}, \atrtag{magic}{Fire},
-\atrtag{magic}{Water}, \atrtag{magic}{Food}, \atrtag{magic}{Flying}.
-Shattering a window across the street with a hurled fist of water is a
-physical blow, so the base is \keyword{Body}. Two tags apply ---
-\atrtag{magic}{Destroy}, \atrtag{magic}{Water} --- comfortably under the
-five-tag cap. That is \dice{2}~+~\dice{2}~=~\dice{4} dice.
-\end{example}
-
-\begin{notebox}[Stats and the Four Columns]
-The four columns of character creation are not the same thing as the three
-Stats. \keyword{Body}, \keyword{Skills}, and \keyword{Magic} ranks tell you
-how much you may buy in each area; \keyword{Stuff} governs the gear you
-carry. The Stats --- Body, Mind, Face --- are what you actually roll.
-\end{notebox}
