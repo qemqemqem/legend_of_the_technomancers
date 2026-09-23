@@ -133,6 +133,14 @@ body is \keyword{Weird}.
 % \spellrow{spell}{realm}{stat cell}{what resists}
 % \spellhead{title} --- a full-width shaded divider row.
 \begin{table*}[p]
+  % BUG FOUND 2026-09-23: this is the one page in the book that comes
+  % from a [p]-only float page (LaTeX's output routine ships it out
+  % differently from an ordinary text page) rather than \clearpage'd
+  % ordinary content, and it was the ONE page that came back as
+  % US-Letter instead of A4 despite atrpg.sty's \AtBeginShipout hook
+  % (see the comment there) firing correctly on every other page.
+  % Belt-and-suspenders special, same fix pattern as the cover page.
+  \special{papersize=210mm,297mm}
   % \leavevmode before any \color at the start of a p-cell, or the colour
   % whatsit opens an empty first line and the cell drops a line.
   \newcommand{\spellrow}[4]{#1 & \leavevmode{\itshape\color{atrAccent2}#2} & \leavevmode#3 & #4 \\}
