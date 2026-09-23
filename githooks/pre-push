@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Auto-publish rulebook.pdf to the "latest-build" GitHub Release on every
+# push, so GitHub always has a downloadable copy of the current book
+# without the PDF ever being committed to git (see
+# wiki/across-the-realms-pdf-release-workflow.md in project memory for
+# why: a 45MB PDF committed normally would grow .git history forever).
+#
+# Not tracked by git natively — install with:
+#   cp githooks/pre-push .git/hooks/pre-push && chmod +x .git/hooks/pre-push
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+
+echo "[pre-push] Building rulebook.pdf before push..."
+if ! ./build.sh; then
+  echo "[pre-push] Build failed — aborting push. Fix the book before pushing." >&2
+  exit 1
+fi
+
+echo "[pre-push] Uploading rulebook.pdf to the 'latest-build' release..."
+if ! gh release upload latest-build rulebook.pdf --clobber --repo qemqemqem/across-the-realms-rpg; then
+  echo "[pre-push] Release upload failed (network? gh auth?) — pushing anyway." >&2
+fi
+
+exit 0
