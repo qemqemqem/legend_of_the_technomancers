@@ -21,6 +21,13 @@ Tectonic auto-downloads all LaTeX packages and fonts on first build.
 tectonic -X compile rulebook.tex
 ```
 
+To publish, run `./publish.sh`: it uploads `rulebook.pdf` to the
+`latest-build` release and redeploys GitHub Pages, which serves it for
+in-browser (and mobile) viewing at
+<https://qemqemqem.github.io/legend_of_the_technomancers/rulebook.pdf>.
+The Pages copy is recompressed with Ghostscript (150 dpi art, ~1.3 MB);
+the full-resolution PDF remains on the release.
+
 > Note: the machine has no `lualatex` wrapper, so this project targets the
 > XeTeX engine via Tectonic. It uses `fontspec` (Libertinus + TeX Gyre
 > Adventor) and is functionally equivalent to a LuaLaTeX build for this book.
