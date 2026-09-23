@@ -1,0 +1,261 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1405 375">
+<rect width="100%" height="100%" fill="#101c28"/>
+<style>text{font: 13px sans-serif;fill:#e6f2f3} .title{font-size:20px;font-weight:bold} .cell{font-size:11px;font-weight:bold}</style>
+<text class="title" x="30" y="35">Dice pool vs target: exact chance</text>
+<text x="30" y="57">Each d6 hits on 4+. Tie = partial; beat = full.</text>
+<text x="65" y="84">Partial or better</text>
+<text x="90" y="104" text-anchor="middle">0</text>
+<text x="145" y="104" text-anchor="middle">1</text>
+<text x="200" y="104" text-anchor="middle">2</text>
+<text x="255" y="104" text-anchor="middle">3</text>
+<text x="310" y="104" text-anchor="middle">4</text>
+<text x="365" y="104" text-anchor="middle">5</text>
+<text x="420" y="104" text-anchor="middle">6</text>
+<text x="475" y="104" text-anchor="middle">7</text>
+<text x="530" y="104" text-anchor="middle">8</text>
+<text x="585" y="104" text-anchor="middle">9</text>
+<text x="640" y="104" text-anchor="middle">10</text>
+<text x="45" y="140" text-anchor="middle">1</text>
+<rect x="65" y="115" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="91" y="141" text-anchor="middle">0%</text>
+<rect x="120" y="115" width="52" height="42" rx="4" fill="rgb(45,115,128)"/>
+<text class="cell" x="146" y="141" text-anchor="middle">50%</text>
+<rect x="175" y="115" width="52" height="42" rx="4" fill="rgb(53,148,159)"/>
+<text class="cell" x="201" y="141" text-anchor="middle">75%</text>
+<rect x="230" y="115" width="52" height="42" rx="4" fill="rgb(57,165,175)"/>
+<text class="cell" x="256" y="141" text-anchor="middle">88%</text>
+<rect x="285" y="115" width="52" height="42" rx="4" fill="rgb(59,173,183)"/>
+<text class="cell" x="311" y="141" text-anchor="middle">94%</text>
+<rect x="340" y="115" width="52" height="42" rx="4" fill="rgb(60,177,187)"/>
+<text class="cell" x="366" y="141" text-anchor="middle">97%</text>
+<rect x="395" y="115" width="52" height="42" rx="4" fill="rgb(61,179,189)"/>
+<text class="cell" x="421" y="141" text-anchor="middle">98%</text>
+<rect x="450" y="115" width="52" height="42" rx="4" fill="rgb(61,180,190)"/>
+<text class="cell" x="476" y="141" text-anchor="middle">99%</text>
+<rect x="505" y="115" width="52" height="42" rx="4" fill="rgb(61,181,190)"/>
+<text class="cell" x="531" y="141" text-anchor="middle">100%</text>
+<rect x="560" y="115" width="52" height="42" rx="4" fill="rgb(61,181,190)"/>
+<text class="cell" x="586" y="141" text-anchor="middle">100%</text>
+<rect x="615" y="115" width="52" height="42" rx="4" fill="rgb(61,181,190)"/>
+<text class="cell" x="641" y="141" text-anchor="middle">100%</text>
+<text x="45" y="186" text-anchor="middle">2</text>
+<rect x="65" y="161" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="91" y="187" text-anchor="middle">0%</text>
+<rect x="120" y="161" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="146" y="187" text-anchor="middle">0%</text>
+<rect x="175" y="161" width="52" height="42" rx="4" fill="rgb(37,82,97)"/>
+<text class="cell" x="201" y="187" text-anchor="middle">25%</text>
+<rect x="230" y="161" width="52" height="42" rx="4" fill="rgb(45,115,128)"/>
+<text class="cell" x="256" y="187" text-anchor="middle">50%</text>
+<rect x="285" y="161" width="52" height="42" rx="4" fill="rgb(51,140,151)"/>
+<text class="cell" x="311" y="187" text-anchor="middle">69%</text>
+<rect x="340" y="161" width="52" height="42" rx="4" fill="rgb(55,157,167)"/>
+<text class="cell" x="366" y="187" text-anchor="middle">81%</text>
+<rect x="395" y="161" width="52" height="42" rx="4" fill="rgb(58,167,177)"/>
+<text class="cell" x="421" y="187" text-anchor="middle">89%</text>
+<rect x="450" y="161" width="52" height="42" rx="4" fill="rgb(59,173,183)"/>
+<text class="cell" x="476" y="187" text-anchor="middle">94%</text>
+<rect x="505" y="161" width="52" height="42" rx="4" fill="rgb(60,177,186)"/>
+<text class="cell" x="531" y="187" text-anchor="middle">96%</text>
+<rect x="560" y="161" width="52" height="42" rx="4" fill="rgb(61,179,188)"/>
+<text class="cell" x="586" y="187" text-anchor="middle">98%</text>
+<rect x="615" y="161" width="52" height="42" rx="4" fill="rgb(61,180,189)"/>
+<text class="cell" x="641" y="187" text-anchor="middle">99%</text>
+<text x="45" y="232" text-anchor="middle">3</text>
+<rect x="65" y="207" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="91" y="233" text-anchor="middle">0%</text>
+<rect x="120" y="207" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="146" y="233" text-anchor="middle">0%</text>
+<rect x="175" y="207" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="201" y="233" text-anchor="middle">0%</text>
+<rect x="230" y="207" width="52" height="42" rx="4" fill="rgb(33,65,81)"/>
+<text class="cell" x="256" y="233" text-anchor="middle">12%</text>
+<rect x="285" y="207" width="52" height="42" rx="4" fill="rgb(39,90,105)"/>
+<text class="cell" x="311" y="233" text-anchor="middle">31%</text>
+<rect x="340" y="207" width="52" height="42" rx="4" fill="rgb(45,115,128)"/>
+<text class="cell" x="366" y="233" text-anchor="middle">50%</text>
+<rect x="395" y="207" width="52" height="42" rx="4" fill="rgb(50,136,148)"/>
+<text class="cell" x="421" y="233" text-anchor="middle">66%</text>
+<rect x="450" y="207" width="52" height="42" rx="4" fill="rgb(54,151,162)"/>
+<text class="cell" x="476" y="233" text-anchor="middle">77%</text>
+<rect x="505" y="207" width="52" height="42" rx="4" fill="rgb(57,162,172)"/>
+<text class="cell" x="531" y="233" text-anchor="middle">86%</text>
+<rect x="560" y="207" width="52" height="42" rx="4" fill="rgb(59,170,179)"/>
+<text class="cell" x="586" y="233" text-anchor="middle">91%</text>
+<rect x="615" y="207" width="52" height="42" rx="4" fill="rgb(60,174,184)"/>
+<text class="cell" x="641" y="233" text-anchor="middle">95%</text>
+<text x="45" y="278" text-anchor="middle">4</text>
+<rect x="65" y="253" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="91" y="279" text-anchor="middle">0%</text>
+<rect x="120" y="253" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="146" y="279" text-anchor="middle">0%</text>
+<rect x="175" y="253" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="201" y="279" text-anchor="middle">0%</text>
+<rect x="230" y="253" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="256" y="279" text-anchor="middle">0%</text>
+<rect x="285" y="253" width="52" height="42" rx="4" fill="rgb(31,57,73)"/>
+<text class="cell" x="311" y="279" text-anchor="middle">6%</text>
+<rect x="340" y="253" width="52" height="42" rx="4" fill="rgb(35,73,89)"/>
+<text class="cell" x="366" y="279" text-anchor="middle">19%</text>
+<rect x="395" y="253" width="52" height="42" rx="4" fill="rgb(40,94,108)"/>
+<text class="cell" x="421" y="279" text-anchor="middle">34%</text>
+<rect x="450" y="253" width="52" height="42" rx="4" fill="rgb(45,115,128)"/>
+<text class="cell" x="476" y="279" text-anchor="middle">50%</text>
+<rect x="505" y="253" width="52" height="42" rx="4" fill="rgb(50,133,145)"/>
+<text class="cell" x="531" y="279" text-anchor="middle">64%</text>
+<rect x="560" y="253" width="52" height="42" rx="4" fill="rgb(53,148,159)"/>
+<text class="cell" x="586" y="279" text-anchor="middle">75%</text>
+<rect x="615" y="253" width="52" height="42" rx="4" fill="rgb(56,159,169)"/>
+<text class="cell" x="641" y="279" text-anchor="middle">83%</text>
+<text x="45" y="324" text-anchor="middle">5</text>
+<rect x="65" y="299" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="91" y="325" text-anchor="middle">0%</text>
+<rect x="120" y="299" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="146" y="325" text-anchor="middle">0%</text>
+<rect x="175" y="299" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="201" y="325" text-anchor="middle">0%</text>
+<rect x="230" y="299" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="256" y="325" text-anchor="middle">0%</text>
+<rect x="285" y="299" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="311" y="325" text-anchor="middle">0%</text>
+<rect x="340" y="299" width="52" height="42" rx="4" fill="rgb(30,53,69)"/>
+<text class="cell" x="366" y="325" text-anchor="middle">3%</text>
+<rect x="395" y="299" width="52" height="42" rx="4" fill="rgb(32,63,79)"/>
+<text class="cell" x="421" y="325" text-anchor="middle">11%</text>
+<rect x="450" y="299" width="52" height="42" rx="4" fill="rgb(36,79,94)"/>
+<text class="cell" x="476" y="325" text-anchor="middle">23%</text>
+<rect x="505" y="299" width="52" height="42" rx="4" fill="rgb(40,97,111)"/>
+<text class="cell" x="531" y="325" text-anchor="middle">36%</text>
+<rect x="560" y="299" width="52" height="42" rx="4" fill="rgb(45,115,128)"/>
+<text class="cell" x="586" y="325" text-anchor="middle">50%</text>
+<rect x="615" y="299" width="52" height="42" rx="4" fill="rgb(49,131,143)"/>
+<text class="cell" x="641" y="325" text-anchor="middle">62%</text>
+<text x="725" y="84">Full or critical</text>
+<text x="750" y="104" text-anchor="middle">0</text>
+<text x="805" y="104" text-anchor="middle">1</text>
+<text x="860" y="104" text-anchor="middle">2</text>
+<text x="915" y="104" text-anchor="middle">3</text>
+<text x="970" y="104" text-anchor="middle">4</text>
+<text x="1025" y="104" text-anchor="middle">5</text>
+<text x="1080" y="104" text-anchor="middle">6</text>
+<text x="1135" y="104" text-anchor="middle">7</text>
+<text x="1190" y="104" text-anchor="middle">8</text>
+<text x="1245" y="104" text-anchor="middle">9</text>
+<text x="1300" y="104" text-anchor="middle">10</text>
+<text x="705" y="140" text-anchor="middle">1</text>
+<rect x="725" y="115" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="751" y="141" text-anchor="middle">0%</text>
+<rect x="780" y="115" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="806" y="141" text-anchor="middle">0%</text>
+<rect x="835" y="115" width="52" height="42" rx="4" fill="rgb(37,82,97)"/>
+<text class="cell" x="861" y="141" text-anchor="middle">25%</text>
+<rect x="890" y="115" width="52" height="42" rx="4" fill="rgb(45,115,128)"/>
+<text class="cell" x="916" y="141" text-anchor="middle">50%</text>
+<rect x="945" y="115" width="52" height="42" rx="4" fill="rgb(51,140,151)"/>
+<text class="cell" x="971" y="141" text-anchor="middle">69%</text>
+<rect x="1000" y="115" width="52" height="42" rx="4" fill="rgb(55,157,167)"/>
+<text class="cell" x="1026" y="141" text-anchor="middle">81%</text>
+<rect x="1055" y="115" width="52" height="42" rx="4" fill="rgb(58,167,177)"/>
+<text class="cell" x="1081" y="141" text-anchor="middle">89%</text>
+<rect x="1110" y="115" width="52" height="42" rx="4" fill="rgb(59,173,183)"/>
+<text class="cell" x="1136" y="141" text-anchor="middle">94%</text>
+<rect x="1165" y="115" width="52" height="42" rx="4" fill="rgb(60,177,186)"/>
+<text class="cell" x="1191" y="141" text-anchor="middle">96%</text>
+<rect x="1220" y="115" width="52" height="42" rx="4" fill="rgb(61,179,188)"/>
+<text class="cell" x="1246" y="141" text-anchor="middle">98%</text>
+<rect x="1275" y="115" width="52" height="42" rx="4" fill="rgb(61,180,189)"/>
+<text class="cell" x="1301" y="141" text-anchor="middle">99%</text>
+<text x="705" y="186" text-anchor="middle">2</text>
+<rect x="725" y="161" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="751" y="187" text-anchor="middle">0%</text>
+<rect x="780" y="161" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="806" y="187" text-anchor="middle">0%</text>
+<rect x="835" y="161" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="861" y="187" text-anchor="middle">0%</text>
+<rect x="890" y="161" width="52" height="42" rx="4" fill="rgb(33,65,81)"/>
+<text class="cell" x="916" y="187" text-anchor="middle">12%</text>
+<rect x="945" y="161" width="52" height="42" rx="4" fill="rgb(39,90,105)"/>
+<text class="cell" x="971" y="187" text-anchor="middle">31%</text>
+<rect x="1000" y="161" width="52" height="42" rx="4" fill="rgb(45,115,128)"/>
+<text class="cell" x="1026" y="187" text-anchor="middle">50%</text>
+<rect x="1055" y="161" width="52" height="42" rx="4" fill="rgb(50,136,148)"/>
+<text class="cell" x="1081" y="187" text-anchor="middle">66%</text>
+<rect x="1110" y="161" width="52" height="42" rx="4" fill="rgb(54,151,162)"/>
+<text class="cell" x="1136" y="187" text-anchor="middle">77%</text>
+<rect x="1165" y="161" width="52" height="42" rx="4" fill="rgb(57,162,172)"/>
+<text class="cell" x="1191" y="187" text-anchor="middle">86%</text>
+<rect x="1220" y="161" width="52" height="42" rx="4" fill="rgb(59,170,179)"/>
+<text class="cell" x="1246" y="187" text-anchor="middle">91%</text>
+<rect x="1275" y="161" width="52" height="42" rx="4" fill="rgb(60,174,184)"/>
+<text class="cell" x="1301" y="187" text-anchor="middle">95%</text>
+<text x="705" y="232" text-anchor="middle">3</text>
+<rect x="725" y="207" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="751" y="233" text-anchor="middle">0%</text>
+<rect x="780" y="207" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="806" y="233" text-anchor="middle">0%</text>
+<rect x="835" y="207" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="861" y="233" text-anchor="middle">0%</text>
+<rect x="890" y="207" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="916" y="233" text-anchor="middle">0%</text>
+<rect x="945" y="207" width="52" height="42" rx="4" fill="rgb(31,57,73)"/>
+<text class="cell" x="971" y="233" text-anchor="middle">6%</text>
+<rect x="1000" y="207" width="52" height="42" rx="4" fill="rgb(35,73,89)"/>
+<text class="cell" x="1026" y="233" text-anchor="middle">19%</text>
+<rect x="1055" y="207" width="52" height="42" rx="4" fill="rgb(40,94,108)"/>
+<text class="cell" x="1081" y="233" text-anchor="middle">34%</text>
+<rect x="1110" y="207" width="52" height="42" rx="4" fill="rgb(45,115,128)"/>
+<text class="cell" x="1136" y="233" text-anchor="middle">50%</text>
+<rect x="1165" y="207" width="52" height="42" rx="4" fill="rgb(50,133,145)"/>
+<text class="cell" x="1191" y="233" text-anchor="middle">64%</text>
+<rect x="1220" y="207" width="52" height="42" rx="4" fill="rgb(53,148,159)"/>
+<text class="cell" x="1246" y="233" text-anchor="middle">75%</text>
+<rect x="1275" y="207" width="52" height="42" rx="4" fill="rgb(56,159,169)"/>
+<text class="cell" x="1301" y="233" text-anchor="middle">83%</text>
+<text x="705" y="278" text-anchor="middle">4</text>
+<rect x="725" y="253" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="751" y="279" text-anchor="middle">0%</text>
+<rect x="780" y="253" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="806" y="279" text-anchor="middle">0%</text>
+<rect x="835" y="253" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="861" y="279" text-anchor="middle">0%</text>
+<rect x="890" y="253" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="916" y="279" text-anchor="middle">0%</text>
+<rect x="945" y="253" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="971" y="279" text-anchor="middle">0%</text>
+<rect x="1000" y="253" width="52" height="42" rx="4" fill="rgb(30,53,69)"/>
+<text class="cell" x="1026" y="279" text-anchor="middle">3%</text>
+<rect x="1055" y="253" width="52" height="42" rx="4" fill="rgb(32,63,79)"/>
+<text class="cell" x="1081" y="279" text-anchor="middle">11%</text>
+<rect x="1110" y="253" width="52" height="42" rx="4" fill="rgb(36,79,94)"/>
+<text class="cell" x="1136" y="279" text-anchor="middle">23%</text>
+<rect x="1165" y="253" width="52" height="42" rx="4" fill="rgb(40,97,111)"/>
+<text class="cell" x="1191" y="279" text-anchor="middle">36%</text>
+<rect x="1220" y="253" width="52" height="42" rx="4" fill="rgb(45,115,128)"/>
+<text class="cell" x="1246" y="279" text-anchor="middle">50%</text>
+<rect x="1275" y="253" width="52" height="42" rx="4" fill="rgb(49,131,143)"/>
+<text class="cell" x="1301" y="279" text-anchor="middle">62%</text>
+<text x="705" y="324" text-anchor="middle">5</text>
+<rect x="725" y="299" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="751" y="325" text-anchor="middle">0%</text>
+<rect x="780" y="299" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="806" y="325" text-anchor="middle">0%</text>
+<rect x="835" y="299" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="861" y="325" text-anchor="middle">0%</text>
+<rect x="890" y="299" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="916" y="325" text-anchor="middle">0%</text>
+<rect x="945" y="299" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="971" y="325" text-anchor="middle">0%</text>
+<rect x="1000" y="299" width="52" height="42" rx="4" fill="rgb(29,49,66)"/>
+<text class="cell" x="1026" y="325" text-anchor="middle">0%</text>
+<rect x="1055" y="299" width="52" height="42" rx="4" fill="rgb(29,51,67)"/>
+<text class="cell" x="1081" y="325" text-anchor="middle">2%</text>
+<rect x="1110" y="299" width="52" height="42" rx="4" fill="rgb(31,57,73)"/>
+<text class="cell" x="1136" y="325" text-anchor="middle">6%</text>
+<rect x="1165" y="299" width="52" height="42" rx="4" fill="rgb(33,68,84)"/>
+<text class="cell" x="1191" y="325" text-anchor="middle">14%</text>
+<rect x="1220" y="299" width="52" height="42" rx="4" fill="rgb(37,82,97)"/>
+<text class="cell" x="1246" y="325" text-anchor="middle">25%</text>
+<rect x="1275" y="299" width="52" height="42" rx="4" fill="rgb(41,99,113)"/>
+<text class="cell" x="1301" y="325" text-anchor="middle">38%</text>
+<text x="30" y="362">Rows: GM target  |  Columns: dice in pool  |  Criticals are included in full.</text>
+</svg>

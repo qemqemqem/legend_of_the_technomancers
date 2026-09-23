@@ -1,0 +1,11 @@
+{
+  "model": "google/gemini-2.5-flash",
+  "requested_calls": 2000,
+  "calls": 2000,
+  "valid": 1991,
+  "rejected": 8,
+  "request_errors": 1,
+  "cost": 0.6370173000000003,
+  "cost_upper_bound": 0.6410318400000004,
+  "max_cost": 2.0
+}

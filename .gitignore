@@ -1,5 +1,6 @@
 # Build artifacts
 *.pdf
+!auto_play_testing/controlled_report.pdf
 *.aux
 *.log
 *.toc
@@ -13,6 +14,9 @@ art/.env
 # Python
 __pycache__/
 *.pyc
+auto_play_testing/results/*
+!auto_play_testing/results/controlled-1000/
+.chats/
 
 # Copyrighted reference material (local only)
 references/
