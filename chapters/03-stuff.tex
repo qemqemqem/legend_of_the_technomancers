@@ -150,17 +150,27 @@ Weapon --- two things she owns, each with a distinct personality.
 
 \subsection*{Using Your Stuff's Tier as a Base Stat}
 % REAL RULE, 2026-09-23: applies "Stats from Objects" (How to Play) to
-% the Stuff catalogue specifically, with worked examples grounded in the
-% chapter's own gear. Not a new rule --- the underlying mechanic ("take
-% the higher of the two") is already established there; this section
-% exists so a player reading Stuff in isolation doesn't have to go
-% hunting for it.
+% the Stuff catalogue specifically. Not a new rule --- the underlying
+% mechanic ("take the higher of the two") is already established there;
+% this section exists so a player reading Stuff in isolation doesn't have
+% to go hunting for it.
+% REAL FIX, 2026-09-23: the "Worked Examples" table (Item/Situation/Base
+% columns) was confusing in practice --- a Tier-5 row read as ambiguous
+% about whether it meant the item was Tier 4 or Tier 5, and cramming a
+% whole scenario into one cell made every row need its own re-parsing.
+% Replaced with a single explicit formula plus one worked example instead
+% of nine compressed ones.
+\begin{center}
+{\Large\itshape Base Stat = Max( Item Tier, Character Stat )}
+\end{center}
+
 When you act \emph{through} something you own --- swinging a weapon,
-driving a vehicle, working from inside a fortress --- that item's own
-\keyword{tier} can stand in for whichever base Stat the action would
-normally use, exactly as described in \emph{Stats from Objects} in
-\emph{How to Play}. Compare the item's tier to your own Stat and roll
-with whichever number is higher. An item can only ever help: it never
+driving a vehicle, working from inside a fortress --- compare that
+item's own \keyword{tier} to whichever base Stat the action would
+normally use, and roll with whichever number is bigger. This is exactly
+the rule described in \emph{Stats from Objects} in \emph{How to Play},
+applied to your own gear: an item can only ever help, never hurt --- it
+can lend you its tier when that number beats your Stat, but it never
 forces you down to a worse number than the Stat you already have.
 
 \begin{example}
@@ -169,20 +179,6 @@ The sword's tier beats his own Body, so he rolls with a base of \dice{4}
 instead of \dice{2} --- the same trade a rank-\rating{3} car makes for a
 rank-\rating{2} driver in \emph{How to Play}.
 \end{example}
-
-\begin{statblock}[Tier as a Base Stat: Worked Examples]
-\begin{tabularx}{\linewidth}{@{}p{0.27\linewidth} Y >{\centering\arraybackslash}p{0.13\linewidth}@{}}
-\textbf{Item} & \textbf{Situation} & \textbf{Base}\\[3pt]
-Tier-\rating{2} Weapon & You swing it, but your own Body is already \dice{4}. & \dice{4}\\[3pt]
-Tier-\rating{4} Weapon & You swing it, and your own Body is only \dice{2}. & \dice{4}\\[3pt]
-Tier-\rating{3} Vehicle & Wrestling the wheel through a rockslide; Body \dice{2}. & \dice{3}\\[3pt]
-Tier-\rating{2} Vehicle & An elite pilot, Body \dice{4}, at the stick. & \dice{4}\\[3pt]
-Tier-\rating{4} Armour & Shouldering open a jammed bulkhead; Body \dice{3}. & \dice{4}\\[3pt]
-Tier-\rating{3} Base & Deciphering a ritual in its arcane library; Mind \dice{2}. & \dice{3}\\[3pt]
-Tier-\rating{4} Fortress & Awing a rival warlord hosted within its walls; Face \dice{2}. & \dice{4}\\[3pt]
-Tier-\rating{5} Weapon & A capstone blade ending a duel outright; Body \dice{3}. & \dice{5}\\
-\end{tabularx}
-\end{statblock}
 
 \subsection*{Re-Kitting on Arrival}
 
@@ -194,6 +190,28 @@ plasma rifle in the sprawl; it is the same line on your sheet either way,
 and its tags travel with it unchanged. Each genre chapter lists suggested
 translations, so you always have a world-appropriate version ready to
 hand.
+
+\subsection*{Losing Your Stuff}
+% REAL RULE, 2026-09-23: what happens when Stuff is lost, broken, stolen,
+% or otherwise taken off the sheet mid-world. Deliberately simple and
+% player-friendly, matching the game's overall "fail fast, keep playing"
+% posture --- losing gear should sting in the moment (the GM is free to
+% make narrative hay of it) but never leave a character crippled for the
+% rest of a world, and never requires bookkeeping across worlds.
+Gear gets smashed, stolen, or left behind --- that is what makes losing
+it interesting in the moment. It is never interesting as bookkeeping.
+Whatever a scene costs you, everything you own comes back exactly as
+built, at full Tier, the next time you cross into a new realm: your
+Stuff Points and Stuff Tags were always a record of what you
+\emph{chose}, at character creation, not a fixed pile of possessions
+that depletes as it gets used up.
+
+\begin{example}
+Rooster's Vehicle goes off a cliff mid-chase in the sprawl. For the rest
+of that world he's on foot --- a real, lasting problem the GM can lean
+on. The moment the party crosses into the next realm, that same Vehicle
+reappears, re-skinned to fit, exactly as tough and fast as he bought it.
+\end{example}
 
 % ---- Section 3: Options ---------------------------------------------
 \section{Lifestyle \& Cash}
