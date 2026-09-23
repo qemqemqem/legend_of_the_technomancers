@@ -9,7 +9,8 @@
 % REAL RULE, 2026-09-22: "Tags per Spell" removed. Casting is capped by
 % the same system-wide five-tags-per-roll rule as everything else (see
 % "Five Tags, Maximum" in How to Play) instead of a separate per-rank
-% number to look up here.
+% number to look up here. Special Feats column added same day: Body,
+% Skills, Magic, and Stuff all grant 1 Feat at rank 3 and 2 at rank 4.
 \begin{strip}
   \begingroup\centering
   {\hdfont\Large\bfseries\color{\realmaccent} Creating Magic\par}
@@ -17,24 +18,25 @@
   \endgroup
   \begingroup
   \setlength{\tabcolsep}{7pt}\renewcommand{\arraystretch}{1.35}
-  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.6cm} Y >{\centering\arraybackslash}p{2.3cm} >{\centering\arraybackslash}p{1.6cm}@{}}
+  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.6cm} Y >{\centering\arraybackslash}p{2cm} >{\centering\arraybackslash}p{1.4cm} >{\centering\arraybackslash}p{1.6cm}@{}}
   \rowcolor{\realmaccent}
   {\leavevmode\hdfont\bfseries\color{white}Rank} &
   {\leavevmode\hdfont\bfseries\color{white}You are\ldots} &
   {\leavevmode\hdfont\bfseries\color{white}Tags Known} &
-  {\leavevmode\hdfont\bfseries\color{white}Weird} \\
+  {\leavevmode\hdfont\bfseries\color{white}Weird} &
+  {\leavevmode\hdfont\bfseries\color{white}Special Feats} \\
   \rowcolor{atrBoxbg}
   \rating{1} & You do not know magic.
-    & \dice{0} & \dice{0} \\
+    & \dice{0} & \dice{0} & \dice{0} \\
   \rowcolor{white}
   \rating{2} & You can cast a few spells.
-    & \dice{3} & \dice{1} \\
+    & \dice{3} & \dice{1} & \dice{0} \\
   \rowcolor{atrBoxbg}
   \rating{3} & You know magic.
-    & \dice{7} & \dice{2} \\
+    & \dice{7} & \dice{2} & \dice{1} \\
   \rowcolor{white}
   \rating{4} & You are a \emph{fucking wizard}.
-    & \dice{12} & \dice{3} \\
+    & \dice{12} & \dice{3} & \dice{2} \\
   \end{tabularx}
   \endgroup
 \end{strip}
@@ -61,7 +63,9 @@ know. It also sets your \keyword{Weird} Stat; see \emph{The Weird Stat}
 below. At rank \rating{1} you know no magic at all. However many tags
 you know, no single roll ever applies more than \dice{5} of them --- the
 same system-wide cap that applies to every other kind of tag; see
-\emph{Five Tags, Maximum} in \emph{How to Play}.
+\emph{Five Tags, Maximum} in \emph{How to Play}. At rank \rating{3} and
+\rating{4} you also gain Special Feats; see \emph{Special Feats} for the
+full catalogue and rules.
 
 Choose your tags from Your Tags below before play begins. A tag's meaning
 bends to fit the realm --- \emph{control} compels a beast in a fantasy

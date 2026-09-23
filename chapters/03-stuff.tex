@@ -6,6 +6,8 @@
 % Full-width summary table, placed immediately after the chapter title
 % so it shares the chapter's opening page (see 02-body.tex for the float
 % placement notes; a \begin{table*}[t] float, not \twocolumn[...]).
+% REAL RULE, 2026-09-22: Special Feats column added --- Body, Skills,
+% Magic, and Stuff all grant 1 Feat at rank 3 and 2 at rank 4.
 \begin{strip}
   \begingroup\centering
   {\hdfont\Large\bfseries\color{\realmaccent} Creating Stuff\par}
@@ -13,19 +15,20 @@
   \endgroup
   \begingroup
   \setlength{\tabcolsep}{7pt}\renewcommand{\arraystretch}{1.35}
-  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.6cm} Y >{\centering\arraybackslash}p{2.4cm}@{}}
+  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.6cm} Y >{\centering\arraybackslash}p{2.2cm} >{\centering\arraybackslash}p{1.6cm}@{}}
   \rowcolor{\realmaccent}
   {\leavevmode\hdfont\bfseries\color{white}Rank} &
   {\leavevmode\hdfont\bfseries\color{white}You Have\ldots} &
-  {\leavevmode\hdfont\bfseries\color{white}Stuff Points} \\
+  {\leavevmode\hdfont\bfseries\color{white}Stuff Points} &
+  {\leavevmode\hdfont\bfseries\color{white}Special Feats} \\
   \rowcolor{atrBoxbg}
-  \rating{1} & Nothing but the shirt on your back. & \dice{0} \\
+  \rating{1} & Nothing but the shirt on your back. & \dice{0} & \dice{0} \\
   \rowcolor{white}
-  \rating{2} & Basic Stuff --- armour, a weapon, a skateboard.  & \dice{4} \\
+  \rating{2} & Basic Stuff --- armour, a weapon, a skateboard.  & \dice{4} & \dice{0} \\
   \rowcolor{atrBoxbg}
-  \rating{3} & Nice Stuff --- a legendary weapon, a vehicle. & \dice{7} \\
+  \rating{3} & Nice Stuff --- a legendary weapon, a vehicle. & \dice{7} & \dice{1} \\
   \rowcolor{white}
-  \rating{4} & Fancy Stuff --- a ship, a keep, incredible gear. & \dice{12} \\
+  \rating{4} & Fancy Stuff --- a ship, a keep, incredible gear. & \dice{12} & \dice{2} \\
   \end{tabularx}
   \endgroup
 \end{strip}
@@ -59,7 +62,12 @@ but how much of the world bends to you.
 
 Your Stuff rank --- set when you assigned priorities at character
 creation, see the table above --- grants a pool of \keyword{Stuff
-Points}. Spend them on the catalogue below.
+Points}, and, at rank \rating{3} and \rating{4}, Special Feats. Spend
+your Stuff Points on the catalogue below; for Special Feats, see
+\emph{Special Feats} for the full catalogue and rules --- a Stuff-granted
+Feat usually comes from one specific, ownable item (a jetpack, a
+translator implant), which re-skins along with the rest of your gear
+when you cross into a new realm.
 
 \subsection*{Spending Your Stuff Points}
 % REAL RULE, 2026-09-22: rank is not a ceiling you fill in every

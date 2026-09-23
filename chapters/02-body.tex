@@ -10,6 +10,10 @@
 % claim the top of a page that a sectioning command already opened, no
 % matter how little else is on that page. \strip renders inline, exactly
 % where it appears in the source, with no deferral.
+% REAL RULE, 2026-09-22: rank 1 (D tier) is defined by being totally
+% basic --- ordinary people have no Body Tags at all. Numbers rebalanced
+% to weight Body toward Stat Points over tags; see the Designer's Note
+% in Skills for the balancing principle shared between the two chapters.
 \begin{strip}
   \begingroup\centering
   {\hdfont\Large\bfseries\color{\realmaccent} Creating a Body\par}
@@ -25,17 +29,17 @@
   {\leavevmode\hdfont\bfseries\color{white}Body Tags} &
   {\leavevmode\hdfont\bfseries\color{white}Special Feats} \\
   \rowcolor{atrBoxbg}
-  \rating{1} & An ordinary person; base stats across the board.
-    & \dice{2} & \dice{1} & --- \\
+  \rating{1} & An ordinary person; totally basic, no Body Tags at all.
+    & \dice{2} & \dice{0} & \dice{0} \\
   \rowcolor{white}
   \rating{2} & You stand out --- strong, quick, or striking.
-    & \dice{4} & \dice{2} & --- \\
+    & \dice{4} & \dice{1} & \dice{0} \\
   \rowcolor{atrBoxbg}
   \rating{3} & Exceptional --- elven grace, ogrish might, uncanny beauty.
-    & \dice{6} & \dice{3} & \dice{1} \\
+    & \dice{6} & \dice{2} & \dice{1} \\
   \rowcolor{white}
   \rating{4} & Truly strange or monstrous --- a dragon, an angel.
-    & \dice{9} & \dice{5} & \dice{3} \\
+    & \dice{9} & \dice{4} & \dice{2} \\
   \end{tabularx}
   \endgroup
 \end{strip}
@@ -52,7 +56,9 @@ carry from world to world. Your Body rank sets three things at once: how
 many points you have to raise your base \keyword{Stats}, how many
 \keyword{Body Tags} describe your physical form, and --- if you rank high
 enough --- which \keyword{Special Feats} let you do things no ordinary
-roll of the dice can.
+roll of the dice can. Special Feats and their full catalogue have their
+own chapter, since Body isn't the only column that grants them; see
+\emph{Special Feats}.
 
 % ---- Section 1: Character Creation ---------------------------------
 \section{At Character Creation}
@@ -94,6 +100,10 @@ for it to your pool, exactly like a Magic tag. Pick your tags from the
 Common Body Tags list at the end of this chapter, or invent your own with
 your GM's approval.
 
+At Body \rating{1} you have none. That absence is the point: an ordinary
+person's body doesn't do anything a Body Tag would describe --- that's
+what makes them ordinary.
+
 Body Tags are unlike every other resource on your sheet: they are
 \emph{inherent}. No one can steal them, break them, or take them away --
 they travel with you always. When you cross into a new realm, your tags
@@ -105,26 +115,11 @@ in the next. See each genre chapter for local translations.
 Some things are not a bigger pool --- they are a door that dice alone
 cannot open. \keyword{Special Feats} are exceptional, often impossible
 capabilities: flight, reading minds, becoming shadow. At Body \rating{3}
-you choose \dice{1} Special Feat; at Body \rating{4} you choose \dice{3}
-in total. Draw from the Special Feats catalogue at the end of this
-chapter, or work with your GM to build one suited to your realm.
-
-Like Body Tags, a personal Special Feat re-skins rather than disappears
-when you change worlds: a dragon's wings become a jetpack, a psychic's
-mind-reading becomes a neural hack. It belongs to \emph{you}, not the
-setting, so it always travels.
-
-\begin{notebox}[World-Granted Feats]
-Not every Special Feat is personal. Some are a property of a
-\emph{realm} rather than a character --- an ambient rule the GM sets up
-that lets \emph{every} traveller in that world do one impossible thing,
-whether or not they spent a single point on Body. In High Fantasy,
-anyone present may \keyword{Appeal to the Gods}; no one bought it, and no
-one carries it home. If you want to keep a world-granted Feat after you
-leave its realm, spend a \keyword{Persistence Point} to make it
-permanently yours, exactly as you would fix any other feature in place.
-Each genre chapter offers its own example.
-\end{notebox}
+you choose \dice{1} Special Feat; at Body \rating{4} you choose \dice{2}
+in total. Body is not the only column that grants them --- Skills,
+Magic, and Stuff all do too, at the same ranks --- so the full catalogue,
+and the rules for how a Feat works no matter which column it came from,
+live in their own chapter: \emph{Special Feats}.
 
 % ---- Section 2: Rules -----------------------------------------------
 \section{Body in Play}
@@ -176,26 +171,6 @@ strength.
 \begin{itemize}
   \item \atrtag{body}{Striking} --- Beautiful, magnetic, or impossible to ignore.
   \item \atrtag{body}{Intimidating} --- Your presence alone puts people on edge.
-\end{itemize}
-
-\subsection*{Special Feats}
-Eight feats to start from, all common --- available in any realm and
-reflavoured to fit. Each one bypasses exactly one hard constraint (gravity,
-privacy of thought, the need to breathe, and so on), which keeps them
-roughly matched in power even though their flavour differs wildly.
-World-granted Feats, like High Fantasy's \emph{Appeal to the Gods}, are
-not drawn from this list --- see the notebox above, and each genre
-chapter for its realm's example.
-
-\begin{itemize}
-  \item \keyword{Fly} --- Take to the air under your own power.
-  \item \keyword{Read Minds} --- Perceive surface thoughts and feelings directly.
-  \item \keyword{Form Shadow} --- Become or merge with shadow, briefly incorporeal.
-  \item \keyword{Needs No Air} --- Water, smoke, poison gas, even the vacuum of space; none of it can suffocate you.
-  \item \keyword{Never Sleep} --- You do not need rest the way others do, and are never caught unaware by the night.
-  \item \keyword{Speak with Animals} --- Every beast understands you, and you it.
-  \item \keyword{Walk Through Walls} --- Solid matter is a suggestion, not a barrier.
-  \item \keyword{Turn Invisible} --- Vanish from sight at will, for as long as you hold still enough to matter.
 \end{itemize}
 
 \begin{notebox}[Designer's Note]

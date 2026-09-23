@@ -1,0 +1,191 @@
+% ================================================================
+\renewcommand{\realmaccent}{atrAccent}  % reset to default teal
+\chapter{Special Feats}
+% ================================================================
+% REAL RULE, 2026-09-22: Special Feats used to live only in Body. Now
+% Body, Skills, Magic, and Stuff all grant them (1 at rank 3, 2 total at
+% rank 4), so the catalogue and rules move to their own chapter --- a
+% Feat's *mechanical* effect is identical no matter which column granted
+% it; only the fictional justification (and re-skinning) differs.
+% No dedicated chapter-art asset exists for this chapter yet.
+\begin{readaloud}
+\lipsum[21][1-3]
+\end{readaloud}
+
+\lettrine{S}{ome things} are not a bigger pool --- they are a door that
+dice alone cannot open. A \keyword{Special Feat} is an exceptional, often
+impossible capability: flight, reading minds, walking through walls.
+Every one of the four columns --- \keyword{Body}, \keyword{Skills},
+\keyword{Magic}, and \keyword{Stuff} --- grants them at high rank, so
+rather than duplicate one catalogue four times, they live here instead.
+
+\begin{statblock}[Special Feats Granted, Any Column]
+\begin{tabularx}{\linewidth}{@{}p{0.16\linewidth} Y@{}}
+\rating{1} & None.\\[3pt]
+\rating{2} & None.\\[3pt]
+\rating{3} & \dice{1} Special Feat.\\[3pt]
+\rating{4} & \dice{2} Special Feats in total.\\
+\end{tabularx}
+\end{statblock}
+
+This applies independently to each column. A character who reaches rank
+\rating{3} in both Skills and Magic gets one Feat from each --- two
+Feats total, not one. \todo{Open question, 2026-09-22: is there any cap
+on how many Feats can stack this way? A character who maxed all four
+columns to rank 4 could in principle hold eight. Needs a decision, then
+playtesting, before that's treated as intended rather than an oversight.}
+
+% ---- Section 1: Rules ------------------------------------------------
+\section{How You Get a Feat}
+
+When a column reaches rank \rating{3} or \rating{4}, choose your new
+Feat (or Feats) from \emph{Your Feats} below, or work with your GM to
+build one suited to your realm. Note which column granted each Feat ---
+it decides how you'll explain the Feat re-skinning later, not how it
+works mechanically, since a Feat functions identically regardless of
+source.
+
+\begin{example}
+Kira takes \keyword{Body} to rank \rating{3} and chooses \keyword{Fly}
+--- for her, that's a pair of retractable wings. If she'd taken
+\keyword{Stuff} to rank \rating{3} instead and picked the same Feat, it
+would be a jetpack. Either way, she can take to the air; only the
+fictional dressing differs.
+\end{example}
+
+A personal Special Feat re-skins rather than disappears when you change
+worlds, exactly like a Body Tag: a dragon's wings become a jetpack, a
+psychic's mind-reading becomes a neural hack. It belongs to \emph{you},
+not the setting, so it always travels with you.
+
+\section{World-Granted Feats}
+% REAL, moved from 02-body.tex 2026-09-22 --- generalized: this was
+% framed as a Body-specific notebox before Special Feats had its own
+% chapter, but a world-granted Feat isn't tied to any one column.
+Not every Special Feat is personal. Some are a property of a
+\emph{realm} rather than a character --- an ambient rule the GM sets up
+that lets \emph{every} traveller in that world do one impossible thing,
+whether or not they spent a single point on Body, Skills, Magic, or
+Stuff. In High Fantasy, anyone present may \keyword{Appeal to the Gods};
+no one bought it, and no one carries it home. If you want to keep a
+world-granted Feat after you leave its realm, spend a
+\keyword{Persistence Point} to make it permanently yours, exactly as you
+would fix any other feature in place. Each genre chapter offers its own
+example.
+
+% ---- Section 2: Options -----------------------------------------------
+\section{Your Feats}
+
+Ten Feats to start from, all common --- available in any realm and
+reflavoured to fit. Each one bypasses exactly one hard constraint
+(gravity, privacy of thought, the need to breathe, and so on), which
+keeps them roughly matched in power even though their flavour differs
+wildly. Every entry names whether it's an \textsc{Action} (something you
+choose to do, in the moment) or \textsc{Continuous} (something that's
+simply always true about you, nothing to activate), then lists the
+columns that plausibly grant it with a short example of what that looks
+like. Not every Feat fits every column, and that's fine --- pick
+whichever combination fits the character you're building, or propose
+your own to your GM.
+
+\begin{feat}{Fly}{Continuous}
+Take to the air under your own power, for as long as the fiction
+allows. No roll is needed just to stay aloft --- roll only when
+something about the flight itself is in doubt: outrunning a storm,
+threading a canyon at speed, carrying more weight than you should.
+\featsource{body}{Wings}{A dragon's leathery wings, feathered pinions, or a build simply light enough to ride the wind.}
+\featsource{skill}{Wingsuit Mastery}{Momentum and airflow control pushed so far past ordinary limits it reads as true flight.}
+\featsource{magic}{Levitation}{A standing flight spell woven into your very self, no incantation needed to sustain it.}
+\featsource{item}{Jetpack}{Strap it on, thumb the ignition, and go; a hoverbike or grav-boots work the same way.}
+\end{feat}
+
+\begin{feat}{Read Minds}{Action}
+Focus on someone nearby and perceive their surface thoughts and
+feelings directly --- not their deepest secrets, just whatever's
+sitting at the front of their mind right now. It takes attention; you
+can't read a whole room at a glance the way you can see it.
+\featsource{body}{Telepathic Nerves}{A nervous system wired for empathy so raw it borders on hearing thoughts.}
+\featsource{skill}{Cold Reading}{Interrogation and body-language mastery so precise it might as well be psychic.}
+\featsource{magic}{Telepathy}{A spell that opens a channel into someone's head, willing or not.}
+\featsource{item}{Thought-Scanner}{A neural interface or handheld device that translates brainwaves into words.}
+\end{feat}
+
+\begin{feat}{Form Shadow}{Action}
+Become or merge with shadow at will, turning briefly incorporeal ---
+slip under a door, ride along a wall, or simply vanish into the dark
+for as long as you hold the shape.
+\featsource{body}{Shadow-Born}{A physiology that was never entirely solid to begin with.}
+\featsource{skill}{Total Infiltration}{Stealth training so complete it borders on genuinely not being there.}
+\featsource{magic}{Umbral Shift}{A spell that unbinds you from solid form for as long as shadow covers you.}
+\featsource{item}{Phase Cloak}{A field generator that renders you as insubstantial as the shadow you're standing in.}
+\end{feat}
+
+\begin{feat}{Needs No Air}{Continuous}
+Water, smoke, poison gas, even the vacuum of space --- none of it can
+suffocate you. This runs all the time; there's nothing to activate and
+nothing to sustain.
+\featsource{body}{Adapted Lungs}{Gills, or lungs (if you can even call them that) built for anything.}
+\featsource{skill}{Breath Control}{Training so extreme your body simply stopped needing what it used to.}
+\featsource{magic}{Ward of Breath}{A standing spell that keeps the air, or the absence of it, from ever mattering.}
+\featsource{item}{Rebreather}{A void suit, a rebreather rig, or an internal air recycler built into you.}
+\end{feat}
+
+\begin{feat}{Never Sleep}{Continuous}
+You do not need rest the way others do, and you're never caught
+unaware in the dead of night. Whatever your party does on watch, you
+can do all night, every night.
+\featsource{body}{Tireless Physiology}{A body that simply doesn't accumulate fatigue the normal way.}
+\featsource{skill}{Iron Discipline}{Training and willpower pushed so far past ordinary limits that sleep became optional.}
+\featsource{magic}{Sustaining Working}{A quiet, standing spell that keeps you rested without ever resting.}
+\featsource{item}{Stim Implant}{A biomechanical implant or drug regimen that keeps you sharp indefinitely.}
+\end{feat}
+
+\begin{feat}{Speak with Animals}{Continuous}
+Every beast understands you, and you understand it back --- not just
+simple commands, but genuine conversation, limited only by how much an
+animal actually has to say.
+\featsource{body}{Beast-Bond}{An empathic connection to living things that was simply always there.}
+\featsource{skill}{Animal Handling, Mastered}{A lifetime spent reading creatures so well it might as well be language.}
+\featsource{magic}{Beast-Tongue}{A standing spell that translates every growl, chirp, and howl.}
+\featsource{item}{Universal Translator}{A device tuned to catch and render non-human speech patterns.}
+\end{feat}
+
+\begin{feat}{Walk Through Walls}{Action}
+Solid matter is a suggestion, not a barrier. Choose to phase through a
+wall, a locked door, or a stretch of solid stone --- you can't linger
+inside it, but you can cross it.
+\featsource{body}{Malleable Form}{A body that's never entirely committed to being solid.}
+\featsource{magic}{Phase Step}{A spell that lets solid matter pass through you, rather than the other way around.}
+\featsource{item}{Phase-Door Rig}{Short-ranged and expensive; it opens matter just long enough for you to pass.}
+\end{feat}
+
+\begin{feat}{Turn Invisible}{Action}
+Vanish from sight at will, for as long as you hold still enough to
+matter --- a fast dash or a shout gives you away, but standing
+motionless in a shadowed doorway, no one will find you.
+\featsource{body}{Chameleon Skin}{A physiology built to disappear against any backdrop.}
+\featsource{skill}{Master Misdirection}{Sleight of hand and stagecraft so complete it plays as genuine vanishing.}
+\featsource{magic}{Invisibility}{The classic working: light bends around you until you choose to be seen again.}
+\featsource{item}{Cloaking Suit}{Active camouflage woven into a cloak, coat, or full bodysuit.}
+\end{feat}
+
+\begin{feat}{See Through Solid Matter}{Action}
+Focus your gaze and it passes straight through walls, skin, and stone,
+showing you whatever's hidden on the other side. It takes
+concentration, so you can't do it passively while doing something else
+demanding.
+\featsource{body}{Deep-Spectrum Eyes}{Eyes built to see wavelengths ordinary vision never could.}
+\featsource{skill}{Structural Reading}{An engineer's or surgeon's eye trained to "see" what's inside from the outside.}
+\featsource{magic}{Scrying Sight}{A spell that peels back one layer of the world at a time.}
+\featsource{item}{Scanner Rig}{A handheld or implanted scanner that renders solid matter transparent on a display.}
+\end{feat}
+
+\begin{feat}{Blink}{Action}
+Cover a short distance in an instant --- across a room, over a gap,
+out of a grapple --- too fast for anyone watching to actually follow
+the motion.
+\featsource{body}{Blink-Step}{An innate, reflexive short-range teleport wired into your body.}
+\featsource{skill}{Impossible Speed}{Movement so explosively fast it looks like teleportation to anyone without your training.}
+\featsource{magic}{Short Teleport}{A quick, low-cost teleport spell, measured in feet, not miles.}
+\featsource{item}{Short-Range Teleporter}{A wrist-mounted or backpack unit good for one quick jump at a time.}
+\end{feat}

@@ -13,7 +13,9 @@
 % feeds, but at a lower rate and starting from 0 at rank 1 (kept simple:
 % Skills at its lowest rank grants no Stat Points at all) --- Body is the
 % column built around your physical Stats, Skills only touches them
-% secondhand. DRAFT NUMBERS --- see the \todo below.
+% secondhand. REBALANCED 2026-09-22 against Body using the "one tag ≈
+% half a Stat Point" exchange rate --- see the Designer's Note below for
+% the full reasoning and the \todo flagging it as unverified.
 \begin{strip}
   \begingroup\centering
   {\hdfont\Large\bfseries\color{\realmaccent} Creating Skills\par}
@@ -21,33 +23,43 @@
   \endgroup
   \begingroup
   \setlength{\tabcolsep}{7pt}\renewcommand{\arraystretch}{1.35}
-  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.6cm} Y >{\centering\arraybackslash}p{2.1cm} >{\centering\arraybackslash}p{2.1cm}@{}}
+  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.6cm} Y >{\centering\arraybackslash}p{2.1cm} >{\centering\arraybackslash}p{2.1cm} >{\centering\arraybackslash}p{1.6cm}@{}}
   \rowcolor{\realmaccent}
   {\leavevmode\hdfont\bfseries\color{white}Rank} &
   {\leavevmode\hdfont\bfseries\color{white}You are\ldots} &
   {\leavevmode\hdfont\bfseries\color{white}Stat Points} &
-  {\leavevmode\hdfont\bfseries\color{white}Skills Known} \\
+  {\leavevmode\hdfont\bfseries\color{white}Skills Known} &
+  {\leavevmode\hdfont\bfseries\color{white}Special Feats} \\
   \rowcolor{atrBoxbg}
   \rating{1} & Not very skilful, but you know a few things.
-    & \dice{0} & \dice{3} \\
+    & \dice{0} & \dice{4} & \dice{0} \\
   \rowcolor{white}
   \rating{2} & You know a lot.
-    & \dice{2} & \dice{6} \\
+    & \dice{1} & \dice{7} & \dice{0} \\
   \rowcolor{atrBoxbg}
   \rating{3} & A master of your craft, or a jack of all trades.
-    & \dice{4} & \dice{10} \\
+    & \dice{2} & \dice{10} & \dice{1} \\
   \rowcolor{white}
   \rating{4} & A master of many things.
-    & \dice{6} & \dice{15} \\
+    & \dice{4} & \dice{14} & \dice{2} \\
   \end{tabularx}
   \endgroup
 \end{strip}
-\todo{Numbers on this table are a first proposal (2026-09-22), not
-confirmed. Stat Points start at 0 at rank 1 and rise 2 per rank after,
-since the two feed one shared pool but Body is the column built around
-the Stats directly; Skills Known reuses the same curve as the earlier
-(now abandoned) Skill Points proposal. Needs a decision, then
-playtesting.}
+
+\begin{notebox}[Designer's Note: Balancing Body Against Skills]
+Body and Skills are meant to feel different --- Body leans on Stat
+Points, Skills leans on tags --- but still add up to roughly the same
+total value at each rank. The exchange rate used to check that: a tag is
+worth about \emph{half} a Stat Point, since a Stat Point helps on every
+roll that uses that Stat, while a tag only helps when its specific
+fictional trigger actually applies. Under that rate, Rank~3 Body
+(\dice{6} Stat Points + \dice{2} Body Tags) and Rank~3 Skills
+(\dice{2} Stat Points + \dice{10} Skills Known) both come out to about
+\dice{7} points of total value --- same total, opposite emphasis.
+\todo{This exchange rate (1 tag $\approx$ 0.5 Stat Points) is a
+first-pass guess, not verified by play. Confirm it holds up across all
+four ranks and both columns before treating these numbers as final.}
+\end{notebox}
 
 % TODO: opening fiction for Skills.
 \begin{readaloud}
@@ -76,11 +88,13 @@ actually practised. A high \keyword{Body} means you move well; the
 \end{statblock}
 
 Your Skills rank --- set when you assigned priorities at character
-creation, see the table above --- grants two things: Stat Points and a
-number of Skills Known. Stat Points feed the very same pool Body feeds
-(see \emph{Spending Your Stat Points} in \emph{Body}), just at a lower
-rate --- Skills sharpens what you can do, but Body is what actually
-shapes your Stats.
+creation, see the table above --- grants Stat Points and a number of
+Skills Known, and, at rank \rating{3} and \rating{4}, Special Feats.
+Stat Points feed the very same pool Body feeds (see \emph{Spending Your
+Stat Points} in \emph{Body}), just at a lower rate --- Skills sharpens
+what you can do, but Body is what actually shapes your Stats. Special
+Feats work identically no matter which column granted them; see
+\emph{Special Feats} for the full catalogue and rules.
 
 \subsection*{Choosing Your Skills}
 % REAL RULE, 2026-09-22: Skills are boolean, exactly like Magic and Body

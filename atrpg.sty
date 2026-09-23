@@ -423,6 +423,27 @@
 % Kept as its own macro so translations can be restyled or indexed later.
 \newcommand{\genretrans}[1]{\par\smallskip{\small\itshape\color{atrAccent2}Across the realms: #1}\par}
 
+% Special Feat entry — name + kind (Action/Continuous) header, prose
+% body, then one \featsource line per column it can plausibly come
+% from. No rank pip like \gearentry's: Feats aren't individually ranked,
+% since which rank grants one is a property of the column, not the Feat.
+%   \begin{feat}{Fly}{Continuous}
+%   Take to the air under your own power, for as long as the fiction
+%   allows --- no roll needed to stay up, just to do something while airborne.
+%   \featsource{body}{Wings}{A dragon's leathery wings, or a bird-boned build.}
+%   \featsource{skill}{Wingsuit Mastery}{Momentum and airflow control so extreme it reads as true flight.}
+%   \featsource{magic}{Levitation}{A standing flight spell woven into your very self.}
+%   \featsource{item}{Jetpack}{Strap it on, thumb the ignition, and go.}
+%   \end{feat}
+\newenvironment{feat}[2]{%
+  \par\smallskip\noindent
+  {\hdfont\bfseries\color{\realmaccent}#1}\hfill
+  {\scriptsize\textsc{\color{atrRule}#2}}%
+  \par\nobreak\smallskip\noindent\ignorespaces}
+  {\par\smallskip}
+\newcommand{\featsource}[3]{%
+  \par\noindent\leavevmode\atricon{#1}\hspace{2.6pt}\textbf{#2} --- #3}
+
 % Skill entry — name (as a skill-provenance tag), primary stat, description.
 % A Skill is a boolean tag like any other: you know it or you don't.
 %   \skill{Blades}{Agility}{Swords, knives, and any weapon that cuts.}
