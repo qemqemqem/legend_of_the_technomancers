@@ -184,6 +184,9 @@
 % [t] float claim the top of a page that a sectioning command already
 % opened, no matter how little content is on that page otherwise).
 \RequirePackage{cuted}
+\RequirePackage{placeins}  % \FloatBarrier --- forces a figure*/table* to
+  % place before any later text, instead of drifting past it in the float
+  % queue. Needed wherever reading order matters more than avoiding a gap.
 \RequirePackage{colortbl}
 \RequirePackage{lettrine}
 \RequirePackage{tikz}

@@ -28,24 +28,32 @@ def _load_dotenv():
 _load_dotenv()
 
 # --- The single source of visual consistency for the whole book. ---
+# REAL, 2026-09-23: earlier wording ("strong warm and cool color contrast" /
+# "strong blue and orange palette") was too specific --- every generated
+# image converged on the same blue-and-orange duotone. Loosened to ask for
+# a bold, freely-chosen palette per subject instead of one fixed hue pairing,
+# plus explicit crisp-linework language so brushwork doesn't turn to mush.
 STYLE = (
-    "vibrant richly colored painterly fantasy illustration, hand-painted "
-    "matte-painting with bold visible brushstrokes, saturated luminous colors, "
-    "strong warm and cool color contrast, soft edges, semi-realistic, dramatic "
-    "colorful lighting, high detail. A single emblematic subject, centered, full "
-    "figure, isolated with a transparent background, no scenery, no ground shadow, "
-    "no text, no border."
+    "vibrant richly colored painterly illustration, hand-painted matte-painting "
+    "with bold visible brushstrokes and crisp confident linework beneath the "
+    "paint, saturated luminous colors chosen freely to suit the subject --- pick "
+    "a bold palette on its own merits rather than defaulting to the same one or "
+    "two hues every time, soft edges, semi-realistic, dramatic lighting, high "
+    "detail. A single emblematic subject, centered, full figure, isolated with a "
+    "transparent background, no scenery, no ground shadow, no text, no border."
 )
 # Full-bleed cover style: an opaque, edge-to-edge scene (classic RPG sourcebook /
 # old-school fantasy paperback), NOT a cut-out. Set per item with "full": true.
 COVER_STYLE = (
     "Full-bleed cover illustration in the style of a classic Dungeons & Dragons "
     "sourcebook and a vintage 1980s fantasy novel paperback. Richly colored "
-    "painterly matte painting, epic sweeping scene, bold visible brushstrokes, "
-    "saturated luminous colors, strong blue and orange palette, dramatic "
-    "cinematic lighting, deep atmospheric perspective, high detail. The scene "
-    "fills the entire frame edge to edge with landscape, sky and background; no "
-    "text, no title, no lettering, no border, no frame, no margins."
+    "painterly matte painting with crisp confident linework beneath bold visible "
+    "brushstrokes, epic sweeping scene, saturated luminous colors chosen freely "
+    "to suit each scene's mood --- vary the palette from piece to piece rather "
+    "than repeating the same blue-and-orange combination, dramatic cinematic "
+    "lighting, deep atmospheric perspective, high detail. The scene fills the "
+    "entire frame edge to edge with landscape, sky and background; no text, no "
+    "title, no lettering, no border, no frame, no margins."
 )
 API_URL = "https://api.openai.com/v1/images/generations"
 

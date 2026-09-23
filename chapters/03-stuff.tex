@@ -8,28 +8,44 @@
 % placement notes; a \begin{table*}[t] float, not \twocolumn[...]).
 % REAL RULE, 2026-09-22: Special Feats column added --- Body, Skills,
 % Magic, and Stuff all grant 1 Feat at rank 3 and 2 at rank 4.
+% REAL RULE, 2026-09-23: Stuff Tags column added --- a flat pool keyed to
+% Stuff rank, same shape as Body Tags/Skills Known/Tags Known elsewhere in
+% the book. Supersedes the older "each item grants tags equal to one less
+% than its own purchased rank" rule (see Giving Your Stuff Tags below):
+% that made every item's tag count depend on ITS rank, not the
+% character's; this is simpler and matches how every other column works.
+% REAL RULE, 2026-09-23: Max Tier column added, restating the "never buy
+% above your own rank" rule from Spending Your Stuff Points as a number
+% you can read straight off this table, plus the rank-4 capstone
+% exception (bump one owned Tier-4 item to Tier 5) flagged with an
+% asterisk --- full rule stated again in Spending Your Stuff Points below.
 \begin{strip}
   \begingroup\centering
   {\hdfont\Large\bfseries\color{\realmaccent} Creating Stuff\par}
   \vspace{10pt}
   \endgroup
   \begingroup
-  \setlength{\tabcolsep}{7pt}\renewcommand{\arraystretch}{1.35}
-  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.6cm} Y >{\centering\arraybackslash}p{2.2cm} >{\centering\arraybackslash}p{1.6cm}@{}}
+  \setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.35}
+  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.4cm} Y >{\centering\arraybackslash}p{1.5cm} >{\centering\arraybackslash}p{1.9cm} >{\centering\arraybackslash}p{1.5cm} >{\centering\arraybackslash}p{1.5cm}@{}}
   \rowcolor{\realmaccent}
   {\leavevmode\hdfont\bfseries\color{white}Rank} &
   {\leavevmode\hdfont\bfseries\color{white}You Have\ldots} &
+  {\leavevmode\hdfont\bfseries\color{white}Max Tier} &
   {\leavevmode\hdfont\bfseries\color{white}Stuff Points} &
+  {\leavevmode\hdfont\bfseries\color{white}Stuff Tags} &
   {\leavevmode\hdfont\bfseries\color{white}Special Feats} \\
   \rowcolor{atrBoxbg}
-  \rating{1} & Nothing but the shirt on your back. & \dice{0} & \dice{0} \\
+  \rating{1} & Nothing but the shirt on your back. & --- & \dice{0} & \dice{0} & \dice{0} \\
   \rowcolor{white}
-  \rating{2} & Basic Stuff --- armour, a weapon, a skateboard.  & \dice{4} & \dice{0} \\
+  \rating{2} & Basic Stuff --- armour, a weapon, a skateboard.  & \dice{2} & \dice{4} & \dice{2} & \dice{0} \\
   \rowcolor{atrBoxbg}
-  \rating{3} & Nice Stuff --- a legendary weapon, a vehicle. & \dice{7} & \dice{1} \\
+  \rating{3} & Nice Stuff --- a legendary weapon, a vehicle. & \dice{3} & \dice{7} & \dice{4} & \dice{1} \\
   \rowcolor{white}
-  \rating{4} & Fancy Stuff --- a ship, a keep, incredible gear. & \dice{12} & \dice{2} \\
+  \rating{4} & Fancy Stuff --- a ship, a keep, incredible gear. & \dice{4}* & \dice{12} & \dice{7} & \dice{2} \\
   \end{tabularx}
+  \endgroup
+  \begingroup\centering
+  {\small\itshape *At rank \rating{4}, bump one owned Tier-\rating{4} item to Tier \dice{5} as a capstone --- see \emph{Spending Your Stuff Points}.\par}
   \endgroup
 \end{strip}
 
@@ -42,32 +58,22 @@
 
 \lettrine{S}{tuff} is what you carry from world to world. It covers your
 equipment, your wealth, and the larger things you stake out and call your
-own --- bases, ships, fortresses. Rank determines not just what you have,
-but how much of the world bends to you.
+own --- bases, ships, fortresses. Rank determines not just how many points
+you have to spend, but the ceiling on how good any single thing you buy
+is allowed to be.
 
 % ---- Section 1: Character Creation ---------------------------------
 \section{At Character Creation}
 
-% REAL RULE: Stuff ranks from the Notion source. Keep verbatim, minus the
-% dollar figures --- those read as precise but weren't meaningful, so the
-% rank now maps to a plain quality tier instead (2026-09-22).
-\begin{statblock}[Stuff Ranks]
-\begin{tabularx}{\linewidth}{@{}p{0.16\linewidth} Y@{}}
-\rating{1} & Nothing but the shirt on your back.\\[3pt]
-\rating{2} & Basic Stuff --- armour, a weapon, a skateboard.\\[3pt]
-\rating{3} & Nice Stuff --- a legendary weapon, a vehicle.\\[3pt]
-\rating{4} & Fancy Stuff --- a ship, a keep, incredible gear.\\
-\end{tabularx}
-\end{statblock}
-
 Your Stuff rank --- set when you assigned priorities at character
 creation, see the table above --- grants a pool of \keyword{Stuff
-Points}, and, at rank \rating{3} and \rating{4}, Special Feats. Spend
-your Stuff Points on the catalogue below; for Special Feats, see
-\emph{Special Feats} for the full catalogue and rules --- a Stuff-granted
-Feat usually comes from one specific, ownable item (a jetpack, a
-translator implant), which re-skins along with the rest of your gear
-when you cross into a new realm.
+Points}, a pool of \keyword{Stuff Tags}, and, at rank \rating{3} and
+\rating{4}, Special Feats. Spend your Stuff Points on the catalogue
+below and your Stuff Tags on the things that catalogue buys; for Special
+Feats, see \emph{Special Feats} for the full catalogue and rules --- a
+Stuff-granted Feat usually comes from one specific, ownable item (a
+jetpack, a translator implant), which re-skins along with the rest of
+your gear when you cross into a new realm.
 
 \subsection*{Spending Your Stuff Points}
 % REAL RULE, 2026-09-22: rank is not a ceiling you fill in every
@@ -75,92 +81,448 @@ when you cross into a new realm.
 % like. A Rank 4 character doesn't automatically own a rank-4 weapon AND
 % vehicle AND armour AND fortress; they own whatever combination their
 % points cover.
+% REAL RULE, 2026-09-23: closes a gap in the point-buy math --- nothing
+% previously stopped a low-rank character from saving every point for
+% one purchase above their station (Stuff 2, 4 points, one rank-4 item).
+% The "You Have..." column in the table above already implied a ceiling
+% ("Basic Stuff" at rank 2); this makes it an actual rule instead of an
+% unenforced suggestion.
 Every catalogue entry lists a rank from \rating{2} to \rating{4} ---
 that number is also its \keyword{point cost}. Spend your Stuff Points
 across any combination of entries, from any category, in any
-combination. You do not automatically own the best thing in every
-category at your rank; you own whatever your points actually buy.
+combination, with one hard limit: \emph{you may never buy anything
+ranked higher than your own Stuff rank.} A Stuff-\rating{2} character
+can own two Basic-tier things, or one and save the rest --- never a
+single Fancy-tier item bought on credit.
 
 \begin{example}
-Kira is Stuff \rating{3}: \dice{7} points. She could buy one
-\emph{Special Weapon} (\dice{3}) and one \emph{Basic Vehicle} (\dice{3}),
-with \dice{1} point left for a minor extra --- or she could skip the
-vehicle entirely and buy a single \emph{Legendary Weapon} (\dice{4}) plus
-\emph{Light Armour} (\dice{2}), with \dice{1} to spare. Same rank, very
-different loadout.
+Kira is Stuff \rating{3}: \dice{7} points, and nothing she buys can be
+rank \rating{4}. She could buy a \emph{Weapon} (\dice{3}) and a
+\emph{Vehicle} (\dice{3}), with \dice{1} point left unspent --- or trade
+the vehicle for a second \emph{Weapon} (\dice{2}) plus \emph{Armour}
+(\dice{2}): three things instead of two, spending every point. Same
+rank, same ceiling, different loadout.
+\end{example}
+
+\subsection*{The Rank-4 Capstone: Tier 5}
+% REAL RULE, 2026-09-23: the one deliberate exception to "never buy above
+% your own rank" and to the game's usual 1-4 rank ceiling entirely --- a
+% single Tier-5 item exists nowhere else in the book. Free (no additional
+% Stuff Points), one item only, and it must already be a Tier-4 item you
+% own rather than a fresh purchase.
+At Stuff \rating{4}, pick one Tier-\rating{4} item you already own and
+mark it \keyword{Tier \dice{5}} instead --- a capstone upgrade, free of
+any additional point cost. This is the one item in your possession (and,
+short of a GM exception, the one item in the entire game) that reaches
+above rank \rating{4}: the single sword that ends duels, the one ship
+every pirate has heard of. Everything else you own is still capped at
+your own rank.
+
+\begin{example}
+Kira reaches Stuff \rating{4} and already owns a Tier-\rating{4} Weapon.
+She marks it Tier \dice{5} instead of buying something new --- it costs
+her nothing extra, and it is now the sharpest blade she will ever carry.
+\end{example}
+
+\subsection*{Giving Your Stuff Tags}
+% REAL RULE, 2026-09-23: reworked from a per-item formula ("each item
+% grants tags equal to one less than its own rank") to a flat pool keyed
+% to the character's Stuff rank, matching the shape of Body Tags/Skills
+% Known/Tags Known elsewhere in the book --- see the note on the
+% chapter-opening table above for why.
+Your Stuff rank also grants a pool of \keyword{Stuff Tags} --- \dice{0}
+at rank \rating{1}, \dice{2} at rank \rating{2}, \dice{4} at rank
+\rating{3}, \dice{7} at rank \rating{4} --- to distribute across
+whatever you own, in any combination. Pick from the tag menu listed
+under that kind of item, or invent your own with your GM's approval.
+These work exactly like a Body Tag or a Skill --- when one clearly
+applies, add one die to your pool.
+
+\begin{example}
+Kira is Stuff \rating{3}, so she has \dice{4} Stuff Tags to give out. She
+puts \atrtag{item}{Fast} and \atrtag{item}{All-Terrain} on her Vehicle,
+then \atrtag{item}{Concealable} and \atrtag{item}{Piercing} on her
+Weapon --- two things she owns, each with a distinct personality.
 \end{example}
 
 % ---- Section 2: Rules -----------------------------------------------
 \section{Stuff in Play}
 
-% TODO: mechanics/guidance for using Stuff.
-\lipsum[17][1-5]
+\subsection*{Using Your Stuff's Tier as a Base Stat}
+% REAL RULE, 2026-09-23: applies "Stats from Objects" (How to Play) to
+% the Stuff catalogue specifically, with worked examples grounded in the
+% chapter's own gear. Not a new rule --- the underlying mechanic ("take
+% the higher of the two") is already established there; this section
+% exists so a player reading Stuff in isolation doesn't have to go
+% hunting for it.
+When you act \emph{through} something you own --- swinging a weapon,
+driving a vehicle, working from inside a fortress --- that item's own
+\keyword{tier} can stand in for whichever base Stat the action would
+normally use, exactly as described in \emph{Stats from Objects} in
+\emph{How to Play}. Compare the item's tier to your own Stat and roll
+with whichever number is higher. An item can only ever help: it never
+forces you down to a worse number than the Stat you already have.
+
+\begin{example}
+Rooster's Body is \dice{2}, but he's swinging a Tier-\rating{4} sword.
+The sword's tier beats his own Body, so he rolls with a base of \dice{4}
+instead of \dice{2} --- the same trade a rank-\rating{3} car makes for a
+rank-\rating{2} driver in \emph{How to Play}.
+\end{example}
+
+\begin{statblock}[Tier as a Base Stat: Worked Examples]
+\begin{tabularx}{\linewidth}{@{}p{0.27\linewidth} Y >{\centering\arraybackslash}p{0.13\linewidth}@{}}
+\textbf{Item} & \textbf{Situation} & \textbf{Base}\\[3pt]
+Tier-\rating{2} Weapon & You swing it, but your own Body is already \dice{4}. & \dice{4}\\[3pt]
+Tier-\rating{4} Weapon & You swing it, and your own Body is only \dice{2}. & \dice{4}\\[3pt]
+Tier-\rating{3} Vehicle & Wrestling the wheel through a rockslide; Body \dice{2}. & \dice{3}\\[3pt]
+Tier-\rating{2} Vehicle & An elite pilot, Body \dice{4}, at the stick. & \dice{4}\\[3pt]
+Tier-\rating{4} Armour & Shouldering open a jammed bulkhead; Body \dice{3}. & \dice{4}\\[3pt]
+Tier-\rating{3} Base & Deciphering a ritual in its arcane library; Mind \dice{2}. & \dice{3}\\[3pt]
+Tier-\rating{4} Fortress & Awing a rival warlord hosted within its walls; Face \dice{2}. & \dice{4}\\[3pt]
+Tier-\rating{5} Weapon & A capstone blade ending a duel outright; Body \dice{3}. & \dice{5}\\
+\end{tabularx}
+\end{statblock}
 
 \subsection*{Re-Kitting on Arrival}
 
 The catalogue is deliberately \keyword{generic}. What you own is a
-\emph{kind} of thing --- a mount, a special weapon, a base --- and you
+\emph{kind} of thing --- a vehicle, a weapon, a base --- and you
 decide what that thing actually \emph{is} each time you enter a new realm.
-A \emph{special weapon} might be a flaming sword under a fantasy sun and a
-plasma rifle in the sprawl; it is the same line on your sheet either way.
-Each genre chapter lists suggested translations, so you always have a
-world-appropriate version ready to hand.
+A \emph{Weapon} might be a flaming sword under a fantasy sun and a
+plasma rifle in the sprawl; it is the same line on your sheet either way,
+and its tags travel with it unchanged. Each genre chapter lists suggested
+translations, so you always have a world-appropriate version ready to
+hand.
 
 % ---- Section 3: Options ---------------------------------------------
-\section{What You Can Buy}
+\section{Lifestyle \& Cash}
+% REAL RULE, 2026-09-23: Lifestyle moves from a bought gearlist entry to
+% an automatic grant keyed directly to Stuff rank --- it was already
+% describing the same quality tiers as the "You Have..." column in the
+% chapter-opening table, so charging points for it was double-counting.
+% Everything else in the chapter still costs points; this is the one
+% exception, and the text below says so explicitly. Placed BEFORE "What
+% You Can Buy" (moved 2026-09-23) so the one free, no-roll-required grant
+% reads before the point-buy catalogue starts, not folded into it.
+\artinline{stuff-lifestyle.png}
+Cash in your pocket, clothes on your back, ordinary tools within reach
+--- every traveller has \emph{some} baseline standard of living, and
+unlike everything else in this chapter, you never spend a point on it.
+Your Lifestyle simply matches your Stuff rank.
 
-Every entry is tagged with its point cost, shown as pips
+\begin{statblock}[Lifestyle \& Cash, by Rank]
+\begin{tabularx}{\linewidth}{@{}p{0.16\linewidth} Y@{}}
+\rating{1} & Scraping By --- basic clothes, pocket change, nothing to spare.\\[3pt]
+\rating{2} & The Basics --- some cash, appropriate clothes, and basic tools. You get by.\\[3pt]
+\rating{3} & Well Off --- well dressed, generally nice things, spending money, good tools.\\[3pt]
+\rating{4} & Rich --- the finest version of every tool you need, fine clothes, and a wallet flush with cash.\\
+\end{tabularx}
+\end{statblock}
+
+% REAL, 2026-09-23: this divider marks the start of the point-buy
+% catalogue, so it gets chapter-title-scale treatment (\Huge, same rule
+% motif as \chapter itself, see \titleformat{\chapter} in atrpg.sty)
+% instead of an ordinary \section --- deliberately bigger than every
+% other heading in the chapter. Title and banner are ONE figure* float
+% (not \strip, and not \artbanner immediately following a separate
+% \strip) --- \strip assumes the two columns are height-balanced at the
+% point it fires, which broke here: Lifestyle & Cash's inline image
+% (\artinline, not a float) leaves the two columns visibly uneven just
+% above this point, so a bare \strip landed at the shorter column's
+% height and overlapped the still-rendering taller one. A single figure*
+% carrying both the title and the image is placed by LaTeX's normal float
+% algorithm instead, the same mechanism that already placed a bare
+% \artbanner correctly here before Lifestyle moved up --- immune to
+% column imbalance by construction.
+% REAL BUG FIX, 2026-09-23: a bare figure*[tb] is still only a QUEUED
+% float --- LaTeX is free to defer it past later text if it doesn't fit
+% where it's first tried, and Vehicles (which follows immediately in the
+% source) was winning that race, rendering on a page BEFORE this banner.
+% \FloatBarrier (placeins, see atrpg.sty) forces every float queued
+% before it --- this one --- to be placed before any later material is
+% typeset, guaranteeing reading order at the cost of possible whitespace
+% (accepted trade-off; revisit if the gap looks bad once art is final).
+\begin{figure*}[tb]
+\centering
+{\hdfont\bfseries\color{\realmaccent}\Huge\MakeUppercase{What You Can Buy}\par}
+\vspace{6pt}
+{\color{atrRule}\titlerule[1pt]}
+\vspace{10pt}
+
+\includegraphics[width=\textwidth,height=0.38\textheight,keepaspectratio]{vehicle-steed.png}
+\end{figure*}
+\FloatBarrier
+
+Every entry below is tagged with its point cost, shown as pips
 (\rating{2}--\rating{4}). Spend your Stuff Points from the table at the
-start of this chapter here, in whatever combination you like.
+start of this chapter here, in whatever combination you like, and never
+above your own rank.
 
 \section{Vehicles}
-\artbanner{vehicle-steed.png}
+\artinline{stuff-vehicles.png}
 A vehicle carries you, your party, and your gear across the realm --- and,
 with a \keyword{Persistence Point}, from one realm into the next without
-changing shape. Vehicles come in three levels, each a step up in speed,
-capacity, and sheer presence.
+changing shape. A Vehicle is a Vehicle at any rank --- what changes is
+how fast, tough, and capable it is.
 
-\gearentry{Mount}{2}{The humblest way to travel faster than your feet. A
-mount is a single-rider workhorse: it gets you there, carries a little
-cargo, and asks little in return. It has no armour to speak of and no room
-for the whole party, but it is yours, and it is quick.}
-\genretrans{a warhorse in high fantasy, a motorbike in the neon 1980s, a hoverboard on the station concourse.}
+\gearentry{Vehicle}{2}{The humblest way to travel faster than your feet.
+It gets you there, carries a little cargo, and asks little in return. No
+armour to speak of and no room for the whole party, but it is yours, and
+it is quick.}
 
-\gearentry{Basic Vehicle}{3}{A proper conveyance with room for a few
+\gearentry{Vehicle}{3}{A proper conveyance with room for a few
 companions and their kit. It shrugs off rough roads, hauls real cargo, and
 can take a knock without falling apart. This is the workaday vehicle of the
 realm --- reliable, unremarkable, and exactly enough.}
-\genretrans{a covered cart or coach, a family car, a battered cargo skiff.}
 
-\gearentry{Advanced Vehicle}{4}{Fast, tough, and built to turn heads or
-win fights. An advanced vehicle outruns, out-hauls, or out-fights anything
-short of a named threat. It carries the whole party in comfort or in
-armour, and it changes what encounters are even possible.}
-\genretrans{a racing chariot or war-wagon, a race car or armoured van, a gunship or a battle tank.}
+\gearentry{Vehicle}{4}{Fast, tough, and built to turn heads or win
+fights. A rank-\rating{4} Vehicle outruns, out-hauls, or out-fights
+anything short of a named threat. It carries the whole party in comfort
+or in armour, and it changes what encounters are even possible.}
 
-\section{Everything Else}
-The remaining gear follows the same pattern: pick the line, pay the rank,
-and decide what it looks like in the realm you are standing in.
+% REAL, 2026-09-23: replaces the old per-rank \genretrans italics with one
+% table --- Andrew's feedback: a "Name | pips" row reads easier than an
+% inline comma-separated list of italicized examples. Same pattern reused
+% for every category below.
+\begin{statblock}[Example Vehicles]
+\begin{tabularx}{\linewidth}{@{}Y >{\raggedleft\arraybackslash}p{0.16\linewidth}@{}}
+Warhorse & \rating{2}\\
+Motorbike & \rating{2}\\
+Hoverboard & \rating{2}\\
+Covered Wagon & \rating{3}\\
+Family Car & \rating{3}\\
+Cargo Skiff & \rating{3}\\
+War-Chariot & \rating{4}\\
+Race Car & \rating{4}\\
+Gunship & \rating{4}\\
+\end{tabularx}
+\end{statblock}
 
-\begin{gearlist}{Lifestyle \& Cash}
-\gear{The Basics}{2}{Some cash, appropriate clothes, and basic tools. You get by.}
-\gear{Well Off}{3}{Well dressed, generally nice things, spending money, good tools.}
-\gear{Rich}{4}{The finest version of every tool you need, fine clothes, and a wallet flush with cash.}
-\end{gearlist}
+\subsection*{Vehicle Tags}
+Ten tags, paired into five weight classes so no single pick outshines the
+rest. Drawn from your shared pool of Stuff Tags --- see \emph{Giving
+Your Stuff Tags} above.
 
-\begin{gearlist}{Weapons}
-\gear{Basic Weapon}{2}{A sword, a pistol --- a dependable killer.}
-\gear{Special Weapon}{3}{Something with a trick to it: a flaming sword, a bazooka, or the like.}
-\gear{Legendary Weapon}{4}{A weapon out of story --- world-shaping, named, and feared.}
-\end{gearlist}
+\skillcat{Speed \& Handling}
+\begin{itemize}
+  \item \atrtag{item}{Fast} --- Outpaces almost anything else on the road, rail, or sky.
+  \item \atrtag{item}{Agile} --- Turns on a dime, threading gaps nothing else its size can fit through.
+\end{itemize}
 
-\begin{gearlist}{Armour}
-\gear{Light Armour}{2}{Padding and leathers --- turns aside the first, glancing blow.}
-\gear{Heavy Armour}{3}{Plate, a ballistic vest, a hardsuit --- real, worn protection.}
-\gear{Master Armour}{4}{Armour of legend or high craft, protection few can match.}
-\end{gearlist}
+\skillcat{Protection}
+\begin{itemize}
+  \item \atrtag{item}{Armoured} --- Shrugs off gunfire, claws, or a hard collision.
+  \item \atrtag{item}{Rugged} --- Keeps running through terrain, weather, or damage that would strand anything else.
+\end{itemize}
 
-\begin{gearlist}{Locations}
-\gear{Base}{3}{A safe house, a wizard's tower, a hideout you can return to.}
-\gear{Fortress}{4}{A stronghold --- walls, staff, and standing over the land around it.}
-\end{gearlist}
+\skillcat{Capacity}
+\begin{itemize}
+  \item \atrtag{item}{Spacious} --- Hauls the whole party and their gear without complaint.
+  \item \atrtag{item}{Amphibious} --- Moves from open water to dry land without missing a beat.
+\end{itemize}
+
+\skillcat{Reach}
+\begin{itemize}
+  \item \atrtag{item}{Airborne} --- Leaves the ground entirely; a flier, not just a rider.
+  \item \atrtag{item}{Silent} --- Arrives, or leaves, without anyone noticing.
+\end{itemize}
+
+\skillcat{Presence}
+\begin{itemize}
+  \item \atrtag{item}{Armed} --- Mounts a weapon of its own, ready to fire from the driver's seat.
+  \item \atrtag{item}{Luxurious} --- As comfortable as it is capable; the kind of ride that impresses.
+\end{itemize}
+
+\section{Weapons}
+\artinline{stuff-weapons.png}
+A weapon is whatever you reach for when a fight turns physical --- blade,
+gun, or something stranger. A Weapon is a Weapon at any rank --- what
+changes is how much of an edge it gives you.
+
+\gearentry{Weapon}{2}{A dependable killer, nothing more and nothing
+less --- a sword, a pistol. It does exactly what a weapon is supposed to
+do.}
+
+\gearentry{Weapon}{3}{Something with a trick to it --- a flaming blade, a
+grenade launcher, a weapon that does more than simply cut or shoot.}
+
+\gearentry{Weapon}{4}{A weapon out of story --- world-shaping, named, and
+feared. Everyone in the room knows what it means when you draw it.}
+
+\begin{statblock}[Example Weapons]
+\begin{tabularx}{\linewidth}{@{}Y >{\raggedleft\arraybackslash}p{0.16\linewidth}@{}}
+Sword & \rating{2}\\
+Pistol & \rating{2}\\
+Sidearm & \rating{2}\\
+Enchanted Blade & \rating{3}\\
+Shotgun & \rating{3}\\
+Plasma Cutter & \rating{3}\\
+Legendary Blade & \rating{4}\\
+Signature Sidearm & \rating{4}\\
+Superweapon & \rating{4}\\
+\end{tabularx}
+\end{statblock}
+
+\subsection*{Weapon Tags}
+Ten tags, paired into five weight classes, same rule as Vehicles: drawn
+from your shared pool of Stuff Tags, not tied to this item alone.
+
+\skillcat{Reach \& Range}
+\begin{itemize}
+  \item \atrtag{item}{Ranged} --- Strikes from a distance, no need to close in.
+  \item \atrtag{item}{Reach} --- Keeps an opponent at arm's length even up close.
+\end{itemize}
+
+\skillcat{Rate of Attack}
+\begin{itemize}
+  \item \atrtag{item}{Rapid-Fire} --- Strikes again and again, faster than anyone can answer.
+  \item \atrtag{item}{Returning} --- Flies from your hand and comes right back, or never needs reloading.
+\end{itemize}
+
+\skillcat{Concealment}
+\begin{itemize}
+  \item \atrtag{item}{Concealable} --- Vanishes into a sleeve, boot, or coat until the moment it's needed.
+  \item \atrtag{item}{Silent} --- Does its work without anyone else in the room noticing.
+\end{itemize}
+
+\skillcat{Impact}
+\begin{itemize}
+  \item \atrtag{item}{Piercing} --- Punches through armour and cover like they aren't there.
+  \item \atrtag{item}{Explosive} --- Deals damage well beyond the point of impact.
+\end{itemize}
+
+\skillcat{Special}
+\begin{itemize}
+  \item \atrtag{item}{Elemental} --- Carries fire, ice, lightning, or something stranger with every hit.
+  \item \atrtag{item}{Disarming} --- As good at stripping a weapon away as landing a blow.
+\end{itemize}
+
+\section{Armour}
+\artinline{stuff-armour.png}
+Whatever stands between you and the worst a fight can do. Higher rank
+doesn't just mean thicker plating --- it can turn a killing blow into a
+bad day.
+
+\gearentry{Light Armour}{2}{Padding and leathers --- turns aside the
+first, glancing blow.}
+
+\gearentry{Heavy Armour}{3}{Plate, a ballistic vest, a hardsuit ---
+real, worn protection.}
+
+\gearentry{Master Armour}{4}{Armour of legend or high craft, protection
+few can match.}
+
+\begin{statblock}[Example Armour]
+\begin{tabularx}{\linewidth}{@{}Y >{\raggedleft\arraybackslash}p{0.16\linewidth}@{}}
+Leather Jerkin & \rating{2}\\
+Reinforced Jacket & \rating{2}\\
+Impact-Weave Bodysuit & \rating{2}\\
+Plate Harness & \rating{3}\\
+Riot Gear & \rating{3}\\
+Exo-Frame & \rating{3}\\
+Dragon-Scale Mail & \rating{4}\\
+Combat Suit & \rating{4}\\
+Void-Rated Armour & \rating{4}\\
+\end{tabularx}
+\end{statblock}
+
+\section{Locations}
+\artinline{stuff-locations.png}
+A place you can call your own --- somewhere to retreat to, resupply, and
+plan your next move from. Like everything else in this chapter, a
+Location re-skins to fit wherever you currently stand; see
+\emph{Re-Kitting on Arrival}.
+
+\gearentry{Base}{3}{A safe house, a wizard's tower, a hideout you can
+return to.}
+
+\gearentry{Fortress}{4}{A stronghold --- walls, staff, and standing over
+the land around it.}
+
+\begin{statblock}[Example Locations]
+\begin{tabularx}{\linewidth}{@{}Y >{\raggedleft\arraybackslash}p{0.16\linewidth}@{}}
+Hidden Tower & \rating{3}\\
+Safehouse & \rating{3}\\
+Satellite Relay & \rating{3}\\
+Castle & \rating{4}\\
+Corporate Compound & \rating{4}\\
+Orbital Station & \rating{4}\\
+\end{tabularx}
+\end{statblock}
+
+\section{Gadgets}
+% REAL RULE, 2026-09-23: the deliberate catch-all category. Every other
+% catalogue entry has a fixed name and blurb decided in this book;
+% Gadgets are the opposite --- the player and GM design the thing itself
+% at the table, and only its rank (hence its point cost and power
+% ceiling) is fixed by these rules. Keeps the catalogue from needing an
+% entry for every one-off tool a player might dream up.
+\artinline{stuff-gadgets.png}
+Not everything worth owning fits neatly into a Vehicle, a Weapon, a suit
+of Armour, or a Location. A \keyword{Gadget} is whatever's left ---
+purpose-built gear that does one specific, useful thing. Unlike the rest
+of the catalogue, a Gadget has no fixed name or blurb of its own: you
+design it together with your GM when you buy it, the same way you'd
+invent a Body Tag or a Skill that isn't on the printed list.
+
+\subsection*{Designing a Gadget with Your GM}
+Pick the rank you can afford --- never above your own Stuff rank, same
+as everything else in this chapter --- then agree with your GM on the
+one thing it does. The rank sets the ceiling on how impressive that one
+thing is allowed to be: a Tier-\rating{2} Gadget solves a single mundane
+problem outright, while a Tier-\rating{4} Gadget can do something no
+ordinary tool has any business doing. If you and your GM can't agree on
+what a rank should buy, undershoot --- a Gadget that's a little less
+flashy than its rank allows is far easier to live with at the table than
+one that quietly turns out to be a spell wearing a disguise.
+
+\begin{example}
+Kira wants a Tier-\rating{2} Gadget. She and her GM land on a
+\emph{grappling hook}: fires a hook and cable a few dozen feet, hauls her
+up a wall or yanks a target off their feet. One good trick, solving
+exactly one kind of problem --- getting somewhere a hook and cable can
+reach.
+\end{example}
+
+A few more examples, to spark ideas rather than to pick from directly:
+
+\gearentry{Grappling Hook}{2}{Fires a hook and cable a few dozen feet;
+hauls you up, or hauls something else down. One good trick: getting
+somewhere a hook and cable can reach.}
+
+\gearentry{Lockpick Rig}{2}{A compact set of picks and probes, or the
+digital equivalent, that opens what it isn't supposed to.}
+
+\gearentry{Signal Jammer}{3}{Blinds a device, a ward, or a whole room to
+outside detection for as long as you keep it running.}
+
+\gearentry{Nanite Patch Kit}{4}{Closes a wound, mends a break, or purges
+a poison almost as fast as you can apply it.}
+
+\begin{statblock}[Example Gadgets]
+\begin{tabularx}{\linewidth}{@{}Y >{\raggedleft\arraybackslash}p{0.16\linewidth}@{}}
+Enchanted Climbing Rope & \rating{2}\\
+Grapple Gun & \rating{2}\\
+Tractor-Line Launcher & \rating{2}\\
+Thieves' Tools & \rating{2}\\
+Lock-Bypass Kit & \rating{2}\\
+Cipher Wand & \rating{2}\\
+Rune of Silence & \rating{3}\\
+RF Jammer & \rating{3}\\
+Scrambler Emitter & \rating{3}\\
+Phoenix-Down Poultice & \rating{4}\\
+Trauma Injector & \rating{4}\\
+Medical Nanite Swarm & \rating{4}\\
+\end{tabularx}
+\end{statblock}
+
+Gadget tags work the same as any other --- drawn from your shared pool
+of Stuff Tags (see \emph{Giving Your Stuff Tags} above), invented
+alongside the Gadget itself rather than picked from a printed menu.
+
+\todo{Vehicles and Weapons now get a menu of tags to distribute (see
+\emph{Giving Your Stuff Tags}); Armour and Locations don't yet, and
+Gadgets never will by design (each one is bespoke). Decide whether
+Armour and Locations deserve the same treatment as Vehicles/Weapons, or
+whether their named tiers already do that job well enough.}
