@@ -42,7 +42,7 @@ jobs:
       # loss on a phone screen; the full-resolution file stays on the release.
       - name: Compress for mobile
         run: |
-          sudo apt-get install -y --no-install-recommends ghostscript
+          command -v gs || { sudo apt-get update -q && sudo apt-get install -y --no-install-recommends ghostscript; }
           gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pdfwrite -dCompatibilityLevel=1.7 \
             -dPDFSETTINGS=/ebook -o _site/rulebook.pdf rulebook.pdf
           ls -l rulebook.pdf _site/rulebook.pdf
