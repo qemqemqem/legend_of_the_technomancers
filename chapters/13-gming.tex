@@ -29,9 +29,70 @@ through. The GM never needs to roll for an NPC's attack.
 \section{Setting the Target Number}
 % REAL RULE, 2026-09-22: relocated from The Shape of a Session, which
 % was accumulating too much GM-facing material to stay a section there.
-% TODO: real advice on picking target numbers goes here. Placeholder
-% text below, pending actual design.
-\lipsum[49][1-4]
+% DRAFT, 2026-09-23: difficulty ladder and odds table. Percentages come
+% from auto_play_testing/dice_odds.csv; regenerate them if the dice
+% engine changes.
+Set the target number from the fiction, before you look at anyone's
+sheet. Ask how hard the task is for a capable person in this situation,
+pick a number from the ladder below, and announce it along with the
+stakes before the player rolls. The player's Stat and tags already
+reward them for being good at it; if you also lowered the target for
+experts, you would count their edge twice.
+
+\begin{statblock}[The Difficulty Ladder]
+\begin{tabularx}{\linewidth}{@{}l Y@{}}
+\dice{1} \keyword{Risky} & The default. Something could go wrong, but a capable person usually manages it --- climbing a rough wall, bluffing a bored guard.\\[3pt]
+\dice{2} \keyword{Hard} & Needs real skill or good tools --- picking a quality lock, talking down an angry crowd.\\[3pt]
+\dice{3} \keyword{Very Hard} & A challenge even for an expert --- tracking prey across bare rock, out-arguing a court wizard in her own hall.\\[3pt]
+\dice{4} \keyword{Heroic} & The stuff of stories --- leaping between speeding vehicles, cracking military encryption on the fly.\\[3pt]
+\dice{5} \keyword{Legendary} & Only the best, with every edge they can find, have a hope --- wrestling a dragon to the ground, swaying a god.\\
+\end{tabularx}
+\end{statblock}
+
+Most rolls in a session should be \dice{1} or \dice{2}. That is not
+generosity: at \dice{1} a failure is still possible, and a partial
+success still costs something. Save \dice{3} and above for moments you
+want the table to remember.
+
+\subsection*{Reading the Odds}
+As a rule of thumb, when the pool is \emph{twice the target plus one},
+a full success is a coin flip; when it is twice the target minus one,
+at least a partial success is a coin flip. A pool smaller than the target cannot
+succeed at all --- if you set a target no Traveller can reach, you have
+said the action is impossible, so say so plainly instead.
+
+\begin{statblock}[Odds by Target]
+Each cell shows the percentage chance of \emph{at least a partial}
+success, then of a \emph{full} success or better.
+\medskip
+
+\begin{tabularx}{\linewidth}{@{}l Y Y Y@{}}
+\textbf{Target} & \textbf{3 dice} & \textbf{5 dice} & \textbf{7 dice}\\[3pt]
+\dice{1} & 88 / 50 & 97 / 81 & 99 / 94\\[3pt]
+\dice{2} & 50 / 13 & 81 / 50 & 94 / 77\\[3pt]
+\dice{3} & 13 / 0 & 50 / 19 & 77 / 50\\[3pt]
+\dice{4} & 0 / 0 & 19 / 3 & 50 / 23\\[3pt]
+\dice{5} & 0 / 0 & 3 / 0 & 23 / 6\\
+\end{tabularx}
+\end{statblock}
+
+A starting Traveller acting in their specialty usually rolls four to six
+dice; a Traveller outside their comfort zone might roll two or three.
+Critical successes are common at target \dice{1} and rare above
+\dice{2}, so low targets are where the spectacular moments live.
+
+\subsection*{Moving the Target}
+Circumstances move the target; the character's own edges go in the
+pool. Raise the target by one when the situation works against the
+Traveller --- darkness, a storm, a ticking clock, a hostile crowd. Lower
+it by one, never below \dice{1}, when the situation helps: the party
+set up the moment, scouted ahead, or turned the terrain to their
+advantage. Rewarding good planning this way is how players learn that
+the fiction matters as much as the numbers.
+
+Never change a target after the dice hit the table. If a player
+describes a cleverer approach before rolling, re-set the target for
+that new approach and announce it again.
 
 \section{Adjudicating Consequences}
 % REAL RULE, 2026-09-22: relocated from The Shape of a Session.
