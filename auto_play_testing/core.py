@@ -7,11 +7,11 @@ import random
 
 COLUMNS = ("Body", "Stuff", "Skills", "Magic")
 STATS = ("Body", "Mind", "Face")
-BODY_POINTS = (0, 2, 4, 6, 9)
+BODY_POINTS = (0, 0, 2, 4, 7)
 BODY_TAG_COUNTS = (0, 0, 1, 2, 4)
 SKILL_POINTS = (0, 0, 1, 2, 4)
-SKILL_COUNTS = (0, 4, 7, 10, 14)
-STUFF_POINTS = (0, 0, 4, 7, 12)
+SKILL_COUNTS = (0, 2, 4, 6, 9)
+STUFF_POINTS = (0, 0, 3, 6, 10)
 STUFF_TAG_COUNTS = (0, 0, 2, 4, 7)
 MAGIC_COUNTS = (0, 0, 3, 7, 12)
 
