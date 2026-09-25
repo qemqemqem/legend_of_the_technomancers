@@ -29,30 +29,32 @@ through. The GM never needs to roll for an NPC's attack.
 \section{Setting the Target Number}
 % REAL RULE, 2026-09-22: relocated from The Shape of a Session, which
 % was accumulating too much GM-facing material to stay a section there.
-% DRAFT, 2026-09-23: difficulty ladder and odds table. Percentages come
-% from auto_play_testing/dice_odds.csv; regenerate them if the dice
-% engine changes.
+% DRAFT, 2026-09-23 (revised): six-step difficulty ladder and odds
+% table. Percentages come from auto_play_testing/dice_odds.csv (targets
+% 1--5) plus the same binomial maths for target 6; regenerate them if
+% the dice engine changes.
 Set the target number from the fiction, before you look at anyone's
-sheet. Ask how hard the task is for a capable person in this situation,
-pick a number from the ladder below, and announce it along with the
-stakes before the player rolls. The player's Stat and tags already
-reward them for being good at it; if you also lowered the target for
-experts, you would count their edge twice.
+sheet. Ask how hard the task is in this situation, pick a number from
+the ladder below, and announce it along with the stakes before the
+player rolls. The player's Stat and tags already reward them for being
+good at it; if you also lowered the target for experts, you would count
+their edge twice.
 
 \begin{statblock}[The Difficulty Ladder]
 \begin{tabularx}{\linewidth}{@{}l Y@{}}
-\dice{1} \keyword{Risky} & The default. Something could go wrong, but a capable person usually manages it --- climbing a rough wall, bluffing a bored guard.\\[3pt]
+\dice{1} \keyword{Routine} & An ordinary person succeeds most of the time, but it could still go wrong --- climbing a rough wall, bluffing a bored guard.\\[3pt]
 \dice{2} \keyword{Hard} & Needs real skill or good tools --- picking a quality lock, talking down an angry crowd.\\[3pt]
 \dice{3} \keyword{Very Hard} & A challenge even for an expert --- tracking prey across bare rock, out-arguing a court wizard in her own hall.\\[3pt]
 \dice{4} \keyword{Heroic} & The stuff of stories --- leaping between speeding vehicles, cracking military encryption on the fly.\\[3pt]
-\dice{5} \keyword{Legendary} & Only the best, with every edge they can find, have a hope --- wrestling a dragon to the ground, swaying a god.\\
+\dice{5} \keyword{Legendary} & Only the best, with every edge they can find, have a real hope --- wrestling a dragon to the ground, swaying a god.\\[3pt]
+\dice{6} \keyword{Mythic} & Beyond legendary. Even the best will usually fail --- holding back a collapsing mountain, talking the sun out of rising.\\
 \end{tabularx}
 \end{statblock}
 
-Most rolls in a session should be \dice{1} or \dice{2}. That is not
-generosity: at \dice{1} a failure is still possible, and a partial
-success still costs something. Save \dice{3} and above for moments you
-want the table to remember.
+Most rolls in a session should be \dice{1}, \dice{2}, or \dice{3}.
+Even at \dice{1} a failure is still possible, and a partial success
+still costs something. Save \dice{4} and above for moments you want the
+table to remember.
 
 \subsection*{Reading the Odds}
 As a rule of thumb, when the pool is \emph{twice the target plus one},
@@ -66,18 +68,22 @@ Each cell shows the percentage chance of \emph{at least a partial}
 success, then of a \emph{full} success or better.
 \medskip
 
-\begin{tabularx}{\linewidth}{@{}l Y Y Y@{}}
-\textbf{Target} & \textbf{3 dice} & \textbf{5 dice} & \textbf{7 dice}\\[3pt]
-\dice{1} & 88 / 50 & 97 / 81 & 99 / 94\\[3pt]
-\dice{2} & 50 / 13 & 81 / 50 & 94 / 77\\[3pt]
-\dice{3} & 13 / 0 & 50 / 19 & 77 / 50\\[3pt]
-\dice{4} & 0 / 0 & 19 / 3 & 50 / 23\\[3pt]
-\dice{5} & 0 / 0 & 3 / 0 & 23 / 6\\
+\begin{tabularx}{\linewidth}{@{}l Y Y Y Y@{}}
+\textbf{Target} & \textbf{3 dice} & \textbf{5 dice} & \textbf{7 dice} & \textbf{9 dice}\\[3pt]
+\dice{1} & 88 / 50 & 97 / 81 & 99 / 94 & 99 / 98\\[3pt]
+\dice{2} & 50 / 13 & 81 / 50 & 94 / 77 & 98 / 91\\[3pt]
+\dice{3} & 13 / 0 & 50 / 19 & 77 / 50 & 91 / 75\\[3pt]
+\dice{4} & 0 / 0 & 19 / 3 & 50 / 23 & 75 / 50\\[3pt]
+\dice{5} & 0 / 0 & 3 / 0 & 23 / 6 & 50 / 25\\[3pt]
+\dice{6} & 0 / 0 & 0 / 0 & 6 / 1 & 25 / 9\\
 \end{tabularx}
 \end{statblock}
 
-A starting Traveller acting in their specialty usually rolls four to six
-dice; a Traveller outside their comfort zone might roll two or three.
+An ordinary person rolls about two dice, which meets a target of
+\dice{1} three times in four. A starting Traveller acting in their specialty usually
+rolls four to six dice; a Traveller outside their comfort zone might
+roll two or three. Even the largest possible pool, \dice{10} dice,
+meets a target of \dice{6} less than two times in five.
 Critical successes are common at target \dice{1} and rare above
 \dice{2}, so low targets are where the spectacular moments live.
 

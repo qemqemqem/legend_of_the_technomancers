@@ -58,6 +58,34 @@ worlds, exactly like a Body Tag: a dragon's wings become a jetpack, a
 psychic's mind-reading becomes a neural hack. It belongs to \emph{you},
 not the setting, so it always travels with you.
 
+\section{Rolling for a Feat}
+% REAL RULE, 2026-09-23: Continuous Feats never roll; Action Feats do.
+% Every Feat entry states which, and names the usual Stat. Added after
+% playtesters 02 03 04 05 06 07 10 all asked whether Feats need rolls
+% and which Stat they use (notably a Skill-sourced Blink vs the Magic
+% chapter's "teleporting is Weird").
+Every Feat says in its heading whether it needs a roll.
+
+\textsc{Continuous} Feats never need one. Having the Feat is enough:
+you fly, you don't need air, you understand the dog. If you then
+\emph{do} something hard with it, like outrunning a storm on the wing
+or talking a guard dog into looking away, that is an ordinary roll for
+the action, not a roll for the Feat.
+
+\textsc{Action} Feats do need a roll each time you use them. Roll the
+Stat named in the Feat's heading, add every tag that fits, and the GM
+sets the target by how hard the moment is (see \emph{Setting the Target
+Number} in \emph{For the Game Master}). Blinking across an
+empty room is easy. Blinking out of a troll's grip with its friends
+watching is not. On a failure, the Feat misfires, falls short, or costs
+you, like any other failed roll.
+
+A Feat already grants the impossible part, so a Feat roll never uses
+\keyword{Weird}, whichever column the Feat came from. A Blink bought
+with Skills and one bought with Magic both roll \keyword{Body}. If the
+fiction makes a different Stat a clearly better fit, the GM can switch
+it, just as for any roll (see \emph{Base Stat} in \emph{How to Play}).
+
 \section{World-Granted Feats}
 % REAL, moved from 02-body.tex 2026-09-22 --- generalized: this was
 % framed as a Body-specific notebox before Special Feats had its own
@@ -82,13 +110,15 @@ reflavoured to fit. Each one bypasses exactly one hard constraint
 keeps them roughly matched in power even though their flavour differs
 wildly. Every entry names whether it's an \textsc{Action} (something you
 choose to do, in the moment) or \textsc{Continuous} (something that's
-simply always true about you, nothing to activate), then lists the
+simply always true about you, nothing to activate), and whether it
+needs a roll: Continuous Feats never do, and Action Feats name the Stat
+they usually roll (see \emph{Rolling for a Feat}, above). It then lists the
 columns that plausibly grant it with a short example of what that looks
 like. Not every Feat fits every column, and that's fine --- pick
 whichever combination fits the character you're building, or propose
 your own to your GM.
 
-\begin{feat}{Fly}{Continuous}
+\begin{feat}{Fly}{Continuous}{No roll}
 Take to the air under your own power, for as long as the fiction
 allows. No roll is needed just to stay aloft --- roll only when
 something about the flight itself is in doubt: outrunning a storm,
@@ -99,7 +129,7 @@ threading a canyon at speed, carrying more weight than you should.
 \featsource{item}{Jetpack}{Strap it on, thumb the ignition, and go; a hoverbike or grav-boots work the same way.}
 \end{feat}
 
-\begin{feat}{Read Minds}{Action}
+\begin{feat}{Read Minds}{Action}{Roll Mind}
 Focus on someone nearby and perceive their surface thoughts and
 feelings directly --- not their deepest secrets, just whatever's
 sitting at the front of their mind right now. It takes attention; you
@@ -110,7 +140,7 @@ can't read a whole room at a glance the way you can see it.
 \featsource{item}{Thought-Scanner}{A neural interface or handheld device that translates brainwaves into words.}
 \end{feat}
 
-\begin{feat}{Form Shadow}{Action}
+\begin{feat}{Form Shadow}{Action}{Roll Body}
 Become or merge with shadow at will, turning briefly incorporeal ---
 slip under a door, ride along a wall, or simply vanish into the dark
 for as long as you hold the shape.
@@ -120,7 +150,7 @@ for as long as you hold the shape.
 \featsource{item}{Phase Cloak}{A field generator that renders you as insubstantial as the shadow you're standing in.}
 \end{feat}
 
-\begin{feat}{Needs No Air}{Continuous}
+\begin{feat}{Needs No Air}{Continuous}{No roll}
 Water, smoke, poison gas, even the vacuum of space --- none of it can
 suffocate you. This runs all the time; there's nothing to activate and
 nothing to sustain.
@@ -130,7 +160,7 @@ nothing to sustain.
 \featsource{item}{Rebreather}{A void suit, a rebreather rig, or an internal air recycler built into you.}
 \end{feat}
 
-\begin{feat}{Never Sleep}{Continuous}
+\begin{feat}{Never Sleep}{Continuous}{No roll}
 You do not need rest the way others do, and you're never caught
 unaware in the dead of night. Whatever your party does on watch, you
 can do all night, every night.
@@ -140,7 +170,7 @@ can do all night, every night.
 \featsource{item}{Stim Implant}{A biomechanical implant or drug regimen that keeps you sharp indefinitely.}
 \end{feat}
 
-\begin{feat}{Speak with Animals}{Continuous}
+\begin{feat}{Speak with Animals}{Continuous}{No roll}
 Every beast understands you, and you understand it back --- not just
 simple commands, but genuine conversation, limited only by how much an
 animal actually has to say.
@@ -150,7 +180,7 @@ animal actually has to say.
 \featsource{item}{Universal Translator}{A device tuned to catch and render non-human speech patterns.}
 \end{feat}
 
-\begin{feat}{Walk Through Walls}{Action}
+\begin{feat}{Walk Through Walls}{Action}{Roll Body}
 Solid matter is a suggestion, not a barrier. Choose to phase through a
 wall, a locked door, or a stretch of solid stone --- you can't linger
 inside it, but you can cross it.
@@ -159,7 +189,7 @@ inside it, but you can cross it.
 \featsource{item}{Phase-Door Rig}{Short-ranged and expensive; it opens matter just long enough for you to pass.}
 \end{feat}
 
-\begin{feat}{Turn Invisible}{Action}
+\begin{feat}{Turn Invisible}{Action}{Roll Body}
 Vanish from sight at will, for as long as you hold still enough to
 matter --- a fast dash or a shout gives you away, but standing
 motionless in a shadowed doorway, no one will find you.
@@ -169,7 +199,7 @@ motionless in a shadowed doorway, no one will find you.
 \featsource{item}{Cloaking Suit}{Active camouflage woven into a cloak, coat, or full bodysuit.}
 \end{feat}
 
-\begin{feat}{See Through Solid Matter}{Action}
+\begin{feat}{See Through Solid Matter}{Action}{Roll Mind}
 Focus your gaze and it passes straight through walls, skin, and stone,
 showing you whatever's hidden on the other side. It takes
 concentration, so you can't do it passively while doing something else
@@ -180,7 +210,7 @@ demanding.
 \featsource{item}{Scanner Rig}{A handheld or implanted scanner that renders solid matter transparent on a display.}
 \end{feat}
 
-\begin{feat}{Blink}{Action}
+\begin{feat}{Blink}{Action}{Roll Body}
 Cover a short distance in an instant --- across a room, over a gap,
 out of a grapple --- too fast for anyone watching to actually follow
 the motion.

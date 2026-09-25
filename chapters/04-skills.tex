@@ -110,8 +110,8 @@ A \keyword{Skill} is a tag like any other --- the trained kind. You
 either know it or you don't; there is no individual rank to raise. Pick
 as many skills as your Skills Known allows from the catalogue below, or
 invent your own with your GM's approval. Like any tag, a known skill
-adds one die whenever it applies --- no more, no less, regardless of
-which column it came from.
+adds one die whenever it applies, and the first skill that applies to a
+roll adds one extra (see \emph{Your First Skill Adds +1}, below).
 
 % ---- Section 2: Rules -----------------------------------------------
 \section{Skills in Play}
@@ -123,20 +123,22 @@ count successes.
 
 \begin{example}
 Mara vaults a canyon gap using \keyword{Body} \dice{3} and
-\atrtag{skill}{Athletics}, so she rolls \dice{4} dice. Three come up 4 or
+\atrtag{skill}{Athletics}. As her first (and only) applicable Skill,
+Athletics adds \dice{2} dice, so she rolls \dice{5} dice. Three come up 4 or
 higher --- three successes. The GM had called for two. She lands clean,
 with one success to spare.
 \end{example}
 \subsection*{Your First Skill Adds +1}
 % REAL RULE, 2026-09-23: see \emph{Your First Skill Adds +1} in
-% \emph{How to Play} for the full rule and reasoning --- restated here so
-% a player reading Skills in isolation has it too. Supersedes the earlier
-% (never-implemented) idea of a $-1$ penalty for acting without a
-% matching skill.
-A Skill still has to clearly fit the action to count, same as any tag
---- but once it does, the first one always adds \dice{1} die, and there
-is no penalty if you don't have one at all. See \emph{Your First Skill
-Adds +1} in \emph{How to Play} for the full rule.
+% \emph{How to Play} for the full rule --- restated here so a player
+% reading Skills in isolation has it too. N applicable Skills = N+1 dice;
+% the bonus counts toward the five-tag cap.
+A Skill has to clearly fit the action to count, same as any tag. Every
+Skill that fits adds \dice{1} die, and the first one adds \dice{1}
+extra: one Skill gives \dice{2} dice, two give \dice{3}, three give
+\dice{4}. The bonus counts toward the five-tag limit on any roll, and
+there is no penalty if no Skill fits. See \emph{Your First Skill Adds +1}
+in \emph{How to Play} for the full rule.
 
 \subsection*{Choosing What You Know}
 With a fixed number of Skills Known, the real choice is which skills
@@ -150,32 +152,55 @@ one you have; the fiction, and the GM, decide what that costs you.
 
 Each skill entry shows its name (as a tag), its primary \keyword{Stat},
 and a brief description. The listed Stat is the default pairing; other
-Stats may apply if the fiction supports it.
+Stats may apply if the fiction supports it. Common skills lead the table
+below; the niche skills built around a narrower concept follow.
 
-\skillcat{Conflict}
-\skill{Blades}{Body}{Swords, knives, and any weapon that cuts.}
-\skill{Brawling}{Body}{Unarmed combat, holds, and throws.}
-\skill{Firearms}{Body}{Pistols, rifles, and ranged weapons.}
-\skill{Archery}{Body}{Bows, crossbows, and thrown weapons.}
-
-\skillcat{Movement}
-\skill{Athletics}{Body}{Running, climbing, jumping, and swimming.}
-\skill{Stealth}{Body}{Sneaking, hiding, and moving unseen.}
-\skill{Piloting}{Body}{Riding mounts, driving vehicles, and flying craft.}
-
-\skillcat{Social}
-\skill{Persuasion}{Face}{Convincing others through reason, charm, or appeal.}
-\skill{Deception}{Face}{Lying, disguise, and misdirection.}
-\skill{Intimidation}{Face}{Threatening, commanding, and projecting menace.}
-\skill{Performance}{Face}{Acting, music, and public showmanship.}
-
-\skillcat{Knowledge}
-\skill{Lore}{Mind}{History, legend, culture, and myth.}
-\skill{Medicine}{Mind}{Healing, anatomy, and treating disease.}
-\skill{Perception}{Mind}{Noticing detail, tracking, and reading a scene.}
-\skill{Languages}{Mind}{Speaking, reading, and writing unfamiliar tongues.}
-
-\skillcat{Technical}
-\skill{Craft}{Mind}{Making, repairing, and modifying physical objects.}
-\skill{Survival}{Mind}{Navigation, foraging, shelter, and wilderness living.}
-\skill{Hacking}{Mind}{Electronics, security systems, and information networks.}
+% Full-page float ([p]): eighteen rows plus two group headers is too tall
+% to share a page with prose --- same pattern as the Spells table in
+% \emph{Magic} (see \spellrow/\spellhead there for the precedent this
+% \skillrow/\skillhead pair copies).
+% \skillrow{name}{stat cell}{description}
+% \skillhead{title} --- a full-width shaded divider row.
+\begin{table*}[p]
+  \special{papersize=210mm,297mm}
+  \newcommand{\skillrow}[3]{\atrtag{skill}{#1} & \leavevmode#2 & #3 \\}
+  \newcommand{\skillhead}[1]{%
+    \rowcolor{atrBoxbg}\multicolumn{3}{@{}l@{}}{\rule{0pt}{13pt}%
+      {\hdfont\large\color{\realmaccent}\hspace{4pt}#1}} \\}
+  \begingroup\centering
+  {\hdfont\Large\bfseries\color{\realmaccent} The Skill Catalogue\par}
+  \vspace{4pt}
+  {\small\itshape Common skills first --- the niche ones follow.\par}
+  \vspace{8pt}
+  \endgroup
+  \begingroup
+  \small
+  \setlength{\tabcolsep}{7pt}\renewcommand{\arraystretch}{1.25}
+  \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}p{3.4cm} >{\RaggedRight\arraybackslash}p{2.6cm} Y@{}}
+  \rowcolor{\realmaccent}
+  {\leavevmode\hdfont\bfseries\color{white}Skill} &
+  {\leavevmode\hdfont\bfseries\color{white}Stat} &
+  {\leavevmode\hdfont\bfseries\color{white}Covers} \\
+  \skillhead{Common Skills}
+  \skillrow{Blades}{\statname{body}{Body}}{Swords, knives, and any weapon that cuts.}
+  \skillrow{Brawling}{\statname{body}{Body}}{Unarmed combat, holds, and throws.}
+  \skillrow{Firearms}{\statname{body}{Body}}{Pistols, rifles, and ranged weapons.}
+  \skillrow{Athletics}{\statname{body}{Body}}{Running, climbing, jumping, and swimming.}
+  \skillrow{Stealth}{\statname{body}{Body}}{Sneaking, hiding, and moving unseen.}
+  \skillrow{Persuasion}{\statname{face}{Face}}{Convincing others through reason, charm, or appeal.}
+  \skillrow{Deception}{\statname{face}{Face}}{Lying, disguise, and misdirection.}
+  \skillrow{Perception}{\statname{mind}{Mind}}{Noticing detail, tracking, and reading a scene.}
+  \skillrow{Craft}{\statname{mind}{Mind}}{Making, repairing, and modifying physical objects.}
+  \skillhead{Niche Skills}
+  \skillrow{Archery}{\statname{body}{Body}}{Bows, crossbows, and thrown weapons.}
+  \skillrow{Piloting}{\statname{body}{Body}}{Riding mounts, driving vehicles, and flying craft.}
+  \skillrow{Intimidation}{\statname{face}{Face}}{Threatening, commanding, and projecting menace.}
+  \skillrow{Performance}{\statname{face}{Face}}{Acting, music, and public showmanship.}
+  \skillrow{Lore}{\statname{mind}{Mind}}{History, legend, culture, and myth.}
+  \skillrow{Medicine}{\statname{mind}{Mind}}{Healing, anatomy, and treating disease.}
+  \skillrow{Languages}{\statname{mind}{Mind}}{Speaking, reading, and writing unfamiliar tongues.}
+  \skillrow{Survival}{\statname{mind}{Mind}}{Navigation, foraging, shelter, and wilderness living.}
+  \skillrow{Hacking}{\statname{mind}{Mind}}{Electronics, security systems, and information networks.}
+  \end{tabularx}
+  \endgroup
+\end{table*}

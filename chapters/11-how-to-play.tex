@@ -35,8 +35,8 @@ each result means.
 
 \begin{example}
 Mara jumps a gap. Her \keyword{Body} is \dice{3}, and her
-\atrtag{skill}{Athletics} tag adds \dice{1} die: she rolls \dice{4}
-dice. The GM set a target of \dice{2}. Mara gets three successes, so
+\atrtag{skill}{Athletics} tag adds \dice{2} dice (one for the tag, one
+for being her first Skill): she rolls \dice{5} dice. The GM set a target of \dice{2}. Mara gets three successes, so
 she lands cleanly; with exactly two, she would land with a complication.
 \end{example}
 
@@ -85,7 +85,7 @@ dice you roll, not the size of your own consequence pools.
 \begin{example}
 Kira drives a rank-\rating{3} car through a chase. Her own \keyword{Body} is
 \dice{2}, but the car's tier is \dice{3}, so the car supplies the base. With
-\atrtag{skill}{Driving}, she rolls \dice{4} dice.
+\atrtag{skill}{Driving} and the first-Skill bonus, she rolls \dice{5} dice.
 \end{example}
 
 \section{Tags}
@@ -98,38 +98,55 @@ small marks show where they came from. Both \atrtag{body}{Strong} and
 \begin{example}
 Mara swings a sword she can barely lift. Her \atrtag{body}{Strong} and
 \atrtag{skill}{Blades} both help: \keyword{Body} \dice{3} plus two tags
-is \dice{5} dice.
+is \dice{5} dice, and Blades is her first Skill on the roll, so she adds
+\dice{1} more for \dice{6} (see \emph{Your First Skill Adds +1}, below).
 \end{example}
 
 \subsection*{Skills and Magic Are Tags Too}
 % REAL RULE, 2026-09-22: a Skill IS a tag --- not a separate resolution
 % path, and not a ranked one either. You know it or you don't; a known
-% skill adds exactly one die, same as any other tag.
+% skill adds one die, same as any other tag (plus the once-per-roll
+% first-Skill bonus, 2026-09-23).
 A \keyword{Skill} is a tag like any other on your sheet --- the trained
 kind. You either know it or you don't; there is no individual rank to
 raise. \atrtag{skill}{Athletics} and \atrtag{skill}{Blades} each add
-exactly one die when they apply. Skills cover everything mundane and
+one die when they apply, and the first Skill on a roll adds one extra
+(see below). Skills cover everything mundane and
 learned --- driving, acrobatics, lore, stealth, and combat.
 
 \subsection*{Your First Skill Adds +1}
-% REAL RULE, 2026-09-23 (revised): a Skill still has to clearly apply to
-% the roll, exactly like any other tag --- an earlier draft of this
-% section wrongly dropped that requirement. What's guaranteed is the
-% value once it applies, not the applicability itself: the first Skill
-% that fits always adds \dice{1} die. Supersedes the earlier
-% (never-implemented) idea of a $-1$ penalty for acting without a
-% matching skill.
-A Skill still has to clearly fit the action, exactly like any other tag
-(see \emph{Tags}, above) --- the GM is still the judge of whether it
-applies. What changes is the value once it does: the first Skill that
-applies to a roll always adds \dice{1} die. There is no penalty for
-having no applicable skill at all --- you simply roll with one fewer die
-than someone who does.
+% REAL RULE, 2026-09-23 (clarified): every applicable Skill tag adds one
+% die like any tag, AND the first applicable Skill adds one extra die on
+% top. N applicable Skills = N+1 dice. The bonus counts toward the
+% five-dice tag cap. Playtesters (02 03 05 06 07 09 10) misread the old
+% wording as "only one Skill counts", so this spells out the arithmetic.
+% Supersedes the earlier (never-implemented) idea of a $-1$ penalty for
+% acting without a matching skill.
+A Skill has to clearly fit the action, exactly like any other tag
+(see \emph{Tags}, above), and the GM judges whether it does. Every
+Skill that fits adds \dice{1} die, like any tag. On top of that, if
+\emph{at least one} Skill fits, add \dice{1} more die, once per roll.
+Your first Skill is worth two dice and each one after it is worth one:
+
+\begin{center}
+\begin{tabular}{@{}lccccc@{}}
+Skills that fit & 0 & 1 & 2 & 3 & 4\\
+Dice from Skills & 0 & 2 & 3 & 4 & 5\\
+\end{tabular}
+\end{center}
+
+The bonus die counts toward the five-tag limit (see \emph{Five Tags,
+Maximum}, below), so tags and the bonus together never add more than
+\dice{5} dice. There is no penalty for having no applicable Skill at
+all; you just miss out on the bonus.
 
 \begin{example}
 Mara has no \atrtag{skill}{Larceny}, but her \atrtag{skill}{Craft}
-clearly covers picking a lock. The GM agrees it applies, so it adds its
-die, the same as any tag that clearly applies.
+clearly covers picking a lock. The GM agrees it applies, so it adds
+\dice{2} dice: one for the tag and one for being her first Skill. If her
+\atrtag{skill}{Stealth} also applied because she was working silently
+with a guard asleep next door, it would add \dice{1} more, for \dice{3}
+dice from Skills.
 \end{example}
 
 % REAL RULE (Notion, 2026-09-21, decided): magic pool = base stat + one
@@ -148,10 +165,15 @@ with a hurled fist of water is a physical blow, so the base is
 
 \subsection*{Five Tags, Maximum}
 % REAL RULE, 2026-09-22: one flat cap for the whole system, replacing
-% Magic's old per-rank "Tags per Spell" column.
-Across all sources, a single roll never adds more than \dice{5} tags to
-its pool. This is the one limit that applies everywhere --- Body, Stuff,
-Skills, and Magic alike.
+% Magic's old per-rank "Tags per Spell" column. The first-Skill bonus
+% counts toward this cap (decided 2026-09-23), so max pool stays 10.
+Across all sources, a single roll never adds more than \dice{5} dice
+from tags to its pool, and that includes the first-Skill bonus. This is
+the one limit that applies everywhere --- Body, Stuff, Skills, and Magic
+alike. If Mara lunges across a table with \atrtag{body}{Strong},
+\atrtag{item}{Reach}, \atrtag{skill}{Blades}, and
+\atrtag{skill}{Athletics} all applying, she has \dice{5} dice from tags
+(four tags plus the bonus), which is already the most any roll can add.
 
 \begin{notebox}[Stats and the Four Columns]
 The four columns of character creation are not the same thing as the three
