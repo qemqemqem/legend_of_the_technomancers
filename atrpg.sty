@@ -208,11 +208,14 @@
   [{\color{atrRule}\titlerule[1pt]}]
 \titlespacing*{\chapter}{0pt}{4pt}{22pt}
 
+% Sections: one size up from \Large, with an accent-coloured rule beneath
+% (echoing the chapter-title rule) so they stand out from subsections.
 \titleformat{\section}
-  {\hdfont\Large\bfseries\color{\realmaccent}}{}{0pt}{}
+  {\hdfont\LARGE\bfseries\color{\realmaccent}}{}{0pt}{}
+  [\vspace{-2pt}{\color{\realmaccent}\titlerule[0.8pt]}]
 \titleformat{\subsection}
   {\hdfont\large\bfseries\color{atrInk}}{}{0pt}{}
-\titlespacing*{\section}{0pt}{14pt}{4pt}
+\titlespacing*{\section}{0pt}{16pt}{8pt}
 \titlespacing*{\subsection}{0pt}{10pt}{2pt}
 
 % ---- Running headers / footers -------------------------------------
