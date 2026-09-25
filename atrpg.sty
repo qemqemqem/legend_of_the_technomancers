@@ -432,29 +432,18 @@
 % Kept as its own macro so translations can be restyled or indexed later.
 \newcommand{\genretrans}[1]{\par\smallskip{\small\itshape\color{atrAccent2}Across the realms: #1}\par}
 
-% Special Feat entry — name + kind (Action/Continuous) + roll header,
-% prose body, then one \featsource line per column it can plausibly come
-% from. No rank pip like \gearentry's: Feats aren't individually ranked,
-% since which rank grants one is a property of the column, not the Feat.
-% The third argument is required so every Feat states whether it needs a
-% roll: "No roll" for Continuous Feats, "Roll \keyword{Body}" etc. for
-% Action Feats.
-%   \begin{feat}{Fly}{Continuous}{No roll}
-%   Take to the air under your own power, for as long as the fiction
-%   allows --- no roll needed to stay up, just to do something while airborne.
-%   \featsource{body}{Wings}{A dragon's leathery wings, or a bird-boned build.}
-%   \featsource{skill}{Wingsuit Mastery}{Momentum and airflow control so extreme it reads as true flight.}
-%   \featsource{magic}{Levitation}{A standing flight spell woven into your very self.}
-%   \featsource{item}{Jetpack}{Strap it on, thumb the ignition, and go.}
+% Special Feat entry — name + one short paragraph. Feats are always on and
+% never roll (2026-09-24), so there is no kind/roll header, and each Feat
+% belongs to exactly one column, so there are no per-column source lines.
+% Colour comes from \realmaccent, set per column section in the chapter.
+%   \begin{feat}{Flight}
+%   You fly under your own power...
 %   \end{feat}
-\newenvironment{feat}[3]{%
+\newenvironment{feat}[1]{%
   \par\smallskip\noindent
-  {\hdfont\bfseries\color{\realmaccent}#1}\hfill
-  {\scriptsize\textsc{\color{atrRule}#2}\,\textperiodcentered\,\textbf{#3}}%
+  {\hdfont\bfseries\color{\realmaccent}#1}%
   \par\nobreak\smallskip\noindent\ignorespaces}
   {\par\smallskip}
-\newcommand{\featsource}[3]{%
-  \par\noindent\leavevmode\atricon{#1}\hspace{2.6pt}\textbf{#2} --- #3}
 
 % Skill category label — Beleren at text size, accent colour, no box.
 %   \skillcat{Conflict}
