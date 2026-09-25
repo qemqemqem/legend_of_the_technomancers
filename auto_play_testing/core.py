@@ -7,9 +7,9 @@ import random
 
 COLUMNS = ("Body", "Stuff", "Skills", "Magic")
 STATS = ("Body", "Mind", "Face")
-BODY_POINTS = (0, 0, 2, 4, 7)
+BODY_STAT = (0, 1, 2, 3, 5)  # Body rank sets the Body Stat directly
 BODY_TAG_COUNTS = (0, 0, 1, 2, 4)
-SKILL_POINTS = (0, 0, 1, 2, 4)
+SKILL_POINTS = (0, 0, 2, 4, 6)  # spent on Mind and Face only
 SKILL_COUNTS = (0, 2, 4, 6, 9)
 STUFF_POINTS = (0, 0, 3, 6, 10)
 STUFF_TAG_COUNTS = (0, 0, 2, 4, 7)
@@ -233,10 +233,11 @@ def character(rng, number, ranks=None):
         random.Random(rng.getrandbits(64)) for _ in range(5))
     feat_rngs = {column: random.Random(rng.getrandbits(64)) for column in COLUMNS}
     body, stuff, skills, magic = (ranks[c] for c in COLUMNS)
-    points = BODY_POINTS[body] + SKILL_POINTS[skills]
-    valid_spreads = [spread for spread in itertools.product(range(1, 6), repeat=3)
+    points = SKILL_POINTS[skills]
+    valid_spreads = [spread for spread in itertools.product(range(1, 6), repeat=2)
                      if sum(value - 1 + (value == 5) for value in spread) == points]
-    stats = dict(zip(STATS, stat_rng.choice(valid_spreads)))
+    mind, face = stat_rng.choice(valid_spreads)
+    stats = {"Body": BODY_STAT[body], "Mind": mind, "Face": face}
 
     tags = ([{"id": f"body:{name}", "source": "Body", "name": name}
              for name in body_rng.sample(BODY_TAGS, len(BODY_TAGS))[:BODY_TAG_COUNTS[body]]]

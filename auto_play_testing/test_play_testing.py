@@ -13,7 +13,7 @@ from auto_play_testing.controlled_report import (fit_rank_trend, load_controlled
                                                  sheet_profile, usage_counts)
 from auto_play_testing.report import character_interval
 from auto_play_testing.core import (
-    BODY_POINTS, BODY_TAG_COUNTS, COLUMNS, FEATS, GADGET_EFFECTS, GADGET_TAGS, GEAR_NAMES, GEAR_TAGS,
+    BODY_STAT, BODY_TAG_COUNTS, COLUMNS, FEATS, GADGET_EFFECTS, GADGET_TAGS, GEAR_NAMES, GEAR_TAGS,
     MAGIC_COUNTS, SKILL_COUNTS,
     SKILL_POINTS, STUFF_POINTS, STUFF_TAG_COUNTS, assess, character, controlled_characters, probabilities,
     roll, situation,
@@ -54,8 +54,10 @@ class CharacterTests(unittest.TestCase):
             self.assertEqual(sorted(ranks.values()), [1, 2, 3, 4])
             self.assertEqual(set(stats), {"Body", "Mind", "Face"})
             self.assertTrue(all(1 <= v <= 5 for v in stats.values()))
-            self.assertEqual(sum(v - 1 + (v == 5) for v in stats.values()),
-                             BODY_POINTS[ranks["Body"]] + SKILL_POINTS[ranks["Skills"]])
+            self.assertEqual(stats["Body"], BODY_STAT[ranks["Body"]])
+            self.assertEqual(sum(stats[s] - 1 + (stats[s] == 5) for s in ("Mind", "Face")),
+                             SKILL_POINTS[ranks["Skills"]])
+            self.assertLessEqual(sum(v == 5 for v in stats.values()), 1)
             for source, expected in (("Body", BODY_TAG_COUNTS[ranks["Body"]]),
                                      ("Skills", SKILL_COUNTS[ranks["Skills"]]),
                                      ("Magic", MAGIC_COUNTS[ranks["Magic"]]),

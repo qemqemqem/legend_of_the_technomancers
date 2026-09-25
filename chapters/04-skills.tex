@@ -21,6 +21,11 @@
 % Rechecked against Body's own 2026-09-23 cut (2/4/6/9 to 0/2/4/7) and the
 % Rank~3 parity in the Designer's Note below still holds, exactly, under
 % the same 0.5-per-tag rate.
+% REAL RULE, 2026-09-24: Skills now owns Mind and Face outright. Stat
+% Points 0/1/2/4 -> 0/2/4/6, spent only on Mind and Face (Body sets the
+% Body Stat directly, no points). Rank 3 buys 3/3 or 4/2; rank 4 buys
+% 4/4 or 5/2. Since Body and Skills can't both be A, no one gets two
+% Stats at 5; the best possible spread is 5/3/3.
 \begin{strip}
   \begingroup\centering
   {\hdfont\Large\bfseries\color{\realmaccent} Creating Skills\par}
@@ -40,30 +45,29 @@
     & \dice{0} & \dice{2} & \dice{0} \\
   \rowcolor{white}
   \rating{2} & You know a lot.
-    & \dice{1} & \dice{4} & \dice{0} \\
+    & \dice{2} & \dice{4} & \dice{0} \\
   \rowcolor{atrBoxbg}
   \rating{3} & A master of your craft, or a jack of all trades.
-    & \dice{2} & \dice{6} & \dice{1} \\
+    & \dice{4} & \dice{6} & \dice{1} \\
   \rowcolor{white}
   \rating{4} & A master of many things.
-    & \dice{4} & \dice{9} & \dice{2} \\
+    & \dice{6} & \dice{9} & \dice{2} \\
   \end{tabularx}
   \endgroup
 \end{strip}
 
-\begin{notebox}[Designer's Note: Balancing Body Against Skills]
-Body and Skills are meant to feel different --- Body leans on Stat
-Points, Skills leans on tags --- but still add up to roughly the same
-total value at each rank. The exchange rate used to check that: a tag is
-worth about \emph{half} a Stat Point, since a Stat Point helps on every
-roll that uses that Stat, while a tag only helps when its specific
-fictional trigger actually applies. Under that rate, Rank~3 Body
-(\dice{4} Stat Points + \dice{2} Body Tags) and Rank~3 Skills
-(\dice{2} Stat Points + \dice{6} Skills Known) both come out to exactly
-\dice{5} points of total value --- same total, opposite emphasis.
-\todo{This exchange rate (1 tag $\approx$ 0.5 Stat Points) is a
-first-pass guess, not verified by play. Confirm it holds up across all
-four ranks and both columns before treating these numbers as final.}
+\begin{notebox}[Designer's Note: Body Against Skills]
+Body and Skills split the three Stats between them. Body sets your
+\keyword{Body} Stat and adds Body Tags --- what you \emph{are}. Skills
+buys \keyword{Mind} and \keyword{Face} and adds Skills Known --- what
+you have \emph{learned}. Because each column gets its own letter, no
+character can be \keyword{A} in both, so no one starts with two Stats
+at \dice{5}. The strongest spread anyone can build is
+\textbf{5/3/3}: Body \keyword{A}, Skills \keyword{B}.
+\todo{Rebalanced 2026-09-24. Skills now grants more Stat value than
+Body (two Stats to Body's one) while Body carries more tags; the old
+"1 tag $\approx$ 0.5 Stat Point" parity check no longer lines up.
+Confirm the two columns feel equally worth taking in play.}
 \end{notebox}
 
 % TODO: opening fiction for Skills.
@@ -95,11 +99,34 @@ actually practised. A high \keyword{Body} means you move well; the
 Your Skills rank --- set when you assigned priorities at character
 creation, see the table above --- grants Stat Points and a number of
 Skills Known, and, at rank \rating{3} and \rating{4}, Special Feats.
-Stat Points feed the very same pool Body feeds (see \emph{Spending Your
-Stat Points} in \emph{Body}), just at a lower rate --- Skills sharpens
-what you can do, but Body is what actually shapes your Stats. Special
+Your Stat Points go to \keyword{Mind} and \keyword{Face}. Special
 Feats work identically no matter which column granted them; see
 \emph{Special Feats} for the full catalogue and rules.
+
+\subsection*{Spending Your Stat Points}
+Mind and Face both start at \dice{1}. Spend your Stat Points to raise
+them, following one rule: \emph{the fifth pip costs double}.
+
+\begin{statblock}[Cost to Raise a Stat]
+\begin{tabularx}{\linewidth}{@{}p{0.42\linewidth} Y@{}}
+\dice{1}~$\to$~\dice{2} & \dice{1} point\\[2pt]
+\dice{2}~$\to$~\dice{3} & \dice{1} point\\[2pt]
+\dice{3}~$\to$~\dice{4} & \dice{1} point\\[2pt]
+\dice{4}~$\to$~\dice{5} & \dice{2} points (double)\\
+\end{tabularx}
+\end{statblock}
+
+Maxing a Stat all the way to \dice{5} costs \dice{5} points, so only
+Skills \rating{4} can do it --- and then the other Stat stays at
+\dice{2}. At Skills \rating{3} you might split evenly at 3/3 or lean
+into one at 4/2; at Skills \rating{4}, 4/4 or 5/2.
+
+\begin{example}
+Kira is Skills \rating{3}: \dice{4} points. She raises Mind from
+\dice{1} to \dice{3} (\dice{2} points) and Face from \dice{1} to
+\dice{3} (\dice{2} points). With Body \rating{2}, her Stats are
+\textbf{Body~2, Mind~3, Face~3}.
+\end{example}
 
 \subsection*{Choosing Your Skills}
 % REAL RULE, 2026-09-22: Skills are boolean, exactly like Magic and Body

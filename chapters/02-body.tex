@@ -18,6 +18,12 @@
 % -2 shift) alongside cuts to Skills Known and Stuff Points --- smaller
 % pools across the board, aimed at fewer dice to track and smaller rolls
 % at the table, per playtesting. Body Tags unchanged.
+% REAL RULE, 2026-09-24: Body no longer grants Stat Points at all. Body
+% rank sets your Body Stat directly (1/2/3/5); Skills grants the points
+% for Mind and Face (see Skills). With one letter per column, no
+% character can be A in both, so two Stats at 5 is impossible --- the
+% best spread anyone can reach is 5/3/3 (or 5/4/2). Rank 4 jumps
+% straight to 5 on purpose: a monstrous body should leap, not creep.
 \begin{strip}
   \begingroup\centering
   {\hdfont\Large\bfseries\color{\realmaccent} Creating a Body\par}
@@ -29,21 +35,21 @@
   \rowcolor{\realmaccent}
   {\leavevmode\hdfont\bfseries\color{white}Rank} &
   {\leavevmode\hdfont\bfseries\color{white}You are\ldots} &
-  {\leavevmode\hdfont\bfseries\color{white}Stat Points} &
+  {\leavevmode\hdfont\bfseries\color{white}Body Stat} &
   {\leavevmode\hdfont\bfseries\color{white}Body Tags} &
   {\leavevmode\hdfont\bfseries\color{white}Special Feats} \\
   \rowcolor{atrBoxbg}
-  \rating{1} & An ordinary person; totally basic, no Body Tags at all.
-    & \dice{0} & \dice{0} & \dice{0} \\
+  \rating{1} & An ordinary person --- nothing about you stands out.
+    & \dice{1} & \dice{0} & \dice{0} \\
   \rowcolor{white}
   \rating{2} & You stand out --- strong, quick, or striking.
     & \dice{2} & \dice{1} & \dice{0} \\
   \rowcolor{atrBoxbg}
   \rating{3} & Exceptional --- elven grace, ogrish might, uncanny beauty.
-    & \dice{4} & \dice{2} & \dice{1} \\
+    & \dice{3} & \dice{2} & \dice{1} \\
   \rowcolor{white}
   \rating{4} & Truly strange or monstrous --- a dragon, an angel.
-    & \dice{7} & \dice{4} & \dice{2} \\
+    & \dice{5} & \dice{4} & \dice{2} \\
   \end{tabularx}
   \endgroup
 \end{strip}
@@ -56,8 +62,8 @@
 \chapterart{col-body.png}
 
 \lettrine{B}{ody} is your physical self --- the shape and substance you
-carry from world to world. Your Body rank sets three things at once: how
-many points you have to raise your base \keyword{Stats}, how many
+carry from world to world. Your Body rank sets three things at once: your
+\keyword{Body} Stat, how many
 \keyword{Body Tags} describe your physical form, and --- if you rank high
 enough --- which \keyword{Special Feats} let you do things no ordinary
 roll of the dice can. Special Feats and their full catalogue have their
@@ -68,33 +74,14 @@ own chapter, since Body isn't the only column that grants them; see
 \section{At Character Creation}
 
 Your Body rank --- set when you assigned priorities at character
-creation, see the table above --- grants three things: Stat Points, Body
-Tags, and, at rank \rating{3} and \rating{4}, Special Feats. The next
-three subsections cover each in turn.
+creation, see the table above --- grants three things: your Body Stat,
+Body Tags, and, at rank \rating{3} and \rating{4}, Special Feats. The
+next three subsections cover each in turn.
 
-\subsection*{Spending Your Stat Points}
-All three Stats --- \keyword{Body}, \keyword{Mind}, and \keyword{Face} ---
-start at \dice{1}. Spend your Stat Points to raise them, following one
-rule: \emph{the fifth pip costs double}.
-
-\begin{statblock}[Cost to Raise a Stat]
-\begin{tabularx}{\linewidth}{@{}p{0.42\linewidth} Y@{}}
-\dice{1}~$\to$~\dice{2} & \dice{1} point\\[2pt]
-\dice{2}~$\to$~\dice{3} & \dice{1} point\\[2pt]
-\dice{3}~$\to$~\dice{4} & \dice{1} point\\[2pt]
-\dice{4}~$\to$~\dice{5} & \dice{2} points (double)\\
-\end{tabularx}
-\end{statblock}
-
-Maxing a single Stat all the way to \dice{5} costs \dice{5} points total
---- so a Body-\rating{4} character can max one Stat and still have real
-points left over, but cannot max two.
-
-\begin{example}
-Kira is Body \rating{2}: \dice{2} points. She raises Face from \dice{1} to
-\dice{2} (\dice{1} point) and Mind from \dice{1} to \dice{2}
-(\dice{1} point): \textbf{Body~1, Mind~2, Face~2}.
-\end{example}
+\subsection*{Your Body Stat}
+Your Body rank sets your \keyword{Body} Stat: \dice{1} at \rating{1},
+\dice{2} at \rating{2}, \dice{3} at \rating{3}, and \dice{5} at
+\rating{4}. A truly monstrous body doesn't creep upward --- it leaps.
 
 \subsection*{Choosing Your Body Tags}
 A \keyword{Body Tag} is a word in an oval that describes something your
