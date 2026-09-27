@@ -1,0 +1,128 @@
+% ================================================================
+%  QUICK REFERENCE — one-page rules summary, just before the
+%  character sheet. Deliberately left short of a full page so new
+%  boxes can be added to the bottom.
+% ================================================================
+
+\renewcommand{\realmaccent}{atrAccent}
+
+% Same look as statblock, but unbreakable so it can sit in a raster.
+\newtcolorbox{qrbox}[2][]{%
+  enhanced,
+  colback=atrBoxbg, colframe=#2, boxrule=1pt, arc=2pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt,
+  fonttitle=\hdfont\bfseries\color{white},
+  coltitle=white, colbacktitle=#2,
+  title={#1}}
+
+\newcommand{\qrbig}[1]{{\centering\hdfont\LARGE\bfseries #1\par}}
+\newcommand{\qrmid}[1]{{\centering\hdfont\large\bfseries #1\par}}
+\newcommand{\qrhead}[2]{{\leavevmode\hdfont\bfseries\small\color{#1}#2}}
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Quick Reference}
+
+\noindent
+{\hdfont\bfseries\Large\color{atrAccent}Quick Reference}
+\par\vspace{2pt}
+{\color{atrAccent}\rule{\linewidth}{1.2pt}}
+\par\vspace{6pt}
+
+\begin{qrbox}[The Roll]{atrAccent}
+\qrbig{Stat + Tags = Dice}
+\vspace{3pt}
+\qrmid{Each \dice{4}, \dice{5}, or \dice{6} = 1 success}
+\end{qrbox}
+
+\begin{tcbraster}[raster columns=2, raster equal height=rows,
+                  raster column skip=8pt, raster row skip=8pt]
+\begin{qrbox}[Reading the Result]{atrAccent}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}l Y@{}}
+\textbf{\dice{6}s > Target} & \keyword{Critical} (check first)\\
+\textbf{Successes > Target} & \keyword{Success}\\
+\textbf{Successes = Target} & \keyword{Partial}, at a cost\\
+\textbf{Successes < Target} & \keyword{Failure}\\
+\end{tabularx}
+\end{qrbox}
+\begin{qrbox}[Target Number]{atrAccent}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabularx}{\linewidth}{@{}l Y l Y@{}}
+\dice{1} & Routine    & \dice{4} & Heroic\\
+\dice{2} & Hard       & \dice{5} & Legendary\\
+\dice{3} & Very Hard  & \dice{6} & Mythic\\
+\end{tabularx}
+\smallskip
+\qrmid{Situation hurts: +1 \quad Helps: $-$1}
+{\centering\small Minimum \dice{1}. Set before the roll; never changed after.\par}
+\end{qrbox}
+\begin{qrbox}[Tags]{atrAccent}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}l Y@{}}
+\textbf{Each tag that fits} & +1 die\\
+\textbf{First Skill that fits} & +1 more die, once per roll\\
+\textbf{All tags together} & +5 dice at most\\
+\end{tabularx}
+\smallskip
+\qrmid{Biggest pool: 5 + 5 = 10 dice}
+\vfill
+\end{qrbox}
+\begin{qrbox}[Which Stat? Whatever Resists]{atrAccent}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}l Y@{}}
+\statname{body}{Body} & Matter, weight, force\\
+\statname{mind}{Mind} & Puzzles, knowledge, perception\\
+\statname{face}{Face} & A person's will\\
+\statname{magic}{Weird} & Reality itself (set by Magic rank)\\
+\end{tabularx}
+\smallskip
+\qrmid{Using a thing: higher of its tier or your Stat}
+\end{qrbox}
+\end{tcbraster}
+
+\vspace{8pt}
+\begin{qrbox}[Consequences]{atrAccent}
+\qrbig{Pool = Stat}
+\vspace{4pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}l Y @{\hspace{12pt}} l Y@{}}
+\textbf{Failure} & $-$1 from the threatened pool
+  & \textbf{Empty pool hit again} & $-$1 \keyword{Coherence}\\
+\textbf{Pool at 0} & $-$1 die on that Stat's rolls
+  & \textbf{Coherence} & Shared by the party, starts at \dice{5}\\
+\textbf{New realm} & Refill every pool
+  & \textbf{Coherence at 0} & Catastrophe: the realm lets go\\
+\end{tabularx}
+\end{qrbox}
+
+\vspace{8pt}
+\begin{qrbox}[Character Creation]{atrAccent}
+\qrmid{Give A, B, C, D to Body, Stuff, Skills, Magic --- one each}
+{\centering\small A = rank \rating{4} \quad B = \rating{3} \quad C = \rating{2} \quad D = \rating{1}\par}
+\smallskip
+\begingroup
+\setlength{\tabcolsep}{3pt}\renewcommand{\arraystretch}{1.2}
+\small
+\begin{tabularx}{\linewidth}{@{}c *{12}{>{\centering\arraybackslash}X}@{}}
+ & \multicolumn{3}{c}{\cellcolor{columnBody}\qrhead{white}{Body}}
+ & \multicolumn{3}{c}{\cellcolor{columnStuff}\qrhead{white}{Stuff}}
+ & \multicolumn{3}{c}{\cellcolor{columnSkills}\qrhead{white}{Skills}}
+ & \multicolumn{3}{c}{\cellcolor{columnMagic}\qrhead{white}{Magic}}\\
+\textbf{Rank}
+ & Stat & Tags & Traits
+ & Tier & Points & Tags
+ & Stat Pts & Skills & Feats
+ & Tags & Weird & Feats\\
+\hline
+\textbf{D} & 1 & 0 & 0 & --- & 0 & 0 & 0 & 2 & 0 & 0 & 0 & 0\\
+\textbf{C} & 2 & 1 & 0 & 2 & 3 & 2 & 2 & 4 & 0 & 3 & 1 & 0\\
+\textbf{B} & 3 & 2 & 1 & 3 & 6 & 4 & 4 & 6 & 1 & 7 & 2 & 1\\
+\textbf{A} & 5 & 4 & 2 & 4* & 10 & 7 & 6 & 9 & 2 & 12 & 4 & 2\\
+\end{tabularx}
+\endgroup
+\smallskip
+{\small
+\textbf{Mind and Face} start at \dice{1}; each Stat Point raises one by 1,
+except \dice{4}~$\to$~\dice{5}, which costs 2.
+\textbf{*}~At Stuff A, one Tier-4 item can become Tier~5.\par}
+\end{qrbox}

@@ -13,6 +13,13 @@
 % Breathe Anywhere + Hardy + Iron Gut merged into Iron Constitution.
 % Legion, Lasting Works, Mind-Hearing toned down. Animal Features,
 % Environment Suit, and Field Medic added. Weak Skills Feats buffed.
+% REAL RULE, 2026-09-26: Stuff no longer grants Feats. The Stuff Feats
+% were always just items, so they moved to the Stuff chapter as
+% Ready-Made Gadgets, bought with Stuff Points. Only Body, Skills, and Magic grant
+% Feats now.
+% REAL RULE, 2026-09-26: Body Feats became Special Traits and moved to
+% the Body chapter. This chapter is being retired; Skills and Magic
+% Feats will move to their own chapters too.
 % No dedicated chapter-art asset exists for this chapter yet.
 \begin{readaloud}
 \lipsum[21][1-3]
@@ -23,7 +30,7 @@ manage something; a \keyword{Special Feat} means the question never
 comes up. You fly. You breathe in the void. You know when you are being
 lied to. No dice, no effort, no doubt.
 
-\begin{statblock}[Special Feats Granted, Any Column]
+\begin{statblock}[Special Feats Granted by Skills or Magic]
 \begin{tabularx}{\linewidth}{@{}p{0.16\linewidth} Y@{}}
 \rating{1} & None.\\[3pt]
 \rating{2} & None.\\[3pt]
@@ -32,10 +39,14 @@ lied to. No dice, no effort, no doubt.
 \end{tabularx}
 \end{statblock}
 
-Each column grants Feats separately. A character at rank \rating{3} in
-both Body and Magic has two Feats: one Body Feat and one Magic Feat.
-\todo{Open question: is there a cap on total Feats? Rank 4 in all four
-columns would mean eight.}
+Skills and Magic each grant Feats separately. A character at rank
+\rating{3} in both Skills and Magic has two Feats: one Skills Feat and
+one Magic Feat. Body grants \keyword{Special Traits} instead, at the
+same ranks (see \emph{Special Traits} in \emph{Body}). Stuff grants no
+Feats; the remarkable things you own are \keyword{Gadgets}, bought with
+Stuff Points (see \emph{Gadgets} in \emph{Stuff}).
+\todo{Open question: is there a cap on total Feats and Traits? Rank 4
+in Body, Skills, and Magic would mean six.}
 
 % ---- Section 1: Rules ------------------------------------------------
 \section{How Feats Work}
@@ -65,29 +76,22 @@ the GM reads the Feat narrowly.
 
 \section{Choosing Your Feats}
 
-When a column reaches rank \rating{3} or \rating{4}, choose a Feat from
-that column's list below. Each column's Feats are pitched differently on
-purpose:
+When Skills or Magic reaches rank \rating{3} or \rating{4}, choose a
+Feat from that Column's list below. Each Column's Feats are pitched
+differently on purpose:
 \begin{itemize}
   \item \keyword{Magic} Feats are the strongest and most versatile.
     Reality bends around you.
-  \item \keyword{Body} Feats are broadly strong and useful. They are
-    what you \emph{are}, and no one can take them from you.
-  \item \keyword{Stuff} Feats are great, but situational. Each is a thing
-    you own, and it can be lost or taken like any other Stuff. It returns
-    when you cross into a new realm (see \emph{Losing Your Stuff} in
-    \emph{Stuff}). A Stuff Feat costs no Stuff Points and has no Tier.
   \item \keyword{Skills} Feats are mundane and a little weaker. Nothing
     on the list is impossible, only legendary.
 \end{itemize}
 You may also build your own Feat with your GM. Measure it against its
-column's list: it should feel about as strong as its neighbours.
+Column's list: it should feel about as strong as its neighbours.
 
 \subsection*{Feats Across the Realms}
 Your Feats travel with you and re-skin to fit each new realm, like your
 tags. Flight might be leathery wings in one world and hip-mounted
-thrusters in the next. Stuff Feats re-kit along with the rest of your
-gear.
+thrusters in the next.
 
 % ---- Section 2: Options ----------------------------------------------
 \renewcommand{\realmaccent}{columnMagic}
@@ -163,153 +167,6 @@ through it, not their names.
 \begin{feat}{Wards}
 Hostile spells cast on anyone or anything near you simply fail. Only a
 spell aimed at you directly gets through.
-\end{feat}
-
-\renewcommand{\realmaccent}{columnBody}
-\section{Body Feats}
-\artinline{feat-body-shapeshifter.png}
-
-\begin{feat}{Animal Features}
-Choose one animal when you take this Feat: an elephant, a mouse, a
-hawk, a horse. Take as many of its features as you like, from a pair of
-tusks to a whole horse's body, or become the animal entirely. What you
-choose is part of you from then on.
-\end{feat}
-
-\begin{feat}{Burrower}
-Dig through earth, sand, and snow as fast as you walk, leaving a tunnel
-behind you or letting it collapse. Solid rock and worked stone stop you.
-\end{feat}
-
-\begin{feat}{Flight}
-Fly under your own power, as fast as you can run, for as long as you
-like. Carrying anyone with you is a \keyword{Body} roll.
-\end{feat}
-
-\begin{feat}{Iron Constitution}
-You do not need air: water, smoke, and the vacuum of space cannot
-suffocate you. Extreme heat, cold, pressure, and radiation do you no
-harm. You can eat anything organic, and poison and disease pass through
-you harmlessly. Fire and lava still burn.
-\end{feat}
-
-\begin{feat}{Keen Nose}
-Track by scent like a bloodhound, even on a trail hours old. You can
-smell fear, sickness, and poison in a cup. Rain and strong smells cover
-a trail.
-\end{feat}
-
-\begin{feat}{Mimic}
-After a few minutes of studying someone, you look and sound exactly
-like them. You do not get their clothes, their fingerprints, or their
-memories, and acting like them is still up to you: the GM may call for
-\keyword{Face} rolls with anyone who knows them well.
-\end{feat}
-
-\begin{feat}{Regenerator}
-Injuries that would take others weeks to heal are gone by morning. Lost
-limbs grow back within a week, and nothing leaves a scar. You still go
-down when you are hurt; you just come back whole.
-\end{feat}
-
-\begin{feat}{Sixth Sense}
-You cannot be ambushed. You feel danger a heartbeat before it arrives,
-so you are never caught asleep or struck from behind unawares. Knowing
-it is coming is not the same as dodging it.
-\end{feat}
-
-\begin{feat}{Squeeze}
-You fit through any gap your head fits through: a keyhole-sized vent, a
-gap under a door, a drainpipe. It takes time, so not in the middle of a
-fight.
-\end{feat}
-
-\begin{feat}{Tireless}
-You never need to sleep and never tire from exertion. You can march all
-day and keep watch all night, every night.
-\end{feat}
-
-\begin{feat}{Wall-Crawler}
-Walk on walls and ceilings as easily as floors, with your hands free.
-Ice, oil, and glass defeat you.
-\end{feat}
-
-\renewcommand{\realmaccent}{columnStuff}
-\section{Stuff Feats}
-\artinline{feat-stuff-pocket-refuge.png}
-
-\begin{feat}{Bottomless Bag}
-Reach in and pull out any ordinary item that could fit in the bag: rope,
-a lantern, a crowbar, a change of clothes. Nothing valuable, nothing
-magical, nothing you couldn't buy at a market.
-\end{feat}
-
-\begin{feat}{Cloaking Suit}
-While you wear it and move slowly, you are invisible, for up to a
-minute at a time. After that it needs an hour to recharge. Running or
-fighting makes you flicker back into view.
-\end{feat}
-
-\begin{feat}{Companion}
-A loyal companion with a mind of its own: a hound, a squire, a droid. It
-follows you and helps where it can, and it can be hurt, lost, or
-captured.
-\end{feat}
-
-\begin{feat}{Crew}
-A handful of people who follow your orders: sailors, thugs, technicians.
-They are not heroes, and they break when things go badly.
-\end{feat}
-
-\begin{feat}{Environment Suit}
-While you wear it, you can breathe anywhere: underwater, in smoke, in
-poison gas, in vacuum. Heat, cold, pressure, radiation, and disease
-cannot reach you. It is bulky and obvious, and suits can be punctured.
-\end{feat}
-
-\begin{feat}{Flight Rig}
-A jetpack, grav-boots, or a winged harness. While you wear it, you fly.
-It is loud and obvious, and it handles poorly: tight turns and sudden
-stops are rolls.
-\end{feat}
-
-\begin{feat}{Informant Network}
-In any city, after a day, you have eyes and ears reporting to you: who
-has arrived, who is asking about you, what is for sale. Outside cities,
-it goes quiet.
-\end{feat}
-
-\begin{feat}{Letters of Marque}
-Papers granting you legal authority. Officials treat you as having every
-right to be where you are. Outlaws and rival powers don't care.
-\end{feat}
-
-\begin{feat}{Master Key}
-Opens any lock, mechanical or electronic, given time: a moment for a
-door, an hour for a vault. It always leaves obvious signs of tampering,
-and magical wards stop it cold.
-\end{feat}
-
-\begin{feat}{Patron}
-A powerful backer who takes your call: a duke, a corporation, a temple.
-They help when it suits them, and they will ask favours in return.
-\end{feat}
-
-\begin{feat}{Pocket Refuge}
-A door (chalked on a wall, a folding tent, a hatch) that opens into a
-small, safe room only you and your guests can enter. Whoever holds the
-door holds the room.
-\end{feat}
-
-\begin{feat}{Scanner}
-Point it at something and see through walls, crates, and skin on its
-display. It takes a moment, anyone watching can see what you are doing,
-and enough metal or stone blocks it, at the GM's discretion.
-\end{feat}
-
-\begin{feat}{Translator}
-While it is on you, you understand and are understood in any spoken
-language, human or not. There is a lag, and subtlety gets lost.
 \end{feat}
 
 \renewcommand{\realmaccent}{columnSkills}

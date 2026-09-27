@@ -1,0 +1,17 @@
+---
+description: Keep rulebook catalogues of player options in alphabetical order
+globs: chapters/**/*.tex
+alwaysApply: false
+---
+
+# Alphabetize Option Lists
+
+Catalogues that players pick from (Special Traits, Feats, Gadgets, spells, and
+similar lists of named options) go in alphabetical order by name. When adding,
+renaming, or moving an entry, put it in its sorted position.
+
+- Sort case-insensitively, word by word: "Fully Animal" before "Giant",
+  "Monstrous Form" before "Monstrous Weapon".
+- Exception: lists that are deliberately grouped or paired, such as Common Body
+  Tags grouped into weight classes, keep their grouping. Entries inside each
+  group are not reordered unless the group has no intended order.
