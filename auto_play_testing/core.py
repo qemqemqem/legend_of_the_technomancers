@@ -63,6 +63,8 @@ GADGET_EFFECTS = {
 FEATS = ("Fly", "Read Minds", "Form Shadow", "Needs No Air", "Never Sleep",
          "Speak with Animals", "Walk Through Walls", "Turn Invisible",
          "See Through Solid Matter", "Blink")
+# Stuff grants no Feats; its former Feats are Ready-Made Gadgets bought with points.
+FEAT_COLUMNS = ("Body", "Skills", "Magic")
 
 # Themes only balance the sample; the model chooses its base independently.
 # Targets are experimental, not an as-yet-unwritten GM difficulty table.
@@ -279,7 +281,7 @@ def character(rng, number, ranks=None):
                      "item_id": item["id"], "name": name})
 
     feats = []
-    for column in COLUMNS:
+    for column in FEAT_COLUMNS:
         for _ in range(max(0, ranks[column] - 2)):
             choices = [f for f in FEATS if (column != "Skills" or f != "Walk Through Walls")
                        and all(existing["name"] != f for existing in feats)]

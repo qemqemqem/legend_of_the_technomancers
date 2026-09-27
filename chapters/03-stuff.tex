@@ -6,8 +6,11 @@
 % Full-width summary table, placed immediately after the chapter title
 % so it shares the chapter's opening page (see 02-body.tex for the float
 % placement notes; a \begin{table*}[t] float, not \twocolumn[...]).
-% REAL RULE, 2026-09-22: Special Feats column added --- Body, Skills,
-% Magic, and Stuff all grant 1 Feat at rank 3 and 2 at rank 4.
+% REAL RULE, 2026-09-26: Stuff no longer grants Special Feats; the
+% Special Feats column is gone from this table. The old Stuff Feats were
+% always just items, so they now live in the catalogue below as
+% Ready-Made Gadgets, bought with Stuff Points like everything else. Body, Skills,
+% and Magic still grant 1 Feat at rank 3 and 2 at rank 4.
 % REAL RULE, 2026-09-23: Stuff Tags column added --- a flat pool keyed to
 % Stuff rank, same shape as Body Tags/Skills Known/Tags Known elsewhere in
 % the book. Supersedes the older "each item grants tags equal to one less
@@ -30,22 +33,21 @@
   \endgroup
   \begingroup
   \setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.35}
-  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.4cm} Y >{\centering\arraybackslash}p{1.5cm} >{\centering\arraybackslash}p{1.9cm} >{\centering\arraybackslash}p{1.5cm} >{\centering\arraybackslash}p{1.5cm}@{}}
+  \centering\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}p{1.4cm} Y >{\centering\arraybackslash}p{1.5cm} >{\centering\arraybackslash}p{1.9cm} >{\centering\arraybackslash}p{1.5cm}@{}}
   \rowcolor{\realmaccent}
   {\leavevmode\hdfont\bfseries\color{white}Rank} &
   {\leavevmode\hdfont\bfseries\color{white}You Have\ldots} &
   {\leavevmode\hdfont\bfseries\color{white}Max Tier} &
   {\leavevmode\hdfont\bfseries\color{white}Stuff Points} &
-  {\leavevmode\hdfont\bfseries\color{white}Stuff Tags} &
-  {\leavevmode\hdfont\bfseries\color{white}Special Feats} \\
+  {\leavevmode\hdfont\bfseries\color{white}Stuff Tags} \\
   \rowcolor{atrBoxbg}
-  \rating{1} & Nothing but the shirt on your back. & --- & \dice{0} & \dice{0} & \dice{0} \\
+  \rating{1} & Nothing but the shirt on your back. & --- & \dice{0} & \dice{0} \\
   \rowcolor{white}
-  \rating{2} & Basic Stuff --- armour, a weapon, a skateboard.  & \dice{2} & \dice{3} & \dice{2} & \dice{0} \\
+  \rating{2} & Basic Stuff --- armour, a weapon, a skateboard.  & \dice{2} & \dice{3} & \dice{2} \\
   \rowcolor{atrBoxbg}
-  \rating{3} & Nice Stuff --- a legendary weapon, a vehicle. & \dice{3} & \dice{6} & \dice{4} & \dice{1} \\
+  \rating{3} & Nice Stuff --- a legendary weapon, a vehicle. & \dice{3} & \dice{6} & \dice{4} \\
   \rowcolor{white}
-  \rating{4} & Fancy Stuff --- a ship, a keep, incredible gear. & \dice{4}* & \dice{10} & \dice{7} & \dice{2} \\
+  \rating{4} & Fancy Stuff --- a ship, a keep, incredible gear. & \dice{4}* & \dice{10} & \dice{7} \\
   \end{tabularx}
   \endgroup
   \begingroup\centering
@@ -71,13 +73,9 @@ is allowed to be.
 
 Your Stuff rank --- set when you assigned priorities at character
 creation, see the table above --- grants a pool of \keyword{Stuff
-Points}, a pool of \keyword{Stuff Tags}, and, at rank \rating{3} and
-\rating{4}, Special Feats. Spend your Stuff Points on the catalogue
-below and your Stuff Tags on the things that catalogue buys; for Special
-Feats, see \emph{Special Feats} for the rules and the list --- a Stuff
-Feat is always one specific thing you own (a flight rig, a translator, a
-loyal companion), which can be lost like any other Stuff and re-kits
-along with the rest of your gear when you cross into a new realm.
+Points} and a pool of \keyword{Stuff Tags}. Spend your Stuff Points on
+the catalogue below and your Stuff Tags on the things that catalogue
+buys.
 
 \subsection*{Spending Your Stuff Points}
 % REAL RULE, 2026-09-22: rank is not a ceiling you fill in every
@@ -91,13 +89,14 @@ along with the rest of your gear when you cross into a new realm.
 % The "You Have..." column in the table above already implied a ceiling
 % ("Basic Stuff" at rank 2); this makes it an actual rule instead of an
 % unenforced suggestion.
-Every catalogue entry lists a rank from \rating{2} to \rating{4} ---
+Every catalogue entry lists a rank from \rating{1} to \rating{4} ---
 that number is also its \keyword{point cost}. Spend your Stuff Points
 across any combination of entries, from any category, in any
 combination, with one hard limit: \emph{you may never buy anything
 ranked higher than your own Stuff rank.} A Stuff-\rating{2} character
-can own two Basic-tier things, or one and save the rest --- never a
-single Fancy-tier item bought on credit.
+can own one Basic-tier thing and a Tier-\rating{1} Gadget, or three
+Tier-\rating{1} Gadgets --- never a single Fancy-tier item bought on
+credit.
 
 \begin{example}
 Kira is Stuff \rating{3}: \dice{6} points, and nothing she buys can be
@@ -137,7 +136,7 @@ her nothing extra, and it is now the sharpest blade she will ever carry.
 Your Stuff rank also grants a pool of \keyword{Stuff Tags} --- \dice{0}
 at rank \rating{1}, \dice{2} at rank \rating{2}, \dice{4} at rank
 \rating{3}, \dice{7} at rank \rating{4} --- to distribute across
-whatever you own, in any combination. Pick from the tag menu listed
+whatever you own, in any combination. Pick from the example tags listed
 under that kind of item, or invent your own with your GM's approval.
 These work exactly like a Body Tag or a Skill --- when one clearly
 applies, add one die to your pool.
@@ -277,7 +276,7 @@ Your Lifestyle simply matches your Stuff rank.
 \FloatBarrier
 
 Every entry below is tagged with its point cost, shown as pips
-(\rating{2}--\rating{4}). Spend your Stuff Points from the table at the
+(\rating{1}--\rating{4}). Spend your Stuff Points from the table at the
 start of this chapter here, in whatever combination you like, and never
 above your own rank.
 
@@ -291,70 +290,26 @@ how fast, tough, and capable it is.
 \gearentry{Vehicle}{2}{The humblest way to travel faster than your feet.
 It gets you there, carries a little cargo, and asks little in return. No
 armour to speak of and no room for the whole party, but it is yours, and
-it is quick.}
+it is quick.\par\emph{Examples:} Horse, Motorcycle, Hoverboard.}
 
 \gearentry{Vehicle}{3}{A proper conveyance with room for a few
 companions and their kit. It shrugs off rough roads, hauls real cargo, and
 can take a knock without falling apart. This is the workaday vehicle of the
-realm --- reliable, unremarkable, and exactly enough.}
+realm --- reliable, unremarkable, and exactly enough.\par\emph{Examples:} Covered Wagon, Family Car, Cargo Skiff.}
 
 \gearentry{Vehicle}{4}{Fast, tough, and built to turn heads or win
 fights. A rank-\rating{4} Vehicle outruns, out-hauls, or out-fights
 anything short of a named threat. It carries the whole party in comfort
-or in armour, and it changes what encounters are even possible.}
+or in armour, and it changes what encounters are even possible.\par\emph{Examples:} War-Chariot, Race Car, Gunship.}
 
-% REAL, 2026-09-23: replaces the old per-rank \genretrans italics with one
-% table --- Andrew's feedback: a "Name | pips" row reads easier than an
-% inline comma-separated list of italicized examples. Same pattern reused
-% for every category below.
-\begin{statblock}[Example Vehicles]
-\begin{tabularx}{\linewidth}{@{}Y >{\raggedleft\arraybackslash}p{0.16\linewidth}@{}}
-Warhorse & \rating{2}\\
-Motorbike & \rating{2}\\
-Hoverboard & \rating{2}\\
-Covered Wagon & \rating{3}\\
-Family Car & \rating{3}\\
-Cargo Skiff & \rating{3}\\
-War-Chariot & \rating{4}\\
-Race Car & \rating{4}\\
-Gunship & \rating{4}\\
-\end{tabularx}
-\end{statblock}
-
-\subsection*{Vehicle Tags}
-Ten tags, paired into five weight classes so no single pick outshines the
-rest. Drawn from your shared pool of Stuff Tags --- see \emph{Giving
-Your Stuff Tags} above.
-
-\skillcat{Speed \& Handling}
-\begin{itemize}
-  \item \atrtag{item}{Fast} --- Outpaces almost anything else on the road, rail, or sky.
-  \item \atrtag{item}{Agile} --- Turns on a dime, threading gaps nothing else its size can fit through.
-\end{itemize}
-
-\skillcat{Protection}
-\begin{itemize}
-  \item \atrtag{item}{Armoured} --- Shrugs off gunfire, claws, or a hard collision.
-  \item \atrtag{item}{Rugged} --- Keeps running through terrain, weather, or damage that would strand anything else.
-\end{itemize}
-
-\skillcat{Capacity}
-\begin{itemize}
-  \item \atrtag{item}{Spacious} --- Hauls the whole party and their gear without complaint.
-  \item \atrtag{item}{Amphibious} --- Moves from open water to dry land without missing a beat.
-\end{itemize}
-
-\skillcat{Reach}
-\begin{itemize}
-  \item \atrtag{item}{Airborne} --- Leaves the ground entirely; a flier, not just a rider.
-  \item \atrtag{item}{Silent} --- Arrives, or leaves, without anyone noticing.
-\end{itemize}
-
-\skillcat{Presence}
-\begin{itemize}
-  \item \atrtag{item}{Armed} --- Mounts a weapon of its own, ready to fire from the driver's seat.
-  \item \atrtag{item}{Luxurious} --- As comfortable as it is capable; the kind of ride that impresses.
-\end{itemize}
+% REAL, 2026-09-26: example tables and per-tag descriptions replaced with
+% inline "Examples:" lines and a flat Example Tags list, in every category.
+\subsection*{Example Tags for Vehicles}
+{\raggedright\atrtag{item}{Fast}, \atrtag{item}{Agile}, \atrtag{item}{Armoured},
+\atrtag{item}{Rugged}, \atrtag{item}{All-Terrain}, \atrtag{item}{Spacious},
+\atrtag{item}{Amphibious},
+\atrtag{item}{Airborne}, \atrtag{item}{Silent}, \atrtag{item}{Armed},
+\atrtag{item}{Luxurious}\par}
 
 \section{Weapons}
 \artinline{stuff-weapons.png}
@@ -364,61 +319,19 @@ changes is how much of an edge it gives you.
 
 \gearentry{Weapon}{2}{A dependable killer, nothing more and nothing
 less --- a sword, a pistol. It does exactly what a weapon is supposed to
-do.}
+do.\par\emph{Examples:} Sword, Pistol, Sidearm.}
 
 \gearentry{Weapon}{3}{Something with a trick to it --- a flaming blade, a
-grenade launcher, a weapon that does more than simply cut or shoot.}
+grenade launcher, a weapon that does more than simply cut or shoot.\par\emph{Examples:} Enchanted Blade, Shotgun, Plasma Cutter.}
 
 \gearentry{Weapon}{4}{A weapon out of story --- world-shaping, named, and
-feared. Everyone in the room knows what it means when you draw it.}
+feared. Everyone in the room knows what it means when you draw it.\par\emph{Examples:} Legendary Blade, Signature Sidearm, Superweapon.}
 
-\begin{statblock}[Example Weapons]
-\begin{tabularx}{\linewidth}{@{}Y >{\raggedleft\arraybackslash}p{0.16\linewidth}@{}}
-Sword & \rating{2}\\
-Pistol & \rating{2}\\
-Sidearm & \rating{2}\\
-Enchanted Blade & \rating{3}\\
-Shotgun & \rating{3}\\
-Plasma Cutter & \rating{3}\\
-Legendary Blade & \rating{4}\\
-Signature Sidearm & \rating{4}\\
-Superweapon & \rating{4}\\
-\end{tabularx}
-\end{statblock}
-
-\subsection*{Weapon Tags}
-Ten tags, paired into five weight classes, same rule as Vehicles: drawn
-from your shared pool of Stuff Tags, not tied to this item alone.
-
-\skillcat{Reach \& Range}
-\begin{itemize}
-  \item \atrtag{item}{Ranged} --- Strikes from a distance, no need to close in.
-  \item \atrtag{item}{Reach} --- Keeps an opponent at arm's length even up close.
-\end{itemize}
-
-\skillcat{Rate of Attack}
-\begin{itemize}
-  \item \atrtag{item}{Rapid-Fire} --- Strikes again and again, faster than anyone can answer.
-  \item \atrtag{item}{Returning} --- Flies from your hand and comes right back, or never needs reloading.
-\end{itemize}
-
-\skillcat{Concealment}
-\begin{itemize}
-  \item \atrtag{item}{Concealable} --- Vanishes into a sleeve, boot, or coat until the moment it's needed.
-  \item \atrtag{item}{Silent} --- Does its work without anyone else in the room noticing.
-\end{itemize}
-
-\skillcat{Impact}
-\begin{itemize}
-  \item \atrtag{item}{Piercing} --- Punches through armour and cover like they aren't there.
-  \item \atrtag{item}{Explosive} --- Deals damage well beyond the point of impact.
-\end{itemize}
-
-\skillcat{Special}
-\begin{itemize}
-  \item \atrtag{item}{Elemental} --- Carries fire, ice, lightning, or something stranger with every hit.
-  \item \atrtag{item}{Disarming} --- As good at stripping a weapon away as landing a blow.
-\end{itemize}
+\subsection*{Example Tags for Weapons}
+{\raggedright\atrtag{item}{Ranged}, \atrtag{item}{Reach}, \atrtag{item}{Rapid-Fire},
+\atrtag{item}{Returning}, \atrtag{item}{Concealable}, \atrtag{item}{Silent},
+\atrtag{item}{Piercing}, \atrtag{item}{Explosive}, \atrtag{item}{Elemental},
+\atrtag{item}{Disarming}\par}
 
 \section{Armour}
 \artinline{stuff-armour.png}
@@ -427,62 +340,19 @@ doesn't just mean thicker plating --- it can turn a killing blow into a
 bad day.
 
 \gearentry{Light Armour}{2}{Padding and leathers --- turns aside the
-first, glancing blow.}
+first, glancing blow.\par\emph{Examples:} Leather Jerkin, Reinforced Jacket, Impact-Weave Bodysuit.}
 
 \gearentry{Heavy Armour}{3}{Plate, a ballistic vest, a hardsuit ---
-real, worn protection.}
+real, worn protection.\par\emph{Examples:} Plate Harness, Riot Gear, Exo-Frame.}
 
 \gearentry{Master Armour}{4}{Armour of legend or high craft, protection
-few can match.}
+few can match.\par\emph{Examples:} Dragon-Scale Mail, Combat Suit, Void-Rated Armour.}
 
-\begin{statblock}[Example Armour]
-\begin{tabularx}{\linewidth}{@{}Y >{\raggedleft\arraybackslash}p{0.16\linewidth}@{}}
-Leather Jerkin & \rating{2}\\
-Reinforced Jacket & \rating{2}\\
-Impact-Weave Bodysuit & \rating{2}\\
-Plate Harness & \rating{3}\\
-Riot Gear & \rating{3}\\
-Exo-Frame & \rating{3}\\
-Dragon-Scale Mail & \rating{4}\\
-Combat Suit & \rating{4}\\
-Void-Rated Armour & \rating{4}\\
-\end{tabularx}
-\end{statblock}
-
-\subsection*{Armour Tags}
-Draw these from your shared pool of Stuff Tags. An armour's tier measures
-its general protection; a tag describes the particular edge it offers
-when that edge matters to an action.
-
-\skillcat{Protection}
-\begin{itemize}
-  \item \atrtag{item}{Impact-Resistant} --- Takes the force out of a fall, collision, or heavy blow.
-  \item \atrtag{item}{Fireproof} --- Shields you from flames and scorching heat.
-\end{itemize}
-
-\skillcat{Environment}
-\begin{itemize}
-  \item \atrtag{item}{Sealed} --- Keeps smoke, gas, and contaminated air outside.
-  \item \atrtag{item}{Insulated} --- Holds off bitter cold or a dangerous electrical charge.
-\end{itemize}
-
-\skillcat{Movement}
-\begin{itemize}
-  \item \atrtag{item}{Flexible} --- Allows easy movement.
-  \item \atrtag{item}{Lightweight} --- Easy to carry.
-\end{itemize}
-
-\skillcat{Presentation}
-\begin{itemize}
-  \item \atrtag{item}{Discreet} --- Passes for ordinary clothing until someone looks closely.
-  \item \atrtag{item}{Imposing} --- Makes its wearer hard to ignore or threaten.
-\end{itemize}
-
-\skillcat{Staying Power}
-\begin{itemize}
-  \item \atrtag{item}{Self-Repairing} --- Patches its own damage while you keep moving.
-  \item \atrtag{item}{Anchored} --- Holds you steady against a shove, blast, or strong wind.
-\end{itemize}
+\subsection*{Example Tags for Armour}
+{\raggedright\atrtag{item}{Impact-Resistant}, \atrtag{item}{Fireproof},
+\atrtag{item}{Sealed}, \atrtag{item}{Insulated}, \atrtag{item}{Flexible},
+\atrtag{item}{Lightweight}, \atrtag{item}{Discreet}, \atrtag{item}{Imposing},
+\atrtag{item}{Self-Repairing}, \atrtag{item}{Anchored}\par}
 
 \section{Locations}
 \artinline{stuff-locations.png}
@@ -492,56 +362,16 @@ Location re-skins to fit wherever you currently stand; see
 \emph{Re-Kitting on Arrival}.
 
 \gearentry{Base}{3}{A safe house, a wizard's tower, a hideout you can
-return to.}
+return to.\par\emph{Examples:} Hidden Tower, Safehouse, Satellite Relay.}
 
 \gearentry{Fortress}{4}{A stronghold --- walls, staff, and standing over
-the land around it.}
+the land around it.\par\emph{Examples:} Castle, Corporate Compound, Orbital Station.}
 
-\begin{statblock}[Example Locations]
-\begin{tabularx}{\linewidth}{@{}Y >{\raggedleft\arraybackslash}p{0.16\linewidth}@{}}
-Hidden Tower & \rating{3}\\
-Safehouse & \rating{3}\\
-Satellite Relay & \rating{3}\\
-Castle & \rating{4}\\
-Corporate Compound & \rating{4}\\
-Orbital Station & \rating{4}\\
-\end{tabularx}
-\end{statblock}
-
-\subsection*{Location Tags}
-Draw these from your shared pool of Stuff Tags. A tag helps when your
-action actually uses the place or something in it; owning a Safehouse
-doesn't make every action everywhere else safer.
-
-\skillcat{Security}
-\begin{itemize}
-  \item \atrtag{item}{Fortified} --- Walls and barriers withstand an assault.
-  \item \atrtag{item}{Hidden} --- Hard to find without being shown the way.
-\end{itemize}
-
-\skillcat{Awareness}
-\begin{itemize}
-  \item \atrtag{item}{Watchful} --- Lookouts or sensors catch trouble on the approach.
-  \item \atrtag{item}{Connected} --- Messages reach contacts beyond its walls.
-\end{itemize}
-
-\skillcat{Resources}
-\begin{itemize}
-  \item \atrtag{item}{Stocked} --- Stores supplies for those who shelter here.
-  \item \atrtag{item}{Workshop} --- Has the tools and space to build or repair things.
-\end{itemize}
-
-\skillcat{People}
-\begin{itemize}
-  \item \atrtag{item}{Welcoming} --- Makes guests comfortable enough to stay and talk.
-  \item \atrtag{item}{Staffed} --- Has people on hand to keep it running or help out.
-\end{itemize}
-
-\skillcat{Access}
-\begin{itemize}
-  \item \atrtag{item}{Escape Route} --- Offers another way out when the front is blocked.
-  \item \atrtag{item}{Commanding} --- Overlooks or controls an important approach.
-\end{itemize}
+\subsection*{Example Tags for Locations}
+{\raggedright\atrtag{item}{Fortified}, \atrtag{item}{Hidden}, \atrtag{item}{Watchful},
+\atrtag{item}{Connected}, \atrtag{item}{Stocked}, \atrtag{item}{Workshop},
+\atrtag{item}{Welcoming}, \atrtag{item}{Staffed}, \atrtag{item}{Escape Route},
+\atrtag{item}{Commanding}\par}
 
 \section{Gadgets}
 % REAL RULE, 2026-09-23: the deliberate catch-all category. Every other
@@ -550,102 +380,130 @@ doesn't make every action everywhere else safer.
 % at the table, and only its rank (hence its point cost and power
 % ceiling) is fixed by these rules. Keeps the catalogue from needing an
 % entry for every one-off tool a player might dream up.
+% REAL RULE, 2026-09-26: the former Stuff Feats are merged in here as
+% ordinary Gadgets --- same one-thing shape, same Tier/point cost, same
+% Stuff Tag pool.
 \artinline{stuff-gadgets.png}
 Not everything worth owning fits neatly into a Vehicle, a Weapon, a suit
 of Armour, or a Location. A \keyword{Gadget} is whatever's left ---
-purpose-built gear that does one specific, useful thing. Unlike the rest
-of the catalogue, a Gadget has no fixed name or blurb of its own: you
-design it together with your GM when you buy it, the same way you'd
-invent a Body Tag or a Skill that isn't on the printed list.
+purpose-built gear that does one specific, useful thing. Buy one of the
+Gadgets below, or design your own together with your GM when
+you buy it, the same way you'd invent a Body Tag or a Skill that isn't
+on the printed list.
 
 \subsection*{Designing a Gadget with Your GM}
 Pick the rank you can afford --- never above your own Stuff rank, same
 as everything else in this chapter --- then agree with your GM on the
 one thing it does. The rank sets the ceiling on how impressive that one
-thing is allowed to be: a Tier-\rating{2} Gadget solves a single mundane
+thing is allowed to be: a Tier-\rating{1} Gadget solves a single mundane
 problem outright, while a Tier-\rating{4} Gadget can do something no
 ordinary tool has any business doing. If you and your GM can't agree on
 what a rank should buy, undershoot --- a Gadget that's a little less
 flashy than its rank allows is far easier to live with at the table than
 one that quietly turns out to be a spell wearing a disguise.
 
+A Tier-\rating{1} Gadget never supplies a better base Stat --- your own
+Stats start at \dice{1} --- so its value is simply that you have it,
+plus whatever Stuff Tags you hang on it.
+
 \begin{example}
-Kira wants a Tier-\rating{2} Gadget. She and her GM land on a
+Kira wants a Tier-\rating{1} Gadget. She and her GM land on a
 \emph{grappling hook}: fires a hook and cable a few dozen feet, hauls her
 up a wall or yanks a target off their feet. One good trick, solving
 exactly one kind of problem --- getting somewhere a hook and cable can
 reach.
 \end{example}
 
-A few more examples, to spark ideas rather than to pick from directly:
+% REAL RULE, 2026-09-26: the former Stuff Feats (Bottomless Bag, Cloaking
+% Suit, Companion, etc.) are folded into this one alphabetical list. Their
+% Tiers are a first pass (formerly free, rank-3/4-only picks) and want
+% playtesting.
+% REAL RULE, 2026-09-26: Tier-1 exists for Gadgets only (Bottomless Bag,
+% Grappling Hook, Letters of Marque, Lockpick Rig, Translator) --- mainly
+% so a Stuff-2 character's 3 points don't strand one. Vehicles, Weapons,
+% Armour, and Locations deliberately stay at 2+ so they feel special.
+\artinline{feat-stuff-pocket-refuge.png}
 
-\gearentry{Grappling Hook}{2}{Fires a hook and cable a few dozen feet;
+\gearentry{Bottomless Bag}{1}{Reach in and pull out any ordinary item
+that could fit in the bag: rope, a lantern, a crowbar, a change of
+clothes. Nothing valuable, nothing magical, nothing you couldn't buy at
+a market.}
+
+\gearentry{Cloaking Suit}{3}{While you wear it and move slowly, you are
+invisible, for up to a minute at a time. After that it needs an hour to
+recharge. Running or fighting makes you flicker back into view.}
+
+\gearentry{Companion}{3}{A loyal companion with a mind of its own: a
+hound, a squire, a droid. It follows you and helps where it can, and it
+can be hurt, lost, or captured.}
+
+\gearentry{Crew}{3}{A handful of people who follow your orders: sailors,
+thugs, technicians. They are not heroes, and they break when things go
+badly.}
+
+\gearentry{Environment Suit}{3}{While you wear it, you can breathe
+anywhere: underwater, in smoke, in poison gas, in vacuum. Heat, cold,
+pressure, radiation, and disease cannot reach you. It is bulky and
+obvious, and suits can be punctured.}
+
+\gearentry{Flight Rig}{3}{A jetpack, grav-boots, or a winged harness.
+While you wear it, you fly. It is loud and obvious, and it handles
+poorly: tight turns and sudden stops are rolls.}
+
+\gearentry{Grappling Hook}{1}{Fires a hook and cable a few dozen feet;
 hauls you up, or hauls something else down. One good trick: getting
-somewhere a hook and cable can reach.}
+somewhere a hook and cable can reach.\par\emph{Examples:} Enchanted
+Climbing Rope, Grapple Gun, Tractor-Line Launcher.}
 
-\gearentry{Lockpick Rig}{2}{A compact set of picks and probes, or the
-digital equivalent, that opens what it isn't supposed to.}
+\gearentry{Informant Network}{3}{In any city, after a day, you have eyes
+and ears reporting to you: who has arrived, who is asking about you,
+what is for sale. Outside cities, it goes quiet.}
 
-\gearentry{Signal Jammer}{3}{Blinds a device, a ward, or a whole room to
-outside detection for as long as you keep it running.}
+\gearentry{Letters of Marque}{1}{Papers granting you legal authority.
+Officials treat you as having every right to be where you are. Outlaws
+and rival powers don't care.}
+
+\gearentry{Lockpick Rig}{1}{A compact set of picks and probes, or the
+digital equivalent, that opens what it isn't supposed to.\par\emph{Examples:}
+Thieves' Tools, Lock-Bypass Kit, Cipher Wand.}
+
+\gearentry{Master Key}{3}{Opens any lock, mechanical or electronic,
+given time: a moment for a door, an hour for a vault. It always leaves
+obvious signs of tampering, and magical wards stop it cold.}
 
 \gearentry{Nanite Patch Kit}{4}{Closes a wound, mends a break, or purges
-a poison almost as fast as you can apply it.}
+a poison almost as fast as you can apply it.\par\emph{Examples:}
+Phoenix-Down Poultice, Trauma Injector, Medical Nanite Swarm.}
 
-\begin{statblock}[Example Gadgets]
-\begin{tabularx}{\linewidth}{@{}Y >{\raggedleft\arraybackslash}p{0.16\linewidth}@{}}
-Enchanted Climbing Rope & \rating{2}\\
-Grapple Gun & \rating{2}\\
-Tractor-Line Launcher & \rating{2}\\
-Thieves' Tools & \rating{2}\\
-Lock-Bypass Kit & \rating{2}\\
-Cipher Wand & \rating{2}\\
-Rune of Silence & \rating{3}\\
-RF Jammer & \rating{3}\\
-Scrambler Emitter & \rating{3}\\
-Phoenix-Down Poultice & \rating{4}\\
-Trauma Injector & \rating{4}\\
-Medical Nanite Swarm & \rating{4}\\
-\end{tabularx}
-\end{statblock}
+\gearentry{Patron}{3}{A powerful backer who takes your call: a duke, a
+corporation, a temple. They help when it suits them, and they will ask
+favours in return.}
 
-\subsection*{Gadget Tag Examples}
-Gadget tags also come from your shared pool of Stuff Tags, but belong
-to the specific device you design with your GM. Here are choices for
-the four Gadgets described above; use them as examples, not a menu that
-gives every Gadget every capability.
+\gearentry{Pocket Refuge}{3}{A door (chalked on a wall, a folding tent,
+a hatch) that opens into a small, safe room only you and your guests can
+enter. Whoever holds the door holds the room.}
 
-\skillcat{Grappling Hook}
-\begin{itemize}
-  \item \atrtag{item}{Long-Range} --- Reaches a distant ledge.
-  \item \atrtag{item}{Strong Line} --- Holds a heavy load.
-  \item \atrtag{item}{Quick-Firing} --- Deploys in a hurry.
-  \item \atrtag{item}{Retractable} --- Reels the line back in.
-\end{itemize}
+\gearentry{Scanner}{3}{Point it at something and see through walls,
+crates, and skin on its display. It takes a moment, anyone watching can
+see what you are doing, and enough metal or stone blocks it, at the GM's
+discretion.}
 
-\skillcat{Lockpick Rig}
-\begin{itemize}
-  \item \atrtag{item}{Precise} --- Works on delicate mechanisms.
-  \item \atrtag{item}{Quiet} --- Leaves no audible sign.
-  \item \atrtag{item}{Compact} --- Fits in a pocket.
-  \item \atrtag{item}{Adaptive} --- Handles unfamiliar locks.
-\end{itemize}
+\gearentry{Signal Jammer}{3}{Blinds a device, a ward, or a whole room to
+outside detection for as long as you keep it running.\par\emph{Examples:}
+Rune of Silence, RF Jammer, Scrambler Emitter.}
 
-\skillcat{Signal Jammer}
-\begin{itemize}
-  \item \atrtag{item}{Wide-Area} --- Covers a large room.
-  \item \atrtag{item}{Selective} --- Leaves chosen signals untouched.
-  \item \atrtag{item}{Portable} --- Works while carried.
-  \item \atrtag{item}{Hard-to-Trace} --- Hard to locate.
-\end{itemize}
+\gearentry{Translator}{1}{While it is on you, you understand and are
+understood in any spoken language, human or not. There is a lag, and
+subtlety gets lost.}
 
-\skillcat{Nanite Patch Kit}
-\begin{itemize}
-  \item \atrtag{item}{Rapid} --- Acts immediately.
-  \item \atrtag{item}{Antitoxin} --- Purges poisons.
-  \item \atrtag{item}{Bone-Mending} --- Repairs fractures.
-  \item \atrtag{item}{Reusable} --- Works again without resupply.
-\end{itemize}
+\todo{Gadget ranks for the former Stuff Feats are a first pass --- they
+were free Stuff Feats until 2026-09-26. Playtest the costs.}
 
-For another Gadget, agree on tags that sharpen its one useful trick
-instead of quietly giving it a second, unrelated purpose.
+\subsection*{Example Tags for Gadgets}
+{\raggedright\atrtag{item}{Adaptive}, \atrtag{item}{Antitoxin},
+\atrtag{item}{Bone-Mending}, \atrtag{item}{Compact},
+\atrtag{item}{Hard-to-Trace}, \atrtag{item}{Long-Range},
+\atrtag{item}{Portable}, \atrtag{item}{Precise}, \atrtag{item}{Quick-Firing},
+\atrtag{item}{Quiet}, \atrtag{item}{Rapid}, \atrtag{item}{Retractable},
+\atrtag{item}{Reusable}, \atrtag{item}{Selective}, \atrtag{item}{Strong Line},
+\atrtag{item}{Wide-Area}\par}

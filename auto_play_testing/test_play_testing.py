@@ -13,7 +13,7 @@ from auto_play_testing.controlled_report import (fit_rank_trend, load_controlled
                                                  sheet_profile, usage_counts)
 from auto_play_testing.report import character_interval
 from auto_play_testing.core import (
-    BODY_STAT, BODY_TAG_COUNTS, COLUMNS, FEATS, GADGET_EFFECTS, GADGET_TAGS, GEAR_NAMES, GEAR_TAGS,
+    BODY_STAT, BODY_TAG_COUNTS, COLUMNS, FEAT_COLUMNS, FEATS, GADGET_EFFECTS, GADGET_TAGS, GEAR_NAMES, GEAR_TAGS,
     MAGIC_COUNTS, SKILL_COUNTS,
     SKILL_POINTS, STUFF_POINTS, STUFF_TAG_COUNTS, assess, character, controlled_characters, probabilities,
     roll, situation,
@@ -81,7 +81,8 @@ class CharacterTests(unittest.TestCase):
                     item = next(g for g in actor["gear"] if g["id"] == tag["item_id"])
                     self.assertIn(tag["name"], GADGET_TAGS[item["name"]] if item["kind"] == "Gadget"
                                   else GEAR_TAGS[item["kind"]])
-            self.assertEqual(len(actor["feats"]), 3)  # one rank 3 and two rank 4
+            self.assertEqual(len(actor["feats"]), sum(max(0, ranks[c] - 2) for c in FEAT_COLUMNS))
+            self.assertTrue(all(f["source"] != "Stuff" for f in actor["feats"]))
             self.assertTrue(all(f["name"] in FEATS for f in actor["feats"]))
         self.assertEqual(kinds, set(GEAR_NAMES))
 
